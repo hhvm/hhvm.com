@@ -1,15 +1,19 @@
-- title: Docs
-  href: /docs/
-  category: docs
-
-- title: Support
-  href: /support.html
-  category: support
+- title: Install
+  href: https://docs.hhvm.com/hhvm/getting-started/getting-started
+  category: install
 
 - title: Blog
   href: /blog/
   category: blog
 
-- title: Facebook
-  href: http://www.facebook.com/
-  category: facebook
+- title: Docs
+  href: http://docs.hhvm.com/hhvm/
+  category: docs
+
+- title: GitHub
+  href: http://github.com/facebook/hhvm
+  category: github
+
+- title: Hack
+  href: http://hacklang.com/
+  category: hack
