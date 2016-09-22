@@ -14,7 +14,7 @@ ghrepo: "hhvm/hhvm.com"
 # Use these color settings to determine your colour scheme for the site.
 color:
   # primary should be a vivid color that reflects the project's brand
-  primary: "#FD8724"
+  primary: "#505050"
   # secondary should be a subtle light or dark color used on page backgrounds
   secondary: "#f9f9f9"
   # Use the following to specify whether the previous two colours are 'light'
