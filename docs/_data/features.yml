@@ -1,19 +1,9 @@
-- title: Feature 1
-  text: |
-        This is a description of the feature which **can** use [markdown](#).
-  image: images/android.svg
-
-- title: Feature 2
-  text: |
-        This is another description of a feature.
-  image: images/apple.svg
-  
-- title: Feature 3
-  text: |
-        This is another description of a feature.
-  image: images/facebook.png
-
-- title: Feature 4
-  text: |
-        This is another description of a feature.
-  image: images/instagram.png
+# The features content is currently in index.md
+# If you are planning to replace anything in index.md with a gridblock or something...
+#    e.g., {% include content/gridblocks.html data_source=site.data.features imagealign="bottom"%}
+# .... then you can add items in here like:
+#
+#- title: Feature
+#  text: |
+#        Feature desc.
+#  image: images/optional-image.png
