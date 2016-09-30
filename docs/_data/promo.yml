@@ -22,4 +22,4 @@
   children:
   - type: button
     href: https://docs.hhvm.com/hhvm/getting-started/getting-started
-    text: Get Started With Hack
+    text: Get Started With HHVM
