@@ -17,3 +17,27 @@
 - title: Hack
   href: http://hacklang.com/
   category: hack
+
+- title: Facebook
+  href: https://www.facebook.com/hhvm/
+  category: facebook
+
+- title: Twitter
+  href: https://twitter.com/HipHopVM
+  category: twitter
+
+- title: IRC
+  href: http://webchat.freenode.net/?channels=hhvm
+  category: hhvm-irc
+
+- title: 3v4l
+  href: http://3v4l.org/
+  category: 3v4l
+
+- title: Module Support
+  href: http://hhvm.h4cc.de/
+  category: module-support
+
+- title: Docs on GitHub
+  href: https://github.com/hhvm/user-documentation
+  category: docs-on-github
