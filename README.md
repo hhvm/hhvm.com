@@ -1,12 +1,12 @@
-## User Documentation for hhvm.com
+## The hhvm.com landing page content
 
-This directory will contain the user and feature documentation for hhvm.com. The documentation will be hosted on GitHub pages.
+This directory will contain the landing page and other documentation for [hhvm.com](http://hhvm.com). It will contain links to the [HHVM user documentation over at docs.hhvm.com](https://docs.hhvm.com/hhvm) and other relevant places. [hhvm.com](http://hhvm.com) will be hosted on GitHub pages.
 
 ### Run the Site Locally
 
 The requirements for running a GitHub pages site locally is described in [GitHub help](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/#requirements). The steps below summarize these steps.
 
-1. Ensure that you are in the `YOUR-PROJECT/docs` directory in your local repo clone (i.e., the same directory where this `README.md` exists). The below RubyGems commands, etc. must be run from there.
+1. Ensure that you are in the `YOUR-PROJECT/` root directory in your local repo clone (i.e., the same directory where this `README.md` exists). The below RubyGems commands, etc. must be run from there.
 
 2. Make sure you have Ruby and [RubyGems](https://rubygems.org/) installed.
 
@@ -23,7 +23,7 @@ The requirements for running a GitHub pages site locally is described in [GitHub
 4. Install the project's dependencies
 
     ```
-    # run this in the 'docs' directory
+    # run this in the project root directory, where the GemFile is.
     bundle install
     ```
 
