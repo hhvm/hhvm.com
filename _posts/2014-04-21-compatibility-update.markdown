@@ -10,6 +10,8 @@ redirect_from:
 
 [Earlier this year](http://hhvm.com/blog/3743/hhvm-the-next-six-months) we set an ambitious goal of passing the PHPUnit test suites of 20 popular frameworks by the end of June; at the time, we were passing on only 6! With a huge amount of help from the community (especially our [OpenAcademy](https://www.facebook.com/OpenAcademyProgram) students), we're proud to have hit this goal more than 2 months early, and we have more frameworks expected to reach 100% shortly.
 
+<!--truncate-->
+
 ![lotsoflogos](/static/images/posts/lotsoflogos1.png)
 
 The full list (currently 23) is shown on our [framework tests page](http://hhvm.com/frameworks/); we consider the following to be popular, and will be supported in HHVM 3.1, and our nightly builds:

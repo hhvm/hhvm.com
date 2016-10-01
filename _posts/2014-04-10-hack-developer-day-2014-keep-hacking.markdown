@@ -10,6 +10,8 @@ redirect_from:
 
 A few weeks ago, the Hack language was [launched to the world](http://hhvm.com/blog/4223/introducing-hack-a-programming-language-for-hhvm). Yesterday, we held the first [Hack Developer Day](https://www.facebook.com/groups/hackdevday14/) in Menlo Park, California. 150+ Members of the PHP and developer community came to Facebook headquarters and joined over 2000 people online for presentations by the engineers of Hack and HHVM. Afterwards we held a five hour hackathon, where the attendees worked with those engineers to write Hack code, either by converting current codebases or writing new code from scratch. By the way, bonus points to anyone who can decrypt the [commit message](https://github.com/facebook/hhvm/commit/d50dd15bc34c60a4bcc02dc6bd95fdf32effc54b) used when [Josh](https://github.com/jwatzman) originally pushed Hack to open source.
 
+<!--truncate-->
+
 For those who couldn't attend, here are the videos of all the presentations...
 
 [![Hack Developer Days](/static/images/posts/hack-dev-days.png)](https://www.youtube.com/embed/videoseries?list=PLb0IAmt7-GS2fdbb1vVdP8Z8zx1l2L8YS)

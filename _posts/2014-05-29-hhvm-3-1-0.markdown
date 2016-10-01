@@ -10,6 +10,8 @@ redirect_from:
 
 The [next version of HHVM](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM) is hot off the press. After a few delays, we finally tracked down the [segfault](https://github.com/facebook/hhvm/commit/be654dd35a50b0c5a6918b376b5d168fdd00be25). We fixed it in master, but turning off the optimizations was safer for the release. Thanks for your patience.
 
+<!--truncate-->
+
 This release bisected our semi-annual lockdown. If you [remember last time ](http://hhvm.com/blog/2813/we-are-the-98-5-and-the-16)we focused on framework unit tests, performance, and growing beards. This time, our frameworks [were in good shape](http://hhvm.com/blog/4841/compatibility-update) thanks to [Fred](https://github.com/fredemmott/) and our Open Academy students, but our github story was not as pretty. At the start of lockdown we had 60 pull requests and nearly 450 issues. So our focus this time was github health and of course as always, perf.
 
 Our final results from lockdown were, drumroll ... 251 closed issues and 16% more efficient on large workloads. The 3.1.0 release timing was a bit unfortunate by bisecting our lockdown, so only 1/3 of the fixes and perf is in there. The few weeks after lockdown are always a little unstable and we didn't want to push the release out any longer, so you get some of the awesomeness this time and the other bunch in the [next release](https://github.com/facebook/hhvm/wiki/Release%20Schedule).

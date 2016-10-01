@@ -10,6 +10,8 @@ redirect_from:
 
 We're happy to announce that [HHVM 3.8.0](https://github.com/facebook/hhvm/tree/HHVM-3.8.0) is finally available. You can, as always, try one of our [prebuilt packages for Ubuntu and Debian](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-for-HHVM), or [build from source](https://github.com/facebook/hhvm/wiki/Building-and-Installing-HHVM). (As of this writing, the packages are still building, so if a 3.8.0 package isn't available for your supported distro, hold tight!)
 
+<!--truncate-->
+
 This release is the first one to contain performance improvements from our [HHVM lockdown](http://hhvm.com/blog/9293/lockdown-results-and-hhvm-performance) this half. Along with the changes detailed in that post targeted specifically at open-source frameworks like Wordpress, MediaWiki, and Drupal, this release also contains the results of Facebook's internal performance team's lockdown. While the internal team focuses on performance of Facebook's code specifically, many of the changes they made will improve the performance of all PHP and Hack code, including the aforementioned open-source frameworks.
 
 Here's a chart summarizing the performance results of 3.7 vs. 3.8:

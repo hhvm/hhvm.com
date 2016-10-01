@@ -10,6 +10,8 @@ redirect_from:
 
 This article aims to walk through the installation process for getting WordPress running on HHVM (HipHop Virtual Machine).
 
+<!--truncate-->
+
 ## Installing HHVM
 
 For the sake of this case-study, I used Ubuntu "Precise" 12.04 as my linux distribution since I'd be able to [install from a simple binary package](https://github.com/facebook/hiphop-php/wiki/Prebuilt-packages-on-ubuntu-12.04).  Instructions are currently available for [building for Ubuntu 12.04](https://github.com/facebook/hiphop-php/wiki/Building-and-installing-HHVM-on-Ubuntu-12.04) yourself, or [building for CentOS 6.3](https://github.com/facebook/hiphop-php/wiki/Building-and-installing-HHVM-on-CentOS-6.3).  Other distros will probably work with some effort, and you're encouraged to try.

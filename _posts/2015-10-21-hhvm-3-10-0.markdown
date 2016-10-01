@@ -8,7 +8,11 @@ redirect_from:
   - /blog/10379/hhvm-3-10-0
 ---
 
-HHVM 3.10.0 is out! You can [get it from the usual places](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-for-HHVM). Major changes in this version include:
+HHVM 3.10.0 is out! You can [get it from the usual places](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-for-HHVM).
+
+<!--truncate-->
+
+Major changes in this version include:
 
 **Core changes**
 

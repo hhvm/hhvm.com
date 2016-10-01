@@ -10,6 +10,8 @@ redirect_from:
 
 A recent addition to Hack is the `__ConsistentConstruct` attribute, which allows `new static()` to be safely, properly typed. The need for this special attribute first requires some background in how method overriding and polymorphism normally work, and how constructors are special.
 
+<!--truncate-->
+
 When overriding a method, there are only specific ways that its type signature can be changed. For example, if a superclass has a method that promises to return an `int`, a subclass cannot override that method and change its signature to return a `?int`, since it might give a `null` to code polymorphically calling that method! For example:
 
 

@@ -10,6 +10,8 @@ redirect_from:
 
 In PHP, [traits](http://docs.hhvm.com/manual/en/hack.traits.php) are a mechanism of code reuse that, while very powerful, are also difficult to type check both efficiently and exhaustively. In this post we’ll dive more deeply into the reasons for that and see how Hack solves those problems, allowing you to use traits in a safe way without limiting their expressiveness.
 
+<!--truncate-->
+
 To jog your memory: traits are bundles of code that can be dropped into any class to extends its functionality:
 
 

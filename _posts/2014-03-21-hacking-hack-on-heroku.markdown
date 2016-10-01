@@ -10,6 +10,8 @@ redirect_from:
 
 Yesterday, after our [Hack announcement,](http://hhvm.com/blog/4223/introducing-hack-a-programming-language-for-hhvm) we sat down with the heroku team to get Hack working on Heroku. And success! Read all about it over on the [heroku blog](https://blog.heroku.com/archives/2014/3/21/hacking_hack_on_heroku).
 
+<!--truncate-->
+
 First make an `index.php` file:
 
 

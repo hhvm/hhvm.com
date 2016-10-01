@@ -12,7 +12,7 @@ HHVM's JIT compiler allows it to execute PHP faster than Zend PHP in most cases,
 
 The principle that underlies all of these tips is: write code that HHVM can _understand without running_. The more HHVM knows before the code runs, the more it can optimize.
 
-
+<!--truncate-->
 
 
 ## Keep Hot Code Out of Global Scope

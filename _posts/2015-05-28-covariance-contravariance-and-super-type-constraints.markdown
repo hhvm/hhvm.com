@@ -10,6 +10,7 @@ redirect_from:
 
 Hack has recently enhanced its generics with two features: variance annotations and `super` type constraints. In this post, I'll explain how they work and why they were added.
 
+<!--truncate-->
 
 ## Variance
 

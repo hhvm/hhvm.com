@@ -12,6 +12,7 @@ redirect_from:
 
 [XHP](https://github.com/facebook/xhp) is a great way to safely create HTML user interfaces from PHP or Hack. We love how extensible it is, allowing you to create your own pseudo-elements that are composed of more basic building blocks - ultimately a series of HTML tags. This solves a similar problem to partial templates in other systems. At its most basic level, XHP provides an XML-like syntax for creating stringable objects representing markup:
 
+<!--truncate-->
 
 ```php
 <?php

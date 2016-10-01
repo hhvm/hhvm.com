@@ -9,7 +9,7 @@ redirect_from:
 ---
 
 ![Heated seats](/static/images/posts/dough_burn-300x200.jpg)
-*While you wait, here's my sister's cat.*
+<center><i>While you wait, here's my sister's cat.</i></center>
 
 Welcome to the inaugural post on the HipHop for PHP blog.  In the coming days, weeks, months, and (dare I predict) years, we'll be creating posts about the inner workings of HipHop, the practical implementation details of running it, and whatever else manages to fit on this site.
 

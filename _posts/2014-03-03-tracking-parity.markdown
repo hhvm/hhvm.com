@@ -10,6 +10,7 @@ redirect_from:
 
 HHVM has a [large suite of unit tests](https://github.com/facebook/hhvm/tree/master/hphp/test) that must pass in several build configurations before a commit reaches master. Unfortunately, this test suite passing doesn't tell you if HHVM can be used for anything useful - so we periodically run the test suites for popular, open source frameworks.
 
+<!--truncate-->
 
 ![Test Results](/static/images/posts/frameworks_post_screenshot1.png)
 

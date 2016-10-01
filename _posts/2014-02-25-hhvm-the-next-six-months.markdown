@@ -12,9 +12,6 @@ The HHVM team has just wrapped up its planning for the first half of 2014. We’
 
 **2014 Themes:**
 
-
-
-
   * Open Source
 
 
@@ -24,13 +21,9 @@ The HHVM team has just wrapped up its planning for the first half of 2014. We’
   * Make HHVM Hackable
 
 
-
-
+<!--truncate-->
 
 **Open Source goals:**
-
-
-
 
   * Increase community participation and adoption
 

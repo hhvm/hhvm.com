@@ -10,10 +10,9 @@ redirect_from:
 
 It is that wonderful time again for an HHVM release. We're sticking to our [8 week release](https://github.com/facebook/hhvm/wiki/Release-Schedule) cadence to keep everything fresh and in your hands. Also, remember you can run the [nightly packages](http://www.hhvm.com/blog/3203/nightly-packages) if you want a bleeding edge feature.
 
+<!--truncate-->
+
 Install:
-
-
-
 
   * [Ubuntu 12.04](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-on-Ubuntu-12.04)  / [13.10](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-on-Ubuntu-13.10)
 

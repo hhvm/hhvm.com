@@ -10,6 +10,8 @@ redirect_from:
 
 For those that haven't been following along, the next version of the PHP language, version 7.0.0, [was very recently released](http://php.net/archive/2015.php#id2015-12-03-1). Those of us working on HHVM offer our congratulations to all the contributors to this latest release! We're all really excited to see this release come out the door, and for what it means for the future of PHP.
 
+<!--truncate-->
+
 The release has implications for HHVM as well. PHP 7 contains [many new and exciting language features](http://php.net/manual/en/migration70.new-features.php), such as [anonymous classes](http://php.net/manual/en/language.oop5.anonymous.php) and [generator delegation](http://php.net/manual/en/language.generators.syntax.php#control-structures.yield.from). The HHVM project is committed to continuing to support the evolving PHP language, and as such we are proud to announce that the current [nightly releases](http://docs.hhvm.com/hhvm/installation/linux#other-packages) have support for all major PHP 7 features, and the [upcoming 3.11.0 stable release](https://github.com/facebook/hhvm/wiki/Release%20Schedule) will be the first release of HHVM with support for the major PHP 7 features.
 
 A small number of the changes in PHP 7 are [not backwards compatible](http://php.net/manual/en/migration70.incompatible.php), and we don't want to leave behind our many users relying on our solid PHP 5 support and who may, for good reason, not want to upgrade immediately. Therefore, HHVM will continue to simultaneously support PHP 5 and PHP 7 for the foreseeable future. This is the way the simultaneous support works:

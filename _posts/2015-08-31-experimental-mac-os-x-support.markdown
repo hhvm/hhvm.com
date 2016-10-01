@@ -15,6 +15,8 @@ $ brew tap hhvm/hhvm
 $ brew install hhvm
 ```
 
+<!--truncate-->
+
 If you don't use Homebrew or want to build HHVM yourself, [take a look at our wiki page for directions](https://github.com/facebook/hhvm/wiki/Building-and-installing-HHVM-on-OSX-10.10). Building HHVM is a very resource-intensive and slow process -- be prepared to devote a few gigabytes of RAM and a couple of hours to letting it compile. (The Homebrew formula doesn't have a bottle yet, so the same applies to whether you use Homebrew or not.)
 
 Keep in mind that OS X support is still _experimental_ at this point. Most things seem to work -- it passes most of our test suite, and is able to run both a simple Drupal 7 and WordPress installation when I briefly tested it. However, it hasn't been extensively battle-tested! For example, there are a couple of failures in our own test suite when running on OS X. It's good enough to use for local development work, but I don't recommend a production deployment on anything but Linux quite yet. Information about supported Linux distributions is [available on our wiki](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM).

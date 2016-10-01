@@ -10,6 +10,8 @@ redirect_from:
 
 As some of you have no doubt noticed, [HHVM 3.7.0](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM) has been out now for a few days. It comprises the internal "Earle", "Fry", "Gadd", and "Harris" releases.
 
+<!--truncate-->
+
 Unlike [last time](http://hhvm.com/blog/8405/coming-soon-in-hhvm), there aren't any ultra-shiny new features in this release, but it contains a long list of performance improvements, compatibility tweaks, and bug fixes.
 
 As always, [the NEWS file](https://github.com/facebook/hhvm/blob/HHVM-3.7/NEWS) contains the gory details. Give it a try, and file an issue on GitHub if you have any problems!

@@ -10,6 +10,8 @@ redirect_from:
 
 HipHop, if properly configured [1], will actually startup not one, but two http servers.  The first, on port 80 by default, you're already familiar with.  Requests are translated to filesystem paths, and PHP files are executed to generate content.  The other one, however, you might not have come across yet.
 
+<!--truncate-->
+
 This second http server allows you, as the administrator, to take action through a web browser similar to the apachectl command.  This interface can enable/disable/display various statistics, dump jit translations and apc values, and even instruct the server to shut itself down.
 
 > [1] HipHop builds prior to Dec 10, 2012 had the AdminServer enabled by default.  If you do not wish to have this running, you should add AdminServer.Port = 0 to your config file.

@@ -10,6 +10,8 @@ redirect_from:
 
 We have released [HHVM 3.4.0](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM), the first minor point release after our HHVM 3.3.0 LTS. This branch contains updates from our T-Pain, Ultramagnetic, Vanilla Ice and Will.i.am internal releases.
 
+<!--truncate-->
+
 ![HHVM 3.4 releases](/static/images/posts/hhvm-3-4.jpg)
 
 Here are some of the highlights of this release:

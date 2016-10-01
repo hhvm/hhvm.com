@@ -12,6 +12,8 @@ redirect_from:
 
 We’d like to get more developers in the community using Hack. But we know there’s been something lacking: a good, consolidated resource for learning Hack and getting the most use out of it. We have documentation online, but it’s more of a reference than a tutorial.
 
+<!--truncate-->
+
 I have good news on that front: for the past few months, I’ve been writing a book about Hack and HHVM, and starting today, you can get [an early look](http://shop.oreilly.com/product/0636920037194.do) at it through our publisher, O’Reilly Media.
 
 This is an Early Release — it’s not finished yet. Not all of the chapters are available yet, and the ones that are available might still change before final publication. The technical content is solid, though, so you should be able to read what’s there and go start writing Hack. The book is about HHVM/Hack version 3.6 LTS, which was [released in March](http://hhvm.com/blog/8849/hhvm-3-6-0).

@@ -12,6 +12,8 @@ In the weeks since the Hack open source launch and the Hack developer day, there
 
 <img src="/static/logo.svg" alt="Hack Logo" style="width: 200px;"/>
 
+<!--truncate-->
+
 ## Github Projects
 
 

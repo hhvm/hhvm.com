@@ -10,6 +10,8 @@ redirect_from:
 
 Dan Miller, an engineer at Etsy, wrote an [extensive blog post detailing Etsy's transition to HHVM](https://codeascraft.com/2015/04/06/experimenting-with-hhvm-at-etsy/) on some of their production servers.
 
+<!--truncate-->
+
 They saw significant decrease in response time:
 
 ![HHVM vs PHP 5.5 Response Time](/static/images/posts/Screen-Shot-2015-04-05-at-8.34.13-PM-1024x572.png)

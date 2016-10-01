@@ -11,7 +11,7 @@ redirect_from:
 We released a new version of HHVM today. A big change is that we are now packaging for many of the popular distros.
 
 
-
+<!--truncate-->
 
   * [Ubuntu 12.04](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-on-Ubuntu-12.04) / [13.04](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-on-Ubuntu-13.04) / [13.10](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-on-Ubuntu-13.10)
 

@@ -10,6 +10,8 @@ redirect_from:
 
 We are happy to announce our next generation of Hack and HHVM user documentation available at [http://docs.hhvm.com](http://docs.hhvm.com).
 
+<!--truncate-->
+
 Back in August, we announced that we are going full force in revamping user documentation. We sent out a public survey to gauge the standing on the existing documentation at the time. We had 160 responses to the survey. Those results served as both validation and a guide to our approach with the new documentation.
 
 The key takeaways from the survey results were as follows:

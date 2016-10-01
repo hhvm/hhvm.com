@@ -13,6 +13,7 @@ redirect_from:
 
 This is the guidance given to Hack developers on using arrays. While we still advise using collections whenever possible, in hindsight there are more “legitimate use cases” for arrays than we first believed. With that in mind, the team is planning on improving arrays so they are better supported in Hack. We've opened a number of issues on GitHub ([#6451](https://github.com/facebook/hhvm/issues/6451), [#6452](https://github.com/facebook/hhvm/issues/6452), [#6453](https://github.com/facebook/hhvm/issues/6453), [#6454](https://github.com/facebook/hhvm/issues/6454), [#6455](https://github.com/facebook/hhvm/issues/6455)) with our initial plans. Since this would be a significant change in the language we are looking for feedback from the community. Before diving into what we are thinking of building, let's take some time to examine the problem we want to solve.
 
+<!--truncate-->
 
 ## The Problem with Arrays in Hack
 

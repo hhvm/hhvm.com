@@ -10,6 +10,8 @@ redirect_from:
 
 Compilers are fun.  They take nice, human readable languages like PHP or Hack and turn them into lean, mean, CPU executin' turing machines.  Some of these are simple enough a CS student can write one up in a weekend, some are the products of decades of fine tuning and careful architecting.  Somewhere in that proud tradition stands HHVM; In fact it's several compilers stacked in an ever-growing chain of logic manipulation and abstractions.  This article will attempt to take the reader through the HHVM compilation process from PHP-script to x86 machine code, one step at a time.
 
+<!--truncate-->
+
 **Step One: Lexing**
 
 The first step of our journey should be familiar to many PHP users since it's actually exposed to user space as the [token_get_all](http://php.net/token_get_all)() function.   In this phase, we reduce a human-readable PHP script to a series of tokens; Numeric identifiers which the compiler will be able to recognize as having some intrinsic meaning.  For this, HHVM uses a tool called Flex to generate a program from a meta definition at [hphp/parser/hphp.ll](https://github.com/facebook/hhvm/blob/master/hphp/parser/hphp.ll).

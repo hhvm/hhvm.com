@@ -10,6 +10,8 @@ redirect_from:
 
 One of the most common questions we get about HHVM is why we don't use LLVM for code generation. The primary reason has always been that while LLVM is great at optimizing C, C++, Objective-C, and other similar statically-typed languages, PHP is dynamically typed. The kinds of optimizations that provide huge performance benefits for static languages tend to be less useful in dynamic languages, or at least overshadowed by all the dynamic dispatching that's done based on runtime types. We knew that there was probably something to be gained from using LLVM as a backend, but there were many larger opportunities go after first.
 
+<!--truncate-->
+
 Warmup speed has also been a major factor in HHVM's design from the very beginning, since we were replacing a [compiled C++ binary](https://en.wikipedia.org/wiki/HipHop_for_PHP) with a [JIT compiler](https://en.wikipedia.org/wiki/Just-in-time_compilation). We needed to keep HHVM's JIT pipeline as simple and as fast as possible to ensure that it could start up and serve web requests quickly enough to keep up with Facebook's aggressive deployment schedule.
 
 Once HHVM was in production and we had data indicating that we could afford to make the compilation process take longer in order to produce better code, [we added an intermediate representation called HHIR](http://hhvm.com/blog/2027/faster-and-cheaper-the-evolution-of-the-hhvm-jit) between HHBC (our bytecode) and machine code. This new stage in the pipeline enabled all kinds of powerful, PHP-specific optimizations that we've been adding to for over two years now, nearly quadrupling the performance of HHVM in the process. A year after introducing HHIR we added vasm, a low-level IR positioned between HHIR and the final x86 machine code.

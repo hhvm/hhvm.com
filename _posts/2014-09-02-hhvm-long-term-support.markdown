@@ -10,6 +10,8 @@ redirect_from:
 
 HHVM is known for its very intense and quick development pace: currently we ship to GitHub the exact same code we use to run the Facebook site within minutes of every commit, and we release a full version every 8 weeks. That is great and at the same time scary if you are trying to build a business or infrastructure around it.
 
+<!--truncate-->
+
 The HHVM team at Facebook understands that in order to reach every corner of the PHP landscape our users need to have some sort of commitment, in order to plan their deployments accordingly and to know how upstream will react to security and stability fixes in already released versions, for example.
 
 

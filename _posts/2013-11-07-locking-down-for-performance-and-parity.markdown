@@ -10,6 +10,8 @@ redirect_from:
 
 The HHVM team, along with our wonderful [open source](https://github.com/facebook/hhvm) contributors, is constantly trying to [improve the runtime](http://www.hhvm.com/blog/1301/hhvm-2-2-0). We know, however, that there is work to do to [run the world's PHP code reliably and consistently](http://www.hhvm.com/blog/875/wow-hhvm-is-fast-too-bad-it-doesnt-run-my-code).
 
+<!--truncate-->
+
 Every 6 months or so, the HHVM team goes into _lockdown_. Lockdown is a Facebook tradition where a team picks a few concentrated areas and pushes hard on them. The team is huddled together. No meetings. Specific task focused. Shaving is discouraged.
 
 The HHVM team's latest Lockdown started on Monday. It is a 3-week effort focused entirely on two things: performance and parity.

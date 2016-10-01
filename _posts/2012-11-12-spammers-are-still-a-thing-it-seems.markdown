@@ -10,6 +10,8 @@ redirect_from:
 
 Been getting two or three spam comments/day.  They don't get through because moderation is enabled.  They are an annoyance however, so I'll be passing the annoyance on to you, dear reader, in the form of a very simple CAPTCHA.
 
+<!--truncate-->
+
 When commenting you'll get an additional input reading something like:
 
 `3 x four = [    ]`

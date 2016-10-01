@@ -10,6 +10,8 @@ redirect_from:
 
 HHVM is a highly performant PHP runtime. In fact, it is nearly 40% faster than [HPHPc](http://en.wikipedia.org/wiki/HipHop_for_PHP#History_Before_HHVM), and only getting faster. For example, the HHVM team just rewrote the JIT to use an [SSA intermediate representation (IR)](https://github.com/facebook/hiphop-php/blob/master/hphp/doc/ir.specification). HHIR (HipHop Intermediate Representation) is a strongly typed, SSA-form intermediate representation, positioned between HHBC (HipHop Bytecode) and machine code. It allows HHVM to perform optimizations that were very difficult to perform with the old JIT, using the context of the current runtime environment (e.g., reference counting elision).
 
+<!--truncate-->
+
 ![HHVM Performance with addition of IR](/static/images/posts/ir_chart-e13788785293871.png)
 <center><i>HHVM Performance with addition of IR</i></center>
 

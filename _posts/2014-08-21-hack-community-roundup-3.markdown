@@ -12,6 +12,7 @@ As always, I'm really excited to see what our community has been building and sa
 
 <img src="/static/logo.svg" alt="Hack Logo" style="width: 200px;"/>
 
+<!--truncate-->
 
 ## Github Projects
 

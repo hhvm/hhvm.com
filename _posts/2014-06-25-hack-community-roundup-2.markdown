@@ -12,7 +12,7 @@ Since the [last roundup](http://hhvm.com/blog/4811/hack-community-roundup), our 
 
 <img src="/static/logo.svg" alt="Hack Logo" style="width: 200px;"/>
 
-
+<!--truncate-->
 
 ## Github Projects
 

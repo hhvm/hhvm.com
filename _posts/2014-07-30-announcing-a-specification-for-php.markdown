@@ -12,6 +12,8 @@ redirect_from:
 
 The PHP language has been around for over 20 years and is clearly one of the most popular programming languages in the world. PHP is definitely the [lingua-franca <del>of the internet</del> for server-side web programming](http://php.net/usage.php).
 
+<!--truncate-->
+
 While there is extensive [user-documentation](http://php.net/manual), the PHP language has always been missing a language specification. That is not to say a specification hasn't been [thought about or discussed](http://stackoverflow.com/questions/4680119/php-language-specification). It is just that one has never really come to fruition.
 
 The Chinese philosopher Lao Tzu stated "A journey of a thousand miles begins with a single step". We are excited to announce the initial draft of a specification for PHP.

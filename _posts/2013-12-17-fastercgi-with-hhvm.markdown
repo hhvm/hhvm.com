@@ -11,6 +11,8 @@ redirect_from:
 Today, we are happy to announce [FastCGI](http://www.fastcgi.com/drupal/) support for HHVM. FastCGI is a popular protocol for communication between an application server (e.g. running your PHP code) and a webserver. With support for FastCGI, you will be able to run HHVM behind any [popular web server](http://en.wikipedia.org/wiki/FastCGI#Web_Servers_that_implement_FastCGI) (Apache, Nginx, Lighttpd, etc). The webserver is in charge of handling all the intricate details of the HTTP protocol. HHVM is in charge of what it does best, running PHP code blazingly fast.
 
 
+<!--truncate-->
+
 If you can’t wait to get your hands on the new feature, just jump to the Installation section. If you are curious about how the new feature was baked into HHVM or just want to learn how well it performs, read on.
 
 

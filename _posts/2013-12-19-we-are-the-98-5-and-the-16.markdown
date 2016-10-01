@@ -11,7 +11,7 @@ redirect_from:
 On November 4th, the HHVM team went on a [3-week performance and parity lockdown](http://www.hhvm.com/blog/1499/locking-down-for-performance-and-parity). The lockdown officially ended on November 22nd. Overall, this lockdown was a qualified success. Success was measured on 3 vectors:
 
 
-
+<!--truncate-->
 
   1. Did we meet our 99% average unit test pass percentage goal for the 21 open-source frameworks we tested against?
 

@@ -8,10 +8,11 @@ redirect_from:
   - /blog/6767/hhvm-3-3-1
 ---
 
-Today we released [HHVM 3.3.1](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM), our first update to our [long term support](http://hhvm.com/blog/6083/hhvm-long-term-support) release. This includes [30 commits](https://github.com/facebook/hhvm/compare/HHVM-3.3.0...HHVM-3.3.1). The highlights:
+Today we released [HHVM 3.3.1](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM), our first update to our [long term support](http://hhvm.com/blog/6083/hhvm-long-term-support) release. This includes [30 commits](https://github.com/facebook/hhvm/compare/HHVM-3.3.0...HHVM-3.3.1).
 
+<!--truncate-->
 
-
+The highlights:
 
   * Fixed crashes when using Enum.
 

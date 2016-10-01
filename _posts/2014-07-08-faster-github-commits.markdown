@@ -10,6 +10,8 @@ redirect_from:
 
 The HHVM community is awesome, particularly when it comes to directly helping us fix HHVM through [pull requests](https://github.com/facebook/hhvm/pulls?direction=desc&page=1&sort=created&state=closed). Until now, the actual pushing of commits (both our internal code and your pull requests) back to the [master HHVM branch on GitHub](https://github.com/facebook/hhvm/commits/master) has been a manual process, and takes more time than we would prefer (and I am sure may have frustrated you from time to time).
 
+<!--truncate-->
+
 Initially, the entire process was manual. We would `curl` the pull request and pipe it to `git am`, then manually prepare the diff for review internally. After it was accepted, we would manually prepare the internal commit to be usable externally by GitHub, then manually build and test the new code, and finally `git push`.
 
 Great scripts by [ptarjan](https://github.com/ptarjan) and [sgolemon](https://github.com/sgolemon) to help get and prepare pull requests for review and then prepare the commits for GitHub have alleviated some of this manual process. However, in the end, someone still had to manually build, test and then push the code to the world.

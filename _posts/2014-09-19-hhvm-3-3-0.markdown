@@ -10,8 +10,7 @@ redirect_from:
 
 Today we released [HHVM 3.3.0](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM), the first of our releases with [long term support](http://hhvm.com/blog/6083/hhvm-long-term-support) (until the August 13th 2015 release - potentially 3.9); some of the highlights:
 
-
-
+<!--truncate-->
 
   * Support for async lambda functions in Hack.
 

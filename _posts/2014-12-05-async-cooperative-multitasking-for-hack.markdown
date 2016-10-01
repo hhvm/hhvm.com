@@ -10,6 +10,8 @@ redirect_from:
 
 For several months now, Hack has had a feature available called `async` which enables writing code that cooperatively multitasks. This is somewhat similar to threading, in that multiple code paths are executed in parallel, however it avoids the lock contention issues common to multithreaded code by only actually executing one section at any given moment.
 
+<!--truncate-->
+
 "What's the use of that?", I hear you ask.  You're still bound to one CPU, so it should take the same amount of time to execute your code, right?  Well, that's technically true, but script code execution isn't the only thing causing latency in your application.  The biggest piece of it probably comes from waiting for backend databases to respond to queries.
 
 When you call `$zuck = file_get_contents('https://graph.facebook.com/4');`, the runtime essentially pauses execution while it waits for network packets to cross the internet, query a database for an answer, and come back.  About 350ms from my house, more than 200 of which is just to negotiate TLS. 350ms is practically an eternity on the scale of a web request.

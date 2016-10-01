@@ -10,6 +10,8 @@ redirect_from:
 
 I just pushed HHVM 3.3.2 (and 3.4.2) onto the Debian and Ubuntu repositories. It contains fixes backported from PHP for several security issues that HHVM was also vulnerable to, as well as a fix for CVE-2014-9370, which is a header injection issue affecting only the deprecated built-in webserver. Most users of HHVM use FastCGI, which was not affected by CVE-2014-9370.
 
+<!--truncate-->
+
 Normally minor version updates wouldn't warrant a blog post, but we've had a lot of questions about how to stick to a particular [LTS release](http://hhvm.com/blog/6083/hhvm-long-term-support), since our current setup will always upgrade you to the newest stable release, with no way to stick to an LTS and still get its updates! This is particularly important given the security content of this release.
 
 To fix this, I've recently defined several extra "distributions" in our Debian and Ubuntu repos on `dl.hhvm.com`. In order to use them, suffix your normal distribution with `-lts-3.3`. So, for example, if you are using Ubuntu 14.04 "trusty", you will have a line like this in your `/etc/apt/sources.list`:

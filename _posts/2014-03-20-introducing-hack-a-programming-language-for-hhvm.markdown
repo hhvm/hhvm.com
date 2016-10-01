@@ -10,6 +10,8 @@ redirect_from:
 
 As you [may have heard or seen already](https://code.facebook.com/posts/264544830379293/hack-a-new-programming-language-for-hhvm/), the [Hack programming language](http://hacklang.org) has been released for HHVM. Hack reconciles the fast development cycle of PHP with the discipline provided by static typing, while adding many features commonly found in other modern programming languages.
 
+<!--truncate-->
+
 We have deployed Hack at Facebook and it has been a great success. Over the last year, we have migrated nearly our entire PHP codebase to Hack, thanks to both organic adoption and a number of homegrown refactoring tools.
 
 We are proud to release [an open source version of Hack](https://github.com/facebook/hhvm/tree/master/hphp/hack) to the public as part of our HHVM runtime platform, which will now support both Hack and PHP.

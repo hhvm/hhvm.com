@@ -10,6 +10,8 @@ redirect_from:
 
 We haven't done posts for point releases since our normal [release schedule](https://github.com/facebook/hhvm/wiki/Release-Schedule) is so quick, but when there is a security fix we thought you should know as soon as possible.
 
+<!--truncate-->
+
 We have a few [fastcgi](https://github.com/facebook/hhvm/commit/603b5b5f8e14bdbed0a26a45c1f05cdefc7b9f04) [fixes](https://github.com/facebook/hhvm/commit/bebc94ec264af2d1f82b5ffa3c59c819ca498d4e), a few [memory](https://github.com/facebook/hhvm/commit/852b535f32b4ec4b654f6eb0ec6d208821b2751d) [leak](https://github.com/facebook/hhvm/commit/df72f91a279aabead36df552854c3371d889f224) [fixes](https://github.com/facebook/hhvm/commit/3fe1e4f45df4eafdc7e37e3d7dac673fc3915018) and the [security vulnerability fix](https://github.com/facebook/hhvm/commit/506a44194a9016406c752ad8e010c01aeffc18cc) for [CVE-2014-2208](http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=2014-2208). Previously an attacker could get around `escapeshellarg()` using a specially crafted input. It is hard to exploit, and facebook.com wasn't vulnerable, but you should patch your servers up just incase.
 
 The [full commit log](https://github.com/facebook/hhvm/commits/HHVM-2.4) is available for this release. Remember the branch cut is in 11 days for the next release so get your pull requests in soon!

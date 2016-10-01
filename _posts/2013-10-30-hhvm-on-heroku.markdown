@@ -10,6 +10,8 @@ redirect_from:
 
 Do you use [heroku](http://heroku.com) to host your PHP app and want to save 2x-10x dynos? Or serve user requests 2x-10x faster? I'm happy to announce that you can now use HHVM on heroku. You should clone your app and try it out before pushing to production as HHVM doesn't support [every possible use of PHP](http://www.hhvm.com/blog/875/wow-hhvm-is-fast-too-bad-it-doesnt-run-my-code) (yet).
 
+<!--truncate-->
+
 To use it with a new app:
 
 

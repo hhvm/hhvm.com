@@ -11,7 +11,7 @@ redirect_from:
 We released a new version of HHVM today. This one includes all the hard work from our lockdown (detailed post to follow) and the ability to use [HHVM with FastCGI](http://www.hhvm.com/blog/1817/fastercgi-with-hhvm).
 
 
-
+<!--truncate-->
 
   * [Ubuntu 12.04](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-on-Ubuntu-12.04)  / [13.10](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-on-Ubuntu-13.10)
 
