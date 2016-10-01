@@ -1,4 +1,63 @@
+sgolemon:
+  full_name: Sara Golemon
+  fbid: 622128601
 
-exampleauthor:
-  full_name: Example Author
-  fbid: 1234
+oyamauchi:
+  full_name: Owen Yamauchi
+  fbid: 4807591
+
+ptarjan:
+  full_name: Paul Tarjan
+  fbid: 218471
+
+joelm:
+  full_name: Joel Marcey
+  fbid: 611217057
+
+bsimmers:
+  full_name: Brett Simmers
+  fbid: 4807028
+
+julk:
+  full_name: Julek Kopczewski
+  fbid: 659488068
+
+wizkid:
+  full_name: Emil Hesslow
+  fbid: 690267162
+
+fred:
+  full_name: Fred Emmott
+  fbid: 509801880
+
+julienv:
+  full_name: Julien Verlaguet
+  fbid: 1007146370
+
+joelp:
+  full_name: Joel Pobar
+  fbid: 632326971
+
+dreeves:
+  full_name: Dwayne Reeves
+  fbid: 712073
+
+jwatzman:
+  full_name: Josh Watzman
+  fbid: 730116970
+
+ender:
+  full_name: David Martinez
+  fbid: 637610358
+
+paulbiss:
+  full_name: Paul Bissonette
+  fbid: 843172280
+
+jezng:
+  full_name: Jez Ng
+  fbid: 713515
+
+kasper:
+  full_name: Kasper Kopec
+  fbid: 100001715741794
