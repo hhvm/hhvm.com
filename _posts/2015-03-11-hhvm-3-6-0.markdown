@@ -1,0 +1,17 @@
+---
+author: sgolemon
+comments: true
+layout: post
+title: HHVM 3.6.0
+category: blog
+redirect_from:
+  - /blog/8849/hhvm-3-6-0
+---
+
+Announcing the immediate release of [HHVM 3.6.0](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM). built upon our internal "Ballmer", "Colbert", and "Ditko" releases. This represents our second official LTS release following 6 months after the release of [HHVM 3.3](http://hhvm.com/blog/6239/hhvm-3-3-0).
+
+As we [teased last month](http://hhvm.com/blog/8405/coming-soon-in-hhvm), HHVM 3.6 comes with lots of new goodies. In particular, many new [Async features](http://docs.hhvm.com/manual/en/hack.async.builtins.php) are now available by default including [AsyncMySQL](http://docs.hhvm.com/manual/en/book.hack.async.mysql.php) and [MCRouter (memcache)](http://docs.hhvm.com/manual/en/book.hack.mcrouter.php) support. Combined with existing support for [asynchronous cURL](http://docs.hhvm.com/manual/en/function.hack.hh.asio.curl-exec.php), applications are now ready to deeply parallelize many common forms of costly data access.
+
+The [full NEWS file](https://github.com/facebook/hhvm/blob/HHVM-3.6/NEWS) has the details of everything going into this release. Give it a try, and let us know how it goes — as always, [file an issue on GitHub](https://github.com/facebook/hhvm/issues) or join us in #hhvm on Freenode to chat about any problems.
+
+**Reminder**: 3.3 will continue to be supported until the release of 3.9 sometime in September, while this new 3.6 branch will remain supported until next year with the release of 3.12 (or perhaps 4.something) in March 2016.

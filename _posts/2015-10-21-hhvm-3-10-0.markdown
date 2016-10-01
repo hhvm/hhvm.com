@@ -1,0 +1,43 @@
+---
+author: jwatzman
+comments: true
+layout: post
+title: HHVM 3.10.0
+category: blog
+redirect_from:
+  - /blog/10379/hhvm-3-10-0
+---
+
+HHVM 3.10.0 is out! You can [get it from the usual places](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-for-HHVM). Major changes in this version include:
+
+**Core changes**
+
+  * Performance improvements for certain usages of `strtr()`
+
+
+  * Fixes to `rand()` when requesting very large integers
+
+
+  * XDebug compatibility and resource usage fixes
+
+
+  * Improved reflection support
+
+
+  * The usual myriad of bug fixes and general performance improvements
+
+
+**Hack language**
+
+  * Dramatically improved type inference for arrays
+
+
+  * Improved typechecking for some standard library functions
+
+
+  * Other minor fixes, e.g., improved type enforcement in some edge cases and fixes to using shapes inside namespaced code
+
+
+As always, let us know how it goes! [File an issue on Github if you run into any issues.](https://github.com/facebook/hhvm/issues)
+
+> We already have one known issue in 3.10.0; the `strtr` performance improvement causes a crash in some cases. Version 3.10.1 will be on its way out by the time you read this, which fixes this issue.

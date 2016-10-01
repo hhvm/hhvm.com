@@ -1,0 +1,95 @@
+---
+author: ptarjan
+comments: true
+layout: post
+title: HHVM 3.1.0
+category: blog
+redirect_from:
+  - /blog/5195/hhvm-3-1-0
+---
+
+The [next version of HHVM](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM) is hot off the press. After a few delays, we finally tracked down the [segfault](https://github.com/facebook/hhvm/commit/be654dd35a50b0c5a6918b376b5d168fdd00be25). We fixed it in master, but turning off the optimizations was safer for the release. Thanks for your patience.
+
+This release bisected our semi-annual lockdown. If you [remember last time ](http://hhvm.com/blog/2813/we-are-the-98-5-and-the-16)we focused on framework unit tests, performance, and growing beards. This time, our frameworks [were in good shape](http://hhvm.com/blog/4841/compatibility-update) thanks to [Fred](https://github.com/fredemmott/) and our Open Academy students, but our github story was not as pretty. At the start of lockdown we had 60 pull requests and nearly 450 issues. So our focus this time was github health and of course as always, perf.
+
+Our final results from lockdown were, drumroll ... 251 closed issues and 16% more efficient on large workloads. The 3.1.0 release timing was a bit unfortunate by bisecting our lockdown, so only 1/3 of the fixes and perf is in there. The few weeks after lockdown are always a little unstable and we didn't want to push the release out any longer, so you get some of the awesomeness this time and the other bunch in the [next release](https://github.com/facebook/hhvm/wiki/Release%20Schedule).
+
+Some of the highlights:
+
+
+
+
+  *  Support for PHP 5.6 variadic `...$args` syntax for func declarations. We're closing in on all the PHP 5.6 features. We just have splat left to build, and we're working on it. Go ahead and bug [Eugene](https://github.com/elgenie) on IRC so we can bump our PHP_VERSION up.
+
+
+  * There is now over [400 ini settings](https://github.com/facebook/hhvm/wiki/INI%20Settings) you can use to configure various things. Most of them aren't important but anything you were using a .hdf file for, you should be able to port over. We'll work on the documentation (you can too, just click edit).
+
+
+  * The [Zend extension compatibility](https://github.com/facebook/hhvm/tree/master/hphp/runtime/ext_zend_compat) layer is getting much better thanks to tons of work by [Tim Starling](https://github.com/tstarling). Try it on your PHP5 extension and open an issue if it doesn't work.
+
+
+Security Fixes:
+
+
+  * [CVE-2011-2202](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2202): PHP File upload filename
+
+
+  * [CVE-2013-4248](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-4248): Null in openssl_x509_parse
+
+
+  * [CVE-2014-2270](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-2270): DOS in file magic
+
+
+  * [CVE-2014-1943](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-1943): Another DOS in file magic
+
+
+Full HipHop [Changelog](https://github.com/facebook/hhvm/blob/master/hphp/NEWS):
+
+![House of PHPain](/static/images/posts/51dmEgb7yEL._SX300_.jpg)![Insane Poetry](/static/images/posts/MI0001403584-300x197.jpg)![Jay-Z](/static/images/posts/jayz-ef87b3e92d7c1c87ab4f734077cfe8ed06ac322c-300x225.jpg)![Kanye West](/static/images/posts/Kanye_West_Lollapalooza_Chile_2011_2-267x300.jpg)
+
+### Kayne West
+
+* Backport fix for CVE-2011-2202
+* Interfaces {Keyed}Container match arrays *and* collections, not iterables
+* Added ** and **= operators to HHVM and more compatibility fixes with PHP5.6
+* Fixes and improvements to collections
+* Replace json decoder with json-c library
+* Document VMRegAnchor and isVMFrame()
+* Improvements to array iterator code
+* Improvements to the type checker
+* Allow parser to be generated with bison 3
+* Improvements and speed up to reflection code
+
+### Jay-Z 9-May-2014
+
+- Make handling of code.hot overflows more robust
+- Catch server errors sooner
+- Fix segfault and infinite recursion in fileinfo extension
+- Resolve systemlib constants at compile time
+- Resume resumables natively
+- Import round() table optimizations from php-src
+- Delete bytecode Peephole optimizer
+- Remove most of annotation.cpp, and some other code gated on !UsedHHBBC
+- Create phis for locals
+- Fix free of "" in rfc1867PostHandler
+- Add firstValue(), firstKey(), lastValue(), lastKey() to collections
+- Add concat() to collections
+- Clarify Hack license
+- Add CakePHP3 to test runner
+- Better error when TC is full
+- Add hash_equals() from PHP 5.6
+
+### Insane Poetry 24-Apr-2014
+
+- Support for PHP 5.6 variadic ...$args syntax for func declarations
+- Open source HHMeasure, a simple and extensible microbenchmarking tool
+- Added a new time-based sampling profiler (Project Xenon)
+- Fix PCRE unicode handling
+- Convert Zend compatibility layer and various extensions to HNI
+- Encode execution mode (eager or resumed) into SrcKey
+- Merge eager and resumed parts of async functions
+- Rework various async / continuation bytecode instructions
+
+### House of PHPain 1-Apr-2014
+
+- Allow direct arg passing with up to 15 params (7 if at least one is a double)

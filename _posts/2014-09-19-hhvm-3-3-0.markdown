@@ -1,0 +1,192 @@
+---
+author: fred
+comments: true
+layout: post
+title: HHVM 3.3.0
+category: blog
+redirect_from:
+  - /blog/6239/hhvm-3-3-0
+---
+
+Today we released [HHVM 3.3.0](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM), the first of our releases with [long term support](http://hhvm.com/blog/6083/hhvm-long-term-support) (until the August 13th 2015 release - potentially 3.9); some of the highlights:
+
+
+
+
+  * Support for async lambda functions in Hack.
+
+
+  * Destructors for objects that are still alive at the end of the request are now called by default.
+
+
+  * Much more of XDebug is implemented (including remote debugging and profiling); the ini settings are currently prefixed with 'hhvm.xdebug-not-done' instead of 'hhvm'- so, it can be enabled with hhvm.xdebug-not-done.enable=1.
+
+
+  * Implemented APCIterator.
+
+
+  * INI settings are now more widely supported, and more consistent.
+
+
+  * Added a `<<__Memoize>>` user attribute for non-static methods with 0 arguments.
+
+
+  * Added the GMP extension.
+
+
+  * It is now possible to load dynamic extensions from INI files.
+
+
+  * Multiple 'default' blocks in a single switch are now a parse error.
+
+
+  * Improved reflection compatibility.
+
+
+  * Added typechecker support for interface requirements (similar to trait requirements).
+
+
+  * Added support for PHP5.6-style argument unpacking: f($x, $y, ....$args).
+
+
+  * Assorted performance and memory usage improvements.
+
+
+  * Many extensions converted to HNI.
+
+
+  * Improved HNI support for variadic functions.
+
+
+  * hhvm-dev package added, making it possible to build some third-party extensions without rebuilding HHVM itself.
+
+
+Security fixes:
+
+
+  *  CVE-2014-6229: potential security leak in HashContext
+
+
+  *  CVE-2014-3597: Possible segfault in DNS response overrun
+
+
+Full [HHVM Changelog](https://github.com/facebook/hhvm/blob/HHVM-3.3.0/hphp/NEWS):
+
+![Public_Enemy_@_Sir_Stewart_Bovell_Park_(2_1_2011)_(5356059653)](/static/images/posts/Public_Enemy_@_Sir_Stewart_Bovell_Park_2_1_2011_5356059653.jpg)![1024px-QueenLatifah2009WATF_2](/static/images/posts/1024px-QueenLatifah2009WATF_2.jpg)![RBXTheRBXFiles](/static/images/posts/RBXTheRBXFiles.jpg)![640px-Snoop_Dogg_on_Stage](/static/images/posts/640px-Snoop_Dogg_on_Stage.jpg)
+
+### "Snoop Dogg" 11-Sep-2014
+
+- VASM phase 1: emit vasm instructions, with existing register allocation
+- More xdebug support
+- [hack] Implement async lambdas.
+- add process memory and code segment size to admin memory page
+- Overhauled xdebug remote debugging testing
+- Add a mechanism for building and testing a zend extension as a DSO.
+- Support fast object allocation path when Eval.EnableObjDestruct call is on
+- Static string table memory usage
+- Implement parallel repo preloading.
+- Add mcrypt constants to hhi
+- Move var_dump() to HNI, kill off variable.idl.json
+- JIT: Use std, boost, and folly instead of smart containers.
+- Hack: Support for variance (+/-) annotations on type-parameters
+- Implement APCIterator
+- Convert v?s?printf() to HNI using Variadics
+- Enable variadics for HNI functions/methods
+- Smooth a wrinkle in HHVM's safesort impl
+- Make Set implement KeyedIterable and support bracket syntax for reading
+- Covariance fixes
+
+### "RBX" 28-Aug-2014
+
+- Make MemExceeded flag sticky
+- Check for OOM during json decoding
+- Check surprise flags when unserializing arrays and objects
+- Limit curl timeout to remaining request timeout
+- Add variant of openssl_pkcs7_verify that ignores cert expiration
+- Numerous changes to support xdebug
+- Remove use of non-threadsafe strtok()
+- Numerous changes to normalize INI setting names
+- update to new sqlite
+- `<<__Memoize>>` support
+- Hack: Print backtrace when worker dies
+- Parser support for "varray(..)"
+- Introduce kVPackedKind for vector-like arrays
+- Move mailparse to HNI
+- VASM start phase 1; emit vasm for some instructions
+- Fix in headers defines for cygwin
+- [hack] Parser: Fix decl mode's confusion of type hints and xhp.
+- Create a unified stack for Xenon
+- Move debugger from IDL to HNI
+- Fix mcrypt_create_iv(..., MCRYPT_RAND) to auto-seed RNG
+- Fix information leak in hash_equals() implementation
+- don't statically link libgcc/libstdc++ by default on OSX
+- Adds ssdeep module to HHVM
+- added new raise_error family functions that skip the top frame of the backtrace.
+- Add initial support for -d outside of --php mode
+- Fix covariance for Const{Vector,Map,Set}, add tests
+- GMP cleanup/fixes
+- Implement SplDoublyLinkedList::add
+- Link against LLVM library if present.
+- Disallow multiple 'default:' blocks in a single switch
+- Introduce async function lambdas
+- Document the PHP profilers
+- Fix sample profiler output; make it more efficient
+- Properly shut down fastcgi worker threads when connection is closed
+- Delete SimpleProfiler
+- Create HHVM man page
+- Improved PHP compatibility in the reflection API.
+
+### "Queen Latifah" 14-Aug-2014
+
+- Implement RecursiveCallbackFilterIterator
+- cmake installations should no longer put files in hphp and now put them in hhvm
+- Fix error for (Recursive)CachingIterator::ctor's param 1
+- Force OOM check on large smart allocations
+- Support stream wrappers in XML parser extensions, add external entity loader
+- Fix LowPtr load in codegen
+- Fix race condition in DebuggerProxy start/stop
+- Log per request if oom or timeout triggered in dynostats
+- Break out hhvm request timeout / memout counters for psp vs non-psp
+- Support collections for third parameter of preg_replace() and friends
+- Added functions imagewebp and imagecreatefromwebp
+- Fix mb_convert_case when encoding set other than default
+- Added function imagepalettecopy to ext_gd
+- Remove reflection hacks for primitive typehints
+- Fixed tempnam() creates paths with '//'
+- Add LibGMP extension
+- Fix heap overflow in sql_regcase() for input >1GB
+- Add HHVM hookups for folly::Singleton
+- Fix isset on classes extending ArrayObject
+- Only track live objects that actually have destructors
+- Specify ssl cipher list for curl with OpenSSL only
+- Remove support for "service threads"
+- PDO MySQL's getCode() didn't match errorInfo
+- Run usercode before ending the request
+- Make DynamicExtensions work in ini
+- Provide backup utf8 sanitizer when UConverter is unavailable
+- Pass duplicate flag to SNI Initial Handler Callback
+- fb_intercept now accounts for variadic functions
+- Add variadic function to fb_intercept test
+- Implemented basic xdebug tracing
+- Rename snappy methods
+- Add sort_flags to ArrayObject::asort
+- Changed CRYPT_BLOWFISH to 1 because apparently it is available
+- Convert ext/mysql to HNI
+- Add log when memory usage reached the MaxRSS
+- Fix http headers parsing + Remove unused code + Fix indentation
+- Fixed error output for json_encode
+- Corrected the var_dump output for Exception class
+- Relax restrictions on the typing of class constant shape field names.
+- Fix file:// URL decoding in libxml functions and elsewhere
+
+### "Public Enemy" 31-July-2014
+
+- Interface requirements (similar to trait requirements) enforced
+- Initial support for PHP5.6 argument unpacking: f($x, $y, ...$args)
+- Hack: hhi files are embedded in the hh_server binary
+- removed trampolines and the Eval.JitTrampolines option
+- Hack: improved support for Generators, including async generators
+- Documentation of PHP-level profiling in doc/profiling.md
+- Cleanup of PHP-level profilers
+- Change default for Eval.EnableObjDestructCall to true
+- Bundle PCRE 8.32 with open-source HHVM, so we can use the JIT

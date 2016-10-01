@@ -1,0 +1,300 @@
+---
+author: ptarjan
+comments: true
+layout: post
+title: HHVM 2.2.0
+category: blog
+redirect_from:
+  - /blog/1301/hhvm-2-2-0
+---
+
+We released a new version of HHVM today. A big change is that we are now packaging for many of the popular distros.
+
+
+
+
+  * [Ubuntu 12.04](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-on-Ubuntu-12.04) / [13.04](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-on-Ubuntu-13.04) / [13.10](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-on-Ubuntu-13.10)
+
+
+  * [Mint 15](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-on-Mint-15)
+
+
+  * [Debian 7](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-on-Debian-7)
+
+
+  * [Fedora 19](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-on-Fedora-19)
+
+
+If your favorite one isn't there, leave a comment and we'll try to add it. Or if you want to become the packager for that distro, great! Bundle it up and then update the [wiki](https://github.com/facebook/hhvm/wiki#installing-pre-built-packages-for-hhvm).
+
+The new packages have their files moved around a bit. Everything is now named **hhvm** in there, so if your scripts relied on anything named **hiphop-php** please update them.
+
+This release was a 17% CPU reduction for running facebook.com compared to HHVM 2.1.0. It also supports many [more frameworks out of the box](http://www.hhvm.com/blog/875/wow-hhvm-is-fast-too-bad-it-doesnt-run-my-code) like Symfony, CodeIgniter, Laravel, and many more.
+
+Some big changes you might notice are
+
+
+
+
+  * Reading .phar files works
+
+
+  * Redis support
+
+
+  * php.ini support
+
+
+  * Many new SPL classes were added and fixed
+
+
+  * ArrayObject and ArrayIterator had some bugs fixed
+
+
+  * Many fixes to shutdown handlers and autoload handlers
+
+
+  * Jemalloc is now the default memory allocator
+
+
+Here is the full HHVM 2.2.0 Changelog for your enjoyment:
+
+
+  * Fixed issue that caused memory_get_usage to report double the actual usage.
+
+
+  * Direct invocation of callable arrays: $f = [$cls_or_instance, 'method']; $f()
+
+
+  * ASAN clean
+
+
+  * Support dynamically loadable extensions
+
+
+  * Support loading mini-systemlibs from extensions
+
+
+  * Fix issues with `__toString()` functions that return non-string values
+
+
+  * Smarter memory allocation and scheduling for NUMA systems
+
+
+  * Improve profiler performance in the jit
+
+
+  * Fix several Zend compatibility issues
+
+
+  * Fix several bugs uncovered by ASAN
+
+
+  * Add collection support to array_keys, array_values, and array_combine
+
+
+  * Return a set-like array from Set::toArray
+
+
+  * Add `to(Vector|Map|StableMap|Set)` methods to collections
+
+
+  * Collections convert to boolean false when empty
+
+
+  * get_class_vars invokes the autoloader when necessary
+
+
+  * Rework the Zend compatibility layer to be more robust
+
+
+  * Allow traits to implement interfaces
+
+
+  * Support arbitrary expressions inside empty()
+
+
+  * HNI (HipHop Native Interface) for calling C++ functions from Php
+
+
+  * Fix PropertyAccessorMap::isset
+
+
+  * Expose more POSIX constants
+
+
+  * Fixed behavior of stream_get_contents when default args are used.
+
+
+  * Implement str_getcsv, and fix some fgetcsv related issues.
+
+
+  * [IPv6] Fix stream_socket_recvfrom & stream_socket_sendto.
+
+
+  * [IPv6] Fix socket_sentto_recvfrom_ipv6_udp Zend compatibility.
+
+
+  * Optimize closure invocation and `__invoke` (~3x faster to invoke)
+
+
+  * string and object allocation optimizations (reduced memory usage for both)
+
+
+  * Fix order of custom attributes and visibility in ctor arg promotion
+
+
+  * Implement CachingIterator
+
+
+  * Implement RecursiveCachingIterator
+
+
+  * Generalized heuristic for choosing when to inline in the jit
+
+
+  * Introduced a Zend compatibility layer to compile extensions
+
+
+  * Use gcc-4.8.1 by default
+
+
+  * Improve hhvm commandline parsing logic
+
+
+  * Fix register_shutdown in session_set_save_handler to match PHP 5.4
+
+
+  * Add "native" functions for use in Systemlib
+
+
+  * PHP extension source-compatitblility layer
+
+
+  * Fix ArrayIterator constructor PHP compatibility
+
+
+  * Enable building against libmemcached 1.0.8
+
+
+  * Debugger: $_ not cleared but still printed after exception
+
+
+  * Fix clone of SplPriorityQueue
+
+
+  * Debugger: Fix bugs when multiple threads hit the same breakpoint
+
+
+  * Fix several namespace bugs
+
+
+  * Several PHP compatibility fixes for ArrayObject and ArrayIterator
+
+
+  * Fix list assignment with collection literals
+
+
+  * HHVM should compile with libmemcached 1.0.9+
+
+
+  * Support "(new Vector {..})->method()" style syntax
+
+
+  * use trigger_error in PHP for Redis user errors
+
+
+  * multiple simplexml fixes
+
+
+  * fixed serialize/unserialize for SplObjectStorage
+
+
+  * Implement ReflectionParameter::IsCallable()
+
+
+  * Async stack traces in the debugger via the "wa" command
+
+
+  * Fix late static binding in static closures
+
+
+  * Fix breakpoints on generators
+
+
+  * Add SplObserver and SplSubject interfaces
+
+
+  * Update Iterable interface and add toArray() method
+
+
+  * Allow `__get` for undefined properties
+
+
+  * Implement get_included_files()
+
+
+  * Limit use of huge pages
+
+
+  * Implement stream_is_local
+
+
+  * Implement read support for .phar
+
+
+  * Implement assert with string arguments
+
+
+  * Implement RecursiveArrayIterator
+
+
+  * Implement php_strip_whitespace()
+
+
+  * Support for timeouts in cli mode
+
+
+  * Closure allocation optimizations (~2x faster to allocate a closure)
+
+
+  * Implement Redis session handler
+
+
+  * New memory profiler, hhprof, with pprof compatible output
+
+
+  * Update isset($string[$k]) and empty($string[$k) to PHP 5.5 semantics
+
+
+  * Fixed a few parser bugs
+
+
+  * Fixed a few bugs with `token_get_all()`
+
+
+  * Fix (string)$obj semantics when `__toString()` is not defined
+
+
+  * Optimize vector-shaped Arrays (arrays with keys in range 0..size-1)
+
+
+  * Enable HHBC by default in debug builds
+
+
+  * Implement SplObjectStorage::getInfo()
+
+
+  * Initial rough draft of xhpast2, a replacement for xhpast
+
+
+  * fix compilation on Ubuntu 13.04
+
+
+  * OSX changes, next round
+
+
+  * Modify PHP's `ext/standard/math/tests/(pow | abs).phpt` to be HHVM friendly
+
+
+  * add XHP comment syntax based on http://www.w3.org/TR/REC-xml/#sec-comments

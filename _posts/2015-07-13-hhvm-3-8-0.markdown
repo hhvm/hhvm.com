@@ -1,0 +1,38 @@
+---
+author: jwatzman
+comments: true
+layout: post
+title: HHVM 3.8.0
+category: blog
+redirect_from:
+  - /blog/9803/hhvm-3-8-0
+---
+
+We're happy to announce that [HHVM 3.8.0](https://github.com/facebook/hhvm/tree/HHVM-3.8.0) is finally available. You can, as always, try one of our [prebuilt packages for Ubuntu and Debian](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-for-HHVM), or [build from source](https://github.com/facebook/hhvm/wiki/Building-and-Installing-HHVM). (As of this writing, the packages are still building, so if a 3.8.0 package isn't available for your supported distro, hold tight!)
+
+This release is the first one to contain performance improvements from our [HHVM lockdown](http://hhvm.com/blog/9293/lockdown-results-and-hhvm-performance) this half. Along with the changes detailed in that post targeted specifically at open-source frameworks like Wordpress, MediaWiki, and Drupal, this release also contains the results of Facebook's internal performance team's lockdown. While the internal team focuses on performance of Facebook's code specifically, many of the changes they made will improve the performance of all PHP and Hack code, including the aforementioned open-source frameworks.
+
+Here's a chart summarizing the performance results of 3.7 vs. 3.8:
+
+![Image 2015-07-13 at 3.19.02 PM](/static/images/posts/Image-2015-07-13-at-3.19.02-PM.png)
+
+Take a look at our [lockdown post](http://hhvm.com/blog/9293/lockdown-results-and-hhvm-performance) for details on methodology. It's specifically worth noting that the improvements here aren't as large as in the lockdown post since that post also includes our fixes to the frameworks themselves, whereas the above chart is a like-for-like comparison of 3.7 and 3.8.
+
+The 3.8 release comprises the internal "Irwin", "Jobs", "King", "Lukather", and "McQueen" releases. Normally, [we do an external release every four internal releases](https://github.com/facebook/hhvm/wiki/Release%20Schedule), but decided to delay 3.8 due to some stability issues. Apologies for being a couple weeks late! We still plan to release 3.9 on its original schedule.
+
+Give it a try and let us know how it goes!
+
+_Update_
+
+This release also includes:
+
+
+
+
+  * the proxygen http server (`hhvm -m server -v Server.Type=proxygen`)
+
+
+  * `stream_socket_enable_crypto()` for client sockets
+
+
+  * Automatic typechecking of Hack code. Previously, the `hh_client` static analysis tool would have to be separately run. Now, results from `hh_client` will be included in the runtime errors too. (Running it manually is still the recommended way for fast error feedback though!) The `hhvm.hack.lang.auto_typecheck` INI option controls this behavior.

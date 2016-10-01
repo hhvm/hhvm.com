@@ -1,0 +1,46 @@
+---
+author: joelm
+comments: true
+layout: post
+title: HHVM 3.4.0
+category: blog
+redirect_from:
+  - /blog/6899/hhvm-3-4-0
+---
+
+We have released [HHVM 3.4.0](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM), the first minor point release after our HHVM 3.3.0 LTS. This branch contains updates from our T-Pain, Ultramagnetic, Vanilla Ice and Will.i.am internal releases.
+
+![HHVM 3.4 releases](/static/images/posts/hhvm-3-4.jpg)
+
+Here are some of the highlights of this release:
+
+
+
+
+  * [Added support for `Closure::bind()`](https://github.com/facebook/hhvm/commit/3e290683d8504c74570343aee66da45863db8adf)
+
+
+  * Add [runtime](https://github.com/facebook/hhvm/commit/8fd5a78b02d2d62538e77fcbc927df759c1722f9) and [typechecker](https://github.com/facebook/hhvm/commit/833c6401b004f0cab425e9c8c295198a430af131) support for null-safe method call operator `"?->"`
+
+
+  * [Add benchy.py for benchmarking HHVM](https://github.com/facebook/hhvm/commit/968fe31ec85a35252649b6d5a7b088a4dd0d3813)
+
+
+  * [More](https://github.com/facebook/hhvm/commit/0378d0450823df0e3e48dcf29d6dd4f343ada375) [HNI](https://github.com/facebook/hhvm/commit/dc520e830de784aff2e0b9630d565d6eb89f7e6b) [conversions](https://github.com/facebook/hhvm/tree/HHVM-3.4/hphp/runtime/ext)
+
+
+  * [Improvements to `<<__Memoize>>`](https://github.com/facebook/hhvm/commit/82efe5f65e255685fe24c5bab4da5817c8974892)
+
+
+  * [Hack support for `abstract final` classes](https://github.com/facebook/hhvm/commit/faedfaf46b0deb859b0c20fb36a574be7a4f2f55)
+
+
+  * [Hack reflection support for first-class enums](https://github.com/facebook/hhvm/commit/ad9f7e663ddc7f438d2e6df66e27a8a5740fb369)
+
+
+  * [Plenty](https://github.com/facebook/hhvm/commit/a928d1d278825d4752e19e63e90d56445e3cbf4f) of [HHBBC](https://github.com/facebook/hhvm/commit/c6900bba94a721534f4e67fc62ef611da1a5a679) [improvements](https://github.com/facebook/hhvm/commit/79ef31967407138c4483f095fe94217fb87bf75a)
+
+
+You can [read the full NEWS](https://github.com/facebook/hhvm/blob/HHVM-3.4/NEWS) for a highlight of all of the diffs that contributed to this release. There were [927 commits](https://github.com/facebook/hhvm/compare/HHVM-3.3.1...HHVM-3.4.0) from [3.3.1](https://github.com/facebook/hhvm/tree/HHVM-3.3.1) to [3.4.0](https://github.com/facebook/hhvm/tree/HHVM-3.4.0).
+
+Enjoy and, of course, [file an issue](https://github.com/facebook/hhvm/issues) or chat with us on IRC #hhvm if you run into any problems.

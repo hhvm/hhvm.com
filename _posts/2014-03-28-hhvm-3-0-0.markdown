@@ -1,0 +1,403 @@
+---
+author: ptarjan
+comments: true
+layout: post
+title: HHVM 3.0.0
+category: blog
+redirect_from:
+  - /blog/4349/hhvm-3-0-0
+---
+
+This is a fun one! :)
+
+At our last major version bump (2.0.0), we basically became a whole new project. We switched from a "PHP -> C++" translator to a virtual machine. This version bump (3.0.0) is a much less dramatic code shift (we're still a VM, don't worry), but this time the big announcement is that we support a new language, [Hack](http://hacklang.org/).
+
+I'd like to take some time to reflect on how far we've come since version 2.0.0. Back then we had a small semblance of a blog with just 8 posts from [Sara](http://hhvm.com/blog/author/sgolemon) and [Owen](http://hhvm.com/blog/author/oyamauchi). We didn't have any type of [release](https://github.com/facebook/hhvm/wiki/Release-Schedule) process; it was just whenever Sara wanted to cut one. We had a single package, for ubuntu 12.04; now we're [up to 6](https://github.com/facebook/hhvm/wiki#installing-pre-built-packages-for-hhvm). We had a bajillion tasks that largely didn't apply to the VM, so I [closed them all](http://hhvm.com/blog/575/joining-retirement-testing-and-bankruptcy). We're back up to a bajillion (well ~300), but they all are real issues that we are [plowing through](http://hhvm.com/blog/3743/hhvm-the-next-six-months). We took almost 0 pull requests, now we're over [400](https://github.com/facebook/hhvm/pulls?direction=desc&page=17&sort=created&state=closed) with [150 different contributors.](https://github.com/facebook/hhvm/graphs/contributors) We didn't really know how well we run all PHP code, and now we have a [cool framework tracking page](http://hhvm.com/frameworks/) and a community created one for [composer modules](http://hhvm.h4cc.de/). We didn't hang out with our closest 200 friends [on IRC](http://webchat.freenode.net/?channels=hhvm). You couldn't write extensions [nearly as easily](https://github.com/facebook/hhvm/wiki/Extension-API). You had to use our own webserver that spawned no end of questions for how to make rewrite rules for it, instead of the [standard fastcgi](https://github.com/facebook/hhvm/wiki/FastCGI). Oh and there wasn't even a thought about running it on [Heroku](https://blog.heroku.com/archives/2014/3/21/hacking_hack_on_heroku) or testing on [Travis](http://blog.travis-ci.com/2013-12-16-test-php-code-with-the-hiphop-vm/). It has been a big year and I can't wait to see what comes next.
+
+Alright, enough reminiscing; there is a lot of real business in this release.
+
+
+
+
+  1. The old webserver is gone. If you get something like `Uncaught exception: no factory for server type "libevent"`, you need to switch to fastcgi. Trust me, it is better for you. The package should automatically configure nginx or apache for you if it was installed before HHVM. [Read our rationale behind this decision](https://github.com/facebook/hhvm/wiki/Libevent-Removal).
+
+
+  2. We are moving from `.hdf` config files to `.ini`. The default one lives in `/etc/hhvm/php.ini`. We don't support all the old options yet, so you can still use `config.hdf` for now, but be ready for it to die in the next release. All of your favorite options will go from `Foo { BarBaz = True }` to `hhvm.foo.bar_baz = true`.
+
+
+  3. [Hack](http://hacklang.org/) is of course supported. Keep in mind that one of the major features of Hack is immediate feedback from the type system. This is enforced by a separate tool from HHVM itself, called `hh_server` and `hh_client`. These tools are included in the HHVM binary packages, but [need to be explicitly set up and started](http://docs.hhvm.com/manual/en/install.hack.bootstrapping.php). Also, if you have been running Hack code in the recent nightly packages, we've fixed a couple of bugs that may expose additional type errors in your code. In the future, we'll be careful to ease the transition between stable releases so projects can fix these type errors at their own pace. However, we did not do this for the transition from nightly to stable 3.0.
+
+
+  4. Our most requested extension, [mysqli](http://hhvm.com/blog/3689/implementing-mysqli) is now in. Enjoy.
+
+	  > **Update**: This extension was broken in 3.0.0 and is fixed in 3.0.1. Make sure to upgrade if you were having problems, and to remove the _`Eval.CheckReturnTypeHints`_ workaround if you were using it._
+
+
+  5. Error messages [now match PHP5](https://github.com/facebook/hhvm/commit/a6c13da511f2e089657aa86ba67cf7ee3a20ea6d). We no longer have the HipHop prefix, so you don't have to bust out a rap when you miss an Exception.
+
+
+Our next 4 alphabetical hiphop artists are here for your enjoyment in the full [Changelog](https://github.com/facebook/hhvm/blob/master/hphp/NEWS):
+
+![Donald Glover](/static/images/posts/CG_Coachella.jpg)![Eminem](/static/images/posts/Eminem_DJ_Hero.jpg)![50 Cent](/static/images/posts/50_Cent_2012.jpg)![Ghostface Killah](/static/images/posts/Theghostface.jpeg)
+
+
+"Ghostface Killah" 17-Mar-2014
+
+
+
+
+  - Add [Hack](http://hacklang.org)
+
+
+
+
+  - Remove "HipHop" from error messages
+
+
+
+
+  - Add `__IsFoldable` user attribute for const-foldable functions
+
+
+
+
+  - Add `__Native("NoFCallBuiltin")` UA for builtins which need an actrec
+
+
+
+
+  - Add support for testing different outputs in repo mode
+
+
+
+
+  - Implement remaining functionality from intl extension
+
+
+
+
+  - Implement XSL extension
+
+
+
+
+  - Implement Stream Filters
+
+
+
+
+  - Improve `php.ini` support and get ready to kill HDF files
+
+
+
+
+  - Parse config files as ini files, unless filename contains '`.hdf`'
+
+
+
+
+  - Various fixes to Redis, JSON, SPL, DateTime, MySQLi, and others
+
+
+
+
+  - Remove `C<T>Ref` typedefs (use const `T&` now)
+
+
+
+
+  - JIT default on in command line mode
+
+
+
+
+  - `gethostname()` just returns what the syscall returns (Zend compat)
+
+
+
+
+  - HHBBC turned on in the build for facebook.com
+
+
+
+
+
+
+
+"Fifty Cent" 3-Mar-2014
+
+
+
+
+  - Array parameter type constraints implicitly cast collections to arrays
+
+
+
+
+  - Fix issues with `feof` and `fwrite`
+
+
+
+
+  - Fix issues with `sleep` and inaccessible properties
+
+
+
+
+  - Dump a jemalloc pprod dump when a request hits OOM
+
+
+
+
+  - Make `method_exists` work with interface inheritance
+
+
+
+
+  - Fix crash in `preg_replace` with /e
+
+
+
+
+  - Support filename and content type in Curl uploads
+
+
+
+
+  - MySQLi fixes
+
+
+
+
+  - Handle relative paths in `is_dir`
+
+
+
+
+  - Add string conversion for `array_fill_keys`
+
+
+
+
+  - Implement various Imagick functionality
+
+
+
+
+  - Implement CUROPT_PROGRESSFUNCTION
+
+
+
+
+  - Implement PHP 5.6 `__debugInfo()` magic method
+
+
+
+
+  - Raise warnings when return type annotations mismatch
+
+
+
+
+  - Fix nested `ArrayObject` assignment
+
+
+
+
+  - Switch many ini settings to thread-time binding
+
+
+
+
+  - Clean up memory stat tracking
+
+
+
+
+  - Immutable collections are now prefixed with `Imm` instead of `Fixed/Frozen`
+
+
+
+
+  - Clean up type parameter for CheckType-related IR opcodes
+
+
+
+
+  - Remove legacy linear-scan register allocator and Eval.HHIRXls option
+
+
+
+
+
+
+
+"Eminem" 18-Feb-2014
+
+
+
+
+  - reenabled jemalloc tcache flush for idle threads
+
+
+
+
+  - `array_combine` now performs `__toString` conversion on objects in $`keys`
+
+
+
+
+  - Allow streams in `move_uploaded_file`
+
+
+
+
+  - Fix a bug double closing a UserFile
+
+
+
+
+  - Warn when first arg to `call_user_func` is an object with no `__invoke`
+
+
+
+
+  - kill userland hdf functions
+
+
+
+
+  - Final method reports itself as final
+
+
+
+
+  - Implement IntlCalendar
+
+
+
+
+  - Disallow create_function in RepoAuthoritative mode
+
+
+
+
+  - Case-insensitive check for Accept-Encoding: `gzip`
+
+
+
+
+
+
+
+"Donald Glover" 3-Feb-2014
+
+
+
+
+  - Support for "`::class`"
+
+
+
+
+  - Enable `FCallBuiltin` for HNI functions
+
+
+
+
+  - `json_decode` parity with PHP 5.4
+
+
+
+
+  - Fix race condition with profiling vs. non-profiling functions prologues
+
+
+
+
+  - Implement `ini_get_all()`
+
+
+
+
+  - Begin conversion of runtime options to INI
+
+
+
+
+  - Fix potential PGO-mode crash
+
+
+
+
+  - Fixes and enhancement in IR printing
+
+
+
+
+  - Vector and Set now supported by: `array_{shift,unshift,fill_keys,reverse,flip,size,chunk}`, `min`, and `max`
+
+
+
+
+  - `StableMap` is now an alias for `Map`, which retains insertion order
+
+
+
+
+  - `Map` moved to `HH` namespace
+
+
+
+
+  - Fixes in XLS spilling of SIMD registers
+
+
+
+
+  - Support `SCRIPT_FILENAME` in FastCGI
+
+
+
+
+  - Implement `stream_context_{get,set}_default`
+
+
+
+
+  - Support for Intel VTune Amplifier XE
+
+
+
+
+  - Rewrite of SimpleXML
+
+
+
+
+  - Several HNI conversions, and a helper script
+
+
+
+
+  - Move `Pair` to `HH` namespace
+
+
+
+
+  - Fix `get_included_files` ordering
+
+
+
+
+  - Fix `$_SERVER` and `$_ENV` in FastCGI
+
+
+
+
+  - Update timelib to php 5.5.8
+
+
+
+
+  - Some dead code removal

@@ -1,0 +1,17 @@
+---
+author: paulbiss
+comments: true
+layout: post
+title: HHVM 3.9.0
+category: blog
+redirect_from:
+  - /blog/9995/hhvm-3-9-0
+---
+
+We’re happy to announce that [HHVM 3.9.0](https://github.com/facebook/hhvm/tree/HHVM-3.9.0) is now available. You can try one of our [prebuilt packages for Ubuntu and Debian](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-for-HHVM), or [build from source](https://github.com/facebook/hhvm/wiki/Building-and-Installing-HHVM).
+
+This release contains a variety of enhancements to the type-checker and runtime, and as always many changes designed to improve performance. Key type-checker changes include a new set of [library functions](https://github.com/facebook/hhvm/commit/a78c6694ea1eb39f384986aa54f5966b113337c9) to operate on Shapes, a [new type](https://github.com/facebook/hhvm/blob/8bf94511dca94489bbb2819e9a66bc926ac76ca8/hphp/hack/hhi/classname.hhi#L7) to represent Foo::class strings, and improved reflection for type-constants. Runtime improvements include a new facility for [pooling curl handles](https://github.com/facebook/hhvm/blob/cabdaa14fef494fabd7d1b415c2f41e1b97d4c71/hphp/runtime/ext/curl/ext_curl.php#L147) between requests, and a [runtime setting to reclaim memory](https://github.com/facebook/hhvm/commit/75632c113d3ba80104febfbec55fbdcd73f1669f) in the translation cache (TC) from dead translations.
+
+The new TC garbage collection (enabled via `hhvm.enable_reusable_tc = true`) should prove particularly helpful to anyone experiencing frequent crashes related to out of memory from TC exhaustion. Modifications to source files actively being served are a common source of TC leaks. This is a particularly prevalent pattern in development environments, where this setting will likely be helpful. Support for this feature is still experimental, if you experience crashes with it turned on please [open issues](https://github.com/facebook/hhvm/issues) on our GitHub repository.
+
+The 3.9 release comprises the internal “Nash”, “Osborne”, and “Park” releases. This release is our third [LTS](https://github.com/facebook/hhvm/wiki/Long-term-support-(LTS)) and with it support for 3.3 (our first LTS) is ending. Support for 3.6 will continue for six months (when 3.12 is scheduled to be released), and 3.9 will be supported for 12 months.

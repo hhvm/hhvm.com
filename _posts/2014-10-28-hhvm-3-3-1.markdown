@@ -1,0 +1,46 @@
+---
+author: ptarjan
+comments: true
+layout: post
+title: HHVM 3.3.1
+category: blog
+redirect_from:
+  - /blog/6767/hhvm-3-3-1
+---
+
+Today we released [HHVM 3.3.1](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM), our first update to our [long term support](http://hhvm.com/blog/6083/hhvm-long-term-support) release. This includes [30 commits](https://github.com/facebook/hhvm/compare/HHVM-3.3.0...HHVM-3.3.1). The highlights:
+
+
+
+
+  * Fixed crashes when using Enum.
+
+
+  * Many typechecker fixes.
+
+
+  * Default config file location is always /etc/hhvm/php.ini.
+
+
+  * Fixes to the zend compat layer.
+
+
+  * Memcached ASCII protocol fix.
+
+
+  * Support custom stream wrappers in XMLReader::open().
+
+
+  * Keep alive is ignored in FastCGI.
+
+
+Security fixes:
+
+
+  * CVE-2014-3670: Fix heap corruption in exif_ifd_make_value
+
+
+  * CVE-2011-0752: Don't allow extract() to overwrite $GLOBALS or $this
+
+
+If you want a bugfix that is in trunk backported to 3.3.2, please send a PR against the [3.3 branch](https://github.com/facebook/hhvm/tree/HHVM-3.3).

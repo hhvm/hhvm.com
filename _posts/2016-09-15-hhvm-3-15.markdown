@@ -1,0 +1,17 @@
+---
+author: paulbiss
+comments: true
+layout: post
+title: HHVM 3.15
+category: blog
+redirect_from:
+  - /blog/11711/hhvm-3-15
+---
+
+The next LTS release of HHVM has been cut and packages are now available for Ubuntu 14.04, 15.04, 15.10, and 16.04; and Debian 7 and 8. This release replaces the 3.9 LTS and brings with it a host of improvements and new features.
+
+The 3.15 release features native support for the shmop, pg-sql, and scrypt extensions, enhancements to the garbage collector, critical fixes for TC recycles which had been broken in recent releases. Also included in this release, various bug and incompatibility patches, and enhancements to inlining, method dispatch, and other important performance optimizations.
+
+Many of the extension and user-facing bug fixes included in this release would not have been possible without the support of our community, both through pull requests and bug reports. Special thanks to [Simon](https://github.com/simonwelsh) and the many other contributors to the [recently merged](https://github.com/facebook/hhvm/commit/cc973802814b6a4d0545bee07c84e24d08120140) pg-sql extension, and [Joe](https://github.com/joelastpass), William, and the rest of our friends at LastPass for their work on the [scrypt](https://github.com/facebook/hhvm/commit/a3d57470c7cb17d857fa9d0c477833aabe7d4dd4) extension.
+
+Instructions for installing HHVM from either packages or source can be found in our [documentation](https://docs.hhvm.com/hhvm/installation/introduction). Should you encounter any new issues with this release please file a bug report on our [issue tracker](https://github.com/facebook/hhvm/issues).
