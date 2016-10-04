@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: 'HHVM: The Next Six Months'
 category: blog
-redirect_from:
-  - /blog/3743/hhvm-the-next-six-months
+permalink: /blog/3743/hhvm-the-next-six-months
 ---
 
 The HHVM team has just wrapped up its planning for the first half of 2014. We’d like to share our plans, providing you a bit of context.

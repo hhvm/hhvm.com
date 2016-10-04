@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: LLVM Code Generation in HHVM
 category: blog
-redirect_from:
-  - /blog/10205/llvm-code-generation-in-hhvm
+permalink: /blog/10205/llvm-code-generation-in-hhvm
 ---
 
 One of the most common questions we get about HHVM is why we don't use LLVM for code generation. The primary reason has always been that while LLVM is great at optimizing C, C++, Objective-C, and other similar statically-typed languages, PHP is dynamically typed. The kinds of optimizations that provide huge performance benefits for static languages tend to be less useful in dynamic languages, or at least overshadowed by all the dynamic dispatching that's done based on runtime types. We knew that there was probably something to be gained from using LLVM as a backend, but there were many larger opportunities go after first.

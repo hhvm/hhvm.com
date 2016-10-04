@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: HHVM Lockdown
 category: blog
-redirect_from:
-  - /blog/9089/hhvm-lockdown
+permalink: /blog/9089/hhvm-lockdown
 ---
 
 ![Neon Lockdown Sign](/static/images/posts/10537187_10152729686506660_886816697495269948_o-1.jpg)

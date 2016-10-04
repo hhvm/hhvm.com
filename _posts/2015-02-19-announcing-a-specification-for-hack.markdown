@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Announcing a Specification for Hack
 category: blog
-redirect_from:
-  - /blog/8537/announcing-a-specification-for-hack
+permalink: /blog/8537/announcing-a-specification-for-hack
 ---
 
 ![Hack Logo](/static/images/posts/Screenshot-2015-02-18-10.07.47.png)

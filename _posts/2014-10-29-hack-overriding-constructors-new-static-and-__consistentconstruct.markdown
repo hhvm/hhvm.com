@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: 'Hack: Overriding Constructors, "new static", and __ConsistentConstruct'
 category: blog
-redirect_from:
-  - /blog/6473/hack-overriding-constructors-new-static-and-__consistentconstruct
+permalink: /blog/6473/hack-overriding-constructors-new-static-and-__consistentconstruct
 ---
 
 A recent addition to Hack is the `__ConsistentConstruct` attribute, which allows `new static()` to be safely, properly typed. The need for this special attribute first requires some background in how method overriding and polymorphism normally work, and how constructors are special.

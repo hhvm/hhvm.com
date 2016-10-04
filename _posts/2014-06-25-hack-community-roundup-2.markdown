@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: 'Hack Community Roundup #2'
 category: blog
-redirect_from:
-  - /blog/5429/hack-community-roundup-2
+permalink: /blog/5429/hack-community-roundup-2
 ---
 
 Since the [last roundup](http://hhvm.com/blog/4811/hack-community-roundup), our community has continued to produce some really cool projects using Hack. I'm really excited to have another long list to share with all of you!

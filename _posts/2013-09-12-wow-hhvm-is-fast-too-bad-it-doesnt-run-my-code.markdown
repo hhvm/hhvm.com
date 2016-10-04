@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Wow HHVM is fast...too bad it doesn’t run my code
 category: blog
-redirect_from:
-  - /blog/875/wow-hhvm-is-fast-too-bad-it-doesnt-run-my-code
+permalink: /blog/875/wow-hhvm-is-fast-too-bad-it-doesnt-run-my-code
 ---
 
 HHVM is a highly performant PHP runtime. In fact, it is nearly 40% faster than [HPHPc](http://en.wikipedia.org/wiki/HipHop_for_PHP#History_Before_HHVM), and only getting faster. For example, the HHVM team just rewrote the JIT to use an [SSA intermediate representation (IR)](https://github.com/facebook/hiphop-php/blob/master/hphp/doc/ir.specification). HHIR (HipHop Intermediate Representation) is a strongly typed, SSA-form intermediate representation, positioned between HHBC (HipHop Bytecode) and machine code. It allows HHVM to perform optimizations that were very difficult to perform with the old JIT, using the context of the current runtime environment (e.g., reference counting elision).

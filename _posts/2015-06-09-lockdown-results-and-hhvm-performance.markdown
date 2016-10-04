@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Lockdown Results and HHVM Performance
 category: blog
-redirect_from:
-  - /blog/9293/lockdown-results-and-hhvm-performance
+permalink: /blog/9293/lockdown-results-and-hhvm-performance
 ---
 
 The HHVM team has concluded its first ever open source performance lockdown, and we're very excited to share the results with you. During our two week lockdown, we've made strides optimizing builtin functions, dynamic properties, string concatenation, and the file cache. In addition to improving HHVM, we also looked for places in the open source frameworks where we could contribute patches that would benefit all engines. Our efforts centered around maximizing requests per second (RPS) with Wordpress, Drupal 7, and MediaWiki, using our [oss-performance](https://github.com/hhvm/oss-performance) benchmarking tool.

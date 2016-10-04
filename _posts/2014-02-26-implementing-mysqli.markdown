@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Implementing MySQLi
 category: blog
-redirect_from:
-  - /blog/3689/implementing-mysqli
+permalink: /blog/3689/implementing-mysqli
 ---
 
 I joined the HHVM team right before Christmas for a [hackamonth](https://www.facebook.com/notes/facebook-engineering/hackamonth-mixing-things-up/10150161285048920) (or, in my case, a hack-a-two-months).

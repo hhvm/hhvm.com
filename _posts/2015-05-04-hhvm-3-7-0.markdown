@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: HHVM 3.7.0
 category: blog
-redirect_from:
-  - /blog/9059/hhvm-3-7-0
+permalink: /blog/9059/hhvm-3-7-0
 ---
 
 As some of you have no doubt noticed, [HHVM 3.7.0](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM) has been out now for a few days. It comprises the internal "Earle", "Fry", "Gadd", and "Harris" releases.

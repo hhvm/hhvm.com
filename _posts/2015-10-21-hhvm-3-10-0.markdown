@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: HHVM 3.10.0
 category: blog
-redirect_from:
-  - /blog/10379/hhvm-3-10-0
+permalink: /blog/10379/hhvm-3-10-0
 ---
 
 HHVM 3.10.0 is out! You can [get it from the usual places](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-for-HHVM).

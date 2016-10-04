@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: HHVM 3.3.0
 category: blog
-redirect_from:
-  - /blog/6239/hhvm-3-3-0
+permalink: /blog/6239/hhvm-3-3-0
 ---
 
 Today we released [HHVM 3.3.0](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM), the first of our releases with [long term support](http://hhvm.com/blog/6083/hhvm-long-term-support) (until the August 13th 2015 release - potentially 3.9); some of the highlights:

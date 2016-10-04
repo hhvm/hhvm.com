@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Nightly Packages
 category: blog
-redirect_from:
-  - /blog/3203/nightly-packages
+permalink: /blog/3203/nightly-packages
 ---
 
 If you just can't wait to get your hands on the latest HHVM code, but you don't want to spend the time to compile it, we have a present for you.

@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Joining, Retirement, Testing, and Bankruptcy
 category: blog
-redirect_from:
-  - /blog/575/joining-retirement-testing-and-bankruptcy
+permalink: /blog/575/joining-retirement-testing-and-bankruptcy
 ---
 
 First of all, hi. I recently joined the team as you could probably see from my [plethora](https://github.com/facebook/hiphop-php/graphs/contributors) of commits to github. I first fixed up [closures a bit](https://github.com/facebook/hiphop-php/commit/4d7004e955c764c5e7474c4b366d3606348f61eb) and moved our "PHP tests in C++" [to have one fewer language](https://github.com/facebook/hiphop-php/commit/eca135cb31b54c4e69fc09f73c8756846f18b935). I'll be doing many exciting things for hiphop but I'll be mostly caring about making it incredibly easy for anyone to use for any PHP code. So please bug me if it doesn't run your favorite piece of code.

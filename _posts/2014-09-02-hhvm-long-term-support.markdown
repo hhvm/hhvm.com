@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: HHVM Long Term Support
 category: blog
-redirect_from:
-  - /blog/6083/hhvm-long-term-support
+permalink: /blog/6083/hhvm-long-term-support
 ---
 
 HHVM is known for its very intense and quick development pace: currently we ship to GitHub the exact same code we use to run the Facebook site within minutes of every commit, and we release a full version every 8 weeks. That is great and at the same time scary if you are trying to build a business or infrastructure around it.

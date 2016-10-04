@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Debug Packages
 category: blog
-redirect_from:
-  - /blog/4601/debug-packages
+permalink: /blog/4601/debug-packages
 ---
 
 ![](/static/images/posts/1218.png)

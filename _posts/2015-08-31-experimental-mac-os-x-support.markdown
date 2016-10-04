@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Experimental Mac OS X Support
 category: blog
-redirect_from:
-  - /blog/10043/experimental-mac-os-x-support
+permalink: /blog/10043/experimental-mac-os-x-support
 ---
 
 We're happy to announce official Mac OS X support in HHVM, with version 3.9! If you use [Homebrew](http://brew.sh/) and want to get started now, the steps to use our [official tap](https://github.com/hhvm/homebrew-hhvm) are really simple:

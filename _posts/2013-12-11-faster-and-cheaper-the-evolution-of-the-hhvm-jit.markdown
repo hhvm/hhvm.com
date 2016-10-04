@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: 'Faster and Cheaper: The Evolution of the hhvm JIT'
 category: blog
-redirect_from:
-  - /blog/2027/faster-and-cheaper-the-evolution-of-the-hhvm-jit
+permalink: /blog/2027/faster-and-cheaper-the-evolution-of-the-hhvm-jit
 ---
 
 When the hhvm project was started almost 4 years ago, it had a two-part mandate: First, create a PHP [JIT](http://en.wikipedia.org/wiki/Just-in-time_compilation) that could serve [facebook.com](https://www.facebook.com/) at least as efficiently as [hphpc](http://en.wikipedia.org/wiki/HipHop_for_PHP#History_Before_HHVM), the PHP execution engine we were using at the time. Second, replace hphpi, the interpreter our PHP developers were using in their daily work. hphpc and hphpi were independent pieces of software with unintentional subtle differences in behavior and a significant maintenance burden. Unifying the execution engines used in production and development would make our jobs easier while giving the PHP devs a nicer experience at the same time. We had to find a balance between reaching these goals as quickly as possible and designing a system that could be extended and improved for many years after it replaced hphpc and hphpi. There were also concerns that just in time compilation might not be fast enough to keep up with Facebook's aggressive deployment process. We were pushing a new version of the site to our fleet of web servers once every weekday, and the whole process took less than 20 minutes. We had to maintain that ability for hhvm to be a viable option. Taking all this into account, the initial JIT design was the simplest and fastest one that we thought had a good chance of succeeding.

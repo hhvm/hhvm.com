@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: PHP 7 Support
 category: blog
-redirect_from:
-  - /blog/10859/php-7-support
+permalink: /blog/10859/php-7-support
 ---
 
 For those that haven't been following along, the next version of the PHP language, version 7.0.0, [was very recently released](http://php.net/archive/2015.php#id2015-12-03-1). Those of us working on HHVM offer our congratulations to all the contributors to this latest release! We're all really excited to see this release come out the door, and for what it means for the future of PHP.

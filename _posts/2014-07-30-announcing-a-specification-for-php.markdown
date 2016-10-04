@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Announcing a specification for PHP
 category: blog
-redirect_from:
-  - /blog/5723/announcing-a-specification-for-php
+permalink: /blog/5723/announcing-a-specification-for-php
 ---
 
 ![PHP-logo](/static/images/posts/PHP-logo2.png)

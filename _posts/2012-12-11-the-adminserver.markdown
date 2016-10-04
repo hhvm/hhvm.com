@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: The AdminServer
 category: blog
-redirect_from:
-  - /blog/521/the-adminserver
+permalink: /blog/521/the-adminserver
 ---
 
 HipHop, if properly configured [1], will actually startup not one, but two http servers.  The first, on port 80 by default, you're already familiar with.  Requests are translated to filesystem paths, and PHP files are executed to generate content.  The other one, however, you might not have come across yet.

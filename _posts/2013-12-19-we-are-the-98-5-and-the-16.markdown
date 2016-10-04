@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: We are the 98.5% (and the 16%)
 category: blog
-redirect_from:
-  - /blog/2813/we-are-the-98-5-and-the-16
+permalink: /blog/2813/we-are-the-98-5-and-the-16
 ---
 
 On November 4th, the HHVM team went on a [3-week performance and parity lockdown](http://www.hhvm.com/blog/1499/locking-down-for-performance-and-parity). The lockdown officially ended on November 22nd. Overall, this lockdown was a qualified success. Success was measured on 3 vectors:

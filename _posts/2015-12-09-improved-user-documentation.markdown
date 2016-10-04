@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Improved User Documentation
 category: blog
-redirect_from:
-  - /blog/10925/improved-user-documentation
+permalink: /blog/10925/improved-user-documentation
 ---
 
 We are happy to announce our next generation of Hack and HHVM user documentation available at [http://docs.hhvm.com](http://docs.hhvm.com).

@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Etsy's Transition to HHVM
 category: blog
-redirect_from:
-  - /blog/8939/etsys-transition-to-hhvm
+permalink: /blog/8939/etsys-transition-to-hhvm
 ---
 
 Dan Miller, an engineer at Etsy, wrote an [extensive blog post detailing Etsy's transition to HHVM](https://codeascraft.com/2015/04/06/experimenting-with-hhvm-at-etsy/) on some of their production servers.

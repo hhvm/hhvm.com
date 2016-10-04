@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: HHVM 3.2.0
 category: blog
-redirect_from:
-  - /blog/5609/hhvm-3-2-0
+permalink: /blog/5609/hhvm-3-2-0
 ---
 
 The [next version of HHVM](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM) is out (well it came out 6 days ago, I've just been at [OSCON](http://www.oscon.com/oscon2014/public/schedule/detail/34640) all week and haven't had a chance to do this post).

@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: HHVM 2.4.2
 category: blog
-redirect_from:
-  - /blog/4103/hhvm-2-4-2
+permalink: /blog/4103/hhvm-2-4-2
 ---
 
 We haven't done posts for point releases since our normal [release schedule](https://github.com/facebook/hhvm/wiki/Release-Schedule) is so quick, but when there is a security fix we thought you should know as soon as possible.

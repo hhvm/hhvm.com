@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Trait and interface requirements in Hack
 category: blog
-redirect_from:
-  - /blog/9581/trait-and-interface-requirements-in-hack
+permalink: /blog/9581/trait-and-interface-requirements-in-hack
 ---
 
 In PHP, [traits](http://docs.hhvm.com/manual/en/hack.traits.php) are a mechanism of code reuse that, while very powerful, are also difficult to type check both efficiently and exhaustively. In this post we’ll dive more deeply into the reasons for that and see how Hack solves those problems, allowing you to use traits in a safe way without limiting their expressiveness.

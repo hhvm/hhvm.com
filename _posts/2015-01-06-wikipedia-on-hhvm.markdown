@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Wikipedia on HHVM
 category: blog
-redirect_from:
-  - /blog/7205/wikipedia-on-hhvm
+permalink: /blog/7205/wikipedia-on-hhvm
 ---
 
 If you've been watching our [GitHub wiki](https://github.com/facebook/hhvm/wiki/Users), [following us on Twitter](https://twitter.com/HipHopVM/status/542386731300163585), or reading the wikitech-l [mailing](https://lists.wikimedia.org/pipermail/wikitech-l/2014-December/079720.html) [list](https://lists.wikimedia.org/pipermail/wikitech-l/2014-December/079795.html), you've probably known for a while that [Wikipedia](http://www.wikipedia.org/) has been transitioning to HHVM. This has been a long process involving lots of work from many different people, and as of a few weeks ago, all non-cached API and web traffic is being served by HHVM. [This blog post](https://blog.wikimedia.org/2014/12/29/how-we-made-editing-wikipedia-twice-as-fast/) from the Wikimedia Foundation contains some details about the switch, as does their [page about HHVM](https://www.mediawiki.org/wiki/HHVM).

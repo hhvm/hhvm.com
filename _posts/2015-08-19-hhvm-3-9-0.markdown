@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: HHVM 3.9.0
 category: blog
-redirect_from:
-  - /blog/9995/hhvm-3-9-0
+permalink: /blog/9995/hhvm-3-9-0
 ---
 
 We’re happy to announce that [HHVM 3.9.0](https://github.com/facebook/hhvm/tree/HHVM-3.9.0) is now available. You can try one of our [prebuilt packages for Ubuntu and Debian](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-for-HHVM), or [build from source](https://github.com/facebook/hhvm/wiki/Building-and-Installing-HHVM).

@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Getting WordPress running on HHVM
 category: blog
-redirect_from:
-  - /blog/3095/getting-wordpress-running-on-hhvm
+permalink: /blog/3095/getting-wordpress-running-on-hhvm
 ---
 
 This article aims to walk through the installation process for getting WordPress running on HHVM (HipHop Virtual Machine).

@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Introducing Hack - A Programming Language for HHVM
 category: blog
-redirect_from:
-  - /blog/4223/introducing-hack-a-programming-language-for-hhvm
+permalink: /blog/4223/introducing-hack-a-programming-language-for-hhvm
 ---
 
 As you [may have heard or seen already](https://code.facebook.com/posts/264544830379293/hack-a-new-programming-language-for-hhvm/), the [Hack programming language](http://hacklang.org) has been released for HHVM. Hack reconciles the fast development cycle of PHP with the discipline provided by static typing, while adding many features commonly found in other modern programming languages.

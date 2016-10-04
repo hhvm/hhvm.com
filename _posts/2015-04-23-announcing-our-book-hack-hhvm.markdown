@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: 'Announcing our book: “Hack & HHVM”'
 category: blog
-redirect_from:
-  - /blog/8981/announcing-our-book-hack-hhvm
+permalink: /blog/8981/announcing-our-book-hack-hhvm
 ---
 
 ![Book cover](/static/images/posts/rc_cat.gif)

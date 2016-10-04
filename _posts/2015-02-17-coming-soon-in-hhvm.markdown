@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Coming Soon in HHVM
 category: blog
-redirect_from:
-  - /blog/8405/coming-soon-in-hhvm
+permalink: /blog/8405/coming-soon-in-hhvm
 ---
 
 The next HHVM release, 3.6, is on the horizon. We expect it to be released [at the very end of February or in early March](https://github.com/facebook/hhvm/wiki/Release%20Schedule). It's going to be a big release. Not only will it be our second release with [long-term support](https://github.com/facebook/hhvm/wiki/Long-term-support-%28LTS%29), but it will contain several exciting new features -- and lay the groundwork for continued development later this year.

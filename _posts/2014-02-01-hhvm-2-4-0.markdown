@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: HHVM 2.4.0
 category: blog
-redirect_from:
-  - /blog/3287/hhvm-2-4-0
+permalink: /blog/3287/hhvm-2-4-0
 ---
 
 It is that wonderful time again for an HHVM release. We're sticking to our [8 week release](https://github.com/facebook/hhvm/wiki/Release-Schedule) cadence to keep everything fresh and in your hands. Also, remember you can run the [nightly packages](http://www.hhvm.com/blog/3203/nightly-packages) if you want a bleeding edge feature.

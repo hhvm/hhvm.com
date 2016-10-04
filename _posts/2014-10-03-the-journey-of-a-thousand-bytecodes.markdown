@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: The Journey of a Thousand Bytecodes
 category: blog
-redirect_from:
-  - /blog/6323/the-journey-of-a-thousand-bytecodes
+permalink: /blog/6323/the-journey-of-a-thousand-bytecodes
 ---
 
 Compilers are fun.  They take nice, human readable languages like PHP or Hack and turn them into lean, mean, CPU executin' turing machines.  Some of these are simple enough a CS student can write one up in a weekend, some are the products of decades of fine tuning and careful architecting.  Somewhere in that proud tradition stands HHVM; In fact it's several compilers stacked in an ever-growing chain of logic manipulation and abstractions.  This article will attempt to take the reader through the HHVM compilation process from PHP-script to x86 machine code, one step at a time.

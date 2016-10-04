@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Spammers are still a thing, it seems
 category: blog
-redirect_from:
-  - /blog/401/spammers-are-still-a-thing-it-seems
+permalink: /blog/401/spammers-are-still-a-thing-it-seems
 ---
 
 Been getting two or three spam comments/day.  They don't get through because moderation is enabled.  They are an annoyance however, so I'll be passing the annoyance on to you, dear reader, in the form of a very simple CAPTCHA.

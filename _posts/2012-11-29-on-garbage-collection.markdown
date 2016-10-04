@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: On Garbage Collection
 category: blog
-redirect_from:
-  - /blog/431/on-garbage-collection
+permalink: /blog/431/on-garbage-collection
 ---
 
 In this post, I'll expand on a topic that I briefly mentioned in the footnote to my [previous post](/wp/?p=311): memory management.

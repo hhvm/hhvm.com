@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: LTS Updates
 category: blog
-redirect_from:
-  - /blog/7349/lts-updates
+permalink: /blog/7349/lts-updates
 ---
 
 I just pushed HHVM 3.3.2 (and 3.4.2) onto the Debian and Ubuntu repositories. It contains fixes backported from PHP for several security issues that HHVM was also vulnerable to, as well as a fix for CVE-2014-9370, which is a header injection issue affecting only the deprecated built-in webserver. Most users of HHVM use FastCGI, which was not affected by CVE-2014-9370.

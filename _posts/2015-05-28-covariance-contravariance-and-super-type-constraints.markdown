@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Covariance, Contravariance, and super Type Constraints
 category: blog
-redirect_from:
-  - /blog/9215/covariance-contravariance-and-super-type-constraints
+permalink: /blog/9215/covariance-contravariance-and-super-type-constraints
 ---
 
 Hack has recently enhanced its generics with two features: variance annotations and `super` type constraints. In this post, I'll explain how they work and why they were added.

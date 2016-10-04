@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: 'Locking Down for Performance and Parity '
 category: blog
-redirect_from:
-  - /blog/1499/locking-down-for-performance-and-parity
+permalink: /blog/1499/locking-down-for-performance-and-parity
 ---
 
 The HHVM team, along with our wonderful [open source](https://github.com/facebook/hhvm) contributors, is constantly trying to [improve the runtime](http://www.hhvm.com/blog/1301/hhvm-2-2-0). We know, however, that there is work to do to [run the world's PHP code reliably and consistently](http://www.hhvm.com/blog/875/wow-hhvm-is-fast-too-bad-it-doesnt-run-my-code).

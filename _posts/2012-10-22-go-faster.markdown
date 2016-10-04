@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Go Faster!
 category: blog
-redirect_from:
-  - /blog/4061/go-faster
+permalink: /blog/4061/go-faster
 ---
 
 If you've looked at my previous entry [Getting Wordpress Running on HHVM](http://www.hiphop-php.com/wp/?p=113), you've already got a general idea for how to create a _config.hdf_ file and get a web server up and running. Now you want to make sure it's running as quickly, and efficiently as possible. But first, it's worth understanding how HHVM runs your PHP scripts.

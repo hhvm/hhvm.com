@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Using XHP with Bootstrap
 category: blog
-redirect_from:
-  - /blog/6515/using-xhp-with-bootstrap
+permalink: /blog/6515/using-xhp-with-bootstrap
 ---
 
 ![xhpbootstrap_logo_blacktext](/static/images/posts/xhpbootstrap_logo_blacktext.png)

@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Adding an opcode to HHBC
 category: blog
-redirect_from:
-  - /blog/311/adding-an-opcode-to-hhbc
+permalink: /blog/311/adding-an-opcode-to-hhbc
 ---
 
 As part of our drive to improve HHVM's performance, I started looking into the general topic of builtin functions. Currently, HHVM is calling implementations of builtin functions that were originally written for HPHPc, the static compiler. We wrote compatibility wrappers around them for HHVM, to get it up and running as quickly as possible. We have evidence that this compatibility layer is hurting HHVM's performance, so we're looking at ways to reduce or eliminate its impact.

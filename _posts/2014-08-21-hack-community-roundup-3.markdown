@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: 'Hack Community Roundup #3'
 category: blog
-redirect_from:
-  - /blog/6005/hack-community-roundup-3
+permalink: /blog/6005/hack-community-roundup-3
 ---
 
 As always, I'm really excited to see what our community has been building and saying, and really exited to share what I've seen with everyone!

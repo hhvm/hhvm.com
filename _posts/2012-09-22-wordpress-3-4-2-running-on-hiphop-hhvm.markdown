@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: WordPress 3.4.2 running on HHVM
 category: blog
-redirect_from:
-  - /blog/3089/wordpress-3-4-2-running-on-hiphop-hhvm
+permalink: /blog/3089/wordpress-3-4-2-running-on-hiphop-hhvm
 ---
 
 ![Heated seats](/static/images/posts/dough_burn-300x200.jpg)

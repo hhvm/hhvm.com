@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Improving Arrays in Hack
 category: blog
-redirect_from:
-  - /blog/10649/improving-arrays-in-hack
+permalink: /blog/10649/improving-arrays-in-hack
 ---
 
 >"*...use collections whenever and wherever possible. However, 100% usage of collections is obviously not realistic given how much arrays are used in various codebases ...there just may be legitimate use cases for an array*"

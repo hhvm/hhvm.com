@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: HHVM 2.3.0 and Travis CI
 category: blog
-redirect_from:
-  - /blog/2393/hhvm-2-3-0-and-travis-ci
+permalink: /blog/2393/hhvm-2-3-0-and-travis-ci
 ---
 
 We released a new version of HHVM today. This one includes all the hard work from our lockdown (detailed post to follow) and the ability to use [HHVM with FastCGI](http://www.hhvm.com/blog/1817/fastercgi-with-hhvm).

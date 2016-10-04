@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: HHVM Optimization Tips
 category: blog
-redirect_from:
-  - /blog/713/hhvm-optimization-tips
+permalink: /blog/713/hhvm-optimization-tips
 ---
 
 HHVM's JIT compiler allows it to execute PHP faster than Zend PHP in most cases, unmodified. However, we've gotten some interest from the community in HipHop-specific optimization tips, so I put together a few for this post.

@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: HHVM 3.6.0
 category: blog
-redirect_from:
-  - /blog/8849/hhvm-3-6-0
+permalink: /blog/8849/hhvm-3-6-0
 ---
 
 Announcing the immediate release of [HHVM 3.6.0](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM). built upon our internal "Ballmer", "Colbert", and "Ditko" releases. This represents our second official LTS release following 6 months after the release of [HHVM 3.3](http://hhvm.com/blog/6239/hhvm-3-3-0).

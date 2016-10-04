@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: 'Hack: Recent Updates'
 category: blog
-redirect_from:
-  - /blog/6443/hack-recent-updates
+permalink: /blog/6443/hack-recent-updates
 ---
 
 A lot has happened since we announced Hack. We've already highlighted our [Hack developer day](https://www.youtube.com/playlist?list=PLb0IAmt7-GS2fdbb1vVdP8Z8zx1l2L8YS), as well as posting a series of community roundups ([one](http://hhvm.com/blog/4811/hack-community-roundup), [two](http://hhvm.com/blog/5429/hack-community-roundup-2), [three](http://hhvm.com/blog/6005/hack-community-roundup-3)) highlighting the projects that our amazing Hack community have been building.

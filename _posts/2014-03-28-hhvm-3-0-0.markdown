@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: HHVM 3.0.0
 category: blog
-redirect_from:
-  - /blog/4349/hhvm-3-0-0
+permalink: /blog/4349/hhvm-3-0-0
 ---
 
 This is a fun one! :)

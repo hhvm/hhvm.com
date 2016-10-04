@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Faster GitHub Commits
 category: blog
-redirect_from:
-  - /blog/5399/faster-github-commits
+permalink: /blog/5399/faster-github-commits
 ---
 
 The HHVM community is awesome, particularly when it comes to directly helping us fix HHVM through [pull requests](https://github.com/facebook/hhvm/pulls?direction=desc&page=1&sort=created&state=closed). Until now, the actual pushing of commits (both our internal code and your pull requests) back to the [master HHVM branch on GitHub](https://github.com/facebook/hhvm/commits/master) has been a manual process, and takes more time than we would prefer (and I am sure may have frustrated you from time to time).

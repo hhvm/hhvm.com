@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Async - Cooperative Multitasking for Hack
 category: blog
-redirect_from:
-  - /blog/7091/async-cooperative-multitasking-for-hack
+permalink: /blog/7091/async-cooperative-multitasking-for-hack
 ---
 
 For several months now, Hack has had a feature available called `async` which enables writing code that cooperatively multitasks. This is somewhat similar to threading, in that multiple code paths are executed in parallel, however it avoids the lock contention issues common to multithreaded code by only actually executing one section at any given moment.

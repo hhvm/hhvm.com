@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: Hack Community Roundup
 category: blog
-redirect_from:
-  - /blog/4811/hack-community-roundup
+permalink: /blog/4811/hack-community-roundup
 ---
 
 In the weeks since the Hack open source launch and the Hack developer day, there has been a lot of information, code, blog posts, etc coming from our nascent community. To us on the team, it's been incredible and encouraging to see the community reception to Hack. Here are some of the highlights of the things we've seen come out of our community. (And we almost certainly haven't seen everything, so please let us know in the comments what we've missed!)

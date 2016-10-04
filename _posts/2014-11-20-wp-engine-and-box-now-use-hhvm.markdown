@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: WP Engine and Box now use HHVM
 category: blog
-redirect_from:
-  - /blog/6989/wp-engine-and-box-now-use-hhvm
+permalink: /blog/6989/wp-engine-and-box-now-use-hhvm
 ---
 
 Two big announcements back to back.

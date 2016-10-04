@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: HHVM 3.15
 category: blog
-redirect_from:
-  - /blog/11711/hhvm-3-15
+permalink: /blog/11711/hhvm-3-15
 ---
 
 The next LTS release of HHVM has been cut and packages are now available for Ubuntu 14.04, 15.04, 15.10, and 16.04; and Debian 7 and 8. This release replaces the 3.9 LTS and brings with it a host of improvements and new features.

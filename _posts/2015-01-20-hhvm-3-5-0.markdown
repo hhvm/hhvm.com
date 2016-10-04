@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: HHVM 3.5.0
 category: blog
-redirect_from:
-  - /blog/7637/hhvm-3-5-0
+permalink: /blog/7637/hhvm-3-5-0
 ---
 
 We have released [HHVM 3.5.0](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM) -- get it while it's hot! It contains updates from the "Xzibit", "Yelawolf", and "Z*" internal branches -- the last of the 2014 rapper theme. It also contains updates from the "Austin" internal branch, the first of the new 2015 theme. (Anyone want to guess at what the new theme is?)

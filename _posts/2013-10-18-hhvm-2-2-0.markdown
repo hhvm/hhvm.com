@@ -4,8 +4,7 @@ comments: true
 layout: post
 title: HHVM 2.2.0
 category: blog
-redirect_from:
-  - /blog/1301/hhvm-2-2-0
+permalink: /blog/1301/hhvm-2-2-0
 ---
 
 We released a new version of HHVM today. A big change is that we are now packaging for many of the popular distros.
