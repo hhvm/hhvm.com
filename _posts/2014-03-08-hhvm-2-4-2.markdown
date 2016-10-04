@@ -1,10 +1,19 @@
 ---
 author: ptarjan
-comments: true
 layout: post
 title: HHVM 2.4.2
 category: blog
 permalink: /blog/4103/hhvm-2-4-2
+comments:
+- id: 480743
+  author: HHVM 2.4.2 und die R&uuml;ckkehr der F8 Developer Conference - entwickler.de
+  author_email: ''
+  author_url: https://entwickler.de/online/php/hhvm-2-4-2-und-die-rueckkehr-der-f8-developer-conference-138573.html
+  date: '2015-05-08 02:28:34 +0000'
+  date_gmt: '2015-05-08 09:28:34 +0000'
+  content: "[&#8230;] Knapp drei Wochen vor dem Release der HHVM 2.5.0, das vor allem
+    wegen der Integration von MySQLi spannend werden d&uuml;rfte, hat das Team der
+    HipHop Virtual Machine Version 2.4.2 ver&ouml;ffentlicht. [&#8230;]"
 ---
 
 We haven't done posts for point releases since our normal [release schedule](https://github.com/facebook/hhvm/wiki/Release-Schedule) is so quick, but when there is a security fix we thought you should know as soon as possible.

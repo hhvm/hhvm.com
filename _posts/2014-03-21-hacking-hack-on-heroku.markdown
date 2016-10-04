@@ -1,10 +1,17 @@
 ---
 author: ptarjan
-comments: true
 layout: post
 title: Hacking Hack on Heroku
 category: blog
 permalink: /blog/4325/hacking-hack-on-heroku
+comments:
+- id: 4607
+  author: drsakr
+  author_email: devilsakrhack@yahoo.com
+  author_url: http://3rb-sys.com
+  date: '2014-03-24 00:52:09 +0000'
+  date_gmt: '2014-03-24 07:52:09 +0000'
+  content: Very Good And We Want More :D
 ---
 
 Yesterday, after our [Hack announcement,](http://hhvm.com/blog/4223/introducing-hack-a-programming-language-for-hhvm) we sat down with the heroku team to get Hack working on Heroku. And success! Read all about it over on the [heroku blog](https://blog.heroku.com/archives/2014/3/21/hacking_hack_on_heroku).

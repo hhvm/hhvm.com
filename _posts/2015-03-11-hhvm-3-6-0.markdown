@@ -1,10 +1,123 @@
 ---
 author: sgolemon
-comments: true
 layout: post
 title: HHVM 3.6.0
 category: blog
 permalink: /blog/8849/hhvm-3-6-0
+comments:
+- id: 410483
+  author: 404 - File not found
+  author_email: a.arsenij@gmx.de
+  author_url: ''
+  date: '2015-03-12 14:05:24 +0000'
+  date_gmt: '2015-03-12 21:05:24 +0000'
+  content: "My Website responses \"404 File not Found\" running with HHVM and Apache,
+    after I upgraded it to version 3.6.\r\nI installed HHVM again and restarted it
+    many times, nothing solves the problem.\r\n\r\nAnton."
+- id: 414083
+  author: Gerald
+  author_email: gvimrc@gmail.com
+  author_url: ''
+  date: '2015-03-16 16:18:47 +0000'
+  date_gmt: '2015-03-16 23:18:47 +0000'
+  content: What happened to the promised Mac OS X support?
+- id: 415613
+  author: Stefan Parker
+  author_email: swahvay@gmail.com
+  author_url: http://codebeforethehorse.tumblr.com
+  date: '2015-03-17 12:18:13 +0000'
+  date_gmt: '2015-03-17 19:18:13 +0000'
+  content: Are you planning to support cas (compare and swap) or some other locking
+    mechanism in MCRouter anytime soon?
+- id: 418307
+  author: castarco
+  author_email: castarco@gmail.com
+  author_url: http://labs.viricmind.org
+  date: '2015-03-19 03:30:33 +0000'
+  date_gmt: '2015-03-19 10:30:33 +0000'
+  content: How can we revert HHVM 3.6 to 3.5?
+- id: 418493
+  author: Josh Watzman
+  author_email: jwatzman@fb.com
+  author_url: https://www.facebook.com/jwatzman
+  date: '2015-03-19 08:20:34 +0000'
+  date_gmt: '2015-03-19 15:20:34 +0000'
+  content: We're still working on it! No specific deadline in mind, but we *hope*
+    to have something this half.
+- id: 418511
+  author: Josh Watzman
+  author_email: jwatzman@fb.com
+  author_url: https://www.facebook.com/jwatzman
+  date: '2015-03-19 08:21:27 +0000'
+  date_gmt: '2015-03-19 15:21:27 +0000'
+  content: The debs are all archived on dl.hhvm.com -- but keep in mind 3.5 is unsupported
+    at this point (replaced by 3.6), and there are several security issues fixed in
+    3.6 which won't be backported to 3.5. We only support the most recent stable release,
+    and our LTS releases, currently 3.3 and 3.6.
+- id: 425207
+  author: Gerald
+  author_email: fb@dancematrix.com
+  author_url: ''
+  date: '2015-03-24 03:05:39 +0000'
+  date_gmt: '2015-03-24 10:05:39 +0000'
+  content: Considering the number of people who develop on a Mac, both inside and
+    outside Facebook, why hasn't this been given greater priority?
+- id: 429407
+  author: Josh
+  author_email: joshuataylorx@gmail.com
+  author_url: ''
+  date: '2015-03-26 23:45:57 +0000'
+  date_gmt: '2015-03-27 06:45:57 +0000'
+  content: Why don't you work on it?
+- id: 430367
+  author: Phil
+  author_email: philipsheperd@gmail.com
+  author_url: ''
+  date: '2015-03-27 15:14:30 +0000'
+  date_gmt: '2015-03-27 22:14:30 +0000'
+  content: In my experience most people don't actually develop on the Mac itself.
+    They generally run Virtual Machines (VMs) that mock production in a more reproducible
+    model. If you are new to this look into a tool called Vagrant.
+- id: 444527
+  author: Josh Watzman
+  author_email: jwatzman@fb.com
+  author_url: https://www.facebook.com/jwatzman
+  date: '2015-04-08 10:17:05 +0000'
+  date_gmt: '2015-04-08 17:17:05 +0000'
+  content: Because there are only so many of us on the team, and we've had higher
+    priority things to deal with :)
+- id: 445223
+  author: PHP Annotated Monthly &ndash; April 2015 | JetBrains PhpStorm Blog
+  author_email: ''
+  author_url: http://blog.jetbrains.com/phpstorm/2015/04/php-annotated-monthly-april-2015/
+  date: '2015-04-09 02:44:42 +0000'
+  date_gmt: '2015-04-09 09:44:42 +0000'
+  content: "[&#8230;] short update on the HHVM: as planned,&nbsp;HHVM 3.6.0 has been
+    announced&nbsp;on March 11th 2015,&nbsp;which represents the second official LTS
+    release.&nbsp;This release comes with [&#8230;]"
+- id: 452423
+  author: WordPress in a next generation PHP world | Aaron Jorbin
+  author_email: ''
+  author_url: http://aaron.jorb.in/blog/2015/04/wordpress-in-a-next-generation-php-world/
+  date: '2015-04-15 09:57:19 +0000'
+  date_gmt: '2015-04-15 16:57:19 +0000'
+  content: "[&#8230;] has now released it&#8217;s second long term support release
+    and PHP 7 is in the final stages of implementing changes. It&#8217;s an exciting
+    time for [&#8230;]"
+- id: 454673
+  author: David
+  author_email: david@hackingui.com
+  author_url: http://hackingui.com
+  date: '2015-04-17 05:12:29 +0000'
+  date_gmt: '2015-04-17 12:12:29 +0000'
+  content: Same here. Any updates on this? Im using nginx though
+- id: 625505
+  author: jak usunac
+  author_email: tomogedac@o2.pl
+  author_url: http://www.jakusunac.pl
+  date: '2015-09-30 08:47:15 +0000'
+  date_gmt: '2015-09-30 15:47:15 +0000'
+  content: Any updates on this? Im using nginx though
 ---
 
 Announcing the immediate release of [HHVM 3.6.0](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM). built upon our internal "Ballmer", "Colbert", and "Ditko" releases. This represents our second official LTS release following 6 months after the release of [HHVM 3.3](http://hhvm.com/blog/6239/hhvm-3-3-0).

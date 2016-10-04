@@ -1,10 +1,258 @@
 ---
 author: bsimmers
-comments: true
 layout: post
 title: 'Faster and Cheaper: The Evolution of the hhvm JIT'
 category: blog
 permalink: /blog/2027/faster-and-cheaper-the-evolution-of-the-hhvm-jit
+comments:
+- id: 2075
+  author: dawehner
+  author_email: dawehner@googlemail.com
+  author_url: ''
+  date: '2013-12-12 12:20:24 +0000'
+  date_gmt: '2013-12-12 20:20:24 +0000'
+  content: We have december now, so it would be great to have the graph extended until
+    now.
+- id: 2081
+  author: Is Facebook Planning a Move to ARM Based Servers? | Joseph Scott
+  author_email: ''
+  author_url: https://josephscott.org/archives/2013/12/is-facebook-planning-a-move-to-arm-based-servers/
+  date: '2013-12-13 08:36:27 +0000'
+  date_gmt: '2013-12-13 16:36:27 +0000'
+  content: "[&#8230;] latest update from Facebook about the HHVM JIT ended with this
+    interesting note, emphasis [&#8230;]"
+- id: 2087
+  author: Brett Simmers
+  author_email: bsimmers@fb.com
+  author_url: http://fb.me/bsimmers
+  date: '2013-12-13 12:44:35 +0000'
+  date_gmt: '2013-12-13 20:44:35 +0000'
+  content: One of our other devs is working on a post about more recent perf improvements,
+    so that should have newer graphs.
+- id: 2093
+  author: Facebook hints at ARM server deployment too &mdash; Tech News and Analysis
+  author_email: ''
+  author_url: http://gigaom.com/2013/12/13/facebook-hints-at-arm-server-deployment-too/
+  date: '2013-12-13 13:34:52 +0000'
+  date_gmt: '2013-12-13 21:34:52 +0000'
+  content: "[&#8230;] it was rumors of Google building ARM-based servers, and now
+    a post on the blog dedicated to Facebook&#8217;s HipHop Virtual Machine for PHP
+    code notes how its translation engine plays a &#8220;crucial in our efforts to
+    get hhvm running on ARM [&#8230;]"
+- id: 2099
+  author: Facebook hints at ARM server deployment too | My Website
+  author_email: ''
+  author_url: http://atechsite.com/?p=26407
+  date: '2013-12-13 13:41:18 +0000'
+  date_gmt: '2013-12-13 21:41:18 +0000'
+  content: "[&#8230;] it was rumors of Google building ARM-based servers, and now
+    a post on the blog dedicated to Facebook&rsquo;s HipHop Virtual Machine for PHP
+    code notes how its translation engine plays a &ldquo;crucial in our efforts to
+    get hhvm running on ARM [&#8230;]"
+- id: 2105
+  author: Facebook hints at ARM server deployment too | 8ballbilliard
+  author_email: ''
+  author_url: http://www.8ballbilliard.com/facebook-hints-at-arm-server-deployment-too/
+  date: '2013-12-13 14:13:43 +0000'
+  date_gmt: '2013-12-13 22:13:43 +0000'
+  content: "[&#8230;] it was rumors of Google build&shy;ing ARM-based servers, and
+    now a post on the blog ded&shy;i&shy;cated to Facebook&rsquo;s HipHop Vir&shy;tual
+    Machine for PHP code notes how its trans&shy;la&shy;tion engine plays a &ldquo;cru&shy;cial
+    in our efforts to get hhvm run&shy;ning on [&#8230;]"
+- id: 2111
+  author: Facebook hints at ARM server deployment too | IT News
+  author_email: ''
+  author_url: http://www.itaggregator.tk/?p=19
+  date: '2013-12-13 14:46:39 +0000'
+  date_gmt: '2013-12-13 22:46:39 +0000'
+  content: "[&#8230;] it was rumors of Google building ARM-based servers, and now
+    a post on the blog dedicated to Facebook&#8217;s HipHop Virtual Machine for PHP
+    code notes how its translation engine plays a &#8220;crucial in our efforts to
+    get hhvm running on ARM [&#8230;]"
+- id: 2117
+  author: Facebook hints at ARM server deployment too | Content Loop
+  author_email: ''
+  author_url: http://news.jurjenbloo.nl/2013/12/facebook-hints-at-arm-server-deployment-too/
+  date: '2013-12-13 14:55:19 +0000'
+  date_gmt: '2013-12-13 22:55:19 +0000'
+  content: "[&#8230;] it was rumors of Google building ARM-based servers, and now
+    a post on the blog dedicated to Facebook&rsquo;s HipHop Virtual Machine for PHP
+    code notes how its translation engine plays a &ldquo;crucial in our efforts to
+    get hhvm running on ARM [&#8230;]"
+- id: 2123
+  author: Facebook hints at ARM server deployment too | Earthgrid
+  author_email: ''
+  author_url: http://blog.earthgrid.com/cloud/facebook-hints-at-arm-server-deployment-too/
+  date: '2013-12-15 00:14:46 +0000'
+  date_gmt: '2013-12-15 08:14:46 +0000'
+  content: "[&#8230;] it was rumors of Google building ARM-based servers, and now
+    a post on the blog dedicated to Facebook&#8217;s HipHop Virtual Machine for PHP
+    code notes how its translation engine plays a &#8220;crucial in our efforts to
+    get hhvm running on ARM [&#8230;]"
+- id: 2129
+  author: Facebook porting its PHP engine to ARM | High Performance Computing Info
+  author_email: ''
+  author_url: http://hpc2go.wordpress.com/2013/12/15/facebook-porting-its-php-engine-to-arm/
+  date: '2013-12-15 00:52:43 +0000'
+  date_gmt: '2013-12-15 08:52:43 +0000'
+  content: "[&#8230;] the HHVM blog post and an article at The [&#8230;]"
+- id: 2135
+  author: 'Programowanie w PHP &raquo; Blog Archive &raquo; HipHop Blog: Faster and
+    Cheaper: The Evolution of the hhvm JIT'
+  author_email: ''
+  author_url: http://php-soft.cba.pl/?p=4274
+  date: '2013-12-15 14:26:02 +0000'
+  date_gmt: '2013-12-15 22:26:02 +0000'
+  content: "[&#8230;] the HHVM (HipHop Virtal Machine) blog there&#8217;s a new post
+    that looks at the evolution of the HHVM JIT compiler since the project started
+    about four years [&#8230;]"
+- id: 2141
+  author: ''
+  author_email: ''
+  author_url: http://prog.hu/hirek/3395/Gyorsabban+fut+a+PHP+kod+a+Facebook+VM-jen+mint+a+C-plus-plus-ra+forditott+tarsa.html
+  date: '2013-12-15 22:15:02 +0000'
+  date_gmt: '2013-12-16 06:15:02 +0000'
+  content: "[&#8230;]  [&#8230;]"
+- id: 2147
+  author: Facebook ใช้งาน HipHop VM เต็มตัว, ประสิทธิภาพดีกว่ารุ่น C++, เตรียมรันบน
+    ARM | ข่าวล่าสุด
+  author_email: ''
+  author_url: http://xn--22c0bwchq9bc3c0id.com/2013/12/16/facebook-%e0%b9%83%e0%b8%8a%e0%b9%89%e0%b8%87%e0%b8%b2%e0%b8%99-hiphop-vm-%e0%b9%80%e0%b8%95%e0%b9%87%e0%b8%a1/
+  date: '2013-12-16 07:10:14 +0000'
+  date_gmt: '2013-12-16 15:10:14 +0000'
+  content: "[&#8230;] &#8211; HHVM, The [&#8230;]"
+- id: 2153
+  author: Facebook PHP engine eyeing move to ARM server chips - Crutch Technologies
+  author_email: ''
+  author_url: http://www.crutchtech.com/2013/12/16/facebook-php-engine-eyeing-move-to-arm-server-chips/
+  date: '2013-12-16 10:58:09 +0000'
+  date_gmt: '2013-12-16 18:58:09 +0000'
+  content: "[&#8230;] post on the Hip Hop Virtual Machine (HHVM) blog on Thursday
+    indicated that the team there is implementing ARM processor support into its [&#8230;]"
+- id: 2159
+  author: Facebook PHP engine eyeing move to ARM server chips | TechWorthy.info
+  author_email: ''
+  author_url: http://techworthy.info/2013/12/16/facebook-php-engine-eyeing-move-to-arm-server-chips/
+  date: '2013-12-16 12:31:55 +0000'
+  date_gmt: '2013-12-16 20:31:55 +0000'
+  content: "[&#8230;] post on the Hip Hop Virtual Machine (HHVM) blog on Thursday
+    indicated that the team there is implementing ARM processor support into its [&#8230;]"
+- id: 2165
+  author: Facebook PHP engine eyeing move to ARM server chips | Plugged Into The Matrix
+  author_email: ''
+  author_url: http://pluggedintothematrix.com/facebook-php-engine-eyeing-move-to-arm-server-chips/
+  date: '2013-12-16 12:32:43 +0000'
+  date_gmt: '2013-12-16 20:32:43 +0000'
+  content: "[&#8230;] post on the Hip Hop Virtual Machine (HHVM) blog on Thursday
+    indicated that the team there is implementing ARM processor support into its [&#8230;]"
+- id: 2171
+  author: Nowe Technologie | Google stworzy własne mikroprocesory na rdzeniach ARM?
+  author_email: ''
+  author_url: http://aktualnosci.nowetech.pl/google-stworzy-wlasne-mikroprocesory-na-rdzeniach-arm/
+  date: '2013-12-17 01:34:47 +0000'
+  date_gmt: '2013-12-17 09:34:47 +0000'
+  content: "[&#8230;] właśnie swoje plany dotyczące wykorzystania procesor&oacute;w
+    z rdzeniami ARM ogłosił Facebook, informując, że bliski jest przeniesienia kompilator&oacute;w
+    PHP na nową architekturę, a następnie publikując [&#8230;]"
+- id: 2177
+  author: Facebook PHP engine eyeing move to ARM server chips &#124; Techy News Today
+  author_email: ''
+  author_url: http://techynewstoday.com/facebook-php-engine-eyeing-move-to-arm-server-chips/
+  date: '2013-12-17 08:02:36 +0000'
+  date_gmt: '2013-12-17 16:02:36 +0000'
+  content: "[&#8230;] post on the Hip Hop Virtual Machine (HHVM) blog on Thursday
+    indicated that the team there is implementing ARM processor support into its [&#8230;]"
+- id: 2183
+  author: Facebook hints at ARM server deployment too | VIGALUM
+  author_email: ''
+  author_url: http://www.vigalum.com/facebook-hints-at-arm-server-deployment-too/
+  date: '2013-12-19 16:20:04 +0000'
+  date_gmt: '2013-12-20 00:20:04 +0000'
+  content: "[&#8230;] it was rumors of Google building ARM-based servers, and now
+    a post on the blog dedicated to Facebook&#8217;s HipHop Virtual Machine for PHP
+    code notes how its translation engine plays a &#8220;crucial in our efforts to
+    get hhvm running on ARM [&#8230;]"
+- id: 2189
+  author: Eltechs Facebook Considers Shift to ARM-based Servers
+  author_email: ''
+  author_url: http://eltechs.com/facebook-considers-shift-to-arm-based-servers/
+  date: '2014-01-21 01:11:39 +0000'
+  date_gmt: '2014-01-21 09:11:39 +0000'
+  content: "[&#8230;] recent post on Hip Hop Virtual Machine (HHVM) blog indicates
+    that the team works on implementing ARM support. HHVM is a Facebook&#8217;s PHP
+    engine [&#8230;]"
+- id: 2195
+  author: HHVM and Hack - Part 1 - SitePoint
+  author_email: ''
+  author_url: http://www.sitepoint.com/hhvm-hack-part-1/
+  date: '2014-02-12 09:02:40 +0000'
+  date_gmt: '2014-02-12 17:02:40 +0000'
+  content: "[&#8230;] HPHPc did a good job on improving performance but it was not
+    without issues: maintaining both HPHPc and HPHPi in sync proved to be cumbersome
+    plus some differences still existed between the transpiled code vs the interpreted
+    one. That&#039;s why back in 2010 Facebook decided to go for another approach
+    and created HHVM &#8211; a new virtual machine designed to replace the Zend Engine
+    used by PHP. By the end of 2012 HHVM achieved performance parity with the former
+    HPHPc and soon surpassed it. [&#8230;]"
+- id: 2201
+  author: HHVM and Hack &ndash; Part 1 &#8211; Bruno &Scaron;kvorc | WarWebDev
+  author_email: ''
+  author_url: http://warwebdev.com/2014/02/hhvm-and-hack-part-1-bruno-skvorc/
+  date: '2014-02-12 10:14:25 +0000'
+  date_gmt: '2014-02-12 18:14:25 +0000'
+  content: "[&#8230;] HPHPc did a good job on improving performance but it was not
+    without issues: maintaining both HPHPc and HPHPi in sync proved to be cumbersome
+    plus some differences still existed between the transpiled code vs the interpreted
+    one. That&#8217;s why back in 2010 Facebook decided to go for another approach
+    and created HHVM &ndash; a new virtual machine designed to replace the Zend Engine
+    used by PHP. By the end of 2012 HHVM achieved performance parity with the former
+    HPHPc and soon surpassed it. [&#8230;]"
+- id: 2207
+  author: 'HHVM: The Next Six Months &laquo; HipHop Virtual Machine'
+  author_email: ''
+  author_url: http://www.hhvm.com/blog/3743/hhvm-the-next-six-months
+  date: '2014-02-25 14:04:25 +0000'
+  date_gmt: '2014-02-25 22:04:25 +0000'
+  content: "[&#8230;] set very aggressive efficiency goals for the half that we hope
+    to achieve through a range of&nbsp;JIT compiler&nbsp;projects. We hope these translate
+    into wins for a variety of PHP workloads. We&rsquo;re shooting for [&#8230;]"
+- id: 4853
+  author: 'Advanced Micro Devices, Inc. (AMD) news: My Best 2014 Catalyst For AMD
+    Is &#8230; &#8211; Seeking Alpha | Home audio market'
+  author_email: ''
+  author_url: http://homeaudiomarket.com/blog/electronics/advanced-micro-devices-inc-amd-news-my-best-2014-catalyst-for-amd-is-seeking-alpha/
+  date: '2014-03-24 10:54:59 +0000'
+  date_gmt: '2014-03-24 17:54:59 +0000'
+  content: "[&#8230;] promise of very energy-efficient ARM-based server processors
+    prompted Facebook engineers to make its HipHop Virtual Machine JIT compilation
+    engine (which runs all of Facebook&#8217;s server farms) [&#8230;]"
+- id: 49973
+  author: Limbajul de programare Hack, apocalipsa PHP? | Claudiu Persoiu
+  author_email: ''
+  author_url: http://blog.claudiupersoiu.ro/2014/04/29/limbajul-programare-apocalipsa/lang/ro/
+  date: '2014-04-29 12:15:36 +0000'
+  date_gmt: '2014-04-29 19:15:36 +0000'
+  content: "[&#8230;] ruleaza pe HHVM. HHVM este incercarea Facebook de optimizare
+    a limbajului PHP prin Just In Time complication, ultima abordare de optimizare
+    a limbajului. Practic, Facebook incearca sa-si reduca din costuri, [&#8230;]"
+- id: 480731
+  author: Ein halbes Jahr HHVM - entwickler.de
+  author_email: ''
+  author_url: https://entwickler.de/online/php/ein-halbes-jahr-hhvm-138439.html
+  date: '2015-05-08 02:25:56 +0000'
+  date_gmt: '2015-05-08 09:25:56 +0000'
+  content: "[&#8230;] set very aggressive efficiency goals for the half that we hope
+    to achieve through a range of&nbsp;JIT compiler&nbsp;projects. We hope these translate
+    into wins for a variety of PHP workloads. We&rsquo;re shooting for [&#8230;]"
+- id: 1125509
+  author: HHVM is not for WordPress &#8211; RokkiCH
+  author_email: ''
+  author_url: https://blog.rokki.ch/2016/09/08/hhvm-is-not-for-wordpress/
+  date: '2016-09-26 14:11:44 +0000'
+  date_gmt: '2016-09-26 21:11:44 +0000'
+  content: "[&#8230;] beautiful and I like it for the administration simplicity and&nbsp;throughput
+    benefits it offers. The JIT is performing better and better by each new release.
+    This is absolutely brilliant if you&#8217;re [&#8230;]"
 ---
 
 When the hhvm project was started almost 4 years ago, it had a two-part mandate: First, create a PHP [JIT](http://en.wikipedia.org/wiki/Just-in-time_compilation) that could serve [facebook.com](https://www.facebook.com/) at least as efficiently as [hphpc](http://en.wikipedia.org/wiki/HipHop_for_PHP#History_Before_HHVM), the PHP execution engine we were using at the time. Second, replace hphpi, the interpreter our PHP developers were using in their daily work. hphpc and hphpi were independent pieces of software with unintentional subtle differences in behavior and a significant maintenance burden. Unifying the execution engines used in production and development would make our jobs easier while giving the PHP devs a nicer experience at the same time. We had to find a balance between reaching these goals as quickly as possible and designing a system that could be extended and improved for many years after it replaced hphpc and hphpi. There were also concerns that just in time compilation might not be fast enough to keep up with Facebook's aggressive deployment process. We were pushing a new version of the site to our fleet of web servers once every weekday, and the whole process took less than 20 minutes. We had to maintain that ability for hhvm to be a viable option. Taking all this into account, the initial JIT design was the simplest and fastest one that we thought had a good chance of succeeding.

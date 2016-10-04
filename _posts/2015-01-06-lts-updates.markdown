@@ -1,6 +1,5 @@
 ---
 author: jwatzman
-comments: true
 layout: post
 title: LTS Updates
 category: blog

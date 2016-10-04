@@ -1,10 +1,47 @@
 ---
 author: bsimmers
-comments: true
 layout: post
 title: LLVM Code Generation in HHVM
 category: blog
 permalink: /blog/10205/llvm-code-generation-in-hhvm
+comments:
+- id: 660047
+  author: Bartosz W&oacute;jcik
+  author_email: support@pelock.com
+  author_url: https://www.pelock.com
+  date: '2015-10-24 04:11:28 +0000'
+  date_gmt: '2015-10-24 11:11:28 +0000'
+  content: What compilation options was used?
+- id: 660203
+  author: Vivek
+  author_email: vivekvpandya@gmail.com
+  author_url: ''
+  date: '2015-10-24 06:04:53 +0000'
+  date_gmt: '2015-10-24 13:04:53 +0000'
+  content: HHVM and Hack should participate in GSoC 2016, many students are interested
+    to learn and contribute to this kind of challenging projects.
+- id: 1001639
+  author: Fernando
+  author_email: fernando@ellexroot.com
+  author_url: http://ellexroot.com/
+  date: '2016-06-13 19:27:43 +0000'
+  date_gmt: '2016-06-14 02:27:43 +0000'
+  content: The result here was that using an LLVM backend did not yield any performance
+    improvement, because LLVM is not capable of optimizing the kind of IR, that a
+    JIT for a dynamic language tends to generate, well. The conclusion to draw from
+    this is that HHVM is correctly focusing on implementing custom optimizations tailored
+    to PHP on their own IR. This situation is the opposite of NIH. It's a case where
+    a generic library (LLVM) fails in a specific situation (optimizing PHP) and one
+    should use a custom implementation instead.
+- id: 1116515
+  author: Sendo desenvolvedor depois dos 40 - LF Bittencourt
+  author_email: ''
+  author_url: http://www.lfbittencourt.com/sendo-desenvolvedor-depois-dos-40/
+  date: '2016-09-15 12:43:41 +0000'
+  date_gmt: '2016-09-15 19:43:41 +0000'
+  content: "[&#8230;] da atualidade. O .NET CLR eventualmente vai interoperar com
+    ele; o Mono j&aacute; usa. O Facebook tentou integrar o LLVM com a HHVM e o WebKit
+    migrou recentemente seu compilador JavaScript do LLVM para o novo JIT [&#8230;]"
 ---
 
 One of the most common questions we get about HHVM is why we don't use LLVM for code generation. The primary reason has always been that while LLVM is great at optimizing C, C++, Objective-C, and other similar statically-typed languages, PHP is dynamically typed. The kinds of optimizations that provide huge performance benefits for static languages tend to be less useful in dynamic languages, or at least overshadowed by all the dynamic dispatching that's done based on runtime types. We knew that there was probably something to be gained from using LLVM as a backend, but there were many larger opportunities go after first.

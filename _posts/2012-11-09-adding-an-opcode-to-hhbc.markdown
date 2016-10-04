@@ -1,10 +1,72 @@
 ---
 author: oyamauchi
-comments: true
 layout: post
 title: Adding an opcode to HHBC
 category: blog
 permalink: /blog/311/adding-an-opcode-to-hhbc
+comments:
+- id: 437
+  author: Sandeepone
+  author_email: sandeepone@gmail.com
+  author_url: ''
+  date: '2012-11-08 20:03:24 +0000'
+  date_gmt: '2012-11-09 04:03:24 +0000'
+  content: Simple and Good explanation.
+- id: 443
+  author: Denis TRUFFAUT
+  author_email: denis_truffaut@hotmail.com
+  author_url: http://www.denistruffaut.fr
+  date: '2012-11-30 12:41:00 +0000'
+  date_gmt: '2012-11-30 20:41:00 +0000'
+  content: |-
+    Was this modification a key point to overperform HPHPc ?
+
+    http:&#47;&#47;www.facebook.com&#47;notes&#47;facebook-engineering&#47;speeding-up-php-based-development-with-hiphop-vm&#47;10151170460698920
+- id: 449
+  author: sgolemon
+  author_email: saramg@fb.com
+  author_url: https://www.facebook.com/pages/HipHop-for-PHP/282425744325
+  date: '2012-12-03 16:08:20 +0000'
+  date_gmt: '2012-12-04 00:08:20 +0000'
+  content: No, it moved the needle a bit, but I wouldn't call it a *key* point.
+- id: 455
+  author: lionel
+  author_email: Ltouati@maisonsdumonde.com
+  author_url: http://Www.maisonsdumonde.com
+  date: '2012-12-17 10:08:25 +0000'
+  date_gmt: '2012-12-17 18:08:25 +0000'
+  content: "Hi Guys\n\nCould you also lake a tutorial on adding core functions ?\n\nI'm
+    struggling on getting this done \n\nThx a lot"
+- id: 461
+  author: sgolemon
+  author_email: saramg@fb.com
+  author_url: https://www.facebook.com/pages/HipHop-for-PHP/282425744325
+  date: '2012-12-17 15:23:18 +0000'
+  date_gmt: '2012-12-17 23:23:18 +0000'
+  content: I could... but I'm working on refactoring the extension writing process,
+    and we're about to remove all the HPHPc specific parts which will simplify the
+    whole thing.  Is there a specific bit of functionality you were looking to add?
+- id: 4847
+  author: '今周刊 &raquo; 013: HHVM 是如何提升 PHP 性能的？'
+  author_email: ''
+  author_url: http://jinweekly.com/?p=1134
+  date: '2014-03-24 10:48:13 +0000'
+  date_gmt: '2014-03-24 17:48:13 +0000'
+  content: "[&#8230;] Adding an opcode to HHBC [&#8230;]"
+- id: 5675
+  author: HHVM 是如何提升 PHP 性能的？ &#8211; 叶中奇
+  author_email: ''
+  author_url: http://www.yezhongqi.com/hhvm-is-how-to-improve-the-performance-of-php/
+  date: '2014-03-26 07:36:20 +0000'
+  date_gmt: '2014-03-26 14:36:20 +0000'
+  content: "[&#8230;] Adding an opcode to HHBC [&#8230;]"
+- id: 5717
+  author: HHVM 是如何提升 PHP 性能的？ | zengine
+  author_email: ''
+  author_url: http://demo.zengine.info/?p=902
+  date: '2014-03-26 10:34:22 +0000'
+  date_gmt: '2014-03-26 17:34:22 +0000'
+  content: "[&#8230;] Adding an opcode to HHBC [&#8230;]"
 ---
 
 As part of our drive to improve HHVM's performance, I started looking into the general topic of builtin functions. Currently, HHVM is calling implementations of builtin functions that were originally written for HPHPc, the static compiler. We wrote compatibility wrappers around them for HHVM, to get it up and running as quickly as possible. We have evidence that this compatibility layer is hurting HHVM's performance, so we're looking at ways to reduce or eliminate its impact.

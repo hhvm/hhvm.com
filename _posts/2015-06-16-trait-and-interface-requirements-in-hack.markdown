@@ -1,6 +1,5 @@
 ---
 author: kasper
-comments: true
 layout: post
 title: Trait and interface requirements in Hack
 category: blog

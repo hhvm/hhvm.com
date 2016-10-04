@@ -1,10 +1,342 @@
 ---
 author: paulbiss
-comments: true
 layout: post
 title: Lockdown Results and HHVM Performance
 category: blog
 permalink: /blog/9293/lockdown-results-and-hhvm-performance
+comments:
+- id: 518891
+  author: RobW
+  author_email: rwinikates@ngpvan.com
+  author_url: ''
+  date: '2015-06-09 10:45:48 +0000'
+  date_gmt: '2015-06-09 17:45:48 +0000'
+  content: Can you link to the drupal bug about searching the file system that you
+    fixed with a db change?
+- id: 518903
+  author: Tim Siebels
+  author_email: tim_siebels_aurich@yahoo.de
+  author_url: http://github.com/SiebelsTim
+  date: '2015-06-09 10:49:44 +0000'
+  date_gmt: '2015-06-09 17:49:44 +0000'
+  content: "Great article! I really like that you explained what setup was used in
+    detail. Reading the issue's comments during lockdown was fun, as you could see
+    progress.\r\nFurthermore you included performance gains for PHP which shows that
+    this isn't a fight with vanilla PHP but is a healthy competition. :)\r\nKeep getting
+    more open, I like it! :)"
+- id: 518909
+  author: Fred Emmott
+  author_email: fe@fb.com
+  author_url: ''
+  date: '2015-06-09 10:52:21 +0000'
+  date_gmt: '2015-06-09 17:52:21 +0000'
+  content: 'Thanks :) For reference (sorry we forgot to include it in the post) the
+    MediaWiki issue with full results is here: https:&#47;&#47;phabricator.wikimedia.org&#47;T99740'
+- id: 518921
+  author: Fred Emmott
+  author_email: fe@fb.com
+  author_url: ''
+  date: '2015-06-09 10:53:36 +0000'
+  date_gmt: '2015-06-09 17:53:36 +0000'
+  content: Sorry, this was from an external contributor and we don't have the source
+    handy. We've asked for details and will get back to you :)
+- id: 518927
+  author: Joel Marcey
+  author_email: joelm@fb.com
+  author_url: ''
+  date: '2015-06-09 10:59:54 +0000'
+  date_gmt: '2015-06-09 17:59:54 +0000'
+  content: Thanks Tim!
+- id: 518939
+  author: Kazanir
+  author_email: kazanir@gmail.com
+  author_url: ''
+  date: '2015-06-09 11:04:55 +0000'
+  date_gmt: '2015-06-09 18:04:55 +0000'
+  content: "What happened here was that devel_generate was used to generate the content
+    in the database dump, but the module wasn't actually disabled or uninstalled.
+    Then the database dump was used to drive a codebase that lacked that module. This
+    results in a \"zombie\" entry in Drupal's system table where a module is recorded
+    as enabled despite not existing. (This is a known issue on the Drupal side.) This
+    results in each page request seeing the \"missing\" module and scanning the entire
+    filesystem below modules&#47; to try to find it on every request.\r\n\r\nOops."
+- id: 519047
+  author: Esa
+  author_email: Nwaf0077@gmail.com
+  author_url: ''
+  date: '2015-06-09 12:36:49 +0000'
+  date_gmt: '2015-06-09 19:36:49 +0000'
+  content: You are leading the whole php community. Mark should be proud of you. You
+    deserve the whole php community comes and welcome you due to your achievements.
+- id: 519221
+  author: mikeytown2
+  author_email: mike.carper@gmail.com
+  author_url: ''
+  date: '2015-06-09 15:31:37 +0000'
+  date_gmt: '2015-06-09 22:31:37 +0000'
+  content: There are a couple of async MySQL Drupal modules out there, but they are
+    using mysqlng &amp; mysqli &amp; MYSQLI_ASYNC instead of HHVM async as it wasn't
+    available when the code was developed. See https:&#47;&#47;www.drupal.org&#47;project&#47;apdqc
+    &amp; https:&#47;&#47;www.drupal.org&#47;sandbox&#47;gielfeldt&#47;2422171
+- id: 519227
+  author: mikeytown2
+  author_email: mike.carper@gmail.com
+  author_url: ''
+  date: '2015-06-09 15:37:09 +0000'
+  date_gmt: '2015-06-09 22:37:09 +0000'
+  content: I believe this is the issue - https:&#47;&#47;www.drupal.org&#47;node&#47;1081266
+- id: 519443
+  author: Meserlian
+  author_email: gmeserlian@gmail.com
+  author_url: http://garen.meserlian.com
+  date: '2015-06-10 00:12:01 +0000'
+  date_gmt: '2015-06-10 07:12:01 +0000'
+  content: This is awesome testing. Looking forward for the Async test for WP.
+- id: 519449
+  author: Nemo
+  author_email: federicoleva@tiscali.it
+  author_url: ''
+  date: '2015-06-10 00:18:21 +0000'
+  date_gmt: '2015-06-10 07:18:21 +0000'
+  content: Thanks for your testing. From several things mentioned, it seems you tested
+    an older release of MediaWiki (1.24?) with vanilla settings. For higher realism,
+    it would probably have been more useful to test the settings commonly used by
+    any "serious" MediaWiki wiki, see https:&#47;&#47;www.mediawiki.org&#47;wiki&#47;Manual:Performance_tuning
+    for the basics.
+- id: 519497
+  author: Radu Murzea
+  author_email: sobolanx@gmail.com
+  author_url: ''
+  date: '2015-06-10 01:55:24 +0000'
+  date_gmt: '2015-06-10 08:55:24 +0000'
+  content: "I really love the incredible amount of detail in this post and, obviously,
+    the impressive results of your improvements.\r\n\r\nI'm really curious to see
+    how these tweaks affect performance of a much broader collection of PHP frameworks
+    and CMS-es."
+- id: 519515
+  author: Peter
+  author_email: peter.wong@traffix3.com
+  author_url: http://www.traffix3.com
+  date: '2015-06-10 02:42:11 +0000'
+  date_gmt: '2015-06-10 09:42:11 +0000'
+  content: Awesome, I really fell in love with HHVM over the last couple of months.
+    I can't wait for 3.8.
+- id: 519701
+  author: Fred Emmott
+  author_email: fe@fb.com
+  author_url: ''
+  date: '2015-06-10 09:01:13 +0000'
+  date_gmt: '2015-06-10 16:01:13 +0000'
+  content: "We're on a slightly older version as:\r\n - it's only one minor version
+    behind\r\n - we're not aware of significant performance changes\r\n - if there
+    are any, we would expect them to mostly benefit HHVM anyway, as that's the engine
+    that Wikipedia have recently switched to\r\n - updating releases has a high cost:
+    as well as the basic mechanics, we need to make sure the results are still consistent,
+    re-profile to make sure there's not been any changes in the defaults that are
+    good for 'just works' but aren't realistic (the documentation is not good enough
+    for this), etc\r\n\r\nIt is not vanilla:\r\n - we use a custom file-based localization
+    cache (which is an improvement over Mediawiki's file cache and MySQL caches),
+    which is an improvement on PHP5, PHP7, and HHVM: http:&#47;&#47;cl.ly&#47;image&#47;3I2m2a190G3N\r\n
+    - we disable view counters\r\n\r\nIn general, we aim to optimize and reconfigure
+    by profiling and looking for bottlenecks, rather than trusting often-incorrect
+    or outdated documentation. The Mediawiki docs were good though, so to address
+    them:\r\n\r\n - opcode caching is enabled by default in all recent versions of
+    PHP, and irrelevant in HHVM. Our benchmarking script makes sure it is enabled
+    when running PHP5 or PHP7\r\n - memcached is not used both because object caching
+    does not show up as significant in profiles, and because there is not yet a sufficiently
+    complete and stable implementation for PHP7\r\n - output caching is not used as
+    this would be nearly a no-op with an HTTP cache in place, and roughly turn the
+    benchmark into 'Hello, world'. The uncached Barack Obama page is representative
+    of the load on Wikipedia's application servers\r\n- HTTP caching: again, turns
+    it into 'hello, world'. While this does mean that our numbers are not representative
+    of the RPS you'd get on the whole system, presumably if you're looking at PHP
+    performance, performance of the application servers are what you want to focus
+    on\r\n\r\n - mbstring is enabled in PHP5, PHP7, and HHVM\r\n - FastStringSearch
+    is not used because it is not available for PHP7, disabling like-for-like comparisons\r\n
+    - the MySQL lock options do not have an affect, and should not be particularly
+    relevant as our benchmark does not include writes\r\n - We have plenty of RAM
+    for MySQL, $PHP_IMPLEMENTATION, and nginx."
+- id: 522191
+  author: HHVM Demonstrated to be 18.7% Faster Than PHP 7 on a WordPress Workload
+  author_email: ''
+  author_url: http://wptavern.com/hhvm-demonstrated-to-be-18-7-faster-than-php-7-on-a-wordpress-workload
+  date: '2015-06-12 10:47:28 +0000'
+  date_gmt: '2015-06-12 17:47:28 +0000'
+  content: "[&#8230;] week HHVM developers shared the results of their first ever
+    open source performance lockdown. HHVM is Facebook&#8217;s open source PHP execution
+    engine, originally created to help make its [&#8230;]"
+- id: 522197
+  author: Guilherme Cardoso
+  author_email: email@guilhermecardoso.pt
+  author_url: http://codigo.ovh
+  date: '2015-06-12 10:58:35 +0000'
+  date_gmt: '2015-06-12 17:58:35 +0000'
+  content: "Sorry for asking this here. ATM attributes are available at class level
+    and methods.\r\n\r\nIs it in the roadmap to include them as well on properties
+    or is something impossible thanks to PHP dynamic nature?\r\n\r\nWhen looking for
+    web frameworks features, implementing attributes in properties allow us to define
+    most common configs (entities mapping, validations mappings, etc) in a good way,
+    similar to C# attributes features. ATM i'm doing it in properties getters which
+    is ugly of course."
+- id: 522389
+  author: Nemo
+  author_email: federicoleva@tiscali.it
+  author_url: ''
+  date: '2015-06-12 13:54:26 +0000'
+  date_gmt: '2015-06-12 20:54:26 +0000'
+  content: "Thanks for the clarifications, in particular on localisation cache; it
+    was not clear to me what you meant by &laquo;we&rsquo;ve specifically turned them
+    off&raquo; before reading https:&#47;&#47;github.com&#47;hhvm&#47;oss-performance&#47;blob&#47;master&#47;README.md#mediawiki
+    .\r\n\r\nI still wonder about the effect of some other standard configurations
+    you may have missed, like $wgJobRunRate."
+- id: 524369
+  author: 'HHVM Performance Lockdown: Is HHVM Reaching Its Limit?'
+  author_email: ''
+  author_url: https://ma.ttias.be/hhvm-performance-lockdown-is-hhvm-reaching-its-limit/
+  date: '2015-06-14 03:15:34 +0000'
+  date_gmt: '2015-06-14 10:15:34 +0000'
+  content: "[&#8230;] latest HHVM blogpost is all about getting performance gains
+    from HHVM in real-life situations. With a noticeable increase for MediaWiki, all
+    other frameworks are [&#8230;]"
+- id: 525377
+  author: 'L&rsquo;hebdo de l&rsquo;&eacute;cosyst&egrave;me WordPress #22'
+  author_email: ''
+  author_url: http://wphebdo.fr/hebdo-ecosysteme-wordpress-22/
+  date: '2015-06-15 01:04:58 +0000'
+  date_gmt: '2015-06-15 08:04:58 +0000'
+  content: "[&#8230;] vous suivez la guerre que se livre PHP et HHVM pour optimiser
+    les performances de leur interpr&eacute;teur PHP respect&#8230;, hhvm a publi&eacute;
+    cette semaine leurs derni&egrave;res [&#8230;]"
+- id: 525761
+  author: Josh Watzman
+  author_email: jwatzman@fb.com
+  author_url: https://www.facebook.com/jwatzman
+  date: '2015-06-15 09:49:44 +0000'
+  date_gmt: '2015-06-15 16:49:44 +0000'
+  content: No fundamental reason why we haven't allowed it, just haven't gotten around
+    to building it :) I just filed https:&#47;&#47;github.com&#47;facebook&#47;hhvm&#47;issues&#47;5493
+    for you. In the future, GitHub issues or IRC are, respectively, better ways of
+    filing feature requests or asking questions than a comment on a random blog post
+    :)
+- id: 530213
+  author: Jani Tarvainen
+  author_email: janit@iki.fi
+  author_url: http://janit.iki.fi/
+  date: '2015-06-23 10:24:52 +0000'
+  date_gmt: '2015-06-23 17:24:52 +0000'
+  content: "I strapped the HTTP&#47;2 capable H2O web server to HHVM to go ahead and
+    make it serve like they do in 2020 :)\r\n\r\nhttps:&#47;&#47;www.symfony.fi&#47;entry&#47;serving-php-on-http-2-with-h2o-and-hhvm-symfony-wordpress-drupal"
+- id: 537869
+  author: wwbmmm
+  author_email: wwbmmm@163.com
+  author_url: ''
+  date: '2015-06-30 22:51:18 +0000'
+  date_gmt: '2015-07-01 05:51:18 +0000'
+  content: You had optimized for RepoAuthoritative mode with proxygen server. What
+    about non RepoAuthoritative mode and fastcgi server? This is more popular use
+    case (except facebook) and is more compatible with zend php.
+- id: 537875
+  author: Paul Bissonnette
+  author_email: paulbiss@fb.com
+  author_url: ''
+  date: '2015-06-30 23:02:34 +0000'
+  date_gmt: '2015-07-01 06:02:34 +0000'
+  content: "The numbers are based on proxygen running behind nginx, we found that
+    it showed a small performance bump when compared to fastcgi behind nginx, but
+    the difference was very small.\r\n\r\nWe have in the past published numbers based
+    on non-RepoAuthoratative mode, and will continue to track and improve its performance.
+    For a variety of reasons running in RepoAuthoratative mode will always be a substantial
+    performance benefit. Put simply the use of whole program analysis allows a host
+    of powerful optimizations that depend on the knowledge that all execution paths
+    are both known and stable.\r\n\r\nIt is worth noting that even in non-RepoAuthoratative
+    mode we are quite performant, and the performance benefit from this mode is probably
+    only going to be important to those operating at a sufficiently large scale. We
+    are aware of other large deployments that use or are exploring the future use
+    of this setting. We've also added tooling to make it easier to experiment with
+    RepoAuthoritative mode (mentioned in the article).\r\n\r\nObviously there is no
+    one ideal configuration that will work for every installation, but we feel strongly
+    that the configuration presented here is a good choice for large sites that deeply
+    care about this kind of performance. The article was already complicated enough
+    with one set of configuration options so we chose the ones that would matter most
+    to anyone operating at scale."
+- id: 537989
+  author: wwbmmm
+  author_email: wwbmmm@163.com
+  author_url: ''
+  date: '2015-07-01 00:54:50 +0000'
+  date_gmt: '2015-07-01 07:54:50 +0000'
+  content: Are you going to do some optimization for non-RepoAuthoratative mode? My
+    profiling shows that ExecutionContext::lookupPhpFile cost 11% inclusive cpu in
+    non-RepoAuthoratative mode. Those who says "php7 is faster than hhvm" only compare
+    php7 with hhvm-no-repo.
+- id: 538001
+  author: Paul Bissonnette
+  author_email: paulbiss@fb.com
+  author_url: ''
+  date: '2015-07-01 01:06:16 +0000'
+  date_gmt: '2015-07-01 08:06:16 +0000'
+  content: "We're committed to improving both modes, though at the end of the day
+    the metric we watch most carefully is repo-mode performance.\r\n\r\nWe've done
+    a fair bit of profiling in non-repo mode and have made some important improvements.
+    I've never seen lookupPhpFile in any of the profiles I've examined, and the function
+    doesn't appear to be present in master, 3.3, 3.6, or 3.7 (are you benchmarking
+    an old version of hhvm?). I'd be curious to hear more details about how you're
+    performing this profiling and I'd be happy to work with the data to make improvements
+    or review pull-requests.\r\n\r\nThere's been a lot of confusion about how to benchmark
+    PHP engines in a fashion that's representative of a production environment. A
+    good portion of this article has been about trying to formalize some of the lessons
+    we learned. The hope is that we might provide a sane hhvm configuration as well
+    as a framework for simulating a production environment for others who wish to
+    run their own benchmarks.\r\n\r\nI've seen some of the numbers being passed around
+    but so little has been shared of the methodology that I can't really comment on
+    the accuracy of those results."
+- id: 538019
+  author: wwbmmm
+  author_email: wwbmmm@163.com
+  author_url: ''
+  date: '2015-07-01 01:38:32 +0000'
+  date_gmt: '2015-07-01 08:38:32 +0000'
+  content: I have profiled in 3.0&#47;3.6, 3.6 is slightly faster. Do you have email
+    address? I can send you more details.
+- id: 538043
+  author: Paul Bissonnette
+  author_email: paulbiss@fb.com
+  author_url: ''
+  date: '2015-07-01 01:49:21 +0000'
+  date_gmt: '2015-07-01 08:49:21 +0000'
+  content: 'Sure, paulbiss (at) fb.com, you can also find me on our Freenode channels
+    #hhvm and #hhvm-dev (I''m usually around during normal business hours in California).
+    Thanks!'
+- id: 538607
+  author: HHVM Now Faster than PHP 7 | Hackers Media
+  author_email: ''
+  author_url: http://www.hackersmedia.com/2015/07/hhvm-now-faster-than-php-7/
+  date: '2015-07-01 11:51:06 +0000'
+  date_gmt: '2015-07-01 18:51:06 +0000'
+  content: "[&#8230;] to the report, various setups were tested, with technologies
+    like WordPress, Drupal, and MediaWiki used in a [&#8230;]"
+- id: 547421
+  author: Craig Carnell
+  author_email: ccarnell@vax.co.uk
+  author_url: ''
+  date: '2015-07-14 02:15:20 +0000'
+  date_gmt: '2015-07-14 09:15:20 +0000'
+  content: Where are the Magento results? :)
+- id: 547703
+  author: Fred Emmott
+  author_email: fe@fb.com
+  author_url: ''
+  date: '2015-07-14 09:58:45 +0000'
+  date_gmt: '2015-07-14 16:58:45 +0000'
+  content: "Magneto1:\r\n\r\nHHVM 3.7: 119.73 RPS\r\nHHVM 3.8: 124.47 RPS\r\nImprovement:
+    4%\r\n\r\nMagento2: pull requests welcome ;) https:&#47;&#47;github.com&#47;hhvm&#47;oss-performance"
+- id: 547709
+  author: Fred Emmott
+  author_email: fe@fb.com
+  author_url: ''
+  date: '2015-07-14 09:59:24 +0000'
+  date_gmt: '2015-07-14 16:59:24 +0000'
+  content: We didn't include them in the post as Magento wasn't part of the lockdown.
 ---
 
 The HHVM team has concluded its first ever open source performance lockdown, and we're very excited to share the results with you. During our two week lockdown, we've made strides optimizing builtin functions, dynamic properties, string concatenation, and the file cache. In addition to improving HHVM, we also looked for places in the open source frameworks where we could contribute patches that would benefit all engines. Our efforts centered around maximizing requests per second (RPS) with Wordpress, Drupal 7, and MediaWiki, using our [oss-performance](https://github.com/hhvm/oss-performance) benchmarking tool.

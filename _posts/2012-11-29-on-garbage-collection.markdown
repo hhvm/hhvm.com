@@ -1,6 +1,5 @@
 ---
 author: oyamauchi
-comments: true
 layout: post
 title: On Garbage Collection
 category: blog

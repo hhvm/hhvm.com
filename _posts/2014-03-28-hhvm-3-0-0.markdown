@@ -1,10 +1,214 @@
 ---
 author: ptarjan
-comments: true
 layout: post
 title: HHVM 3.0.0
 category: blog
 permalink: /blog/4349/hhvm-3-0-0
+comments:
+- id: 6281
+  author: Radu
+  author_email: sobolanx@gmail.com
+  author_url: ''
+  date: '2014-03-28 13:42:38 +0000'
+  date_gmt: '2014-03-28 20:42:38 +0000'
+  content: "Congratulations, all these improvements obviously take a lot of effort;
+    you should feel proud :) .\r\n\r\nPlease don't forget to keep updating and completing
+    the documentation about Hack, it seems people are really interested in it."
+- id: 6287
+  author: Gaurav
+  author_email: aaa@aaaaaa.aaa
+  author_url: ''
+  date: '2014-03-28 14:18:18 +0000'
+  date_gmt: '2014-03-28 21:18:18 +0000'
+  content: "Are there any performance benchmarks between Hack on HHVM vs PHP on HHVM?\r\nHack
+    being statically typed language should show better results than PHP."
+- id: 6317
+  author: Facebook releases HipHop (HHVM) 3.0, adds mysqli and support for Hack language
+    - Dev Metal
+  author_email: ''
+  author_url: http://www.dev-metal.com/facebook-releases-hiphop-hhvm-3-0-adds-mysqli-support-hack-language/
+  date: '2014-03-28 15:29:58 +0000'
+  date_gmt: '2014-03-28 22:29:58 +0000'
+  content: "[&#8230;] improved fork of the entire PHP language) a few days ago, Facebook&#8217;s
+    engineering team has shipped HipHop (HHVM) 3.0 today. Beside lots of improvements,
+    the most interesting new features are the native integration of the [&#8230;]"
+- id: 6371
+  author: HHVM 3.0 发布，执行 PHP 的虚拟机 &#124; 我爱互联网
+  author_email: ''
+  author_url: http://www.person168.com/wordpress/?p=8230
+  date: '2014-03-28 18:01:41 +0000'
+  date_gmt: '2014-03-29 01:01:41 +0000'
+  content: "[&#8230;] HHVM 3.0 发布了，这是一个主要的发行版本，最主要的是增加对 Hack 语言的支持。详细的说明请看这里。 [&#8230;]"
+- id: 6383
+  author: wwbmmm
+  author_email: wwbmmm@163.com
+  author_url: ''
+  date: '2014-03-28 18:21:06 +0000'
+  date_gmt: '2014-03-29 01:21:06 +0000'
+  content: 赞！
+- id: 6443
+  author: Taking HHVM 3.0 for a spin | J&aacute;nos P&aacute;sztor
+  author_email: ''
+  author_url: http://www.janoszen.com/2014/03/29/taking-hhvm-3-0-for-a-spin/
+  date: '2014-03-28 23:25:28 +0000'
+  date_gmt: '2014-03-29 06:25:28 +0000'
+  content: "[&#8230;] even a day has passed since Facebook released a new version
+    of their PHP virtual machine called HHVM. If you don&#8217;t know HHVM and you&#8217;re
+    coding PHP, you&#8217;ve [&#8230;]"
+- id: 6449
+  author: Taking HHVM 3.0.0 for a spin | J&aacute;nos P&aacute;sztor
+  author_email: ''
+  author_url: http://www.janoszen.com/2014/03/29/taking-hhvm-3-0-0-for-a-spin/
+  date: '2014-03-28 23:26:17 +0000'
+  date_gmt: '2014-03-29 06:26:17 +0000'
+  content: "[&#8230;] even a day has passed since Facebook released a new version
+    of their PHP virtual machine called HHVM. If you don&#8217;t know HHVM and you&#8217;re
+    coding PHP, you&#8217;ve [&#8230;]"
+- id: 6461
+  author: Hack_Fan
+  author_email: Hack_Fan@hotmail.com
+  author_url: ''
+  date: '2014-03-28 23:30:24 +0000'
+  date_gmt: '2014-03-29 06:30:24 +0000'
+  content: "I agree with @Gaurav\r\nYes, please;\r\n\"Are there any performance benchmarks
+    between Hack on HHVM vs PHP on HHVM?\"\r\nAnd of course with JIT enable mode."
+- id: 6485
+  author: wwbmmm
+  author_email: wwbmmm@163.com
+  author_url: ''
+  date: '2014-03-29 01:10:05 +0000'
+  date_gmt: '2014-03-29 08:10:05 +0000'
+  content: What about Admin Server and Satellite Servers? These are useful functionality.
+    Are they available with fastcgi mode?
+- id: 6497
+  author: Alex
+  author_email: draboo_alex@aol.com
+  author_url: ''
+  date: '2014-03-29 02:38:00 +0000'
+  date_gmt: '2014-03-29 09:38:00 +0000'
+  content: "Good work guys. Can we have decimal data type into Hack? \r\nOr Hack class
+    for that ?"
+- id: 6707
+  author: Robson
+  author_email: wspanels@gmail.com
+  author_url: http://wspanels.com
+  date: '2014-03-29 16:03:22 +0000'
+  date_gmt: '2014-03-29 23:03:22 +0000'
+  content: "Hello, I'm testing HipHop in two sites with Wordpress and Magento and
+    am fascinated, the performance is phenomenal.\r\nI started reading the documentation
+    yesterday, my english is bad, and I wish someone help me understand something
+    about the php.ini, please:\r\n\r\n1 - Where can I see the php directives that
+    are used in HHVM?\r\n2 - If I want to change the maximum upload, just add upload_max_filesize
+    = 200M to &#47; etc &#47; hhvm &#47; php.ini?\r\n3 - I installed the prebuild
+    Debian, how can I install APC, for example?\r\n\r\nI apologize for the many questions."
+- id: 9053
+  author: Is Facebook&#8217;s HHVM Building PHP&#8217;s Coffin? | P&aacute;draic Brady
+  author_email: ''
+  author_url: http://blog.astrumfutura.com/2014/03/is-facebooks-hhvm-building-phps-coffin/
+  date: '2014-03-31 12:56:18 +0000'
+  date_gmt: '2014-03-31 19:56:18 +0000'
+  content: "[&#8230;] HHVM 3.0 now released, it&#8217;s probably time to start talking
+    about HHVM and the new Hack Language. It&#8217;s [&#8230;]"
+- id: 11381
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com
+  date: '2014-04-02 00:50:41 +0000'
+  date_gmt: '2014-04-02 07:50:41 +0000'
+  content: The Admin Server still works but you have to put nginx in front of it.
+    The Satellite servers don't work. What are you using them for?
+- id: 11387
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com
+  date: '2014-04-02 00:50:56 +0000'
+  date_gmt: '2014-04-02 07:50:56 +0000'
+  content: Look at `num` in the hack docs
+- id: 11393
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com
+  date: '2014-04-02 00:51:46 +0000'
+  date_gmt: '2014-04-02 07:51:46 +0000'
+  content: "1) We don't have good docs for it yet. Try things that you expect to work
+    in php and report if they don't work.\r\n\r\n2) Yes.\r\n\r\n3) Everything is bundled
+    in the main one already."
+- id: 11399
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com
+  date: '2014-04-02 00:53:02 +0000'
+  date_gmt: '2014-04-02 07:53:02 +0000'
+  content: The types are erased at runtime right now, so you don't get any performance
+    gains directly. They stop you from doing stilly things and forcing extra tracelet
+    translations by keeping your types in order, though.
+- id: 12959
+  author: wwbmmm
+  author_email: wwbmmm@163.com
+  author_url: ''
+  date: '2014-04-03 02:34:08 +0000'
+  date_gmt: '2014-04-03 09:34:08 +0000'
+  content: "We wan't to use Xbox Server for threading as https:&#47;&#47;github.com&#47;facebook&#47;hhvm&#47;blob&#47;master&#47;hphp&#47;doc&#47;threading
+    says.\r\nOr is there any way to do parallel excution in fastcgi mode?"
+- id: 13379
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com
+  date: '2014-04-03 08:37:17 +0000'
+  date_gmt: '2014-04-03 15:37:17 +0000'
+  content: Why can't you just use multiple requests? Are you passing a lot of state
+    around? I'm sure there is a way to get xbox server working without the libevent
+    server I just haven't put any time into it. I would take a PR if you sent one.
+- id: 18401
+  author: Jared Kipe
+  author_email: jared@jaredkipe.com
+  author_url: http://jaredkipe.com
+  date: '2014-04-06 14:41:12 +0000'
+  date_gmt: '2014-04-06 21:41:12 +0000'
+  content: A build &#47; repo for Ubuntu 14.04 trusty would be appreciated.  The saucy
+    version works, if you eliminate the libboost requirements that are not available
+    (by editing deb package).
+- id: 33761
+  author: Facebook发布HHVM 3.0 - joseph.org.cn - Joseph&#039;s Home
+  author_email: ''
+  author_url: http://joseph.org.cn/post/1775.html
+  date: '2014-04-19 03:23:48 +0000'
+  date_gmt: '2014-04-19 10:23:48 +0000'
+  content: "[&#8230;] 在Hack编程语言发布之后，Facebook又发布了HHVM（HipHop Virtual Machine）的3.0版本，提供了对这门新语言的支持。Facebook的工程师Paul
+    Tarjan在HHVM博客上宣布了这一消息。 [&#8230;]"
+- id: 43523
+  author: jasper
+  author_email: jasper@koers.biz
+  author_url: ''
+  date: '2014-04-27 14:07:40 +0000'
+  date_gmt: '2014-04-27 21:07:40 +0000'
+  content: The second thing isn't working. HHVM with Nginx shows me a blank page after
+    trying to upload something.
+- id: 65501
+  author: Utomo
+  author_email: Utomo.prawiro@gmail.com
+  author_url: ''
+  date: '2014-05-04 17:03:46 +0000'
+  date_gmt: '2014-05-05 00:03:46 +0000'
+  content: "May I ask,  why using hack name? \r\nIn some country hack is not good.
+    \ People seeing as cracking."
+- id: 217541
+  author: PHP News You May Have Missed
+  author_email: ''
+  author_url: http://www.sitepoint.com/news-may-missed/
+  date: '2014-08-19 22:38:18 +0000'
+  date_gmt: '2014-08-20 05:38:18 +0000'
+  content: "[&#8230;] reached version 3 (finally, a sane versioning scheme &#8211;
+    a rarity in the PHP world) and publicly introduced Hack, [&#8230;]"
+- id: 480749
+  author: HHVM auf dem n&auml;chsten Level - entwickler.de
+  author_email: ''
+  author_url: https://entwickler.de/online/php/hhvm-auf-dem-naechsten-level-138818.html
+  date: '2015-05-08 02:32:14 +0000'
+  date_gmt: '2015-05-08 09:32:14 +0000'
+  content: "[&#8230;] 2.0.0 &ndash; dem letzten gro&szlig;en Game Changer &ndash;
+    erf&auml;hrt man von einem merklich stolzen Paul Tarjan in der offiziellen Ank&uuml;ndigung
+    der HHVM 3.0.0. Und in der Tat sind die Fortschritte seit damals [&#8230;]"
 ---
 
 This is a fun one! :)

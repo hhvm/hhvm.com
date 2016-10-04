@@ -1,6 +1,5 @@
 ---
 author: jwatzman
-comments: true
 layout: post
 title: 'Hack Community Roundup #3'
 category: blog

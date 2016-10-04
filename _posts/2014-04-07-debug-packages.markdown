@@ -1,10 +1,53 @@
 ---
 author: ptarjan
-comments: true
 layout: post
 title: Debug Packages
 category: blog
 permalink: /blog/4601/debug-packages
+comments:
+- id: 19283
+  author: bob
+  author_email: bob@bob.com
+  author_url: ''
+  date: '2014-04-07 15:26:18 +0000'
+  date_gmt: '2014-04-07 22:26:18 +0000'
+  content: Why no freebsd package?
+- id: 19439
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com
+  date: '2014-04-08 00:05:10 +0000'
+  date_gmt: '2014-04-08 07:05:10 +0000'
+  content: Because I haven't gotten many requests for it and I don't know how to build
+    for it. If you want to become the maintainer please add it to the wiki.
+- id: 19757
+  author: Jorge G
+  author_email: Garrapato@me.com
+  author_url: http://Garrapato.com
+  date: '2014-04-08 08:18:30 +0000'
+  date_gmt: '2014-04-08 15:18:30 +0000'
+  content: Why no MacOS package?
+- id: 20189
+  author: Luke
+  author_email: luke@rattei.org
+  author_url: ''
+  date: '2014-04-08 19:51:12 +0000'
+  date_gmt: '2014-04-09 02:51:12 +0000'
+  content: Thanks for making it easier for us to help improve this project!
+- id: 66095
+  author: My Journey with HHVM-Pt.2 - Tech Samurais
+  author_email: ''
+  author_url: http://techsamurais.com/?p=1663
+  date: '2014-05-04 22:40:49 +0000'
+  date_gmt: '2014-05-05 05:40:49 +0000'
+  content: "[&#8230;]  HHVM Blog  [&#8230;]"
+- id: 177905
+  author: Thomas
+  author_email: xt6.thomas.genin@gmail.com
+  author_url: ''
+  date: '2014-06-12 22:02:37 +0000'
+  date_gmt: '2014-06-13 05:02:37 +0000'
+  content: "Log trace can be found in &#47;tmp with the following format\r\n&#47;tmp&#47;stacktrace..log"
 ---
 
 ![](/static/images/posts/1218.png)

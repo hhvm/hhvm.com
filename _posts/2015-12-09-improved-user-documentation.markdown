@@ -1,6 +1,5 @@
 ---
 author: joelm
-comments: true
 layout: post
 title: Improved User Documentation
 category: blog

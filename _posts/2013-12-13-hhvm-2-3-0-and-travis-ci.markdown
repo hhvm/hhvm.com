@@ -1,10 +1,100 @@
 ---
 author: ptarjan
-comments: true
 layout: post
 title: HHVM 2.3.0 and Travis CI
 category: blog
 permalink: /blog/2393/hhvm-2-3-0-and-travis-ci
+comments:
+- id: 2213
+  author: slurm
+  author_email: slurm@mailnator.com
+  author_url: http://none
+  date: '2013-12-13 15:13:12 +0000'
+  date_gmt: '2013-12-13 23:13:12 +0000'
+  content: Keep up the good work, curious to see how parity percentages looks for
+    this version.
+- id: 2219
+  author: Joel Marcey
+  author_email: joelm@fb.com
+  author_url: https://www.facebook.com/JoelMarcey
+  date: '2013-12-13 16:10:27 +0000'
+  date_gmt: '2013-12-14 00:10:27 +0000'
+  content: The lockdown results post should be out mid-late next week. Stay tuned.
+- id: 2225
+  author: Matthieu
+  author_email: matthieu@mnapoli.fr
+  author_url: http://mnapoli.fr
+  date: '2013-12-14 02:08:36 +0000'
+  date_gmt: '2013-12-14 10:08:36 +0000'
+  content: 'Awesome! Though there''s still a few issues to fix on Travis side: https:&#47;&#47;github.com&#47;travis-ci&#47;travis-ci&#47;issues&#47;1749'
+- id: 2231
+  author: HHVM 2.3.0 支援 FastCGI&#8230; | Gea-Suan Lin&#039;s BLOG
+  author_email: ''
+  author_url: http://blog.gslin.org/archives/2013/12/15/3944/hhvm-2-3-0-%e6%94%af%e6%8f%b4-fastcgi/
+  date: '2013-12-14 18:22:06 +0000'
+  date_gmt: '2013-12-15 02:22:06 +0000'
+  content: "[&#8230;] 在 HHVM 官方的 blog 上看到 2.3.0 的消息：「HHVM 2.3.0 and Travis CI」。 [&#8230;]"
+- id: 2237
+  author: Sandeep
+  author_email: sandeepone@gmail.com
+  author_url: http://gleez.com
+  date: '2013-12-15 01:33:29 +0000'
+  date_gmt: '2013-12-15 09:33:29 +0000'
+  content: |-
+    Thanks for the updates. Could you please provide the source packages for fedora and ubuntu. We've built one for Centos 6, but it would be more helpful if you can provide the fedora SRPM, so we can make it parity with it.
+    http:&#47;&#47;yum.gleez.com&#47;6&#47;x86_64&#47;repoview&#47;hhvm.html
+- id: 2243
+  author: Alex
+  author_email: Orminapod3@gmail.com
+  author_url: ''
+  date: '2013-12-16 03:49:16 +0000'
+  date_gmt: '2013-12-16 11:49:16 +0000'
+  content: |-
+    Wonderful work! I'm just about to test it in our dev environment , hopefully someday we will be able to migrate to HHVM too :))
+
+    Thanks guys!
+- id: 2249
+  author: Corey Ballou
+  author_email: corey@coreyballou.com
+  author_url: https://pop.co
+  date: '2013-12-16 06:22:42 +0000'
+  date_gmt: '2013-12-16 14:22:42 +0000'
+  content: One thing I'd be interested in seeing with each release blog post is an
+    updated framework support graph. You've clearly added a number of additions and
+    fixes which would affect the overall framework unit tests.
+- id: 2255
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com/
+  date: '2013-12-16 14:59:42 +0000'
+  date_gmt: '2013-12-16 22:59:42 +0000'
+  content: Coming up this week.
+- id: 2261
+  author: We are the 98.5% (and the 16%) &laquo; HipHop Virtual Machine
+  author_email: ''
+  author_url: http://www.hhvm.com/blog/2813/we-are-the-98-5-and-the-16
+  date: '2013-12-19 11:18:39 +0000'
+  date_gmt: '2013-12-19 19:18:39 +0000'
+  content: "[&#8230;] of the diffs and updates that enabled our unit test parity increase
+    are part of the HHVM 2.3 package. Some key improvements that had significant impact
+    on our unit test results [&#8230;]"
+- id: 2267
+  author: Facebook HHVM 团队封闭开发三周的成果展 | zengine
+  author_email: ''
+  author_url: http://demo.zengine.info/?p=498
+  date: '2014-01-28 18:29:51 +0000'
+  date_gmt: '2014-01-29 02:29:51 +0000'
+  content: "[&#8230;] 大部分文件更改已包含在HHVM 2.3版本中，以下是一些对单元测试结果有显著影响的关键改进： [&#8230;]"
+- id: 2273
+  author: 'HHVM: The Next Six Months &laquo; HipHop Virtual Machine'
+  author_email: ''
+  author_url: http://www.hhvm.com/blog/3743/hhvm-the-next-six-months
+  date: '2014-02-24 17:31:49 +0000'
+  date_gmt: '2014-02-25 01:31:49 +0000'
+  content: "[&#8230;] us. We&rsquo;re using&nbsp;unit test pass rates&nbsp;as a proxy
+    for success measurement, but you can help by&nbsp;adding HHVM to your Travis configuration,
+    and reporting bugs and issues through&nbsp;GitHub. We are resourced&nbsp;to help
+    support a couple of major [&#8230;]"
 ---
 
 We released a new version of HHVM today. This one includes all the hard work from our lockdown (detailed post to follow) and the ability to use [HHVM with FastCGI](http://www.hhvm.com/blog/1817/fastercgi-with-hhvm).

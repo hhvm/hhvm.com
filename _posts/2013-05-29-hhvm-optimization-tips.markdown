@@ -1,10 +1,97 @@
 ---
 author: oyamauchi
-comments: true
 layout: post
 title: HHVM Optimization Tips
 category: blog
 permalink: /blog/713/hhvm-optimization-tips
+comments:
+- id: 491
+  author: Steve Clay
+  author_email: steve@mrclay.org
+  author_url: http://www.mrclay.org/
+  date: '2013-05-30 13:02:11 +0000'
+  date_gmt: '2013-05-30 20:02:11 +0000'
+  content: |-
+    Just curious re: unique classes, consider an app with a plugin system where each plugin has a PRS-0 classes directory. If multiple plugins ship with an identical class, vanilla PHP will just use whichever class file was found first by the autoloader.
+
+    If HHVM analyzed both copies and found them identical (bytecode-wise), could it still not optimize this? Is the problem things like get_included_files(), __FILE__, etc?
+
+    In practice, of course, a dev could just manually delete the class files that would never be called.
+- id: 497
+  author: B.Nicolotti
+  author_email: bnicolotti@siapcn.it
+  author_url: ''
+  date: '2013-07-31 06:25:57 +0000'
+  date_gmt: '2013-07-31 13:25:57 +0000'
+  content: we're testing Hphpvm 2.1 to speed up a loop that runs 400-1000 times to
+    read data from soap&#47;xml in memory and then insert 400-1000 times. We've moved
+    the loop code to a function to avoid global scope. We've tested the new code on
+    hphpvm and on regular php and. The (gib) problem is that on hphpvm it takes double
+    time than on regular php :-(
+- id: 503
+  author: HHVM revisited - SitePoint
+  author_email: ''
+  author_url: http://www.sitepoint.com/hhvm-revisited/
+  date: '2014-01-28 06:02:23 +0000'
+  date_gmt: '2014-01-28 14:02:23 +0000'
+  content: "[&#8230;] SSD for faster cache reads&#47;writes &#8211; pre-analyzing
+    &#8211; authoritative cache &#8211; follow these [&#8230;]"
+- id: 509
+  author: J
+  author_email: piranxa@gmail.com
+  author_url: ''
+  date: '2014-02-25 04:07:18 +0000'
+  date_gmt: '2014-02-25 12:07:18 +0000'
+  content: "Hello, excellent work on hhvm\n\nI tested it on a library&#47;framework
+    i have written and i am seeing 5x the speed up compared to when it runs on php+apc\n\nMy
+    question is related to the 'Declare Properties' section. My presentation&#47;control
+    generation code is essentially a data driven engine where I supply a nested array
+    \ of data into a bunch of control functions that further parse the array and generate
+    the presentation and the control code for any site.\n\nas an example the data
+    could look like:\n<code>$page = array('',array(4=>button_grp(array(array(...),...)),4=>well(nav($lav_list,'l'))),)<&#47;code>\n\nwhich
+    would be parsed by a grid function to generate the overall grid and then each
+    bit of it can follow different execution paths depending on the format. As a result
+    there are calls such as is_array() and is_string() in order to determine the type
+    of data and allocate the correct functions.\n\nnav() for example which essentially
+    generates navigation elements using 's for various components does checks again
+    of the data type\n\nie $nav_list can be:\n<code>\n$nav_list = array('#home'=>array(icon('home','Home','white'),'active'),'#book'=>icon('book','Library'),
+    \n\t'#app'=>icon('pencil','Applications'),'#misc'=>icon('exclamation-sign','Misc'));\n<&#47;code>\nor
+    \n<code>\n$nav_list2 = array('#home'=>array('Home','active'),'#help'=>'Help',array('Dropdown',
+    array('#action'=>'Action',\n\t'#action2'=>'Another action','#something'=>'Something
+    else here',array('','divider'),'#seper'=>'Separated link')),\n\tarray(array('Dropup','pull-right
+    dropup'), array('#action'=>'Action', '#action2'=>'Another action','#something'=>'Something
+    else here',<&#47;code>\n\nwould this be more optimal in hhvm by the use of an
+    object with properties and possibly object nesting (or even an array of objects
+    with different types) or does your code figure out the data types after a couple
+    of runs (since they are constant per page) and optimise away. The speed up is
+    very significant already for my test pages which I presume are mostly in this
+    case related to function call overheads."
+- id: 5681
+  author: HHVM 是如何提升 PHP 性能的？ &#8211; 叶中奇
+  author_email: ''
+  author_url: http://www.yezhongqi.com/hhvm-is-how-to-improve-the-performance-of-php/
+  date: '2014-03-26 07:44:37 +0000'
+  date_gmt: '2014-03-26 14:44:37 +0000'
+  content: "[&#8230;] HHVM Optimization Tips [&#8230;]"
+- id: 5873
+  author: HHVM 是如何提升 PHP 性能的？ | freemking的博客
+  author_email: ''
+  author_url: http://blog.256kan.com/?p=58
+  date: '2014-03-27 00:11:24 +0000'
+  date_gmt: '2014-03-27 07:11:24 +0000'
+  content: "[&#8230;] HHVM Optimization Tips [&#8230;]"
+- id: 6455
+  author: Taking HHVM 3.0.0 for a spin | J&aacute;nos P&aacute;sztor
+  author_email: ''
+  author_url: http://www.janoszen.com/2014/03/29/taking-hhvm-3-0-0-for-a-spin/
+  date: '2014-03-28 23:28:09 +0000'
+  date_gmt: '2014-03-29 06:28:09 +0000'
+  content: "[&#8230;] Not even a day has passed since Facebook released a new version
+    of their PHP virtual machine called HHVM. If you don&#8217;t know HHVM and you&#8217;re
+    coding PHP, you&#8217;ve probably living under a rock for the last few years,
+    but the point is, it&#8217;s blazing fast. As a matter of fact it&#8217;s so fast
+    that at the moment the network latency on my blog is more of an issue than page
+    rendering speed, and I haven&#8217;t even started to do any optimization. [&#8230;]"
 ---
 
 HHVM's JIT compiler allows it to execute PHP faster than Zend PHP in most cases, unmodified. However, we've gotten some interest from the community in HipHop-specific optimization tips, so I put together a few for this post.

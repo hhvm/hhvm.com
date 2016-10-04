@@ -1,10 +1,74 @@
 ---
 author: fred
-comments: true
 layout: post
 title: Tracking Parity
 category: blog
 permalink: /blog/3611/tracking-parity
+comments:
+- id: 2885
+  author: T.J. L
+  author_email: tjl@fb.com
+  author_url: ''
+  date: '2014-03-03 15:57:38 +0000'
+  date_gmt: '2014-03-03 23:57:38 +0000'
+  content: The fact that the graphs don't have a common "floor" (and that the bottom
+    of the Y axis is simply the recent min) makes the results look a lot more volatile
+    than they are, and makes it hard to "compare."
+- id: 2891
+  author: Fred Emmott
+  author_email: fe@fb.com
+  author_url: ''
+  date: '2014-03-03 16:03:57 +0000'
+  date_gmt: '2014-03-04 00:03:57 +0000'
+  content: It makes it hard to directly compare one framework to another, but we found
+    it made it easier to see regressions&#47;improvements within a framework, which
+    was more important to us.
+- id: 2897
+  author: Nano
+  author_email: nanouniko@hotmail.com
+  author_url: ''
+  date: '2014-03-03 18:53:03 +0000'
+  date_gmt: '2014-03-04 02:53:03 +0000'
+  content: I love to see PhalconPHP working with HHVM.
+- id: 2903
+  author: Martin
+  author_email: martin.keckeis1@gmail.com
+  author_url: ''
+  date: '2014-03-04 03:30:21 +0000'
+  date_gmt: '2014-03-04 11:30:21 +0000'
+  content: I'd love so see also the percent of the "skipped" tests.
+- id: 2909
+  author: Fred Emmott
+  author_email: fe@fb.com
+  author_url: ''
+  date: '2014-03-05 10:08:32 +0000'
+  date_gmt: '2014-03-05 18:08:32 +0000'
+  content: |-
+    C extension compatibility is something that's being worked on, but is currently lower priority than PHP frameworks.
+
+    Additionally, I'd expect PhalconPHP to be less performant than pure-PHP frameworks under HHVM - pure PHP ends up as highly optimized x64 machine code, and the overhead of calling a C&#47;C++ function (pushing stuff onto the stack instead of just using registers, etc) is likely to be more than any benefits of the C code; it's also likely that the JIT could make more efficient code from PHP than GCC can from C, as we might be able to optimize-away type checks&#47;conversions, depending on usage.
+- id: 2915
+  author: Nano
+  author_email: nanouniko@hotmail.com
+  author_url: ''
+  date: '2014-03-12 22:39:18 +0000'
+  date_gmt: '2014-03-13 05:39:18 +0000'
+  content: |-
+    Well, maybe in terms of speed PhalconPHP dont get much benefit from hhvm, but is clearly the most competitive framework atm.
+
+    Absolutly all my projects (PHP) are build with PhalconPHP, so, hope in a future be available.
+
+    http:&#47;&#47;www.techempower.com&#47;benchmarks&#47;previews&#47;round9&#47;#section=data-r9&amp;hw=peak&amp;test=json&amp;l=sg
+
+    Anyway, thanks for you work.
+- id: 5627
+  author: Sumbobyboys
+  author_email: juliens@nchez.fr
+  author_url: http://akeneo.com
+  date: '2014-03-26 03:41:45 +0000'
+  date_gmt: '2014-03-26 10:41:45 +0000'
+  content: "This page is really cool but seems to be broken right now ! (\"test-charts.js\"
+    missing)\r\n\r\nThanks for all your hard work !"
 ---
 
 HHVM has a [large suite of unit tests](https://github.com/facebook/hhvm/tree/master/hphp/test) that must pass in several build configurations before a commit reaches master. Unfortunately, this test suite passing doesn't tell you if HHVM can be used for anything useful - so we periodically run the test suites for popular, open source frameworks.

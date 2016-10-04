@@ -1,10 +1,70 @@
 ---
 author: jwatzman
-comments: true
 layout: post
 title: 'Hack: Overriding Constructors, "new static", and __ConsistentConstruct'
 category: blog
 permalink: /blog/6473/hack-overriding-constructors-new-static-and-__consistentconstruct
+comments:
+- id: 292469
+  author: Jesse Schalken
+  author_email: me@jesseschalken.com
+  author_url: http://jesseschalken.com
+  date: '2014-11-02 16:05:03 +0000'
+  date_gmt: '2014-11-03 00:05:03 +0000'
+  content: "Can a class be instantiated if the class name is a type parameter which
+    has <>?\r\n\r\nExample:\r\n\r\n<>\r\nabstract class A {\r\n  function __construct(private
+    int $x) {}\r\n}\r\n\r\nclass B {\r\n  function blah() {\r\n    $a = new T(6);
+    &#47;&#47; <- should be okay since T must be an A which has a consistent constructor\r\n
+    \ }\r\n}"
+- id: 292871
+  author: Josh Watzman
+  author_email: jwatzman@fb.com
+  author_url: https://www.facebook.com/jwatzman
+  date: '2014-11-03 10:00:46 +0000'
+  date_gmt: '2014-11-03 18:00:46 +0000'
+  content: I don't follow your example -- what is `<>`? Your example isn't valid Hack
+    code.
+- id: 293507
+  author: Jesse Schalken
+  author_email: me@jesseschalken.com
+  author_url: http://jesseschalken.com
+  date: '2014-11-04 19:03:48 +0000'
+  date_gmt: '2014-11-05 03:03:48 +0000'
+  content: "Sorry, the reply form mangled my comment :( (maybe it's doing a strip_tags
+    or something?)\r\n\r\nMy example is here: http:&#47;&#47;pastebin.com&#47;vQgRyjV7"
+- id: 293771
+  author: Josh Watzman
+  author_email: jwatzman@fb.com
+  author_url: https://www.facebook.com/jwatzman
+  date: '2014-11-05 10:43:23 +0000'
+  date_gmt: '2014-11-05 18:43:23 +0000'
+  content: "You can't do `new T()` in Hack -- we have type erasure semantics for generics,
+    so we don't actually know what `T` is at runtime.\r\n\r\nOr am I missing the point
+    of the example for this? (Can you give a specific example that the typechecker
+    gives the wrong result for now?)"
+- id: 293879
+  author: Jesse Schalken
+  author_email: me@jesseschalken.com
+  author_url: http://jesseschalken.com
+  date: '2014-11-05 15:08:36 +0000'
+  date_gmt: '2014-11-05 23:08:36 +0000'
+  content: Ahh, so `static` can be resolved at runtime, but a type parameter can't.
+    (so type parameters are more like Java than C#) That answers my question, thanks!
+- id: 304589
+  author: PHP News You May Have Missed - October &#47; November 2014
+  author_email: ''
+  author_url: http://www.sitepoint.com/php-news-may-missed-october-november-2014/
+  date: '2014-11-26 10:03:19 +0000'
+  date_gmt: '2014-11-26 18:03:19 +0000'
+  content: "[&#8230;] explained in this blog post, hack has been upgraded with some
+    new features. Due to Hack already supporting static typing, [&#8230;]"
+- id: 386471
+  author: john
+  author_email: jonnmso@gmail.com
+  author_url: ''
+  date: '2015-02-21 04:03:16 +0000'
+  date_gmt: '2015-02-21 12:03:16 +0000'
+  content: "which editors can I use to program with HACK ?\r\nPlease help.."
 ---
 
 A recent addition to Hack is the `__ConsistentConstruct` attribute, which allows `new static()` to be safely, properly typed. The need for this special attribute first requires some background in how method overriding and polymorphism normally work, and how constructors are special.

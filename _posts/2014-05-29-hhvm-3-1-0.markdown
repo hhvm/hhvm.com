@@ -1,10 +1,96 @@
 ---
 author: ptarjan
-comments: true
 layout: post
 title: HHVM 3.1.0
 category: blog
 permalink: /blog/5195/hhvm-3-1-0
+comments:
+- id: 164363
+  author: Ben Finn
+  author_email: benjaminzfinn@gmail.com
+  author_url: ''
+  date: '2014-05-29 15:29:32 +0000'
+  date_gmt: '2014-05-29 22:29:32 +0000'
+  content: "Great update! The INI fixes are fantastic. :)\r\n\r\nIn terms of major
+    bugs, the issue (https:&#47;&#47;github.com&#47;facebook&#47;hhvm&#47;issues&#47;2589)
+    with no timestamps in the error logs and buggy escaped characters is fairly major
+    for any sort of serious development. Just tossing in my two cents, in terms of
+    something that seems to need signal amplification."
+- id: 164495
+  author: HHVM 3.1.0 Released
+  author_email: ''
+  author_url: https://www.sitepoint.com/hhvm-3-1-0-released/
+  date: '2014-05-29 16:06:31 +0000'
+  date_gmt: '2014-05-29 23:06:31 +0000'
+  content: "[&#8230;] HHVM team just released version [&#8230;]"
+- id: 164555
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com
+  date: '2014-05-29 16:22:34 +0000'
+  date_gmt: '2014-05-29 23:22:34 +0000'
+  content: "Awesome, thanks for the pointer. I marked it hi-pri for the team.\r\n\r\nThe
+    reason I haven't done it yet is I'm scare facebook got addicted to the old behavior
+    and weaning it off will be tricky. We'll do it though."
+- id: 164615
+  author: Ben Finn
+  author_email: benjaminzfinn@gmail.com
+  author_url: ''
+  date: '2014-05-29 16:35:06 +0000'
+  date_gmt: '2014-05-29 23:35:06 +0000'
+  content: Awesome, thank you!
+- id: 165563
+  author: Christopher Svanefalk
+  author_email: christopher.svanefalk@gmail.com
+  author_url: http://svanefalk.com
+  date: '2014-05-29 21:17:56 +0000'
+  date_gmt: '2014-05-30 04:17:56 +0000'
+  content: "Quick question - are there going to be any more updated builds for the
+    Ubuntu 13.10 repo, or are you only targeting 14.04?\r\n\r\nAmazing work :)"
+- id: 167867
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com
+  date: '2014-05-30 10:54:40 +0000'
+  date_gmt: '2014-05-30 17:54:40 +0000'
+  content: No 13.10 is done for us.
+- id: 178967
+  author: Wikimedia engineering report, May 2014 &mdash; Wikimedia blog
+  author_email: ''
+  author_url: http://blog.wikimedia.org/2014/06/15/engineering-report-may-2014/
+  date: '2014-06-15 05:42:46 +0000'
+  date_gmt: '2014-06-15 12:42:46 +0000'
+  content: "[&#8230;] in our production cluster. Most of Tim Starling&#8217;s work
+    on the Zend compatibility layer have landed in HHVM 3.1. Most jobs are working,
+    but bugfixing continues on [&#8230;]"
+- id: 327899
+  author: How we made editing Wikipedia twice as fast &laquo; Wikimedia blog
+  author_email: ''
+  author_url: http://blog.wikimedia.org/2014/12/29/how-we-made-editing-wikipedia-twice-as-fast/
+  date: '2014-12-29 15:34:24 +0000'
+  date_gmt: '2014-12-29 23:34:24 +0000'
+  content: "[&#8230;] More generally, we are confident in having found a strong, capable
+    upstream partner in Facebook, who is sensitive to our needs as reusers, and is
+    committed to maintaining and improving HHVM for years to come. In turn, we started
+    to contributed back upstream. The most substantial contribution made by a Wikimedia
+    developer is the above mentioned major rewrite of the Zend Compatibility Layer,
+    which allows Zend PHP extensions to be used with HHVM. These improvements by WMF
+    Lead Platform Architect Tim Starling have been highlighted in the release notes
+    for HHVM 3.1.0. [&#8230;]"
+- id: 336281
+  author: How Wikipedia Transitioned to HHVM | CloudBackupCheap.com
+  author_email: ''
+  author_url: http://cloudbackupcheap.com/how-wikipedia-transitioned-to-hhvm/
+  date: '2015-01-10 12:13:36 +0000'
+  date_gmt: '2015-01-10 20:13:36 +0000'
+  content: "[&#8230;] More generally, we are confident in having found a strong, capable
+    upstream partner in Facebook, which is sensitive to our needs as reusers, and
+    is committed to maintaining and improving HHVM for years to come. In turn, we
+    started to contribute back upstream. The most substantial contribution made by
+    a Wikimedia developer is the major rewrite of the Zend Compatibility Layer, which
+    allows Zend PHP extensions to be used with HHVM. These improvements by WMF Lead
+    Platform Architect Tim Starling have been highlighted in the release notes for
+    HHVM 3.1.0. [&#8230;]"
 ---
 
 The [next version of HHVM](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM) is hot off the press. After a few delays, we finally tracked down the [segfault](https://github.com/facebook/hhvm/commit/be654dd35a50b0c5a6918b376b5d168fdd00be25). We fixed it in master, but turning off the optimizations was safer for the release. Thanks for your patience.

@@ -1,10 +1,91 @@
 ---
 author: sgolemon
-comments: true
 layout: post
 title: The Journey of a Thousand Bytecodes
 category: blog
 permalink: /blog/6323/the-journey-of-a-thousand-bytecodes
+comments:
+- id: 268517
+  author: "Sara Golemon explains HHVM and how it compiles PHP\uFEFF | Die wunderbare
+    Welt von Isotopp"
+  author_email: ''
+  author_url: http://vvv.koehntopp.de/wpkris/?p=739494
+  date: '2014-10-04 14:15:42 +0000'
+  date_gmt: '2014-10-04 21:15:42 +0000'
+  content: "[&#8230;] The Journey of a Thousand Bytecodes Compilers are fun. &nbsp;They
+    take nice, human readable languages like PHP or Hack and turn them into lean,
+    mean, CPU executin&#8217; turing machines. &nbsp;Some of these are simple enough
+    a CS student can write one up in a weekend, some are the products of decades of
+    fine tuning and careful architecting. &nbsp;Somewhere in that proud&hellip; [&#8230;]"
+- id: 269045
+  author: Abbas Naderi Afooshteh
+  author_email: me@abiusx.com
+  author_url: http://www.abiusx.com
+  date: '2014-10-05 06:56:16 +0000'
+  date_gmt: '2014-10-05 13:56:16 +0000'
+  content: "Everything except for step 4 (translator) seems trivial as all interpreters
+    have some sort of it. They even have a sort of step 4 (pyc for python) but that's
+    the major component of HHVM afaik, and you haven't described how it gets the feel
+    at all.\r\n\r\nOverall the post was fun."
+- id: 269057
+  author: Sara Golemon
+  author_email: pollita@php.net
+  author_url: ''
+  date: '2014-10-05 06:58:14 +0000'
+  date_gmt: '2014-10-05 13:58:14 +0000'
+  content: Yeah, this article was a high-level nosebleed sort of coverage.  Hope to
+    do some followups at some point exploring each stage in a bit more detail.
+- id: 269999
+  author: Mitsu
+  author_email: mitsugarcia@gmail.com
+  author_url: ''
+  date: '2014-10-06 09:54:12 +0000'
+  date_gmt: '2014-10-06 16:54:12 +0000'
+  content: When HHVM will be ready for Windows platform? I'm waiting for this various
+    months ago... :(
+- id: 270227
+  author: HHVM - ātrāks PHP un ne tikai - Kristaps Kaupe
+  author_email: ''
+  author_url: http://kristaps.blogiem.lv/2014/10/920-hhvm-atraks-php-un-ne-tikai.html
+  date: '2014-10-06 16:16:46 +0000'
+  date_gmt: '2014-10-06 23:16:46 +0000'
+  content: "[&#8230;] Kam interesē&nbsp;vēl tehniskākas detaļas par to, kā HHVM ir
+    būvēts un darbojas, var palasīt Sāras Golemones rakstu &#8220;The Journey of a
+    Thousand Bytecodes&#8220;. [&#8230;]"
+- id: 271049
+  author: Sara Golemon
+  author_email: pollita@php.net
+  author_url: ''
+  date: '2014-10-07 14:06:49 +0000'
+  date_gmt: '2014-10-07 21:06:49 +0000'
+  content: We have a semi-working win32 build (emphasis on "semi"), it's going to
+    take some effort to get this solid enough for casual use, but we are working on
+    it.
+- id: 272777
+  author: Sina Salet
+  author_email: sina@salek.ws
+  author_url: http://sina.salek.ws
+  date: '2014-10-09 06:28:26 +0000'
+  date_gmt: '2014-10-09 13:28:26 +0000'
+  content: Brilliant
+- id: 276389
+  author: PHP Annotated Monthly &#8211; October 2014 | JetBrains PhpStorm Blog
+  author_email: ''
+  author_url: http://blog.jetbrains.com/phpstorm/2014/10/php-annotated-monthly-october-2014/
+  date: '2014-10-13 05:29:29 +0000'
+  date_gmt: '2014-10-13 12:29:29 +0000'
+  content: "[&#8230;] does HHVM convert PHP code into x86 machine code? Good question!&nbsp;Sara
+    Goleman explains&nbsp;in an elaborate blog [&#8230;]"
+- id: 480785
+  author: '6 und ein paar halbe Schritte: So funktioniert die HHVM - entwickler.de'
+  author_email: ''
+  author_url: https://entwickler.de/online/php/6-und-ein-paar-halbe-schritte-so-funktioniert-die-hhvm-140010.html
+  date: '2015-05-08 02:38:33 +0000'
+  date_gmt: '2015-05-08 09:38:33 +0000'
+  content: "[&#8230;] &ndash; bisher. Denn keine Geringere als Sara Golemon sorgt
+    jetzt f&uuml;r Aufkl&auml;rung. In ihrem Blogpost The Journey of a Thousand Bytecodes
+    erkl&auml;rt sie in sechs (und zwei halben) Schritten, vom Lexing &uuml;ber das
+    Parsing und die Optimierung [&#8230;]"
 ---
 
 Compilers are fun.  They take nice, human readable languages like PHP or Hack and turn them into lean, mean, CPU executin' turing machines.  Some of these are simple enough a CS student can write one up in a weekend, some are the products of decades of fine tuning and careful architecting.  Somewhere in that proud tradition stands HHVM; In fact it's several compilers stacked in an ever-growing chain of logic manipulation and abstractions.  This article will attempt to take the reader through the HHVM compilation process from PHP-script to x86 machine code, one step at a time.

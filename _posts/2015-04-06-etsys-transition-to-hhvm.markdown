@@ -1,6 +1,5 @@
 ---
 author: jwatzman
-comments: true
 layout: post
 title: Etsy's Transition to HHVM
 category: blog

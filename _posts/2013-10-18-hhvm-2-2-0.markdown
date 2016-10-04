@@ -1,10 +1,478 @@
 ---
 author: ptarjan
-comments: true
 layout: post
 title: HHVM 2.2.0
 category: blog
 permalink: /blog/1301/hhvm-2-2-0
+comments:
+- id: 905
+  author: Nick
+  author_email: tubaguy50035@gmail.com
+  author_url: ''
+  date: '2013-10-17 19:24:33 +0000'
+  date_gmt: '2013-10-18 02:24:33 +0000'
+  content: Can you define what "many many more" means?  Do all of the frameworks from
+    the previous post now work?
+- id: 911
+  author: John
+  author_email: johndoe9980@outlook.com
+  author_url: ''
+  date: '2013-10-17 21:01:08 +0000'
+  date_gmt: '2013-10-18 04:01:08 +0000'
+  content: CentOS too please!
+- id: 917
+  author: James
+  author_email: james@pocketrent.com
+  author_url: http://pocketrent.com
+  date: '2013-10-17 21:03:48 +0000'
+  date_gmt: '2013-10-18 04:03:48 +0000'
+  content: 'Since the previous Arch package on the AUR was out-of-date, I''ve made
+    a new one that should work perfectly here: https:&#47;&#47;aur.archlinux.org&#47;packages&#47;hhvm&#47;'
+- id: 923
+  author: KroKite
+  author_email: krokite@worldofhacker.com
+  author_url: http://www.worldofhacker.com
+  date: '2013-10-17 21:16:49 +0000'
+  date_gmt: '2013-10-18 04:16:49 +0000'
+  content: "When will it start supporting ` mysqli `. I am curious. \nDoes `2.2.0`
+    supports centos 6+ too.. :)\n\n17%  CPU usage reduction is kool :)"
+- id: 929
+  author: Jan Safranek
+  author_email: safranek.jan@gmail.com
+  author_url: ''
+  date: '2013-10-17 23:11:58 +0000'
+  date_gmt: '2013-10-18 06:11:58 +0000'
+  content: Hello, please port it for FreeBSD! :) Thank You
+- id: 935
+  author: Andy Grunwald
+  author_email: andygrunwald@gmail.com
+  author_url: http://andygrunwald.com
+  date: '2013-10-18 03:23:27 +0000'
+  date_gmt: '2013-10-18 10:23:27 +0000'
+  content: |-
+    Hey,
+
+    thanks for this! Is FreeBSD support planned for 2.2.0 ?
+    In the github wiki there is a page for this: https:&#47;&#47;github.com&#47;facebook&#47;hhvm&#47;wiki&#47;Building-and-installing-HHVM-on-FreeBSD-from-ports
+    But sadly only the 2.1.0 port is available.
+
+    Thx for feedback!
+- id: 941
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com/
+  date: '2013-10-18 04:10:46 +0000'
+  date_gmt: '2013-10-18 11:10:46 +0000'
+  content: Awesome, thank you. Can you update the wiki to point to yours?
+- id: 947
+  author: euskadi31
+  author_email: euskadi31@gmail.com
+  author_url: ''
+  date: '2013-10-18 05:24:32 +0000'
+  date_gmt: '2013-10-18 12:24:32 +0000'
+  content: Can you add Gentoo ?
+- id: 953
+  author: David
+  author_email: pietjepuk2007@gmail.com
+  author_url: ''
+  date: '2013-10-18 07:08:50 +0000'
+  date_gmt: '2013-10-18 14:08:50 +0000'
+  content: Thanks. Could you also package for openSUSE, please?
+- id: 959
+  author: Lucas Costa
+  author_email: lucasrcosta@gmail.com
+  author_url: ''
+  date: '2013-10-18 07:52:07 +0000'
+  date_gmt: '2013-10-18 14:52:07 +0000'
+  content: Thaaaaaaaaaaank yoooooou!
+- id: 965
+  author: Brian
+  author_email: brian.lovett@prosperent.com
+  author_url: http://www.prosperent.com
+  date: '2013-10-18 08:03:02 +0000'
+  date_gmt: '2013-10-18 15:03:02 +0000'
+  content: Another vote for Centos!
+- id: 971
+  author: Mickey Mouse
+  author_email: a@a.com.co.net
+  author_url: ''
+  date: '2013-10-18 10:14:13 +0000'
+  date_gmt: '2013-10-18 17:14:13 +0000'
+  content: |-
+    Thanks for your hard work, guys!
+
+    I don't know about the plans, but I see a real possibility of this replacing the PHPimplementation we have today, if you call it that since there's no spec.
+
+    I would most definitely move all my productions sites to the HHVM if that happened. Only thing I would like to have is better integrated testing tools or I don't know, its just too boring to test on PHP today, compared to ruby and python.
+- id: 977
+  author: Jabbon
+  author_email: alexx_nahh@hotmail.com
+  author_url: ''
+  date: '2013-10-18 10:33:18 +0000'
+  date_gmt: '2013-10-18 17:33:18 +0000'
+  content: Centos 6.x plz!!!!!!
+- id: 983
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com/
+  date: '2013-10-18 14:27:24 +0000'
+  date_gmt: '2013-10-18 21:27:24 +0000'
+  content: 'There are instructions here that looked pretty complicated: https:&#47;&#47;github.com&#47;facebook&#47;hhvm&#47;wiki&#47;Building-and-Installing-on-FreeBSD-8.2
+    Can you take a look and see if they are up to date and fix them if they are not,
+    then I can package it next time.'
+- id: 989
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com/
+  date: '2013-10-18 14:28:38 +0000'
+  date_gmt: '2013-10-18 21:28:38 +0000'
+  content: |-
+    Yes, mysqli is on the near-term roadmap. A few months is my guess. I would love a pull request for it if you need it faster :)
+
+    As for CentOS 6 I tried to follow these instructions https:&#47;&#47;github.com&#47;facebook&#47;hhvm&#47;wiki&#47;Building-and-installing-HHVM-on-CentOS-6.4 and libmemcached wouldn't even compile so I didn't continue. Can you update the instructions and I can package it next time then?
+- id: 995
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com/
+  date: '2013-10-18 14:33:41 +0000'
+  date_gmt: '2013-10-18 21:33:41 +0000'
+  content: I'm not an active FreeBSD user but if you want to update the package, please
+    do and edit the wiki accordingly.
+- id: 1001
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com/
+  date: '2013-10-18 14:34:15 +0000'
+  date_gmt: '2013-10-18 21:34:15 +0000'
+  content: A member of the community just added https:&#47;&#47;github.com&#47;javer&#47;gentoo-overlay&#47;tree&#47;master&#47;dev-php&#47;hhvm
+    . I'm not sure if it works, but please try it out and fix anything that is broken.
+- id: 1007
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com/
+  date: '2013-10-18 14:35:40 +0000'
+  date_gmt: '2013-10-18 21:35:40 +0000'
+  content: I tried but I'm not very familiar with that distro. Can you make a wiki
+    page on how to compile it on openSUSE? Then I'll add a package next release.
+- id: 1013
+  author: Drew Paroski
+  author_email: drewparoski@gmail.com
+  author_url: ''
+  date: '2013-10-18 16:58:54 +0000'
+  date_gmt: '2013-10-18 23:58:54 +0000'
+  content: Click on the link (http:&#47;&#47;www.hhvm.com&#47;blog&#47;875&#47;wow-hhvm-is-fast-too-bad-it-doesnt-run-my-code)
+    for more details on which frameworks work on HHVM at present.
+- id: 1019
+  author: dandecoded
+  author_email: supernova_boy@live.com
+  author_url: ''
+  date: '2013-10-18 18:31:57 +0000'
+  date_gmt: '2013-10-19 01:31:57 +0000'
+  content: Yessss!!! Thank you HHVM!
+- id: 1025
+  author: Naresh
+  author_email: naresh@hop5.in
+  author_url: http://hop5.in
+  date: '2013-10-19 04:18:00 +0000'
+  date_gmt: '2013-10-19 11:18:00 +0000'
+  content: centos 6.x version is available at http:&#47;&#47;nareshv.blogspot.in&#47;2013&#47;10&#47;install-hhvm-220-final-release-on.html
+- id: 1031
+  author: Tomsilav
+  author_email: tomislavr@gmail.com
+  author_url: ''
+  date: '2013-10-19 09:06:25 +0000'
+  date_gmt: '2013-10-19 16:06:25 +0000'
+  content: "Good job and another vote for CentOS. \n\nWe are planning to start testing
+    and adjusting our internal PHP framework to run under HHVM, so another tester
+    is joining soon :)\n\nBtw, does HHVM have (or is it planned) support for async
+    HTTP&#47;Websockets - allowing us to implement handlers for \"realtime web apps\"?
+    \n\nagain, good job"
+- id: 1037
+  author: Rob
+  author_email: robtownley3@gmail.com
+  author_url: http://www.floogit.com
+  date: '2013-10-19 09:13:23 +0000'
+  date_gmt: '2013-10-19 16:13:23 +0000'
+  content: I noticed you added support for redis sessions. Is there anyway I can use
+    memcache as a session handler?
+- id: 1043
+  author: Aleksey
+  author_email: spam@wikicms.org
+  author_url: ''
+  date: '2013-10-19 09:30:14 +0000'
+  date_gmt: '2013-10-19 16:30:14 +0000'
+  content: |-
+    Windows?
+
+    --
+    OpenSUSE nice too :)
+- id: 1049
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com/
+  date: '2013-10-19 12:11:02 +0000'
+  date_gmt: '2013-10-19 19:11:02 +0000'
+  content: can you update https:&#47;&#47;github.com&#47;facebook&#47;hhvm&#47;wiki&#47;HHVM-Pre-built-packages-for-Centos-6.4
+    please?
+- id: 1055
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com/
+  date: '2013-10-19 12:11:37 +0000'
+  date_gmt: '2013-10-19 19:11:37 +0000'
+  content: Not right now, but if you sent us a pull request, we would happily take
+    it.
+- id: 1061
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com/
+  date: '2013-10-19 12:13:08 +0000'
+  date_gmt: '2013-10-19 19:13:08 +0000'
+  content: |-
+    Thanks. Let us know any bugs you run into.
+
+    For async, is there a PHP equivalent? Cursory googling just shows some frameworks that probably work already. Please try them and report back.
+- id: 1067
+  author: David
+  author_email: pietjepuk2007@gmail.com
+  author_url: ''
+  date: '2013-10-20 03:59:55 +0000'
+  date_gmt: '2013-10-20 10:59:55 +0000'
+  content: |-
+    There already is a wiki about compiling on openSUSE.
+
+    http:&#47;&#47;en.opensuse.org&#47;SDB:Compiling_software
+- id: 1073
+  author: Adrian Luca
+  author_email: metal696heart@yahoo.com
+  author_url: http://www.metal696heart.com
+  date: '2013-10-20 15:19:17 +0000'
+  date_gmt: '2013-10-20 22:19:17 +0000'
+  content: "Tested HHVM on TurnkeyLinux 13 (Debian 7)  &#47;  Virtualbox 1GB RAM and
+    it works very nice. \n\n<code>  hhvm -m server -c &#47;etc&#47;hhvm&#47;config.hdf
+    <&#47;code> \n(I had to specify the config file manually because it doesn't read
+    the default in etc)\n\nIt should be mentioned somewhere that it actually needs
+    1.2GB of RAM for the server to startup.(I used a swap file)\n\nThe scope was testing
+    drupal 7, drupal 8 alpha4 so:\n\n- D7 installed smooth but:\n -- cannot create
+    &#47; upload files \n -- no php-gd (i think) and cannot acces the admin page to
+    switch to imagemagick. \n -- no clean urls for now\n\n- D8 installed in minimal
+    mode, with errors and cannot acces the admin or frontpage.\n\nThank you for your
+    effort and sharing :)  ."
+- id: 1079
+  author: Gabriel
+  author_email: gabriel@autonomicpilot.co.uk
+  author_url: ''
+  date: '2013-10-21 06:57:29 +0000'
+  date_gmt: '2013-10-21 13:57:29 +0000'
+  content: Is ZF2 now supported? I see the <a href="https:&#47;&#47;github.com&#47;facebook&#47;hhvm&#47;wiki&#47;Extensions"
+    title="wiki" rel="nofollow">wiki<&#47;a> says that the intl package is now available
+    for hhvm.
+- id: 1085
+  author: slashrsm
+  author_email: janez@janezurevc.name
+  author_url: http://janezurevc.name
+  date: '2013-10-22 12:29:31 +0000'
+  date_gmt: '2013-10-22 19:29:31 +0000'
+  content: Are custom stream wrappers already supported in HHVM? I remember that they
+    were not ~8 months ago but couldn't find out if they are now.
+- id: 1091
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com/
+  date: '2013-10-23 13:14:17 +0000'
+  date_gmt: '2013-10-23 20:14:17 +0000'
+  content: Yup. Enjoy.
+- id: 1097
+  author: Joshua Katz
+  author_email: gravyod@gravypod.com
+  author_url: ''
+  date: '2013-10-23 15:16:02 +0000'
+  date_gmt: '2013-10-23 22:16:02 +0000'
+  content: Now that this update is recommended I will now give this a test. Does anyone
+    know how to run HHVM as a service so I can easily manage my web server?
+- id: 1103
+  author: Louie
+  author_email: foronda@ymail.com
+  author_url: ''
+  date: '2013-10-25 01:58:51 +0000'
+  date_gmt: '2013-10-25 08:58:51 +0000'
+  content: |-
+    I tried Laravel 4, I got to the application itself but somehow, routes doesn't work... I don't know why.. and also I had to manually enter index.php instead of the hhvm pointing it to index.php by default...
+
+    I tried
+    Route::get('users',function(){
+       return "Point to controller when its done!!";
+    });
+
+    Anyone who can shed some light?
+- id: 1109
+  author: Lucas Costa
+  author_email: lucasrcosta@gmail.com
+  author_url: ''
+  date: '2013-10-30 06:49:54 +0000'
+  date_gmt: '2013-10-30 13:49:54 +0000'
+  content: "Paul (or anyone else) help me! I'm trying to run gettext on HHVM, like
+    stated in the changelog, but I'm getting \"Undefined function\" for gettext()
+    an _(). \n\nThanks in advance!"
+- id: 1115
+  author: Lucas Costa
+  author_email: lucasrcosta@gmail.com
+  author_url: ''
+  date: '2013-10-30 13:10:08 +0000'
+  date_gmt: '2013-10-30 20:10:08 +0000'
+  content: |-
+    Sean Cannella on GitHub:
+    That is a mistake in the changelog. gettext is being run via the experimental Zend compatibility layer that can run PHP extensions built for Zend as-is which is still, as the name suggests, experimental.
+
+    Paul Tarjan on GitHub:
+    Sorry, this is still being worked on and isn't available for use. Changelog updated.
+- id: 1121
+  author: qianzhihe
+  author_email: do.not.reply@foxmail.com
+  author_url: http://www.hhvm.cn
+  date: '2013-11-03 19:32:37 +0000'
+  date_gmt: '2013-11-04 03:32:37 +0000'
+  content: "hi, could you please share this wordpress theme?\nwe just wanna to build
+    a chinese hhvm documents site, and help the people who is not good at english
+    can learn hhvm easily.\n\t\nthanks."
+- id: 1127
+  author: Thomas
+  author_email: thomas.reuss@gmail.com
+  author_url: ''
+  date: '2013-11-04 13:20:45 +0000'
+  date_gmt: '2013-11-04 21:20:45 +0000'
+  content: |-
+    Hey,
+
+    can anyone point me to the key used for signing the Ubuntu-packages?
+    Thanks in advance!
+- id: 1133
+  author: Webprogramming.ws &raquo; Blog Archive &raquo; HHVM 2.2.0 &laquo; HipHop
+    Virtual Machine
+  author_email: ''
+  author_url: http://webprogramming.ws/index.php/2013/11/06/hhvm-2-2-0-hiphop-virtual-machine/
+  date: '2013-11-06 07:45:42 +0000'
+  date_gmt: '2013-11-06 15:45:42 +0000'
+  content: "[&#8230;] http:&#47;&#47;www.hhvm.com&#47;blog&#47;1301&#47;hhvm-2-2-0
+    [&#8230;]"
+- id: 1139
+  author: wwbmmm
+  author_email: wwbmmm@163.com
+  author_url: ''
+  date: '2013-11-06 18:54:37 +0000'
+  date_gmt: '2013-11-07 02:54:37 +0000'
+  content: When will Zend compatibility layer be available? It is very useful for
+    us.
+- id: 1145
+  author: Alex
+  author_email: draboo_alex@aol.com
+  author_url: ''
+  date: '2013-11-07 07:58:40 +0000'
+  date_gmt: '2013-11-07 15:58:40 +0000'
+  content: |-
+    I have 2 questions:
+
+    1.Does HHVM produce a value for boolean false.On true PHP  returns 1 but on false doesn't show nothing.
+    2.Does HHVM works with PDO ?
+
+    Thank you !
+- id: 1151
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com/
+  date: '2013-11-07 09:19:47 +0000'
+  date_gmt: '2013-11-07 17:19:47 +0000'
+  content: |-
+    As soon as I'm confident it works. My metric is "take an existing extension, try to compile it, see how much has to change". If the amount of unimplemented functions is too high, I have to keep iterating.
+
+    Right now, I'm trying to see if I can get our headers to have C linkage so you don't even have to do the C -> C++ conversion.
+
+    If you want to try it out now, feel free to compile your code against the headers I have there and see what doens't link.
+- id: 1157
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com/
+  date: '2013-11-07 09:20:21 +0000'
+  date_gmt: '2013-11-07 17:20:21 +0000'
+  content: |-
+    1) We match php.net's implementation
+    2) Yes
+- id: 1163
+  author: Alex
+  author_email: draboo_alex@aol.com
+  author_url: ''
+  date: '2013-11-07 11:02:23 +0000'
+  date_gmt: '2013-11-07 19:02:23 +0000'
+  content: "But in hack( strict type checker mode) what it returns for false value?
+    \nIt is a pain on large scripts  PHP does not show something for boolean false."
+- id: 1169
+  author: iry
+  author_email: sky20081816@126.com
+  author_url: ''
+  date: '2013-11-11 01:49:58 +0000'
+  date_gmt: '2013-11-11 09:49:58 +0000'
+  content: centos is not supported by  the packager for that distro!!!
+- id: 1175
+  author: Mihail
+  author_email: oranze@mail.ru
+  author_url: ''
+  date: '2013-11-13 13:03:24 +0000'
+  date_gmt: '2013-11-13 21:03:24 +0000'
+  content: Also need Centos 6.
+- id: 1181
+  author: carlos
+  author_email: vaccaro3@hotmail.com
+  author_url: ''
+  date: '2013-11-21 09:09:30 +0000'
+  date_gmt: '2013-11-21 17:09:30 +0000'
+  content: happened with mysqli, for when will be?
+- id: 1187
+  author: Aniruddh Singh
+  author_email: aps@asianlinux.net
+  author_url: ''
+  date: '2013-11-26 05:41:56 +0000'
+  date_gmt: '2013-11-26 13:41:56 +0000'
+  content: Is there an oci8 (Oracle) extension for hhvm?
+- id: 1193
+  author: Rohit
+  author_email: rohit@wcitites.com
+  author_url: ''
+  date: '2014-01-15 03:40:11 +0000'
+  date_gmt: '2014-01-15 11:40:11 +0000'
+  content: Can you please provide HHVM for fedora 14 ?
+- id: 1199
+  author: Dima
+  author_email: dpolyakov@gmail.com
+  author_url: ''
+  date: '2014-01-27 20:19:44 +0000'
+  date_gmt: '2014-01-28 04:19:44 +0000'
+  content: Vote for CentOS 6.5!
+- id: 3437
+  author: patlecat
+  author_email: seppli@gmx.li
+  author_url: ''
+  date: '2014-03-21 06:14:32 +0000'
+  date_gmt: '2014-03-21 13:14:32 +0000'
+  content: I need Hack&#47;HHVM for openSUSE with the Yii-Framework! And Windows would
+    be nice for development.
+- id: 29609
+  author: Jinank
+  author_email: ug201210017@iitj.ac.in
+  author_url: ''
+  date: '2014-04-15 03:09:46 +0000'
+  date_gmt: '2014-04-15 10:09:46 +0000'
+  content: I need Hack&#47;HHVM for openSUSE 13.1 too.
+- id: 476633
+  author: HHVM 2.2.0 mit neuen Paketquellen f&uuml;r wichtige Linux-Distributionen
+    - entwickler.de
+  author_email: ''
+  author_url: https://entwickler.de/online/php/hhvm-2-2-0-mit-neuen-paketquellen-fuer-wichtige-linux-distributionen-137202.html
+  date: '2015-05-05 05:30:30 +0000'
+  date_gmt: '2015-05-05 12:30:30 +0000'
+  content: "[&#8230;] in Version 2.2.0, sowie das Changelog, in dem alle Ver&auml;nderungen
+    aufgelistet werden findet Ihr in der offiziellen Ank&uuml;ngigung. Zum Download
+    geht es unter folgendem Link. F&uuml;r die Pre Built Packages m&uuml;sst Ihr eine
+    Paketquelle [&#8230;]"
 ---
 
 We released a new version of HHVM today. A big change is that we are now packaging for many of the popular distros.

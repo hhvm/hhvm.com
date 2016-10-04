@@ -1,10 +1,55 @@
 ---
 author: dreeves
-comments: true
 layout: post
 title: Improving Arrays in Hack
 category: blog
 permalink: /blog/10649/improving-arrays-in-hack
+comments:
+- id: 671249
+  author: Orvid
+  author_email: blah38621@gmail.com
+  author_url: ''
+  date: '2015-10-30 20:25:33 +0000'
+  date_gmt: '2015-10-31 03:25:33 +0000'
+  content: There are other ways to solve the problems you've presented here, and one
+    is to introduce the concepts of immutable and const. I won't go into detail here,
+    but if I knew which issue number to reply to, I could go into a bit more detail
+    there.
+- id: 676865
+  author: Josh Watzman
+  author_email: jwatzman@fb.com
+  author_url: https://www.facebook.com/jwatzman
+  date: '2015-11-05 03:52:21 +0000'
+  date_gmt: '2015-11-05 11:52:21 +0000'
+  content: "Immutability has its own issues. IIRC the crux of it is whether it's transitive
+    or not (all a class's members must also be immutable). That can be painful to
+    program with, but is useful for a ton of compiler optimizations and assumptions.\r\n\r\nFeel
+    free to respond to one of the github issues above, or just grab us on IRC, since
+    I know you're there anyways :)"
+- id: 815669
+  author: HHVM update for the week ending 2016-03-04 | Coding Aloud
+  author_email: ''
+  author_url: https://coding.simon.geek.nz/2016/03/05/hhvm-update-for-the-week-ending-2016-03-04/
+  date: '2016-03-04 14:24:53 +0000'
+  date_gmt: '2016-03-04 22:24:53 +0000'
+  content: "[&#8230;] DictArray: initial, runtime support, serialisation, literal
+    syntax, converting from an array, runtime [&#8230;]"
+- id: 936023
+  author: HHVM update for the two months ending 2016-05-20 | Coding Aloud
+  author_email: ''
+  author_url: https://coding.simon.geek.nz/2016/05/20/hhvm-update-for-the-two-months-ending-2016-05-20/
+  date: '2016-05-20 05:09:01 +0000'
+  date_gmt: '2016-05-20 12:09:01 +0000'
+  content: "[&#8230;] continued work on the Hack array types (dict and vec so far,
+    I&#8217;m guessing keyset will be along [&#8230;]"
+- id: 949307
+  author: Douglas
+  author_email: Douglas@Ev0lveRoot.com
+  author_url: http://ev0lveroot.com/
+  date: '2016-05-28 18:56:23 +0000'
+  date_gmt: '2016-05-29 01:56:23 +0000'
+  content: Hack suffers from quickly adding a bunch of rushed alternatives to the
+    same problems and keeping all the old ones.
 ---
 
 >"*...use collections whenever and wherever possible. However, 100% usage of collections is obviously not realistic given how much arrays are used in various codebases ...there just may be legitimate use cases for an array*"

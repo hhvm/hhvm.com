@@ -1,10 +1,21 @@
 ---
 author: paulbiss
-comments: true
 layout: post
 title: HHVM 3.15
 category: blog
 permalink: /blog/11711/hhvm-3-15
+comments:
+- id: 1125725
+  author: HHVM commits for the three weeks ending 2016-09-26 | Coding Aloud
+  author_email: ''
+  author_url: https://coding.simon.geek.nz/2016/09/27/hhvm-commits-for-the-three-weeks-ending-2016-09-26/
+  date: '2016-09-27 03:18:58 +0000'
+  date_gmt: '2016-09-27 10:18:58 +0000'
+  content: "[&#8230;] Three week&#8217;s worth and my laptop was not happy with the
+    amount of tabs I had open. There were so many commits that I probably missed some
+    ones I could highlight, especially as they got closer to today. The main things
+    that have happened in the last three weeks are 3.15 was released and the main
+    blog finally got another post! [&#8230;]"
 ---
 
 The next LTS release of HHVM has been cut and packages are now available for Ubuntu 14.04, 15.04, 15.10, and 16.04; and Debian 7 and 8. This release replaces the 3.9 LTS and brings with it a host of improvements and new features.

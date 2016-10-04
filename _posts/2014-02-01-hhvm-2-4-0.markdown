@@ -1,10 +1,257 @@
 ---
 author: ptarjan
-comments: true
 layout: post
 title: HHVM 2.4.0
 category: blog
 permalink: /blog/3287/hhvm-2-4-0
+comments:
+- id: 2717
+  author: Luis Lobo Borobia
+  author_email: luislobo@gmail.com
+  author_url: http://www.luislobo.com.ar
+  date: '2014-02-01 10:11:07 +0000'
+  date_gmt: '2014-02-01 18:11:07 +0000'
+  content: |-
+    Great news!
+    Do you have a live document that shows framework compatibility? If not, it would be great to have a link somewhere here, showing how each framework is doing during each release.
+- id: 2723
+  author: SoboLAN
+  author_email: sobolanx@gmail.com
+  author_url: ''
+  date: '2014-02-01 10:23:42 +0000'
+  date_gmt: '2014-02-01 18:23:42 +0000'
+  content: |-
+    I just installed it today and was wondering why I got the 2.4 version as, from what I knew, the latest version is 2.3. It's nice when things work out :) .
+
+    Awesome job, guys, as always.
+- id: 2729
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com/
+  date: '2014-02-01 10:30:26 +0000'
+  date_gmt: '2014-02-01 18:30:26 +0000'
+  content: Great question. We are writing that as you speak. Stay tuned.
+- id: 2735
+  author: Luis Morales
+  author_email: lmoralesx@yahoo.com
+  author_url: http://customizationengine.com
+  date: '2014-02-01 11:14:29 +0000'
+  date_gmt: '2014-02-01 19:14:29 +0000'
+  content: Coincidentally I installed a fresh hhvm today around 6:00 ET, just in time
+    to get the new version.  So, technically I got hhvm 2.4 before the rest of the
+    world knew about it.  Booyah!
+- id: 2741
+  author: Markus
+  author_email: maggus.staab@gmail.com
+  author_url: ''
+  date: '2014-02-01 12:12:06 +0000'
+  date_gmt: '2014-02-01 20:12:06 +0000'
+  content: Any benchmark of this new release?
+- id: 2747
+  author: Makara Sok
+  author_email: makara.aktee.sok@gmail.com
+  author_url: http://player.me
+  date: '2014-02-01 12:22:57 +0000'
+  date_gmt: '2014-02-01 20:22:57 +0000'
+  content: "Nice! Doing my tests as we speak :). \n\nNext release: Dr. Dre?"
+- id: 2753
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com/
+  date: '2014-02-01 12:52:00 +0000'
+  date_gmt: '2014-02-01 20:52:00 +0000'
+  content: Good question. We didn't really focus on performance this release since
+    it included the holidays and many people were out of the office. I know each internal
+    release was in the single digit %s so I wouldn't expect anything too large. If
+    others want to measure, that would be useful.
+- id: 2759
+  author: Dave Hulbert
+  author_email: dave1010@gmail.com
+  author_url: ''
+  date: '2014-02-01 23:46:24 +0000'
+  date_gmt: '2014-02-02 07:46:24 +0000'
+  content: '"Shorter syntax for lambda expressions w&#47; automatic captures" sounds
+    interesting. Are there any docs on it?'
+- id: 2765
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com/
+  date: '2014-02-02 11:03:23 +0000'
+  date_gmt: '2014-02-02 19:03:23 +0000'
+  content: Stay tuned
+- id: 2771
+  author: wwbmmm
+  author_email: wwbmmm@163.com
+  author_url: ''
+  date: '2014-02-02 18:23:42 +0000'
+  date_gmt: '2014-02-03 02:23:42 +0000'
+  content: |-
+    Good job!
+    In which release will mysqli be available?
+- id: 2777
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com/
+  date: '2014-02-02 21:05:06 +0000'
+  date_gmt: '2014-02-03 05:05:06 +0000'
+  content: 2.5.0
+- id: 2783
+  author: Pierre
+  author_email: pierre.stanau@dmk.de
+  author_url: ''
+  date: '2014-02-03 02:02:50 +0000'
+  date_gmt: '2014-02-03 10:02:50 +0000'
+  content: "Works great!! \nSince 2.4 our Piwik Solution works like a charm.\nThe
+    combination of Nginx + FastCGI + HHVM 2.4 is overwhelming.\n\nFrom 2.4s per request
+    down to 142ms with hhvm <3"
+- id: 2789
+  author: Serj
+  author_email: anisimovsa@gmail.com
+  author_url: http://no
+  date: '2014-02-03 09:29:46 +0000'
+  date_gmt: '2014-02-03 17:29:46 +0000'
+  content: Do you plan to support Ruby and Python syntax enough to run Rails and Django
+    ?
+- id: 2795
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com/
+  date: '2014-02-03 12:55:17 +0000'
+  date_gmt: '2014-02-03 20:55:17 +0000'
+  content: lol... not for a long while...
+- id: 2801
+  author: Christopher Svanefalk
+  author_email: christopher.svanefalk@gmail.com
+  author_url: ''
+  date: '2014-02-03 13:44:36 +0000'
+  date_gmt: '2014-02-03 21:44:36 +0000'
+  content: |-
+    Does this mean we might be seeing compatibility between Moodle and HHVM as of 2.5.0? From what I have heard there is at least some interest within the Moodle community for reaching HHVM compliance, with the lack of mysqli being the chief show stopper.
+
+    We have deployed Moodle for one of our educational clients. It is a beast of a PHP app (both in terms of size and runtime complexity), and it would be interesting to see how well it runs under HHVM.
+- id: 2807
+  author: Emanuele Cesena
+  author_email: ec@theneeds.com
+  author_url: http://www.theneeds.com
+  date: '2014-02-03 23:29:51 +0000'
+  date_gmt: '2014-02-04 07:29:51 +0000'
+  content: "Congrats! Recursive __get() fix is a great plus... Theneeds.com is joining
+    the party... \nhttps:&#47;&#47;twitter.com&#47;ecesenat&#47;status&#47;430558113620451328"
+- id: 2813
+  author: Jan Gantzert
+  author_email: jgantzert@template-provider.com
+  author_url: http://www.jg-dev.de
+  date: '2014-02-04 00:35:41 +0000'
+  date_gmt: '2014-02-04 08:35:41 +0000'
+  content: |-
+    If I have some time, I think I will do that. I have some Numbers on 2.32.
+    http:&#47;&#47;www.jg-dev.de&#47;hhvm-performance-apache-bench
+- id: 2819
+  author: Rocco Zanni
+  author_email: rocco.zanni@gmail.com
+  author_url: ''
+  date: '2014-02-04 13:49:51 +0000'
+  date_gmt: '2014-02-04 21:49:51 +0000'
+  content: Any plans for having an officially supported PDO postgresql extension?
+- id: 2825
+  author: Paul Tarjan
+  author_email: pt@fb.com
+  author_url: http://paultarjan.com/
+  date: '2014-02-04 14:06:47 +0000'
+  date_gmt: '2014-02-04 22:06:47 +0000'
+  content: Yes, but it pretty low on our roadmap. If the external one reached zend
+    parity, we would happily pull it into master.
+- id: 2831
+  author: brian
+  author_email: brian@designedtoscale.com
+  author_url: http://deisgnedtoscale.com
+  date: '2014-02-05 11:26:12 +0000'
+  date_gmt: '2014-02-05 19:26:12 +0000'
+  content: One of the most critical aspects of a deployment is diagnostics.  Are you
+    guys going to put hooks in your code so companies like New Relic can hook in
+- id: 2837
+  author: Javier
+  author_email: j.pacheco.garcia@hotmail.com
+  author_url: ''
+  date: '2014-02-08 09:53:25 +0000'
+  date_gmt: '2014-02-08 17:53:25 +0000'
+  content: I recently installed nginx and hhvm-fastcgi and after a few tries I maked
+    work properly my yii framework app, but  is too slow compared with LAMP, maybe
+    I missing something, plz help me.
+- id: 2843
+  author: Jan Gantzert
+  author_email: jgantzert@template-provider.com
+  author_url: http://www.jg-dev.de
+  date: '2014-02-10 04:57:35 +0000'
+  date_gmt: '2014-02-10 12:57:35 +0000'
+  content: |-
+    Hi,
+
+    I have some numbers for a WP Blog with 2.3.2 and 2.4.0. It seems, that the new version it faster than the old one.
+    http:&#47;&#47;www.jg-dev.de&#47;hhvm-performance-2-32-vs-2-40
+
+    Greetings Jan
+- id: 2849
+  author: Shivaas
+  author_email: shivaas@remitly.com
+  author_url: http://about.me/shivaas
+  date: '2014-02-12 22:31:59 +0000'
+  date_gmt: '2014-02-13 06:31:59 +0000'
+  content: 'Doesn''t this solve your purpose: http:&#47;&#47;blog.newrelic.com&#47;2014&#47;02&#47;10&#47;agentsdk-blog-post&#47;
+    ?'
+- id: 2855
+  author: Shivaas
+  author_email: shivaas@remitly.com
+  author_url: http://about.me/shivaas
+  date: '2014-02-12 22:33:29 +0000'
+  date_gmt: '2014-02-13 06:33:29 +0000'
+  content: Is your Ngingx configured properly? I would suggest taking a look at optimizing
+    the Nginx config, as well as seeing if your hosting infrastructure is limiting
+    performance.
+- id: 2861
+  author: Rob
+  author_email: robtownley3@gmail.com
+  author_url: ''
+  date: '2014-02-17 21:54:24 +0000'
+  date_gmt: '2014-02-18 05:54:24 +0000'
+  content: I've been using hhvm for my site for over 6 months and have never looked
+    back. The best stack has to be nginx with spdy enabled, fastcgi and hhvm. I rarely
+    see CPU usage rise over 2% even during busy periods. You guys who are working
+    on hhvm have created a true work of art. The only thing that I feel is missing
+    is support for Unix sockets over fastcgi... Do you guys plan on implementing this
+    any time soon?
+- id: 2867
+  author: sgolemon
+  author_email: saramg@fb.com
+  author_url: https://hhvm.com/fb/page
+  date: '2014-02-18 10:20:43 +0000'
+  date_gmt: '2014-02-18 18:20:43 +0000'
+  content: |-
+    Coming in 2.5.0:
+
+    https:&#47;&#47;github.com&#47;facebook&#47;hhvm&#47;commit&#47;b538a34e8929fdc7ca8bd7d24da513327fd53a06
+- id: 2873
+  author: Rob
+  author_email: robtownley3@gmail.com
+  author_url: ''
+  date: '2014-02-18 13:44:34 +0000'
+  date_gmt: '2014-02-18 21:44:34 +0000'
+  content: Excellent news, thanks very much
+- id: 2879
+  author: sanghee
+  author_email: psheelang@gmail.com
+  author_url: ''
+  date: '2014-03-03 17:26:02 +0000'
+  date_gmt: '2014-03-04 01:26:02 +0000'
+  content: hhvm on centOS 6.5 What is the latest package?
+- id: 480713
+  author: HHVM 2.4.0 &ndash; auf dem Weg zu 100 Prozent - entwickler.de
+  author_email: ''
+  author_url: https://entwickler.de/online/php/hhvm-2-4-0-auf-dem-weg-zu-100-prozent-138207.html
+  date: '2015-05-08 02:22:21 +0000'
+  date_gmt: '2015-05-08 09:22:21 +0000'
+  content: "[&#8230;] Eine vollst&auml;ndige Liste aller Updates findet man in der
+    offiziellen Ank&uuml;ndigung. [&#8230;]"
 ---
 
 It is that wonderful time again for an HHVM release. We're sticking to our [8 week release](https://github.com/facebook/hhvm/wiki/Release-Schedule) cadence to keep everything fresh and in your hands. Also, remember you can run the [nightly packages](http://www.hhvm.com/blog/3203/nightly-packages) if you want a bleeding edge feature.

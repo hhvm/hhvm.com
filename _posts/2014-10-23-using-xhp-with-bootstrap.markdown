@@ -1,10 +1,55 @@
 ---
 author: fred
-comments: true
 layout: post
 title: Using XHP with Bootstrap
 category: blog
 permalink: /blog/6515/using-xhp-with-bootstrap
+comments:
+- id: 286319
+  author: Irfan Raza
+  author_email: s.irfan.raza@gmail.com
+  author_url: ''
+  date: '2014-10-23 20:20:19 +0000'
+  date_gmt: '2014-10-24 03:20:19 +0000'
+  content: Great work guys.
+- id: 286919
+  author: Josan
+  author_email: josan.iracheta@gmail.com
+  author_url: http://imprintnation.net
+  date: '2014-10-24 13:32:07 +0000'
+  date_gmt: '2014-10-24 20:32:07 +0000'
+  content: This is cool. I'm wondering what project I can use this with.
+- id: 287615
+  author: chahid khamis
+  author_email: chahidkhamis@hotmail.com
+  author_url: ''
+  date: '2014-10-25 11:52:45 +0000'
+  date_gmt: '2014-10-25 18:52:45 +0000'
+  content: I need ur help. How.may i contact you?
+- id: 288743
+  author: Fred Emmott
+  author_email: fe@fb.com
+  author_url: ''
+  date: '2014-10-27 09:21:19 +0000'
+  date_gmt: '2014-10-27 16:21:19 +0000'
+  content: 'Could you file an issue at https:&#47;&#47;github.com&#47;hhvm&#47;xhp-bootstrap
+    ? I''m also usually on freenode (nick: ''fred'') during Pacific hours'
+- id: 480791
+  author: Facebooks XHP in inniger Einigkeit mit Bootstrap - entwickler.de
+  author_email: ''
+  author_url: https://entwickler.de/online/php/facebooks-xhp-in-inniger-einigkeit-mit-bootstrap-140126.html
+  date: '2015-05-08 02:38:57 +0000'
+  date_gmt: '2015-05-08 09:38:57 +0000'
+  content: "[&#8230;] Vorteile findet man in der Vorstellung Using XHP with Bootstrap.
+    Das Projekt selbst findet man auf GitHub. Alles, was man dann noch ben&ouml;tigt,
+    ist die HHVM und [&#8230;]"
+- id: 517067
+  author: Cobis
+  author_email: jcobis@gmail.com
+  author_url: http://boothelp-guide.code389.com.ve
+  date: '2015-06-08 05:23:05 +0000'
+  date_gmt: '2015-06-08 12:23:05 +0000'
+  content: "Excellent. But may be you want to try this other tool:\r\n\r\nhttp:&#47;&#47;codecanyon.net&#47;item&#47;boothelp&#47;11636009"
 ---
 
 ![xhpbootstrap_logo_blacktext](/static/images/posts/xhpbootstrap_logo_blacktext.png)

@@ -1,10 +1,65 @@
 ---
 author: jwatzman
-comments: true
 layout: post
 title: Experimental Mac OS X Support
 category: blog
 permalink: /blog/10043/experimental-mac-os-x-support
+comments:
+- id: 721331
+  author: Christer Eckermann
+  author_email: ecker00@gmail.com
+  author_url: ''
+  date: '2015-12-03 10:39:02 +0000'
+  date_gmt: '2015-12-03 18:39:02 +0000'
+  content: Currently we run HHVM on an Ubuntu VM on a Mac Mini server. Will be great
+    to be able to skip the VM, so I'll be looking forward to hear more about the OS
+    X progress for HHVM.
+- id: 721337
+  author: Josh Watzman
+  author_email: jwatzman@fb.com
+  author_url: https://www.facebook.com/jwatzman
+  date: '2015-12-03 10:42:22 +0000'
+  date_gmt: '2015-12-03 18:42:22 +0000'
+  content: Give it a shot now -- as far as we know, most things work. File issues
+    on github for the stuff that doesn't -- that's the best way for us to figure out
+    what's broken and what of that is important to people.
+- id: 732353
+  author: Rob Lewis
+  author_email: rob51@mac.com
+  author_url: http://robrites.blogspot.com
+  date: '2015-12-13 10:59:46 +0000'
+  date_gmt: '2015-12-13 18:59:46 +0000'
+  content: Are there any special requirements for running HHVM on the Server version
+    of Mac OS? This would seem to be a logical target platform.
+- id: 733355
+  author: Fred Emmott
+  author_email: fe@fb.com
+  author_url: ''
+  date: '2015-12-14 11:05:06 +0000'
+  date_gmt: '2015-12-14 19:05:06 +0000'
+  content: "As I understand it, OSX server is no longer a separate version, merely
+    a collection of applications&#47;packages that gets installed on standard OSX
+    from the App Store; I wouldn't expect there to be any special requirements.\r\n\r\nThat
+    said, we've not tested it, and we still consider the OSX support to be experimental."
+- id: 921695
+  author: Hosting
+  author_email: jeremysa@gmail.com
+  author_url: https://alexhost.md/
+  date: '2016-05-07 00:53:03 +0000'
+  date_gmt: '2016-05-07 07:53:03 +0000'
+  content: dumb question, wordpress can run on HHVM if the server support it, but
+    all plug in developed for wordpress, too?
+- id: 923699
+  author: Josh Watzman
+  author_email: jwatzman@fb.com
+  author_url: https://www.facebook.com/jwatzman
+  date: '2016-05-09 03:48:06 +0000'
+  date_gmt: '2016-05-09 10:48:06 +0000'
+  content: It depends on the plug in and what PHP features it uses. HHVM strives for
+    full PHP compatibility, so the vast majority are going to work without modification,
+    and anything that doesn't work is considered a bug in HHVM. We are only tracking
+    major frameworks, and there are far too many Wordpress plugins for us to track
+    them all anyway. But do file an issue on GitHub if something doesn't work.
 ---
 
 We're happy to announce official Mac OS X support in HHVM, with version 3.9! If you use [Homebrew](http://brew.sh/) and want to get started now, the steps to use our [official tap](https://github.com/hhvm/homebrew-hhvm) are really simple:

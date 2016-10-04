@@ -1,10 +1,18 @@
 ---
 author: ptarjan
-comments: true
 layout: post
 title: HHVM 3.3.1
 category: blog
 permalink: /blog/6767/hhvm-3-3-1
+comments:
+- id: 289883
+  author: Hardik Shah
+  author_email: hardik@vikingweb.org
+  author_url: http://testeuropris.vikingweb.org
+  date: '2014-10-29 06:14:11 +0000'
+  date_gmt: '2014-10-29 13:14:11 +0000'
+  content: "Hello,\r\n\r\nDo hhvm support php xml-rpc module of php\r\nPlease reply
+    me ASAP"
 ---
 
 Today we released [HHVM 3.3.1](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM), our first update to our [long term support](http://hhvm.com/blog/6083/hhvm-long-term-support) release. This includes [30 commits](https://github.com/facebook/hhvm/compare/HHVM-3.3.0...HHVM-3.3.1).

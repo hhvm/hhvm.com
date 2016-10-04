@@ -1,10 +1,43 @@
 ---
 author: jwatzman
-comments: true
 layout: post
 title: HHVM 3.7.0
 category: blog
 permalink: /blog/9059/hhvm-3-7-0
+comments:
+- id: 484475
+  author: PHP Annotated Monthly &ndash; May 2015 | JetBrains PhpStorm Blog
+  author_email: ''
+  author_url: http://blog.jetbrains.com/phpstorm/2015/05/php-annotated-monthly-may-2015/
+  date: '2015-05-11 00:27:43 +0000'
+  date_gmt: '2015-05-11 07:27:43 +0000'
+  content: "[&#8230;] HHVM 3.7.0 has been released, focused&nbsp;on performance improvements,
+    compatibility tweaks, and bug-fixes. The full list of changes is available in
+    the changelog. HHVM Open Source team is continuing a tradition of lockdowns&nbsp;announcing&nbsp;the&nbsp;first
+    ever open source performance lockdown. They&nbsp;plan to focus their efforts on
+    performance wins for WordPress, Drupal, and MediaWiki. [&#8230;]"
+- id: 495509
+  author: WPsaloonDigest Of Web Development News For May, 4-10 - WPsaloon
+  author_email: ''
+  author_url: http://wpsaloon.com/weekly-digest-of-interesting-useful-web-development-news-for-may-4-10/
+  date: '2015-05-18 07:21:50 +0000'
+  date_gmt: '2015-05-18 14:21:50 +0000'
+  content: "[&#8230;] HHVM 3.7.0 &#8211; release with performance improvements and
+    compatibility adjustments. WordPress 4.2.1 and 4.2.2 &#8211; updates containing
+    vulnerabilities fixes. Yii 2.0.4 &#8211; PHP framework to develop open-source
+    and proprietary applications. Zend Framework 2.3.8 and 2.4.1 &#8211; releases
+    with security fixes. Symfony 2.3.8 and 2.6.7 &#8211; updates for PHP framework
+    for web sites and apps. [&#8230;]"
+- id: 509645
+  author: HHVM 3.7.0 ist erschienen - entwickler.de
+  author_email: ''
+  author_url: https://entwickler.de/online/tools/hhvm-3-7-0-ist-erschienen-149772.html
+  date: '2015-06-02 02:10:01 +0000'
+  date_gmt: '2015-06-02 09:10:01 +0000'
+  content: "[&#8230;] ist die n&auml;chste Version der Virtual Machine erschienen.
+    Sie besteht, so erkl&auml;rt Josh Watzman im Ank&uuml;ndigungspost im HHVM-Blog,
+    aus den internal Releases Earle, Fry, Gadd und Harris. Im Fokus der neuen Version
+    stehen dieses [&#8230;]"
 ---
 
 As some of you have no doubt noticed, [HHVM 3.7.0](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM) has been out now for a few days. It comprises the internal "Earle", "Fry", "Gadd", and "Harris" releases.
