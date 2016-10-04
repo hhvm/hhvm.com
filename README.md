@@ -2,6 +2,10 @@
 
 This directory will contain the landing page and other documentation for [hhvm.com](http://hhvm.com). It will contain links to the [HHVM user documentation over at docs.hhvm.com](https://docs.hhvm.com/hhvm) and other relevant places. [hhvm.com](http://hhvm.com) will be hosted on GitHub pages.
 
+### Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for details on how to add content.
+
 ### Run the Site Locally
 
 The requirements for running a GitHub pages site locally is described in [GitHub help](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/#requirements). The steps below summarize these steps.
