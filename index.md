@@ -19,7 +19,7 @@ HHVM supports [Hack](http://hacklang.org/), [PHP 5](http://php.net/) and the maj
         <li><a href="http://www.hhvm.com/blog/2027/faster-and-cheaper-the-evolution-of-the-hhvm-jit">JIT Compilation</a></li>
         <li><a href="https://github.com/facebook/hhvm/wiki/Extension-API">HNI</a></li>
         <li><a href="http://docs.hhvm.com/hhvm/basic-usage/proxygen">Proxygen</a> and <a href="http://docs.hhvm.com/hhvm/advanced-usage/fastCGI">FastCGI support</a></li>
-        <li><code>hphpd></code> debugger</li>
+        <li><code>hphpd</code> debugger</li>
         <li>... and <a href="http://docs.hhvm.com/hhvm/">more</a></li>
       </ul>
     </div>
