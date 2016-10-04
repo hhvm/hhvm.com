@@ -1,10 +1,75 @@
 ---
 author: ptarjan
-comments: true
 layout: post
 title: HHVM 3.2.0
 category: blog
 permalink: /blog/5609/hhvm-3-2-0
+comments:
+- id: 195887
+  author: PotatoDickButt
+  date: '2014-07-24 04:50:34 +0000'
+  date_gmt: '2014-07-24 11:50:34 +0000'
+  content: nice
+- id: 199499
+  author: Mat
+  date: '2014-07-29 09:14:43 +0000'
+  date_gmt: '2014-07-29 16:14:43 +0000'
+  content: I followed the install procedure, but I still have 3.0.1 after reinstall.
+    What's wrong with the repository?
+- id: 199589
+  author: Paul Tarjan
+  date: '2014-07-29 11:16:34 +0000'
+  date_gmt: '2014-07-29 18:16:34 +0000'
+  content: Which distribution?
+- id: 202277
+  author: Mat
+  date: '2014-08-01 03:35:39 +0000'
+  date_gmt: '2014-08-01 10:35:39 +0000'
+  content: "Sorry, I forgot to write. It is Ubuntu 13.10.\r\nI have this source added:\r\ndeb
+    http:&#47;&#47;dl.hhvm.com&#47;ubuntu saucy main"
+- id: 202625
+  author: Paul Tarjan
+  date: '2014-08-01 15:57:33 +0000'
+  date_gmt: '2014-08-01 22:57:33 +0000'
+  content: We don't support 13.10 anymore. Ubuntu distros are only supported until
+    the next one comes out. (LTS distros are supported until the next LTS).
+- id: 204095
+  author: Alex
+  date: '2014-08-03 17:53:04 +0000'
+  date_gmt: '2014-08-04 00:53:04 +0000'
+  content: "http:&#47;&#47;docs.hhvm.com&#47;manual&#47;en&#47;context.http.php\r\n\r\nAre
+    you going to implement stream socket contexts?"
+- id: 204497
+  author: Joel Marcey
+  date: '2014-08-04 08:22:31 +0000'
+  date_gmt: '2014-08-04 15:22:31 +0000'
+  content: |-
+    Alex, that is a bug in the documentation. We support stream_context_create() and the options provided in the link you gave. I created a GitHub issue to fix this. Thanks for bringing this to our attention.
+
+    https:&#47;&#47;github.com&#47;hhvm&#47;hack-hhvm-docs&#47;issues&#47;311
+- id: 217085
+  author: Asendia Mayco
+  date: '2014-08-19 09:59:21 +0000'
+  date_gmt: '2014-08-19 16:59:21 +0000'
+  content: "Hi there,\r\n\r\nI currently use Laravel 4.1.21 on HHVM 3.2.0 (Ubuntu
+    14.04)\r\nHHVM memory usage keep increasing until the process dies.\r\n\r\nI have
+    tried this solution to no avail\r\nhttps:&#47;&#47;github.com&#47;facebook&#47;hhvm&#47;issues&#47;2973#issuecomment-48396033\r\n\r\nand
+    unfortunately ended by disabling HHVM's JIT :(\r\n\r\nIs there any solution regarding
+    this issue?"
+- id: 480761
+  author: 'Zoff um die Zukunft von PHP: HHVM versus PHPNG - entwickler.de'
+  date: '2015-05-08 02:36:05 +0000'
+  date_gmt: '2015-05-08 09:36:05 +0000'
+  content: "[&#8230;] mit diesem Line-Up hat Facebook vor einigen Tagen die Version
+    3.2 der HipHop Virtual Machine (HHVM) vorgelegt. Die PHP-Runtime von Facebook
+    hatte Anfang des Jahres mit exzellenten Performance-Werten Furore [&#8230;]"
+- id: 480767
+  author: 'Zoff um die Zukunft von PHP: HHVM versus PHPNG - entwickler.de'
+  date: '2015-05-08 02:36:05 +0000'
+  date_gmt: '2015-05-08 09:36:05 +0000'
+  content: "[&#8230;] mit diesem Line-Up hat Facebook vor einigen Tagen die Version
+    3.2 der HipHop Virtual Machine (HHVM) vorgelegt. Die PHP-Runtime von Facebook
+    hatte Anfang des Jahres mit exzellenten Performance-Werten Furore [&#8230;]"
 ---
 
 The [next version of HHVM](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM) is out (well it came out 6 days ago, I've just been at [OSCON](http://www.oscon.com/oscon2014/public/schedule/detail/34640) all week and haven't had a chance to do this post).

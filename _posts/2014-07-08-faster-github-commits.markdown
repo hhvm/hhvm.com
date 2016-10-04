@@ -1,6 +1,5 @@
 ---
 author: joelm
-comments: true
 layout: post
 title: Faster GitHub Commits
 category: blog

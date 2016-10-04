@@ -1,10 +1,30 @@
 ---
 author: jwatzman
-comments: true
 layout: post
 title: 'Hack Community Roundup #2'
 category: blog
 permalink: /blog/5429/hack-community-roundup-2
+comments:
+- id: 225227
+  author: Raju
+  date: '2014-08-26 06:07:26 +0000'
+  date_gmt: '2014-08-26 13:07:26 +0000'
+  content: "Hi,\r\n\r\nI am a php developer, new to HHVM HACK, i would like to learn
+    HHVM HACK language, we are using Linux-Ubunto 13.10,\r\n\r\nI have few questions,
+    Please help me out.\r\n1) What is the text editor (IDE) to use hhvm hack language
+    and how to download for ubunto 13.10 ?\r\n2) how to complile hack code before
+    exicute.?\r\n3) do we have any coverter to convert existing php project to hhvm
+    hack.?\r\n\r\nquick response is highly appreciated, thanks in advance,\r\n\r\nRaju,\r\nemai
+    : raju.sriramoju@shoregrp.com"
+- id: 226811
+  author: Josh Watzman
+  date: '2014-08-27 10:46:56 +0000'
+  date_gmt: '2014-08-27 17:46:56 +0000'
+  content: "Hey Raju!\r\n\r\n1. This was answered at http:&#47;&#47;stackoverflow.com&#47;questions&#47;23582444&#47;what-ides-have-support-for-the-hack-language.
+    Facebook also has our own IDE, FBIDE, that we are going to release at some point.\r\n\r\n2.
+    The directions on http:&#47;&#47;hhvm.com&#47; are pretty good. Once you have
+    HHVM working, http:&#47;&#47;docs.hhvm.com&#47;manual&#47;en&#47;install.hack.bootstrapping.php
+    is how you start with Hack code.\r\n\r\n3. This was answered at http:&#47;&#47;stackoverflow.com&#47;questions&#47;22541250&#47;how-would-you-migrate-from-php-to-hack."
 ---
 
 Since the [last roundup](http://hhvm.com/blog/4811/hack-community-roundup), our community has continued to produce some really cool projects using Hack. I'm really excited to have another long list to share with all of you!

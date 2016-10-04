@@ -1,10 +1,141 @@
 ---
 author: paulbiss
-comments: true
 layout: post
 title: HHVM 3.9.0
 category: blog
 permalink: /blog/9995/hhvm-3-9-0
+comments:
+- id: 579137
+  author: hhvm-rocks
+  date: '2015-08-19 22:27:27 +0000'
+  date_gmt: '2015-08-20 05:27:27 +0000'
+  content: "I'm almost sure about php developers interest more with performance results,
+    instead of C,C++ library changes.\r\n\r\nHHVM has proxygen now, why you guys not
+    post more or ANY articles about it?\r\n\r\nYou guys post about Hack language,
+    but again, usually php developers use PHP frameworks.. or MVC architectures, which
+    use $controller = new $class($this->X); , which are dynamic, and Hack has no solution
+    for that. I remember, a year ago I asked about that, and got an answer like; \"will
+    be added support for dynamic classes\" it's like what fun(); function is doing
+    with dynamic functions. and so on... 1 year has been past, no news...\r\n\r\nHHVM
+    is good, but I do not think to use it in production, yes, facebook use it, but
+    probably facebook developers know MUCH MORE about HHVM&#47;Hack than us (php developers),
+    and they push TDD before new codes go into servers.\r\n\r\nAlso, why are you guys
+    closing issues at github without any reason? someone posts an issue, issue stays
+    there for a while, and then someone closes it, it's because long-time-no-action.
+    \r\n\r\nAnyway, I know you guys working hard to improve HHVM, but please we as
+    php developers need more a stable product than \"it works\" standards.\r\n\r\nThanks!"
+- id: 582305
+  author: NM
+  date: '2015-08-24 10:39:30 +0000'
+  date_gmt: '2015-08-24 17:39:30 +0000'
+  content: When's Windows build coming? Most web devs use Windows not Ubuntu.
+- id: 583427
+  author: Fred Emmott
+  date: '2015-08-25 11:19:53 +0000'
+  date_gmt: '2015-08-25 18:19:53 +0000'
+  content: "These aren't C&#47;C++ library changes - the library functions for shapes
+    are new functions accessible to hack code to oeprate on shapes, and the new type
+    to represent Foo::class strings provides exactly the $controller = new $class($this->X)
+    functionality you're asking about - $class needs to be a classname<T> where 'Foo'
+    is a superclass or interface with <<__ConsistentConstruct>> (so that we know that
+    $this->X is a valid parameter).\r\n\r\nAs for performance: we've not included
+    more details as the changes were small in this release - the most recent major
+    changes were detailed here: hhvm.com&#47;blog&#47;9293&#47;lockdown-results-and-hhvm-performance.\r\n\r\nIf
+    you could give some example issue numbers that you don't think should have been
+    closed, I can take a look - in general we have enough issues with clear, easy
+    reproduction steps and&#47;or responsive authors that we are never going to look
+    at ones that do not fit into these categories. We aim to ask authors for more
+    information if we need it, but if they don't within two weeks, closing them feels
+    like the honest thing to do as they will never be looked at unless more information
+    is provided."
+- id: 583439
+  author: Fred Emmott
+  date: '2015-08-25 11:24:11 +0000'
+  date_gmt: '2015-08-25 18:24:11 +0000'
+  content: "an external contributor has a working build, and is in the process of
+    getting pull requests merged; I &#47;hope&#47; for 3.10, though that's not a commitment.\r\n\r\nSo
+    far it doesn't seem like there's major problems, it's just time-consuming: this
+    effort has already involved well over 100 pull requests, all of which need review
+    and testing."
+- id: 584111
+  author: hhvm-rocks
+  date: '2015-08-25 22:49:42 +0000'
+  date_gmt: '2015-08-26 05:49:42 +0000'
+  content: "Actually, there are \"C&#47;C++ library changes\" as usually, because
+    I was not talking about this version's specific changes but as generally..\r\n\r\n```\r\nThese
+    aren&rsquo;t C&#47;C++ library changes &ndash; the library functions for shapes
+    are new functions accessible to hack code to oeprate on shapes, and the new type
+    to represent Foo::class strings provides exactly the $controller = new $class($this->X)
+    functionality you&rsquo;re asking about &ndash; $class needs to be a classname
+    where &lsquo;Foo&rsquo; is a superclass or interface with <> (so that we know
+    that $this->X is a valid parameter).\r\n```\r\n\r\nSorry, I'm not coding Hack
+    yet. Can give me some examples for $controller = new $class($this->X); ? I understand
+    codes better with examples.\r\n\r\n\r\n```\r\n the most recent major changes were
+    detailed here: hhvm.com&#47;blog&#47;9293&#47;lockdown-results-and-hhvm-performance.\r\n```\r\n\r\nYeah,
+    thanks and I know, I follow HHVM&#47;Hack. How about proxygen? Does it offer mod_rewrite
+    compatibility&#47;hacks ? Do you have any plans to implement standalone server
+    for static files also?\r\n\r\nOne more question, Fred why are you the only person
+    who answer questions here? I'm glad with it, but I think distributed effort is
+    a better approach :) Thanks for YOUR effort."
+- id: 584915
+  author: Fred Emmott
+  date: '2015-08-26 11:48:49 +0000'
+  date_gmt: '2015-08-26 18:48:49 +0000'
+  content: "I'll see if I can get someone to give you more details about proxygen;
+    all of our servers (legacy libevent http server and the fastcgi server too) can
+    be configured to serve static files - i'm not sure of the performance implications
+    of that too though.\r\n\r\nAs for a classname, here's an example from my personal
+    stuff - please don't take it as 'best practice', it's just me playing around,
+    but it does show this feature - sorry that there's so many parts to it:\r\n\r\nhttps:&#47;&#47;github.com&#47;fredemmott&#47;hack-router&#47;blob&#47;master&#47;src&#47;URIMap.php\r\n\r\n
+    Key points:\r\n\r\n - Tbase is defined to be a URIRoutable on line 7\r\n\r\n -
+    lines 22-26 are a bit of a pity. On lines 20 &amp; 21 we check that we're dealing
+    with an instantiable copy of the appropriate class, but the typechecker doesn't
+    understand reflectionclass + filter enough, so the final map is to tell the typechecker
+    that yes, string $name is really a classname and it just needs to trust me on
+    that.\r\n\r\nUsage:\r\n\r\nhttps:&#47;&#47;github.com&#47;fredemmott&#47;personal-site&#47;blob&#47;master&#47;src&#47;WebController.php
+    is an example Tbase\r\n\r\nhttps:&#47;&#47;github.com&#47;fredemmott&#47;personal-site&#47;blob&#47;master&#47;src&#47;URIMap.php
+    provides a concrete URIMap with the template specified\r\n\r\nhttps:&#47;&#47;github.com&#47;fredemmott&#47;personal-site&#47;blob&#47;master&#47;src&#47;Site.php#L23
+    shows the safe 'new $class' - this is safe because $class is a classname<WebController>,
+    \ and https:&#47;&#47;github.com&#47;fredemmott&#47;personal-site&#47;blob&#47;master&#47;src&#47;WebController.php
+    has <__ConsistentConstruct>, so all subclasses must have a constructor that takes
+    the same kind of parameters\r\n\r\nAs for why they're mostly me: just a matter
+    of who checks for comments how often. I tend to do it more frequently, so there's
+    a higher chance of me being the person who replies.\r\n\r\nEdit: fixing up after
+    wordpress decided that user attributes and generics were XSS attacks and removed
+    them..."
+- id: 586007
+  author: hhvm-rocks
+  date: '2015-08-27 23:30:38 +0000'
+  date_gmt: '2015-08-28 06:30:38 +0000'
+  content: "Thanks Fred!\r\n\r\n\"I&rsquo;ll see if I can get someone to give you
+    more details about proxygen\"\r\n\r\nyeah, that would be nice :)"
+- id: 586469
+  author: HHvA
+  date: '2015-08-28 05:35:34 +0000'
+  date_gmt: '2015-08-28 12:35:34 +0000'
+  content: "Any news regarding availability of HHVM for Mac OS X (natively not in
+    a Linux container).\r\n\r\nHHVM is our standard production runtime including Symfony2,
+    Magento and Wordpress websites and services - thumbs up to you guys!"
+- id: 586883
+  author: Alan Frindell
+  date: '2015-08-28 15:22:20 +0000'
+  date_gmt: '2015-08-28 22:22:20 +0000'
+  content: "@hhvm-rocks: I work on proxygen.  It's probably best to open issues and
+    discuss features over at https:&#47;&#47;github.com&#47;facebook&#47;proxygen
+    or discuss on our Google group: https:&#47;&#47;groups.google.com&#47;forum&#47;#!forum&#47;facebook-proxygen.\r\n\r\nHaving
+    dealt with mod_rewrite long ago in my career I'm not eager to try to replicate
+    it verbatim within proxygen.  That said, we might be open to some kind of simpler
+    configurable filter architecture to rewriting URLs, headers and the like.\r\n\r\nI
+    think it wouldn't be to hard to write a static file serving http server from the
+    example echo server that ships with proxygen.  We weren't immediately planning
+    on that.\r\n\r\nProxygen is not trying to be a drop in replacement for the major
+    web servers out there.  Instead, it's intended to be a pretty flexible framework
+    for writing HTTP&#47;SPDY&#47;HTTP&#47;2 based applications."
+- id: 589985
+  author: Josh Watzman
+  date: '2015-08-31 09:31:10 +0000'
+  date_gmt: '2015-08-31 16:31:10 +0000'
+  content: Yep, just announced today :) http:&#47;&#47;hhvm.com&#47;blog&#47;10043&#47;experimental-mac-os-x-support
 ---
 
 We’re happy to announce that [HHVM 3.9.0](https://github.com/facebook/hhvm/tree/HHVM-3.9.0) is now available. You can try one of our [prebuilt packages for Ubuntu and Debian](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-for-HHVM), or [build from source](https://github.com/facebook/hhvm/wiki/Building-and-Installing-HHVM).

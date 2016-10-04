@@ -1,10 +1,29 @@
 ---
 author: jezng
-comments: true
 layout: post
 title: Covariance, Contravariance, and super Type Constraints
 category: blog
 permalink: /blog/9215/covariance-contravariance-and-super-type-constraints
+comments:
+- id: 518327
+  author: PHP Annotated Monthly &ndash; June 2015 | JetBrains PhpStorm Blog
+  date: '2015-06-09 02:27:21 +0000'
+  date_gmt: '2015-06-09 09:27:21 +0000'
+  content: "[&#8230;] definitely a good resource for a quick overview. HHVM official
+    blog features a new post&nbsp;Covariance, Contravariance, and super Type Constraints,
+    where the recently enhanced generics in Hack are explained (they&#8217;ve been
+    enhanced with two [&#8230;]"
+- id: 518879
+  author: NM
+  date: '2015-06-09 10:36:46 +0000'
+  date_gmt: '2015-06-09 17:36:46 +0000'
+  content: "You know what would be nice and readable, an alternative syntax for subtyping
+    vectors, examples:\r\n\r\nfunction int[] foo()\r\n{\r\n  int[] $bar;\r\n  &#47;&#47;
+    a dynamic array or Vector in Hack's case\r\n  &#47;&#47; int[] same as Vector\r\n}\r\n\r\nfunction
+    int[2] foo()\r\n{\r\n  int[4] $bar;\r\n  &#47;&#47; fixed array example\r\n}\r\n\r\nfunction
+    Pair[] foo()\r\n{\r\n  &#47;&#47; an array of pairs example\r\n  &#47;&#47; often
+    array elements themselves need to be sub typed\r\n\r\n  &#47;&#47; same as Vector<Pair>
+    but shorter\r\n}\r\n\r\nOne can dream... :)"
 ---
 
 Hack has recently enhanced its generics with two features: variance annotations and `super` type constraints. In this post, I'll explain how they work and why they were added.

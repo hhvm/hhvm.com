@@ -1,6 +1,5 @@
 ---
 author: jwatzman
-comments: true
 layout: post
 title: Announcing the Hack Transpiler
 category: blog

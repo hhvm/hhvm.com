@@ -1,10 +1,127 @@
 ---
 author: wizkid
-comments: true
 layout: post
 title: Implementing MySQLi
 category: blog
 permalink: /blog/3689/implementing-mysqli
+comments:
+- id: 2921
+  author: Chase Christian
+  date: '2014-02-26 13:32:32 +0000'
+  date_gmt: '2014-02-26 21:32:32 +0000'
+  content: |-
+    Thanks WizKid! I was one of the people waiting on the MySQLi and implemented it as soon as your commits were pushed to the nightly build. It has been working great! I haven't had any issues across multiple sites using MySQLi.
+
+    Thanks again!
+- id: 2927
+  author: WizKid
+  date: '2014-02-26 13:57:37 +0000'
+  date_gmt: '2014-02-26 21:57:37 +0000'
+  content: Awesome to hear.
+- id: 2933
+  author: Marco Pivetta
+  date: '2014-02-26 14:32:06 +0000'
+  date_gmt: '2014-02-26 22:32:06 +0000'
+  content: |-
+    Awesome! I have just <a>enabled HHVM+MySQLi for Doctrine DBAL<&#47;a> on <a href="https:&#47;&#47;travis-ci.org&#47;doctrine&#47;dbal&#47;jobs&#47;19685616" rel="nofollow">Travis-CI<&#47;a> as a reference :-)
+
+    Hope to see green there soon!
+- id: 2939
+  author: Fred Emmott
+  date: '2014-02-26 21:44:56 +0000'
+  date_gmt: '2014-02-27 05:44:56 +0000'
+  content: This is currently only in the nightly builds, and master, which aren't
+    supported by Travis; these tests will (hopefully :p ) start passing once 2.5.0
+    is released and Travis upgrade.
+- id: 2945
+  author: Daniel
+  date: '2014-02-26 23:15:07 +0000'
+  date_gmt: '2014-02-27 07:15:07 +0000'
+  content: I'm looking forward to this!
+- id: 2951
+  author: Ulf Wendel
+  date: '2014-02-27 02:51:06 +0000'
+  date_gmt: '2014-02-27 10:51:06 +0000'
+  content: Glad to hear that you found the php.net ext&#47;mysqli&#47;tests to be
+    that strict and picky that they make you scratch your head.... Only picky tests
+    can detect changes made without documenting them.
+- id: 2957
+  author: ms
+  date: '2014-02-27 03:51:05 +0000'
+  date_gmt: '2014-02-27 11:51:05 +0000'
+  content: Any plans for mysqlnd modules like mysqlnd_ms?
+- id: 2963
+  author: WizKid
+  date: '2014-02-27 10:13:08 +0000'
+  date_gmt: '2014-02-27 18:13:08 +0000'
+  content: Didn't even know that there existed other modules for mysqlnd. Currently
+    there is no plan from our side but we would be happy to take pull requests.
+- id: 2969
+  author: CJ
+  date: '2014-02-27 14:40:35 +0000'
+  date_gmt: '2014-02-27 22:40:35 +0000'
+  content: '"Zend" is a company, not an implementation of PHP.'
+- id: 2975
+  author: Copyright Police
+  date: '2014-02-27 16:40:08 +0000'
+  date_gmt: '2014-02-28 00:40:08 +0000'
+  content: |-
+    In the world of Facebook, do you not know the name of the programming languages you use?
+    Or is this some sort of twisted way to rebrand PHP as Zend, and this hvvm abomination PHP?
+- id: 2981
+  author: Paul Tarjan
+  date: '2014-02-28 02:16:15 +0000'
+  date_gmt: '2014-02-28 10:16:15 +0000'
+  content: Zend is the engine that powered PHP4 and Zend 2 powers PHP5 (but most people
+    just call it zend now since PHP4 is retired). https:&#47;&#47;en.wikipedia.org&#47;wiki&#47;Zend_Engine
+- id: 2987
+  author: Paul Tarjan
+  date: '2014-02-28 02:19:21 +0000'
+  date_gmt: '2014-02-28 10:19:21 +0000'
+  content: |-
+    No twisting intended. What would you rather we call things? We need a name for the language (PHP) and the runtime available at php.net. Because the underlying engine is named zend, that is term we usually use: https:&#47;&#47;en.wikipedia.org&#47;wiki&#47;Zend_Engine
+
+    Also, why do you think HHVM is an abomination? Are you just trolling or do you have some qualms with our project and there is something we should change?
+- id: 2993
+  author: Johannes
+  date: '2014-02-28 11:03:55 +0000'
+  date_gmt: '2014-02-28 19:03:55 +0000'
+  content: |-
+    For nitpicking: There is a company Zend Technologies Ltd., anengine called Zend Engine in different versions and a PHP runtie using it.
+    The Zend Engine can be used for very few things in its own, but you need the PHP parts, like HTTP request handling or different PHP modules.
+    Continueing to nitpick: mysqli is using APIs provided by the Zend Engine but is part of PHP. This can easily eseenin thelicenses headers. The ones in Zend&#47; say "Zend Engine, Copyright (c) 1998-2014 Zend Technologies Ltd. (http:&#47;&#47;www.zend.com)" the ones in other parts say " PHP Version 5 , Copyright (c) 1997-2014 The PHP Group" They also usedifferent licenses (Zend Engine License vs. PHP License)
+
+    But as said this is nitpicking, inpractical terms the software is called PHP, is licensed under PHP Liense (Zend Engine License allows such relicensing) and is developed by a large comunity where even the company Zend Technologies Ltd. is just one between others.
+
+    Historially the split was more relevant as there was a clear separation between both things and it was more possible to switch out the engine, nowadays, especially with PHP 5 OO APIs this isn't the case anymore. Also historically Zend (the company) was by far the largest contributor to the engine, that has changed and some independent contributors see it as unfair to be pulled in that way. I myself don't have thosestrictfeelings, but some do ...
+- id: 2999
+  author: Schien
+  date: '2014-02-28 18:21:07 +0000'
+  date_gmt: '2014-03-01 02:21:07 +0000'
+  content: In Zend PHP there are benefits of using MySQLi over MySQL. Is the MySqli
+    extension for HHVM just for parity I suppose? We changed the default db wrapper
+    in our frameworks to MySQL so that they work with HHVM out of the box. There's
+    no need to switch back to MySqli is there? Thanks.
+- id: 3005
+  author: Paul Tarjan
+  date: '2014-02-28 21:07:34 +0000'
+  date_gmt: '2014-03-01 05:07:34 +0000'
+  content: We don't mean to offend anyone, we just need names for things. What should
+    we call the binary available on php.net? "The reference PHP implementation" is
+    a bit long, "PHP" is confusing to the language, and "php-src" is a bit awkward
+    as a noun.
+- id: 3011
+  author: Christopher Svanefalk
+  date: '2014-03-03 09:46:59 +0000'
+  date_gmt: '2014-03-03 17:46:59 +0000'
+  content: His name is "Copyright Police", seems like a pretty clearcut troll. Pity
+    they find their way even to great project sites like this one.
+- id: 3017
+  author: Marco Pivetta
+  date: '2014-03-04 01:07:53 +0000'
+  date_gmt: '2014-03-04 09:07:53 +0000'
+  content: I already enforced DBAL to build on nightly ones - loads of tests are still
+    failing though ;-)
 ---
 
 I joined the HHVM team right before Christmas for a [hackamonth](https://www.facebook.com/notes/facebook-engineering/hackamonth-mixing-things-up/10150161285048920) (or, in my case, a hack-a-two-months).

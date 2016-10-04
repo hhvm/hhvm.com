@@ -1,10 +1,126 @@
 ---
 author: jwatzman
-comments: true
 layout: post
 title: HHVM 3.5.0
 category: blog
 permalink: /blog/7637/hhvm-3-5-0
+comments:
+- id: 344135
+  author: Scott Arciszewski
+  date: '2015-01-20 17:50:43 +0000'
+  date_gmt: '2015-01-21 01:50:43 +0000'
+  content: "\"Anyone want to guess at what the new theme is?\"\r\n\r\nEither US cities
+    or WWE pro wrestlers would be my two guesses."
+- id: 344537
+  author: Harsh
+  date: '2015-01-21 00:06:22 +0000'
+  date_gmt: '2015-01-21 08:06:22 +0000'
+  content: How can I contribute? I am an Undergraduate student. How should I give
+    a start ?
+- id: 344561
+  author: Andrew McCombe
+  date: '2015-01-21 00:15:13 +0000'
+  date_gmt: '2015-01-21 08:15:13 +0000'
+  content: "&ldquo;Anyone want to guess at what the new theme is?&rdquo;\r\n\r\nCould
+    it be British car manufacturers past &amp; present?"
+- id: 344573
+  author: John Delaney
+  date: '2015-01-21 00:40:57 +0000'
+  date_gmt: '2015-01-21 08:40:57 +0000'
+  content: Defunct British car manufacturers?
+- id: 344663
+  author: Jack
+  date: '2015-01-21 04:39:47 +0000'
+  date_gmt: '2015-01-21 12:39:47 +0000'
+  content: "I tried install hhvm on debian SID but couldn't do that, because of the
+    dependencies...\r\n\r\nMaybe is it only available for debian wheezy?"
+- id: 344675
+  author: Dave Hulbert
+  date: '2015-01-21 05:16:01 +0000'
+  date_gmt: '2015-01-21 13:16:01 +0000'
+  content: "My theory:\r\n\r\nThe city Annaba (in Algeria) used to be called \"Hippo
+    Regius\" [1]. Hippo sounds similar to Hip-hop and is also related to elephants
+    (the PHP mascot).\r\n\r\nThe most famous person from Hippo Regius was Saint Augustine
+    of Hippo. Saint Augustine was also known as Saint Austin.\r\n\r\n[1] http:&#47;&#47;en.wikipedia.org&#47;wiki&#47;Hippo_Regius\r\n[2]
+    http:&#47;&#47;en.wikipedia.org&#47;wiki&#47;Augustine_of_Hippo"
+- id: 344795
+  author: Josh Watzman
+  date: '2015-01-21 10:24:39 +0000'
+  date_gmt: '2015-01-21 18:24:39 +0000'
+  content: 'We don''t build packages for sid since it''s such a moving target. You
+    should be able to compile it yourself without much trouble; I haven''t tried it,
+    but I strongly suspect that the jessie build directions will work without trouble
+    on sid: https:&#47;&#47;github.com&#47;facebook&#47;hhvm&#47;wiki&#47;Building-and-installing-HHVM-on-Debian-8'
+- id: 344801
+  author: Josh Watzman
+  date: '2015-01-21 10:27:39 +0000'
+  date_gmt: '2015-01-21 18:27:39 +0000'
+  content: We love pull requests, even for small things. Fixing incompatibilities
+    with PHP5 is usually a good place to start. If you need ideas, you can check out
+    our issue tracker https:&#47;&#47;github.com&#47;facebook&#47;hhvm&#47;issues
+    -- we have a tag "probably easy" that lists a few issues that we suspect are small
+    and easy to get started with https:&#47;&#47;github.com&#47;facebook&#47;hhvm&#47;issues?q=is%3Aopen+is%3Aissue+label%3A%22probably+easy%22
+- id: 344927
+  author: Pomyk
+  date: '2015-01-21 12:59:33 +0000'
+  date_gmt: '2015-01-21 20:59:33 +0000'
+  content: 'theme: Ship names or classes?'
+- id: 355637
+  author: Robert Ressl
+  date: '2015-02-01 08:01:38 +0000'
+  date_gmt: '2015-02-01 16:01:38 +0000'
+  content: "I make a short howto for HHVM Nginx Ubuntu with multiple Site. [1]\r\n\r\nSo
+    you have multiple HHVM processes for each site.\r\n\r\n[1] https:&#47;&#47;www.safematix.com&#47;system&#47;linux&#47;hhvm-nginx-ubuntu-with-multiple-site&#47;"
+- id: 360185
+  author: Harsh Vardhan Ladha
+  date: '2015-02-05 02:12:26 +0000'
+  date_gmt: '2015-02-05 10:12:26 +0000'
+  content: Thanks! I saw this today! Will get started asap with it :)
+- id: 366497
+  author: Le D&eacute;but
+  date: '2015-02-10 05:31:29 +0000'
+  date_gmt: '2015-02-10 13:31:29 +0000'
+  content: Running magento on 3.5.0 now. Works awesome. Thanks guys!
+- id: 377039
+  author: Grumpycat
+  date: '2015-02-16 08:15:45 +0000'
+  date_gmt: '2015-02-16 16:15:45 +0000'
+  content: "Everything looks like dream come true with hack lang, except the inconsistent
+    type syntax.\r\n\r\nWhy does return type need colon?\r\nfunction foo() : int\r\n{\r\n
+    \   return 123;\r\n}\r\n\r\nWhile everywhere else the type is before?\r\nprotected
+    int $foo;\r\n\r\nEither go full colon (like TypeScript) or do don't use colon
+    at all.\r\n\r\nI've worked with so many C like languages, none have colon for
+    return.\r\n\r\nAnd why do I have to rant in the blog, why is there no forum, community
+    for this language?"
+- id: 377711
+  author: Fred Emmott
+  date: '2015-02-16 14:32:01 +0000'
+  date_gmt: '2015-02-16 22:32:01 +0000'
+  content: Our reasoning was similar to that listed on https:&#47;&#47;wiki.php.net&#47;rfc&#47;return_types#position_of_type_declaration
+    , especially greppability. Notably, PHP7 ended up deciding on the same syntax.
+- id: 380309
+  author: Josh Watzman
+  date: '2015-02-17 12:56:38 +0000'
+  date_gmt: '2015-02-17 20:56:38 +0000'
+  content: "Fred, below, answered your main question, and as to\r\n\r\n> And why do
+    I have to rant in the blog, why is there no forum, community for this language?\r\n\r\nThere's
+    tons of activity on our GitHub issue tracker, Facebook group, and IRC channel
+    -- feel free to jump in on any of them! They're all linked to in the sidebar on
+    the right."
+- id: 388661
+  author: OSPN Press 第55号 (2015&#47;02&#47;18発行)
+  date: '2015-02-22 17:18:32 +0000'
+  date_gmt: '2015-02-23 01:18:32 +0000'
+  content: "[&#8230;] ◆2015&#47;01&#47;20 HHVM Project、PHP実行環境「HHVM 3.5」リリース http:&#47;&#47;hhvm.com&#47;blog&#47;7637&#47;hhvm-3-5-0
+    [&#8230;]"
+- id: 480821
+  author: HHVM 3.5.0 ver&ouml;ffentlicht - entwickler.de
+  date: '2015-05-08 02:40:57 +0000'
+  date_gmt: '2015-05-08 09:40:57 +0000'
+  content: "[&#8230;] wird. Wurden bisher die Namen von Rap-Stars vergeben, hei&szlig;t
+    das neueste Release &bdquo;Austin&ldquo;. Erste Sch&auml;tzungen gehen davon aus,
+    dass die HHVM k&uuml;nftig nach US-Bundesstaaten oder WWE-Pro-Wrestlern benannt
+    [&#8230;]"
 ---
 
 We have released [HHVM 3.5.0](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM) -- get it while it's hot! It contains updates from the "Xzibit", "Yelawolf", and "Z*" internal branches -- the last of the 2014 rapper theme. It also contains updates from the "Austin" internal branch, the first of the new 2015 theme. (Anyone want to guess at what the new theme is?)

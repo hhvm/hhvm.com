@@ -1,10 +1,68 @@
 ---
 author: joelm
-comments: true
 layout: post
 title: Announcing a Specification for Hack
 category: blog
 permalink: /blog/8537/announcing-a-specification-for-hack
+comments:
+- id: 382847
+  author: Miles Johnson
+  date: '2015-02-19 11:51:21 +0000'
+  date_gmt: '2015-02-19 19:51:21 +0000'
+  content: This is fantastic. Thanks a lot for all the hard work guys!
+- id: 382925
+  author: Paul M
+  date: '2015-02-19 12:19:20 +0000'
+  date_gmt: '2015-02-19 20:19:20 +0000'
+  content: Yeah definitely.  You guys keep doing what you are doing :)
+- id: 384329
+  author: Clement Wong
+  date: '2015-02-19 22:21:46 +0000'
+  date_gmt: '2015-02-20 06:21:46 +0000'
+  content: Why is Hack not subnet of PHP like asm.js of JS?
+- id: 384905
+  author: Fred
+  date: '2015-02-20 05:22:28 +0000'
+  date_gmt: '2015-02-20 13:22:28 +0000'
+  content: Amazing, this will help to spread Hack even more and it deserves it. Hack
+    is already so much better than PHP!
+- id: 385001
+  author: Joel Marcey
+  date: '2015-02-20 08:22:49 +0000'
+  date_gmt: '2015-02-20 16:22:49 +0000'
+  content: Hack is neither a subset or a superset of PHP. You can view it as a dialect
+    of PHP, with roots from the language but with added features (and some features
+    removed).
+- id: 385643
+  author: 'Links 20&#47;2&#47;2015: Android Studio v1.1, GDB 7.9 | Techrights'
+  date: '2015-02-20 17:25:52 +0000'
+  date_gmt: '2015-02-21 01:25:52 +0000'
+  content: "[&#8230;] Announcing a Specification for Hack [&#8230;]"
+- id: 394553
+  author: Clement Wong
+  date: '2015-02-25 10:40:15 +0000'
+  date_gmt: '2015-02-25 18:40:15 +0000'
+  content: "Hi Joel,\r\n\r\nBut couldn't it be made as a subnet from the beginning
+    like what Mozilla did to asm.js?\r\n(assuming the main reason of creating hack-lang
+    is to avoid type checking as far as I understood?)"
+- id: 395057
+  author: Joel Marcey
+  date: '2015-02-25 20:02:26 +0000'
+  date_gmt: '2015-02-26 04:02:26 +0000'
+  content: "Hi Clement,\n\nAre you asking whether Hack can be a subnet as in domain
+    subnet? Like hack.php.com or something? Or are you asking if Hack can be made
+    a subset of PHP? If the former, Hack and PHP are two different projects. They
+    are worked on by different teams. If subset, then I explained that below as Hack
+    is not really a strict subset of PHP. It is both a subset and superset in ways
+    --- i.e., we call it a dialect. \n\nAnd a main reason we created Hack was not
+    to avoid type-checking, but to enable quick, reliable type checking. :)"
+- id: 407015
+  author: PHP Annotated Monthly &ndash; March 2015 | JetBrains PhpStorm Blog
+  date: '2015-03-10 04:00:43 +0000'
+  date_gmt: '2015-03-10 11:00:43 +0000'
+  content: "[&#8230;] talk about Hack and HHVM: the first one got a new initial specification,
+    as well as PHP&nbsp;a few months ago. Hack developers produced a specification
+    for the language [&#8230;]"
 ---
 
 ![Hack Logo](/static/images/posts/Screenshot-2015-02-18-10.07.47.png)

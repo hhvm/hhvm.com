@@ -1,10 +1,43 @@
 ---
 author: fred
-comments: true
 layout: post
 title: HHVM 3.3.0
 category: blog
 permalink: /blog/6239/hhvm-3-3-0
+comments:
+- id: 264989
+  author: netroby
+  date: '2014-09-29 19:53:13 +0000'
+  date_gmt: '2014-09-30 02:53:13 +0000'
+  content: Please support CentOS 5 &#47;CentOS 6 native package rpm, thanks.
+- id: 276251
+  author: Compile HHVM 3.3 on FreeBSD 10 - Learning On Demand
+  date: '2014-10-13 00:19:53 +0000'
+  date_gmt: '2014-10-13 07:19:53 +0000'
+  content: "[&#8230;] I have access to vps that capable to run FreeBSD 10 64 bit I
+    decide to take a ride and see how far (hhvm 3.3) and I can go. At least when I
+    have to re-run the test I can see where I [&#8230;]"
+- id: 284555
+  author: Sergey
+  date: '2014-10-22 01:48:01 +0000'
+  date_gmt: '2014-10-22 08:48:01 +0000'
+  content: Hello, please port it for FreeBSD! :) Thank You
+- id: 366269
+  author: Patrick
+  date: '2015-02-10 01:20:23 +0000'
+  date_gmt: '2015-02-10 09:20:23 +0000'
+  content: Vote for FreeBSD as well!
+- id: 465971
+  author: Richman
+  date: '2015-04-27 21:23:42 +0000'
+  date_gmt: '2015-04-28 04:23:42 +0000'
+  content: Vote for FreeBSD as well!
+- id: 480779
+  author: HHVM mit erstem LTS-Release - entwickler.de
+  date: '2015-05-08 02:38:04 +0000'
+  date_gmt: '2015-05-08 09:38:04 +0000'
+  content: "[&#8230;] alle Neuerungen, wie beispielsweise &uuml;ber die neuen XDebug-Funktionialit&auml;ten,
+    bekommt man in der Release-Ank&uuml;ndigung oder im [&#8230;]"
 ---
 
 Today we released [HHVM 3.3.0](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM), the first of our releases with [long term support](http://hhvm.com/blog/6083/hhvm-long-term-support) (until the August 13th 2015 release - potentially 3.9); some of the highlights:

@@ -1,10 +1,64 @@
 ---
 author: jwatzman
-comments: true
 layout: post
 title: HHVM 3.8.0
 category: blog
 permalink: /blog/9803/hhvm-3-8-0
+comments:
+- id: 547073
+  author: Steve Diện
+  date: '2015-07-13 18:05:51 +0000'
+  date_gmt: '2015-07-14 01:05:51 +0000'
+  content: "how to update from hhvm 3.7.3 to 3.8.0? on\r\nmy unbuntu server"
+- id: 547175
+  author: Simon
+  date: '2015-07-13 20:11:15 +0000'
+  date_gmt: '2015-07-14 03:11:15 +0000'
+  content: Beyond the performance improvements, 3.8 is the first stable release to
+    include the Proxygen server :)
+- id: 547325
+  author: Josh Watzman
+  date: '2015-07-13 22:59:55 +0000'
+  date_gmt: '2015-07-14 05:59:55 +0000'
+  content: If you used the official Ubuntu packages and repository I linked above,
+    you can update it like any other package.
+- id: 547343
+  author: hossein
+  date: '2015-07-13 23:20:32 +0000'
+  date_gmt: '2015-07-14 06:20:32 +0000'
+  content: sudo apt-get update
+- id: 547661
+  author: gmagana
+  date: '2015-07-14 08:12:47 +0000'
+  date_gmt: '2015-07-14 15:12:47 +0000'
+  content: Ooohhh... where can we learn all about Proxygen as bundled in HHVM?
+- id: 547793
+  author: Josh Watzman
+  date: '2015-07-14 14:36:07 +0000'
+  date_gmt: '2015-07-14 21:36:07 +0000'
+  content: We updated the post with a one-liner about the proxygen server; more info
+    to come later.
+- id: 547973
+  author: hhvm-rocks
+  date: '2015-07-15 00:30:24 +0000'
+  date_gmt: '2015-07-15 07:30:24 +0000'
+  content: Thanks Simon, to let us know about the new feature. That probably means
+    that we can drop apache http&#47;nginx.
+- id: 548123
+  author: Stef Rezoloco
+  date: '2015-07-15 04:22:12 +0000'
+  date_gmt: '2015-07-15 11:22:12 +0000'
+  content: "apt-get update \r\nand\r\napt-get upgrade"
+- id: 548405
+  author: Fred Emmott
+  date: '2015-07-15 10:31:05 +0000'
+  date_gmt: '2015-07-15 17:31:05 +0000'
+  content: 'I wrote up a few things to consider on the reddit thread: https:&#47;&#47;www.reddit.com&#47;r&#47;PHP&#47;comments&#47;3ddg2g&#47;hhvm_38_includes_the_proxygen_http_server_unlike&#47;ct4c2cs'
+- id: 549341
+  author: Stefan Parker
+  date: '2015-07-16 09:21:25 +0000'
+  date_gmt: '2015-07-16 16:21:25 +0000'
+  content: What a great birthday present. Thanks!
 ---
 
 We're happy to announce that [HHVM 3.8.0](https://github.com/facebook/hhvm/tree/HHVM-3.8.0) is finally available. You can, as always, try one of our [prebuilt packages for Ubuntu and Debian](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-for-HHVM), or [build from source](https://github.com/facebook/hhvm/wiki/Building-and-Installing-HHVM). (As of this writing, the packages are still building, so if a 3.8.0 package isn't available for your supported distro, hold tight!)

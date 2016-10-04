@@ -1,10 +1,20 @@
 ---
 author: sgolemon
-comments: true
 layout: post
 title: WordPress 3.4.2 running on HHVM
 category: blog
 permalink: /blog/3089/wordpress-3-4-2-running-on-hiphop-hhvm
+comments:
+- id: 11
+  author: Jess Portnoy
+  date: '2013-10-07 04:41:17 +0000'
+  date_gmt: '2013-10-07 11:41:17 +0000'
+  content: |-
+    Hi,
+
+    One step the guide misses is:
+    # mkdir &#47;var&#47;log&#47;hhvm&#47;
+    or any other path that is set in hhvm.hdf
 ---
 
 ![Heated seats](/static/images/posts/dough_burn-300x200.jpg)

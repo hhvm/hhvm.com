@@ -1,10 +1,376 @@
 ---
 author: joelm
-comments: true
 layout: post
 title: We are the 98.5% (and the 16%)
 category: blog
 permalink: /blog/2813/we-are-the-98-5-and-the-16
+comments:
+- id: 2279
+  author: Yermo
+  date: '2013-12-19 10:49:24 +0000'
+  date_gmt: '2013-12-19 18:49:24 +0000'
+  content: |-
+    May I suggest, sometime during the 2014 push, putting some efforts into improving documentation? From a users&#47;developers point of view that's the largest drawback right now and I suspect is keeping quite a few people from trying the platform.  (It took me many many hours of trial and error to get the platform running my site.)
+
+    If more accessible and organized documentation were available, it would go a very long way to getting additional sites using the platform and would draw more help into the project.
+
+    I would suggest the same for development docs. While the code is very well organized it is largely devoid of comments and there's little in terms of overview documentation making it quite time consuming for someone to come in and contribute meaningfully to the project. It would also pay dividends by freeing the developers from having to answer so many repeat questions. :)
+- id: 2285
+  author: juicybacon
+  date: '2013-12-19 10:55:34 +0000'
+  date_gmt: '2013-12-19 18:55:34 +0000'
+  content: One question. Did the tests fail because some functions are not coded&#47;broken
+    or just general runtime borkyness?
+- id: 2291
+  author: Joel Marcey
+  date: '2013-12-19 10:58:19 +0000'
+  date_gmt: '2013-12-19 18:58:19 +0000'
+  content: 'That is a high priority item for the HHVM team in 2014 and, actually,
+    my personal #1 (or at least #1A) priority item. I will be diving neck deep into
+    documentation come January.'
+- id: 2297
+  author: Nick
+  date: '2013-12-19 11:06:53 +0000'
+  date_gmt: '2013-12-19 19:06:53 +0000'
+  content: Very impressed with how much effort is being put into this.  MUCH better
+    than HipHop.  Keep up the good work!
+- id: 2303
+  author: Yermo
+  date: '2013-12-19 11:10:39 +0000'
+  date_gmt: '2013-12-19 19:10:39 +0000'
+  content: Excellent!
+- id: 2309
+  author: Paul Tarjan
+  date: '2013-12-19 11:11:59 +0000'
+  date_gmt: '2013-12-19 19:11:59 +0000'
+  content: Mostly some functions haven't been written yet, or don't behave the same
+    way in corner cases.
+- id: 2315
+  author: asad hasan
+  date: '2013-12-19 11:38:05 +0000'
+  date_gmt: '2013-12-19 19:38:05 +0000'
+  content: Great Job!!! keep up the good work guys.
+- id: 2321
+  author: Marco Pivetta
+  date: '2013-12-19 12:08:18 +0000'
+  date_gmt: '2013-12-19 20:08:18 +0000'
+  content: "I'm starting to introduce HHVM in all my build matrixes - works awesome
+    except for edge cases! \n\nKeep up with the good work!"
+- id: 2327
+  author: Riku
+  date: '2013-12-19 13:04:45 +0000'
+  date_gmt: '2013-12-19 21:04:45 +0000'
+  content: Very interested in this, keep up the good work guys!
+- id: 2333
+  author: dandy
+  date: '2013-12-19 13:10:59 +0000'
+  date_gmt: '2013-12-19 21:10:59 +0000'
+  content: This is good. but where is Wordpress?
+- id: 2339
+  author: Louis
+  date: '2013-12-19 14:09:49 +0000'
+  date_gmt: '2013-12-19 22:09:49 +0000'
+  content: I expect WordPress already has 100% or nearly so. When the HHVM blog first
+    started, they gave plenty of instructions on how to get Wordpress running on HHVM.
+    In addition, they use Wordpress to power the blog and they also use HHVM for the
+    site. So... Wordpress is kind of a given ;-)
+- id: 2345
+  author: Jeremy Wilson
+  date: '2013-12-19 14:25:32 +0000'
+  date_gmt: '2013-12-19 22:25:32 +0000'
+  content: I'd like to see Redis and PostgreSQL support.
+- id: 2351
+  author: Brandon DuRette
+  date: '2013-12-19 14:39:19 +0000'
+  date_gmt: '2013-12-19 22:39:19 +0000'
+  content: WordPress is functional on HHVM, but the test suite is not at 100%. However,
+    that's only part of the story. Plugins and themes in the WordPress ecosystem also
+    depend on PHP parity. The testing matrix for the entire WP ecosystem blows up
+    pretty quickly.
+- id: 2357
+  author: Joel Marcey
+  date: '2013-12-19 15:05:59 +0000'
+  date_gmt: '2013-12-19 23:05:59 +0000'
+  content: 'Yeah, we know Wordpress is quite important and quite popular. :) The reason
+    it did not make the cut for this round was the more complicated configuration.
+    The testing requires an extra config file + database setup and access. We tried
+    to stick with popular frameworks that ran phpunit tests "straight out of the box"
+    so to speak, with minimal configuration changes. Our test runner that we created
+    and used didn''t handle that case... but we will get it there. Mediawiki initially
+    had this problem, but then they showed us an --exclude-group=Database option that
+    we used. Btw, I am getting the unit tests for Wordpress from here: https:&#47;&#47;github.com&#47;kurtpayne&#47;wordpress-unit-tests
+    which seemed to be the best mirror I could find on Github.'
+- id: 2363
+  author: Paul M. Jones
+  date: '2013-12-19 15:29:00 +0000'
+  date_gmt: '2013-12-19 23:29:00 +0000'
+  content: |-
+    I'd like to get the Aura components ( https:&#47;&#47;github.com&#47;auraphp&#47; ) included in this suite. How does one do so?
+
+    Many thanks to everyone involved here.
+- id: 2369
+  author: Simon
+  date: '2013-12-19 17:10:37 +0000'
+  date_gmt: '2013-12-20 01:10:37 +0000'
+  content: Redis support is already available and there's a <a href="https:&#47;&#47;github.com&#47;pocketRent&#47;hhvm-pgsql"
+    rel="nofollow">PostgreSQL<&#47;a> extension you can use.
+- id: 2375
+  author: Nitin
+  date: '2013-12-19 19:55:39 +0000'
+  date_gmt: '2013-12-20 03:55:39 +0000'
+  content: You guys did a awesome Job !! I would suggest you to work on its documentation,
+    This is the only thing HHVM needs. You Rock!
+- id: 2381
+  author: Paul Tarjan
+  date: '2013-12-19 20:17:57 +0000'
+  date_gmt: '2013-12-20 04:17:57 +0000'
+  content: Send us a pull request for the test script we linked to.
+- id: 2387
+  author: Joel Marcey
+  date: '2013-12-19 20:22:45 +0000'
+  date_gmt: '2013-12-20 04:22:45 +0000'
+  content: Documentation is high priority for the team in 2014, starting in January
+    :-)
+- id: 2393
+  author: wwbmmm
+  date: '2013-12-19 20:27:01 +0000'
+  date_gmt: '2013-12-20 04:27:01 +0000'
+  content: 赞！
+- id: 2399
+  author: Randall Helzerman
+  date: '2013-12-19 21:01:45 +0000'
+  date_gmt: '2013-12-20 05:01:45 +0000'
+  content: "Congrats on meeting your goals!   We don't do PHP, but we do have some
+    big C++ programs; are there any generic tools optimizing the cache profile of
+    your executable?  \n\nHow exactly did you guys do that?   Sounds like an interesting
+    story, if its not a secret of the guild."
+- id: 2405
+  author: Aris Setyawan
+  date: '2013-12-19 21:35:47 +0000'
+  date_gmt: '2013-12-20 05:35:47 +0000'
+  content: |-
+    Hi,
+
+    So a PHP framework which doesn't have PHPUnit base unit-testing, can't join HHVM parity test?
+- id: 2411
+  author: 'Facebooks PHP-Compiler HipHop 2.3 schneller und kompatibler | Klaus Ahrens:
+    News, Tipps, Tricks und Fotos'
+  date: '2013-12-20 01:50:08 +0000'
+  date_gmt: '2013-12-20 09:50:08 +0000'
+  content: "[&#8230;] 2.3 hat HHVM jetzt in Sachen Kompatibilit&auml;t einen weiteren
+    gro&szlig;en Schritt nach vorn gemacht und absolviert rund 98,58 Prozent aller
+    Unit-Tests von 21 verschiedenen PHP-Projekten. Immer mehr der Open-Source-Projekte
+    unterst&uuml;tzt HHVM zu 100 [&#8230;]"
+- id: 2417
+  author: Joeri
+  date: '2013-12-20 02:43:40 +0000'
+  date_gmt: '2013-12-20 10:43:40 +0000'
+  content: |-
+    Really nice to see hhvm improving. As someone who has been programming php professionally for almost a decade it's great to see all the refreshing new ideas going on now in the php landscape.
+
+    Are there plans to support oci8? I'm curious to see how hhvm handles our AutoCAD to SVG conversion code, but it's tied pretty deep to our oracle DB. I would also be interested to take our whole app for a spin, but it's 500 kloc of oracle-based code so again i can't do anything useful until there is oci8 support.
+- id: 2423
+  author: CeBe
+  date: '2013-12-20 09:10:05 +0000'
+  date_gmt: '2013-12-20 17:10:05 +0000'
+  content: Great news! Once travis-ci has fixed some issues with PHPUnit I am going
+    to run <a href="https:&#47;&#47;github.com&#47;yiisoft&#47;yii" rel="nofollow">yii<&#47;a>
+    and <a href="https:&#47;&#47;github.com&#47;yiisoft&#47;yii2" rel="nofollow">yii2<&#47;a>
+    against hhvm again and will report all things that are stopping us from having
+    100% test passing! :-)
+- id: 2429
+  author: Paul Tarjan
+  date: '2013-12-20 18:14:14 +0000'
+  date_gmt: '2013-12-21 02:14:14 +0000'
+  content: When I cut 2.3.2 I'll include the fix for phpunit
+- id: 2435
+  author: Bert Maher
+  date: '2013-12-20 18:24:35 +0000'
+  date_gmt: '2013-12-21 02:24:35 +0000'
+  content: Yes!  We actually built a pretty nice toolchain for optimizing our binary
+    layout, which we will (hopefully) write up here pretty soon.  I do have some hope
+    that it will apply to other big executables besides HHVM.
+- id: 2441
+  author: Kevin
+  date: '2013-12-21 07:44:55 +0000'
+  date_gmt: '2013-12-21 15:44:55 +0000'
+  content: |-
+    Running Drupal
+
+    http:&#47;&#47;translate.google.com&#47;translate?sl=auto&amp;tl=en&amp;js=n&amp;prev=_t&amp;hl=en&amp;ie=UTF-8&amp;u=http%3A%2F%2Fweb-rocker.de%2F2013%2F12%2Fdrupal-7-hhvm-vs-php-55-zend-opcache
+- id: 2447
+  author: Darren L
+  date: '2013-12-22 18:28:16 +0000'
+  date_gmt: '2013-12-23 02:28:16 +0000'
+  content: This seems pretty damn awesome and fun!
+- id: 2453
+  author: Yii-Framework unter HHVM &rsaquo; isFett.com
+  date: '2013-12-27 14:02:47 +0000'
+  date_gmt: '2013-12-27 22:02:47 +0000'
+  content: "[&#8230;] Laut&nbsp;http:&#47;&#47;www.hhvm.com&#47;blog&#47;2813&#47;we-are-the-98-5-and-the-16
+    vom 19.12.2013 werden 99,11% aller Unit-Tests mit dem Yii-Framework fehlerfrei
+    abgeschlossen. Ein Grund mehr sich hier die Performance-Unterschiede anzusehen.
+    Daf&uuml;r erstellen wir ein kleines Test-Projekt. [&#8230;]"
+- id: 2459
+  author: Magento-Neuigkeiten der Wochen 51&#47;52 2013
+  date: '2013-12-28 23:13:05 +0000'
+  date_gmt: '2013-12-29 07:13:05 +0000'
+  content: "[&#8230;] nicht nur weiter an der Performance und Kompatibilit&auml;t
+    geschraubt, es wurde auch Magento 2 in die Liste der getesteten Software aufgenommen.
+    Au&szlig;erdem kann HHVM nun auch als FastCGI-Modul hinter einem herk&ouml;mmlichen
+    Webserver [&#8230;]"
+- id: 2465
+  author: Grim
+  date: '2013-12-30 03:20:34 +0000'
+  date_gmt: '2013-12-30 11:20:34 +0000'
+  content: How about symfony2? I try use hhvm fastcgi mode ,but it's not ok. How use
+    symfony2 on hhvm?
+- id: 2471
+  author: Sascha
+  date: '2014-01-01 03:35:43 +0000'
+  date_gmt: '2014-01-01 11:35:43 +0000'
+  content: |-
+    Can you clarify what tests you were running with Drupal and which version?
+
+    I currently have two failing PHPUnit tests, created an issue on our side to improve&#47;track HHVM compatibility: https:&#47;&#47;drupal.org&#47;node&#47;2165377
+- id: 2477
+  author: HHVM HipHop Virtual Machine vs Apache2 |
+  date: '2014-01-02 14:24:49 +0000'
+  date_gmt: '2014-01-02 22:24:49 +0000'
+  content: "[&#8230;] Warum also nicht sofort komplett auf HHVM umstellen? Die Frage
+    ist leicht beantwortet, da unter HHVM noch nicht alle Module und Plattformen kompatibel
+    sind. Eine aktuelle &Uuml;bersicht findet ihr hier. [&#8230;]"
+- id: 2483
+  author: Ajinkya
+  date: '2014-01-09 22:29:56 +0000'
+  date_gmt: '2014-01-10 06:29:56 +0000'
+  content: PHP is quite underrated, mostly from Java guys, but look at numbers, its
+    the king.
+- id: 2489
+  author: qianzhihe
+  date: '2014-01-11 01:12:11 +0000'
+  date_gmt: '2014-01-11 09:12:11 +0000'
+  content: Great news!  thank you
+- id: 2495
+  author: How will HHVM influence PHP? &laquo; {5} Setfive &#8211; Talking to the
+    World
+  date: '2014-01-14 10:27:54 +0000'
+  date_gmt: '2014-01-14 18:27:54 +0000'
+  content: "[&#8230;] the last few weeks, there&#8217;s been a slew of HHVM related
+    news from the &#8220;We are the 98.5%&#8221; post from the HHVM team to the Our
+    HHVM Roadmap from the Doctrine team. With the increasing [&#8230;]"
+- id: 2501
+  author: Christopher Svanefalk
+  date: '2014-01-15 23:02:33 +0000'
+  date_gmt: '2014-01-16 07:02:33 +0000'
+  content: "Fantastic work guys! \n\nMy company is already optimising our PHP codebase
+    for full HHVM compatibility, and we plan to deploy it on our production servers
+    before summer 2014.\n\nYou are doing great things for PHP and the community, and
+    I very much look forward to see how HHVM will progress during the year :)"
+- id: 2507
+  author: ming
+  date: '2014-01-22 12:56:30 +0000'
+  date_gmt: '2014-01-22 20:56:30 +0000'
+  content: |-
+    Great stuffs.
+
+    BTW, your tests include phpmyadmin, but, I get only blank screen using the latest build running as fastcgi daemon?  Is there special configuration?
+- id: 2513
+  author: Paul Tarjan
+  date: '2014-01-22 21:49:30 +0000'
+  date_gmt: '2014-01-23 05:49:30 +0000'
+  content: There are fixed in trunk and not in the release that should make it work.
+    Can you try the `hhvm-nightly` package and see if that works for you?
+- id: 2519
+  author: Ming
+  date: '2014-01-23 09:10:28 +0000'
+  date_gmt: '2014-01-23 17:10:28 +0000'
+  content: "Thanks Paul. \n\nThe nightly build works and seems mostly functional.
+    \ There is a segmentation fault and I will file that to the bugs forum.\n\nAnother
+    question.  I understand that HHVM does not implement every modules and&#47;or
+    drivers that PHP offers, how do I know what is &#47; is not included, and, is
+    there any tools to check against the webapp codes?"
+- id: 2525
+  author: Paul Tarjan
+  date: '2014-01-23 14:17:08 +0000'
+  date_gmt: '2014-01-23 22:17:08 +0000'
+  content: function_exists() is a nice to know, and if you like to trust docs you
+    can try https:&#47;&#47;github.com&#47;facebook&#47;hhvm&#47;wiki&#47;Extensions
+- id: 2531
+  author: Facebook HHVM 团队封闭开发三周的成果展 &#124; 我爱互联网
+  date: '2014-01-29 01:13:24 +0000'
+  date_gmt: '2014-01-29 09:13:24 +0000'
+  content: "[&#8230;] 　　英文原文：we-are-the-98-5-and-the-16 [&#8230;]"
+- id: 2537
+  author: 'HHVM: The Next Six Months &laquo; HipHop Virtual Machine'
+  date: '2014-02-24 17:27:56 +0000'
+  date_gmt: '2014-02-25 01:27:56 +0000'
+  content: "[&#8230;] We&rsquo;ve been making steady progress on HHVM&rsquo;s compatibility&nbsp;with&nbsp;PHP&nbsp;in
+    the wild, but we still have a lot of work ahead of us. We&rsquo;re using&nbsp;unit
+    test pass rates&nbsp;as a proxy for success measurement, but you can help by&nbsp;adding
+    HHVM to your Travis configuration, and reporting bugs and issues through&nbsp;GitHub.
+    We are resourced&nbsp;to help support a couple of major HHVM deployments, which
+    we hope has the side effect of exposing us to &#8220;non-Facebook&#8221; deployment
+    and maintenance challenges. [&#8230;]"
+- id: 2543
+  author: Implementing MySQLi &laquo; HipHop Virtual Machine
+  date: '2014-02-26 12:12:21 +0000'
+  date_gmt: '2014-02-26 20:12:21 +0000'
+  content: "[&#8230;] After warming up with the parser, I was ready to start my big
+    project: implement MySQLi. This has been a long requested feature for HHVM. And,
+    this extension is required to help meet our compatibility goals. [&#8230;]"
+- id: 2549
+  author: Tracking Parity &laquo; HipHop Virtual Machine
+  date: '2014-03-03 14:53:07 +0000'
+  date_gmt: '2014-03-03 22:53:07 +0000'
+  content: "[&#8230;] runner are a nice representative sample of real world PHP (and
+    we are adding more). We showed a static snapshot of our test parity to these frameworks
+    late last year. As HHVM is continually developed, it is [&#8230;]"
+- id: 3491
+  author: 赵伊凡&#8217;s blog：Facebook推出编程语言&mdash;&mdash;Hack | 赵伊凡&#039;s Blog
+  date: '2014-03-21 07:40:54 +0000'
+  date_gmt: '2014-03-21 14:40:54 +0000'
+  content: "[&#8230;] HHVM仍然是一个PHP运行平台，我们打算继续保持这种方式。事实上，我们正努力达到PHP-5的标准。其中HHVM的首要任务是能够运行未经修改的PHP
+    5的源代码，不仅是为了社区，也因为我们依赖许多第三方PHP底层库。 HHVM现在是一个能同时运行PHP和Hack的平台，所以你可以逐渐体验Hack所带来的新特性。
+    [&#8230;]"
+- id: 404339
+  author: Adeel Ahmad
+  date: '2015-03-07 09:22:12 +0000'
+  date_gmt: '2015-03-07 17:22:12 +0000'
+  content: Although you have made progress with PHP compatibility, its a hard hitting
+    fact that still you have to go a long way.  I am using HHVM and still it requires
+    much to be done.
+- id: 480701
+  author: 'PHP 6: Zend Engine oder HHVM? - entwickler.de'
+  date: '2015-05-08 02:19:58 +0000'
+  date_gmt: '2015-05-08 09:19:58 +0000'
+  content: "[&#8230;] ohne Unterlass daran, die Abdeckung der wichtigsten Frameworks
+    und Tools weiter zu steigern &ndash; zahlreiche Projekte sind bereits zu 100 Prozent
+    mit der HHVM kompatibel. Doch auch die Projekte selbst unternehmen gro&szlig;e
+    Anstrengungen, ihre Codebasis f&uuml;r HipHop zu [&#8230;]"
+- id: 480737
+  author: HHVM in der echten PHP-Welt - entwickler.de
+  date: '2015-05-08 02:27:24 +0000'
+  date_gmt: '2015-05-08 09:27:24 +0000'
+  content: "[&#8230;] runner are a nice representative sample of real world PHP (and
+    we are adding more). We showed a static snapshot of our test parity to these frameworks
+    late last year. As HHVM is continually developed, it is [&#8230;]"
+- id: 806135
+  author: Si desarrollas en PHP y tienes un rato, prueba HHVMSopa de bits
+  date: '2016-02-23 03:24:50 +0000'
+  date_gmt: '2016-02-23 11:24:50 +0000'
+  content: "[&#8230;] el pasado 19 de Diciembre se publicaba en el blog de HHVM un
+    art&iacute;culo sobre la ejecuci&oacute;n de pruebas unitarias de diversos frameworks
+    en HHVM. Desde el inicio de esas pruebas hasta el resultado final, la mejora ha
+    sido notable en algunos [&#8230;]"
+- id: 806141
+  author: HHVM en Magento y SymfonySopa de bits
+  date: '2016-02-23 03:25:07 +0000'
+  date_gmt: '2016-02-23 11:25:07 +0000'
+  content: "[&#8230;] m&aacute;s estrellas en GitHub, es otro de los agraciados&nbsp;con
+    la mejora de rendimiento. Adem&aacute;s de las mejoras publicadas en los tests
+    del blog de HHVM, hay otras pruebas m&aacute;s b&aacute;sicas realizadas con ApacheBench.
+    Digna de menci&oacute;n es esta [&#8230;]"
 ---
 
 On November 4th, the HHVM team went on a [3-week performance and parity lockdown](http://www.hhvm.com/blog/1499/locking-down-for-performance-and-parity). The lockdown officially ended on November 22nd. Overall, this lockdown was a qualified success. Success was measured on 3 vectors:

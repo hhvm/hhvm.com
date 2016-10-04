@@ -1,6 +1,5 @@
 ---
 author: sgolemon
-comments: true
 layout: post
 title: The AdminServer
 category: blog

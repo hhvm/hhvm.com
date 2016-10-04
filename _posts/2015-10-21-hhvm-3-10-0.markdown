@@ -1,10 +1,30 @@
 ---
 author: jwatzman
-comments: true
 layout: post
 title: HHVM 3.10.0
 category: blog
 permalink: /blog/10379/hhvm-3-10-0
+comments:
+- id: 811769
+  author: Benoit Hudson
+  date: '2016-02-29 08:05:07 +0000'
+  date_gmt: '2016-02-29 16:05:07 +0000'
+  content: Where can we find discussion of what's in each new version after 3.10?
+    There haven't been any blog posts or release notes posted for 3.11 or 3.12, nor
+    is there a NEWS file anymore.
+- id: 812627
+  author: Josh Watzman
+  date: '2016-03-01 02:57:30 +0000'
+  date_gmt: '2016-03-01 10:57:30 +0000'
+  content: "We held back the 3.11 announcement since there were some problems with
+    3.11.0 and we were going to post it with 3.11.1, but somehow that never happened.
+    The biggest change in 3.11 was the PHP7 support, which you can read about here:
+    http:&#47;&#47;hhvm.com&#47;blog&#47;10859&#47;php-7-support\r\n\r\nAs for 3.12,
+    I'm not sure -- I'm not working on HHVM anymore but can follow up with the team.
+    In the meantime, you can look at the comparison of the git branches for the full
+    firehose of changes -- it's a lot to take in, but if you need some list of changes,
+    might be useful: <a href=\"https:&#47;&#47;github.com&#47;facebook&#47;hhvm&#47;compare&#47;HHVM-3.11...HHVM-3.12\"
+    rel=\"nofollow\">https:&#47;&#47;github.com&#47;facebook&#47;hhvm&#47;compare&#47;HHVM-3.11...HHVM-3.12</a>"
 ---
 
 HHVM 3.10.0 is out! You can [get it from the usual places](https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-for-HHVM).

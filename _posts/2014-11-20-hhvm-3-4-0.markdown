@@ -1,10 +1,38 @@
 ---
 author: joelm
-comments: true
 layout: post
 title: HHVM 3.4.0
 category: blog
 permalink: /blog/6899/hhvm-3-4-0
+comments:
+- id: 310499
+  author: Rob
+  date: '2014-12-06 14:07:21 +0000'
+  date_gmt: '2014-12-06 22:07:21 +0000'
+  content: I have recently upgraded HHVM from 3.3.0 LTS to 3.4.0 on my ubuntu server
+    and now I am having massive memory leaks. How can I downgrade to 3.3.0 LTS again?
+- id: 310571
+  author: Joel Marcey
+  date: '2014-12-06 16:43:30 +0000'
+  date_gmt: '2014-12-07 00:43:30 +0000'
+  content: |-
+    Hi Rob,
+
+    Can you give us some more specifics about what type of memory leaks you are seeing? We have been working hard on memory lately and want to know
+    places we possibly missed. File an issue at https:&#47;&#47;github.com&#47;facebook&#47;hhvm&#47;issues
+
+    Did you `apt-get hhvm` to upgrade? I would think you could `apt-get install hhvm=3.3` (or something like that), although I haven't tried that before. You might want to go on #hhvm on Freenode IRC to see if other users have tried a downgrade. I normally build from master.
+- id: 336395
+  author: Aftab Naveed
+  date: '2015-01-10 17:42:55 +0000'
+  date_gmt: '2015-01-11 01:42:55 +0000'
+  content: "How do we upgrade from 3.3.1 to HHVM 3.4.1  using Ubuntu 14.04 LTS ? \r\n\r\nThank
+    you"
+- id: 339497
+  author: 'Release 820: New HHVM version: 3.4.2! - Hypernode Knowledge Base'
+  date: '2015-01-15 07:28:01 +0000'
+  date_gmt: '2015-01-15 15:28:01 +0000'
+  content: "[&#8230;] Also see the Facebook blog about the new HHVM release. [&#8230;]"
 ---
 
 We have released [HHVM 3.4.0](https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM), the first minor point release after our HHVM 3.3.0 LTS. This branch contains updates from our T-Pain, Ultramagnetic, Vanilla Ice and Will.i.am internal releases.

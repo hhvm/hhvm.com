@@ -1,10 +1,56 @@
 ---
 author: ptarjan
-comments: true
 layout: post
 title: HHVM on Heroku
 category: blog
 permalink: /blog/1379/hhvm-on-heroku
+comments:
+- id: 1205
+  author: Dennis
+  date: '2013-10-30 12:28:40 +0000'
+  date_gmt: '2013-10-30 19:28:40 +0000'
+  content: Do you have plans for HHVM on OpenShift?
+- id: 1211
+  author: Paul Tarjan
+  date: '2013-10-30 13:03:19 +0000'
+  date_gmt: '2013-10-30 20:03:19 +0000'
+  content: I haven't used OpenShift before, but if get it working there, please let
+    us know.
+- id: 1217
+  author: Dean Herbert
+  date: '2013-11-25 01:17:14 +0000'
+  date_gmt: '2013-11-25 09:17:14 +0000'
+  content: I'm always curious when reading the performance comparisons to base php
+    &ndash; are you using a bytecode compiler like OpCache in 5.5 for these comparisons?
+    That makes a huge difference.
+- id: 1223
+  author: Jared Kip
+  date: '2013-12-04 18:19:58 +0000'
+  date_gmt: '2013-12-05 02:19:58 +0000'
+  content: |-
+    You guys have done really good work on this project.
+    I found a pretty big parity issue in the magic method abilities (vs Zend anyway).
+    http:&#47;&#47;jaredkipe.com&#47;blog&#47;website-development&#47;silverstripe-on-hhvm-part-two&#47;
+- id: 1229
+  author: Дайджест интересных новостей и материалов из мира PHP (20 октября &mdash;
+    10 ноября 2013) | Juds
+  date: '2013-12-15 01:02:49 +0000'
+  date_gmt: '2013-12-15 09:02:49 +0000'
+  content: "[&#8230;] HHVM на Heroku&nbsp;&mdash; Использование HHVM теперь возможно
+    на популярной облачной платформе Heroku. [&#8230;]"
+- id: 9527
+  author: HHVM vs Zend | Feng&#039;s Blog
+  date: '2014-03-31 18:53:26 +0000'
+  date_gmt: '2014-04-01 01:53:26 +0000'
+  content: "[&#8230;] flexibility that PHP provides. HHVM runs much of the world&rsquo;s&nbsp;existing
+    PHP.&nbsp;Developers&nbsp;and&nbsp;hosts&nbsp;are adopting HHVM.&nbsp;We are aware
+    of&nbsp;minor incompatibilities (please&nbsp;open issues&nbsp;when you find [&#8230;]"
+- id: 183839
+  author: Teng
+  date: '2014-06-26 09:11:27 +0000'
+  date_gmt: '2014-06-26 16:11:27 +0000'
+  content: 'I made a OpenShift cartridge consisting of HHVM in FastCGI mode and Nginx.
+    Please kindly take a look at it: https:&#47;&#47;github.com&#47;tengyifei&#47;openshift-cartridge-nginx-hhvm'
 ---
 
 Do you use [heroku](http://heroku.com) to host your PHP app and want to save 2x-10x dynos? Or serve user requests 2x-10x faster? I'm happy to announce that you can now use HHVM on heroku. You should clone your app and try it out before pushing to production as HHVM doesn't support [every possible use of PHP](http://www.hhvm.com/blog/875/wow-hhvm-is-fast-too-bad-it-doesnt-run-my-code) (yet).

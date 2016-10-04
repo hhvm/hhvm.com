@@ -1,10 +1,21 @@
 ---
 author: ptarjan
-comments: true
 layout: post
 title: Joining, Retirement, Testing, and Bankruptcy
 category: blog
 permalink: /blog/575/joining-retirement-testing-and-bankruptcy
+comments:
+- id: 479
+  author: Joseff B
+  date: '2013-05-17 20:49:33 +0000'
+  date_gmt: '2013-05-18 03:49:33 +0000'
+  content: Hi I'm wondering if Mongo DB is supported now since you closed all the
+    Mongo DB tickets.
+- id: 485
+  author: Rocky Sharma
+  date: '2013-06-28 08:16:32 +0000'
+  date_gmt: '2013-06-28 15:16:32 +0000'
+  content: URL-Rewriting at some point is ache !
 ---
 
 First of all, hi. I recently joined the team as you could probably see from my [plethora](https://github.com/facebook/hiphop-php/graphs/contributors) of commits to github. I first fixed up [closures a bit](https://github.com/facebook/hiphop-php/commit/4d7004e955c764c5e7474c4b366d3606348f61eb) and moved our "PHP tests in C++" [to have one fewer language](https://github.com/facebook/hiphop-php/commit/eca135cb31b54c4e69fc09f73c8756846f18b935). I'll be doing many exciting things for hiphop but I'll be mostly caring about making it incredibly easy for anyone to use for any PHP code. So please bug me if it doesn't run your favorite piece of code.

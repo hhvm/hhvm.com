@@ -1,10 +1,238 @@
 ---
 author: sgolemon
-comments: true
 layout: post
 title: Async - Cooperative Multitasking for Hack
 category: blog
 permalink: /blog/7091/async-cooperative-multitasking-for-hack
+comments:
+- id: 309329
+  author: Carl G
+  date: '2014-12-05 10:50:15 +0000'
+  date_gmt: '2014-12-05 18:50:15 +0000'
+  content: "This is cool. But, going a little off-topic, I'm really starting to wonder
+    why you've even released Hack to the public.\r\n\r\nI'm a professional, and using
+    a new language puts a dent in my productivity for a while.\r\n\r\nGoing backwards
+    from an advanced IDE like phpStorm to a text editor and package of CLI tools is
+    another huge productivity hit.\r\n\r\nThose combined mean I'll never be able to
+    adopt Hack unless you get us some IDE support.\r\n\r\nI know most other devs are
+    in the same boat. You're basically talking to yourselves until you release FBIDE
+    or a plugin for phpStorm, Netbeans, or some other PHP-loving IDE.\r\n\r\nThese
+    new features are nice, but maybe you could hit the breaks for a (few?) weeks and
+    just get the IDE out."
+- id: 309359
+  author: Vincent DM
+  date: '2014-12-05 11:16:54 +0000'
+  date_gmt: '2014-12-05 19:16:54 +0000'
+  content: "@Carl G: I can only agree! I don't want to whine, and I sincerely appreciate
+    all the time and effort Facebook and its people are investing into hack, but it's
+    almost tragic how the language is closely watched by many but used by relatively
+    few. Proper IDE support is a vital step to kickstart the community, I think. Until
+    then, I'm sticking with PHP and some nodejs for async stuff..."
+- id: 309371
+  author: Sara Golemon
+  date: '2014-12-05 11:40:29 +0000'
+  date_gmt: '2014-12-05 19:40:29 +0000'
+  content: "AIUI, several editor projects and their communities are working on hack
+    plugins.  IMO these should be in the hands of developers who actually use these
+    tools as they're the best ones for that task.\r\n\r\nAs for FBIDE... yeah... I
+    wish the team responsible for that would get on releasing it too..."
+- id: 309611
+  author: Paul Moss
+  date: '2014-12-05 18:38:38 +0000'
+  date_gmt: '2014-12-06 02:38:38 +0000'
+  content: "So when it the memcached&#47;webscale support due, for 3.5 or 3.6?\r\n\r\nWould
+    this also include memcached which comes with mysql 5.6?\r\n\r\nFinally, does webscale
+    mean mysql 5.6 client as well?\r\n\r\nEssentially, I would love to parallelise
+    my requests for memcached and mysql.  Can't wait really."
+- id: 309989
+  author: Jeroen De Dauw
+  date: '2014-12-06 03:54:42 +0000'
+  date_gmt: '2014-12-06 11:54:42 +0000'
+  content: Another +1 to this. I've been wanting to do some katas in Hack for months
+    now, yet can't bring myself to start without proper IDE support. I want to take
+    a step forewards without taking one or two backwards first.
+- id: 309995
+  author: ip512
+  date: '2014-12-06 04:08:48 +0000'
+  date_gmt: '2014-12-06 12:08:48 +0000'
+  content: "Guzzle has already asynchonous response management (http:&#47;&#47;guzzle.readthedocs.org&#47;en&#47;latest&#47;clients.html#asynchronous-response-handling)\r\nIn
+    which case this asynchronous approach can be preferable over using Guzzle ?"
+- id: 310535
+  author: Brice
+  date: '2014-12-06 15:56:23 +0000'
+  date_gmt: '2014-12-06 23:56:23 +0000'
+  content: "Yes, it would be great to have validation and syntax highlighting working
+    in eclipse with vi + emacs as well.\r\n\r\nIMO -- Eclipse support is the priority
+    as it's the official base of PDT. The commerical projects like intellij, storm,
+    &amp;c could base their support from there.\r\n\r\nTotally excited about hack
+    &amp; hvvm in general! Keep it up."
+- id: 310673
+  author: Sara Golemon
+  date: '2014-12-06 23:05:20 +0000'
+  date_gmt: '2014-12-07 07:05:20 +0000'
+  content: "memcached looks like it'll be relatively soon, though I can't guarantee
+    it'll be in by 3.5.  We'll be using mcrouter as the underlying client library
+    (as libmemcached doesn't have a good async interface), but it should work against
+    anything that supports the memcached protocol...\r\n\r\n\"webscale\" means the
+    async support will require libwebscalesqlclient on the *client* side.  The actual
+    server can be WebscaleSQL, MySQL, MariaDB, or anything which speaks the mysql
+    protocol.\r\n\r\nI can't wait to round out the DB async support either!  Very
+    exciting. :)"
+- id: 310679
+  author: Sara Golemon
+  date: '2014-12-06 23:07:59 +0000'
+  date_gmt: '2014-12-07 07:07:59 +0000'
+  content: I don't know Guzzle well, but glancing through that link, it looks like
+    it's only for http(s) requests.  Hack-Async covers that (via async-curl), but
+    also includes many other types of blocking requests as well.  So personally, I
+    would prefer using Hack-Async, but in the end you want to go for whatever makes
+    sense for your application and your developer(s).
+- id: 310943
+  author: Asynchronous PHP ~ ma.ttias.be
+  date: '2014-12-07 11:05:38 +0000'
+  date_gmt: '2014-12-07 19:05:38 +0000'
+  content: "[&#8230;] A really cool feature landed in HHVM, providing async PHP calls.
+    [&#8230;]"
+- id: 311981
+  author: 'Hack Blog: Async &#8211; Cooperative Multitasking for Hack - Reader'
+  date: '2014-12-08 12:00:12 +0000'
+  date_gmt: '2014-12-08 20:00:12 +0000'
+  content: "[&#8230;] the Hack blog there&#8217;s a new post talking about async,
+    a feature in Hack that allows for code to &#8220;cooperatively multitask&#8221;.
+    This gives the [&#8230;]"
+- id: 312269
+  author: Paul Moss
+  date: '2014-12-08 18:21:44 +0000'
+  date_gmt: '2014-12-09 02:21:44 +0000'
+  content: "Sarah, thanks for the reply and the clarification!\r\n\r\nYou and the
+    guys who work on this totally rock!\r\n\r\nYes, its very exciting, I can't wait!
+    :)"
+- id: 315737
+  author: Fred Emmott
+  date: '2014-12-12 15:07:46 +0000'
+  date_gmt: '2014-12-12 23:07:46 +0000'
+  content: "It would be possible to build this async approach into guzzle.\r\n\r\nAs
+    well as async&#47;await giving a single approach to any kind of blocking request
+    (which will become more useful as we release more), we generally feel that the
+    async&#47;await flow is easier to work with than callbacks, which tend to lead
+    to spaghetti code."
+- id: 317447
+  author: FractalizeR
+  date: '2014-12-15 02:20:12 +0000'
+  date_gmt: '2014-12-15 10:20:12 +0000'
+  content: I wonder, how this will be transpiled into PHP? (https:&#47;&#47;code.facebook.com&#47;posts&#47;398235553660954&#47;announcing-the-hack-transpiler&#47;)
+- id: 318749
+  author: Jesse Cascio
+  date: '2014-12-17 10:54:11 +0000'
+  date_gmt: '2014-12-17 18:54:11 +0000'
+  content: "NOOO!!! you took my blog post haha, I just did this on Dec 1 and it took
+    me so long to figure out how to do it.  \r\n\r\nhttp:&#47;&#47;jessesnet.com&#47;development-notes&#47;2014&#47;hacklang-async-processing&#47;\r\n\r\nThanks
+    for sharing, I'm going to go through this in more detail and see what I could
+    have done better."
+- id: 321539
+  author: Stefan Parker
+  date: '2014-12-21 14:11:45 +0000'
+  date_gmt: '2014-12-21 22:11:45 +0000'
+  content: I've been converting my project to use async in all the memcache-fetching
+    (as in, combining memcache gets) code paths, and I've noticed anecdotally that
+    the web request actually takes longer now. Because this is all locally my data-fetching
+    is essentially 0ms, but is it true that execution time with an async structure
+    is actually (noticeably) slower than without?
+- id: 327683
+  author: Vincent
+  date: '2014-12-29 10:16:26 +0000'
+  date_gmt: '2014-12-29 18:16:26 +0000'
+  content: What was the reasoning behind this style of implementation for async, as
+    opposed to the function callback style?
+- id: 328877
+  author: Jan Oravec
+  date: '2014-12-30 16:22:52 +0000'
+  date_gmt: '2014-12-31 00:22:52 +0000'
+  content: async&#47;await makes it possible to structure asynchronous code in the
+    same way as if it was implemented synchronously, resulting in significantly shorter
+    and more readable code.
+- id: 334151
+  author: PHP Annotated Monthly &ndash; January 2015 | JetBrains PhpStorm Blog
+  date: '2015-01-07 05:28:59 +0000'
+  date_gmt: '2015-01-07 13:28:59 +0000'
+  content: "[&#8230;] Golemon posted about cooperative multitasking in HHVM. Similar
+    to threading, it allows multiple code paths to execute in parallel, yet only one
+    section [&#8230;]"
+- id: 338561
+  author: 'Episode 34: &#47;dev&#47;hell Mashup | PHP Podcasts'
+  date: '2015-01-14 00:43:33 +0000'
+  date_gmt: '2015-01-14 08:43:33 +0000'
+  content: "[&#8230;] Hack&rsquo;s Async stuff [&#8230;]"
+- id: 339143
+  author: Terry Cullen
+  date: '2015-01-14 15:59:59 +0000'
+  date_gmt: '2015-01-14 23:59:59 +0000'
+  content: Is there a list somewhere of what works asynchronously and what doesn't?  Am
+    I correct in thinking that all regular PHP can run async but code that calls extensions
+    (like pdo, redis) needs the extension to be updated to run async?  What about
+    the all the different wrappers in http:&#47;&#47;php.net&#47;manual&#47;en&#47;wrappers.php
+    ?  Can things like file_get_contents() be called async?
+- id: 349559
+  author: Aftab Naveed
+  date: '2015-01-26 16:33:31 +0000'
+  date_gmt: '2015-01-27 00:33:31 +0000'
+  content: if it still uses one CPU core to process the request,  my question is how
+    come it passes control to next task when that core is still busy and waiting for
+    the request to finish? is there any other example which can elaborate this ?
+- id: 378839
+  author: 'Episode 54: Phil is Still Wrong | PHP Podcasts'
+  date: '2015-02-17 00:47:40 +0000'
+  date_gmt: '2015-02-17 08:47:40 +0000'
+  content: "[&#8230;] Hack&#8217;s Async stuff [&#8230;]"
+- id: 439067
+  author: Guilherme Cardoso
+  date: '2015-04-03 21:30:14 +0000'
+  date_gmt: '2015-04-04 04:30:14 +0000'
+  content: Mongodb, that would be a great implementation!
+- id: 480803
+  author: Multitasking in Hack mit async-Feature - entwickler.de
+  date: '2015-05-08 02:40:16 +0000'
+  date_gmt: '2015-05-08 09:40:16 +0000'
+  content: "[&#8230;] der Einsatz von async in der Praxis aussehen kann, beschreibt
+    Sara Golemon ausf&uuml;hrlich und mit zahlreichen Code-Beispielen im HHVM-Blog.
+    Derzeit befindet sich das Feature noch in der aktiven Entwicklung und soll mit
+    HHVM [&#8230;]"
+- id: 511709
+  author: hhvm-rocks
+  date: '2015-06-04 07:36:24 +0000'
+  date_gmt: '2015-06-04 14:36:24 +0000'
+  content: "...await curl_multi_async($mh); allows us to pass control to another...\r\n\r\njust
+    a small correction; it should be \"await curl_multi_await($mh);\""
+- id: 526655
+  author: Aftab Naveed
+  date: '2015-06-16 02:21:00 +0000'
+  date_gmt: '2015-06-16 09:21:00 +0000'
+  content: Sorry I wanted to clarify my question here as that sounds really stupid,
+    comparing to Google Golang concurrency which uses the same core but switches control
+    to another core if required, was wondering if HACK async does similar kind of
+    thing?
+- id: 526661
+  author: Aftab Naveed
+  date: '2015-06-16 02:22:27 +0000'
+  date_gmt: '2015-06-16 09:22:27 +0000'
+  content: Are there any async implementations planned for Guzzle?
+- id: 528545
+  author: Fred Emmott
+  date: '2015-06-18 14:59:54 +0000'
+  date_gmt: '2015-06-18 21:59:54 +0000'
+  content: "That's really up to the Guzzle developers; we don't plan on creating a
+    fork.\r\n\r\nWe do provide async curl and stream primitives."
+- id: 762989
+  author: HHVM Class Undefined SleepWaitHandle - HTML CODE
+  date: '2016-01-16 02:42:34 +0000'
+  date_gmt: '2016-01-16 10:42:34 +0000'
+  content: "[&#8230;] i tried running demo http:&#47;&#47;hhvm.com&#47;blog&#47;7091&#47;async-cooperative-multitasking-for-hack
+    [&#8230;]"
+- id: 770531
+  author: Fred Emmott
+  date: '2016-01-21 11:23:19 +0000'
+  date_gmt: '2016-01-21 19:23:19 +0000'
+  content: 'This blog post is very old; the modern approach is documented here: https:&#47;&#47;docs.hhvm.com&#47;hack&#47;async&#47;utility-functions'
 ---
 
 For several months now, Hack has had a feature available called `async` which enables writing code that cooperatively multitasks. This is somewhat similar to threading, in that multiple code paths are executed in parallel, however it avoids the lock contention issues common to multithreaded code by only actually executing one section at any given moment.

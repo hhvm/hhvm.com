@@ -1,10 +1,54 @@
 ---
 author: jwatzman
-comments: true
 layout: post
 title: PHP 7 Support
 category: blog
 permalink: /blog/10859/php-7-support
+comments:
+- id: 724343
+  author: milliondollarserver
+  date: '2015-12-05 19:05:50 +0000'
+  date_gmt: '2015-12-06 03:05:50 +0000'
+  content: This is exciting! Looking forward to see how nightly works.
+- id: 724823
+  author: najbolji hosting
+  date: '2015-12-06 08:09:49 +0000'
+  date_gmt: '2015-12-06 16:09:49 +0000'
+  content: nice, php 7 is amazing
+- id: 728957
+  author: Danny van Kooten
+  date: '2015-12-09 23:46:43 +0000'
+  date_gmt: '2015-12-10 07:46:43 +0000'
+  content: Neat, still happily running HHVM with no intention to switch to PHP7 anytime
+    soon. To hear that you'll be supporting all PHP7 features is reassuring! :)
+- id: 748991
+  author: PHP7 atau HHVM ? | KMKLabs Blog
+  date: '2016-01-03 23:25:21 +0000'
+  date_gmt: '2016-01-04 07:25:21 +0000'
+  content: "[&#8230;] Josh Watzman dari Facebook ada mengeluarkan blog post&nbsp;bahawa
+    release HHVM 3.11 akan dimundurkan untuk &nbsp;memastikan &nbsp;semua fitur baru
+    yang ada di PHP7 [&#8230;]"
+- id: 767711
+  author: Orhaan
+  date: '2016-01-19 12:13:52 +0000'
+  date_gmt: '2016-01-19 20:13:52 +0000'
+  content: Well done we're very excited about that :)
+- id: 849569
+  author: Elian
+  date: '2016-03-28 06:55:07 +0000'
+  date_gmt: '2016-03-28 13:55:07 +0000'
+  content: i have a question guys is there any compatibility problems with the php
+    7 versions? i have applications running the 5.5 and if i start working on the
+    7 might be any issues on files i add on ?
+- id: 852785
+  author: Joel Marcey
+  date: '2016-03-29 11:46:22 +0000'
+  date_gmt: '2016-03-29 18:46:22 +0000'
+  content: "Elian, what type of compatibility problems are you referring to? With
+    HHVM's PHP 7 support, you currently have to opt-in for any of the breaking changes
+    that might occur. So, if you use new features, you can use those without opting
+    in and we attempted to be as  compatible with PHP 7 as possible.\r\n\r\nAre you
+    running into anything in particular?"
 ---
 
 For those that haven't been following along, the next version of the PHP language, version 7.0.0, [was very recently released](http://php.net/archive/2015.php#id2015-12-03-1). Those of us working on HHVM offer our congratulations to all the contributors to this latest release! We're all really excited to see this release come out the door, and for what it means for the future of PHP.
