@@ -67,6 +67,10 @@ To add docs to the site, ....
 
 To modify the header bar, change `./_data/nav.yml`.
 
+## Top Level Page
+
+If you want a top-level page (e.g., http://hhvm.com/top-level.html) -- not in `/blog` or `/docs` -- then you can create a markdown file in the root `./`. See `./top-level-example.md` for more information.
+
 ## Other Changes
 
 - CSS: `./css/main.css` or `./_sass/*.scss`.
