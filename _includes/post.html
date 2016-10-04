@@ -28,16 +28,22 @@
   {% else %}
     {{ content }}
     {% if page.comments %}
-      <h3> Comments </h3>
-      <br/>
-      <ul>
+      {% assign wrote_header = false %}
       {% for comment in page.comments %}
-        {% if comment.author_email and comment.author_email != '' %} <!-- No trackbacks -->
+        {% if comment.author_email and comment.author_email != '' %}
+          {% if wrote_header == false %}
+            <h3> Comments </h3>
+            <br/>
+            <ul>
+            {% assign wrote_header = true %}
+          {% endif %}
           <li><b><a href="{{ comment.author_email }}">{{ comment.author }}</a></b>: {{ comment.content }}</li>
         {% endif %}
       {% endfor %}
-      </ul>
-      <br/>
+      {% if wrote_header == true %}
+        </ul>
+        <br/>
+      {% endif %}
     {% endif %}
   {% endif %}
   {% unless include.truncate %}
