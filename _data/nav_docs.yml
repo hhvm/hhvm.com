@@ -1,11 +1,11 @@
-# Modify this for your docs. The id correlates to the id you used
-# in your markdown file. They are linkable. The title is for
-# organizational purposes on the sidebar of the docs link
+- title: Grouping 1
+  items:
+  - id: hello-world
 
-#- title: Quick Start
-#  items:
-#  - id: getting-started
-#  - id: hello-world
-#- title: Another Doc Group
-#  items:
-#  - id: making-changes
+# n title:, 1 items: per title:, n id: per items:
+# - title: A
+#   items:
+#   - id: B
+#   - id: C
+# - title: D
+#   - id: E
