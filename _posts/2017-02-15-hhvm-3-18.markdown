@@ -1,0 +1,19 @@
+---
+title: HHVM 3.18
+layout: post
+author: michaelofarrell
+category: blog
+---
+
+HHVM 3.18 LTS is released!   This version will be the last to support GCC 4.8 and Ubuntu 14.04 Trusty.  Packages have been published; see the [installation instructions](https://docs.hhvm.com/hhvm/installation/introduction) for more information.
+
+<!--truncate-->
+
+Noteworthy changes include:
+
+* [Options](https://docs.hhvm.com/hhvm/configuration/INI-settings#garbage-collector-settings) to enable automatic garbage collection
+* Support for Ubuntu 16.10
+* Performance improvements
+* Bug fixes
+
+
