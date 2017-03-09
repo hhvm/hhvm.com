@@ -1,5 +1,5 @@
 ---
-title: How the Cyber-Elphant Got His ARM
+title: How the Cyber-Elephant Got His ARM
 author: mwang
 layout: post
 category: blog
