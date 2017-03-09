@@ -43,13 +43,14 @@ us this picture:
 <img src="/static/images/posts/arm-pipeline-2.png" width="680" />
 
 Unfortunately, and perhaps unsurprisingly, the maintenance burden of having two
-lowering targets for each HHIR instruction caught up to us quickly.  As the
-middle-end of our compiler, HHIR is frequently in flux.  HHVM engineers
-routinely create new HHIR opcodes, or modify existing ones, to accommodate new
-language features or to make performance improvements.  Having to write two
-essentially identical implementations for each such IR opcode---with one in an
-assembly language that was foreign to most of our engineers---was a hassle
-which started to slow down our development.
+lowering targets for each HHIR instruction caught up to us quickly.  With over
+600 opcodes in its instruction set today, HHIR does not easily admit multiple
+backends.  Furthermore, as the middle-end of our compiler, HHIR is frequently
+in flux.  HHVM engineers routinely create new HHIR opcodes, or modify existing
+ones, to accommodate new language features or to make performance improvements.
+Having to write two essentially identical implementations for so many IR
+opcodes---with one in an assembly language that was foreign to most of our
+engineers---was a hassle which started to slow down our development.
 
 Our team did have continuous integration testing for the ARM simulator, which,
 in theory, would keep us honest and prevent us from regressing.  However, as we
@@ -115,8 +116,8 @@ take on the following:
   adherence to HHVM's (sometimes underspecified) translation cache (TC) ABI.
 - Identify and debug portability issues in C++ code across the system.
 
-Beyond correctness, members of this community have also implemented a number of
-nontrivial optimizations, including:
+But these engineers have done work that goes well beyond correctness.  They've
+also implemented a number of nontrivial optimizations, including:
 
 - _Strength reduction on flag-setting instructions_.  On x64, arithmetic and
   bitwise operations always set the status flags, but this is not the case on
@@ -139,6 +140,16 @@ nontrivial optimizations, including:
   generated indirect branches whenever possible.
 
 Our developer community has even set up [CI testing][ci] for the ARM port!
+
+Ultimately, we were able to achieve these results thanks to two major factors.
+The first is years of slow-but-steady iteration on our architecture and
+toughening of our abstractions and APIs.  This work greatly reduced the
+technical surface area that a new backend target would need to touch.  The
+second is the ARM community's commitment to the HHVM project specifically, but
+also to compatibility of open source software with their platforms more
+generally.  Their expertise expedited our ARM port's development, and their
+collaboration with our team exemplifies the benefits gained from open-sourcing
+a piece of technology.
 
 ## Future Work
 
