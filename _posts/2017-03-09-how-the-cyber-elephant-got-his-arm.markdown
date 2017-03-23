@@ -17,8 +17,11 @@ couldn’t pick up things with it.  But there was one Cyber-Elephant---a new
 Cyber-Elephant---a Cyber-Elephant’s Port---who was full of ‘satiable curiosity,
 and that means he asked ever so many questions.
 
-_Question_: Can HHVM run on AArch64?<br/>
+_The Elephant's Question_: Can HHVM run on AArch64?<br/>
 _Answer_: It can now!  Let me tell you all about it.
+
+_(NB: This post accompanies a talk given at Linaro Connect Budapest 2017, which
+you can watch [here][connect].)_
 
 ## The Beginning of the ARMadillos
 
@@ -185,6 +188,7 @@ us on IRC in [#hhvm-dev][irc] on Freenode with any questions you might have.
 
 
 [stories]:  http://www.gutenberg.org/files/2781/2781-h/2781-h.htm#link2H_4_0005
+[connect]:  http://connect.linaro.org/resource/bud17/bud17-400k1/
 [journey]:  /blog/6323/the-journey-of-a-thousand-bytecodes
 [vixl]:     https://github.com/armvixl/vixl
 [llvm]:     /blog/10205/llvm-code-generation-in-hhvm
