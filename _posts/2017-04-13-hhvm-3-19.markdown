@@ -1,0 +1,39 @@
+---
+title: HHVM 3.19
+layout: post
+author: michaelofarrell
+category: blog
+---
+
+HHVM 3.19 is released!  This release has some exciting new experimental
+features.  Packages have been published in the usual places; see the
+[installation
+instructions](https://docs.hhvm.com/hhvm/installation/introduction) for more
+information.
+
+<!--truncate-->
+
+Noteworthy changes include:
+
+* Const Array support.  This adds support for [PHP's const
+  arrays](http://php.net/manual/en/migration70.new-features.php#migration70.new-features.define-array).
+* Retranslate All (Experimental): This is disabled by default, and will most
+  likely be enabled next release.  Retranslate all the profiled code into
+  optimized translations after a reaching a threshold number of requests.
+  Retranslate all replaces a piecemeal retranslation process as individual
+  functions reach a profiling threshold.  Retranslate all speeds up warmup, and
+  allows us to make better decisions during optimization (particularly
+  inlining).  You can enable retranslate all, and set the request threshold
+  using the runtime option `hhvm.jit_retranslate_all_request`.
+* CLI server mode (Experimental): This allows you to create a server on your
+  machine that you use to run CLI scripts.  This is beneficial as the
+  translation cache can be preserved between script runs.  In other words, you
+  won't have to wait for the script to JIT if you have already run it.  More
+  information is available on the [docs site](https://docs.hhvm.com/hhvm/advanced-usage/CLI-server).
+* hackfmt (Experimental):  This formating tool uses the full fidelity parser to
+  reformat your hack code.
+* Extension API is now versioned by the HHVM_VERSION_BRANCH, rather than a never
+  updated API version
+* Added HHI headers for Fact Parse and Watchman extensions
+* Performance improvements
+* Bug fixes
