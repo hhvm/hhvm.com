@@ -37,6 +37,3 @@ Noteworthy changes include:
 * Added HHI headers for Fact Parse and Watchman extensions
 * Performance improvements
 * Bug fixes
-
-> We have a [known issue](https://github.com/facebook/hhvm/issues/7783), and are
-in the process of building 3.19.1 packages.
