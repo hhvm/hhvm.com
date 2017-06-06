@@ -1,0 +1,28 @@
+---
+title: HHVM 3.20
+layout: post
+author: michaelofarrell
+category: blog
+---
+
+HHVM 3.20 is released!  This release improves compatibility with PHP7, and
+adds a couple new features.  Packages have been published in the usual places;
+see the
+[installation
+instructions](https://docs.hhvm.com/hhvm/installation/introduction) for more
+information.
+
+<!--truncate-->
+
+Noteworthy changes include:
+
+* PHP7 Scalar Typehints behavior corrected ([the issue](https://github.com/facebook/hhvm/issues/7198)).
+  * A patch for 3.20 is coming that fixes Composer while running on HHVM in PHP7 mode.
+* LibSodium extension added:  This is an extension that will be 
+  added in PHP7.2 (not built for Debian7).  Since it is not released in PHP yet
+  it is experimental as the spec may change.
+* Timelimit for time spent JITing per request.  See the `hhvm.jit_max_request_translation_time` setting.
+* Reusable TC now runs on a worker thread, cleaning up translations without
+  tieing up request threads, or the request treadmill.
+* Performance improvements
+* Bug fixes
