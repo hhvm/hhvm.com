@@ -17,7 +17,7 @@ information.
 Noteworthy changes include:
 
 * PHP7 Scalar Typehints behavior corrected ([the issue](https://github.com/facebook/hhvm/issues/7198)).
-  * A patch for 3.20 is coming that fixes Composer while running on HHVM in PHP7 mode.
+  * HHVM 3.20.2 and later works with Composer while running on HHVM in PHP7 mode, [Tests have also been added](https://github.com/facebook/hhvm/commit/af3471b40468023035d4308f7f73de80bdf03927).
 * LibSodium extension added:  This is an extension that will be 
   added in PHP7.2 (not built for Debian7).  Since it is not released in PHP yet
   it is experimental as the spec may change.
