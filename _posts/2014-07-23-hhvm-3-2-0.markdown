@@ -128,8 +128,6 @@ Security Fixes:
 
 Full HHVM [Changelog](https://github.com/facebook/hhvm/blob/master/hphp/NEWS):
 
-![LL_Cool_J_2013](/static/images/posts/LL_Cool_J_2013.jpg)![440px-Mos_Def_-_Ilosaarirock_2012](/static/images/posts/440px-Mos_Def_-_Ilosaarirock_2012.jpg)![440px-OutKast_2001](/static/images/posts/440px-OutKast_2001.jpg)![The_Notorious_B.I.G](/static/images/posts/The_Notorious_B.I.G.jpg)
-
 ### "Outkast" 17-July 2014
 
 - PHP_VERSION is now 5.6
