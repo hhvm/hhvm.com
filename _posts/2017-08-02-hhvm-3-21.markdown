@@ -60,7 +60,7 @@ Please see [the README](https://github.com/hhvm/hsl/blob/master/README.md) and [
 
 ### Example usage
 
-```hack
+```
 <?hh // strict
 
 use namespace HH\Lib\{Vec,Dict,Keyset,Str,Math};
