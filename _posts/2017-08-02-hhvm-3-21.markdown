@@ -1,0 +1,78 @@
+---
+title: HHVM 3.21
+layout: post
+author: fredemmott
+category: blog
+---
+
+HHVM 3.21 is released! As this is an LTS release, it will be supported until HHVM 3.27, expected in 48 weeks. This release improves PHP7 compatibility, and adds several new features. Packages have been published in the usual places; see the
+[installation instructions](https://docs.hhvm.com/hhvm/installation/introduction) for more information.
+
+<!--truncate-->
+
+Noteworthy changes include:
+
+* calls from builtins (eg `array_map()`) are no longer strictly typed in PHP7 mode
+* `void` is now supported as a return type when in PHP7 mode
+* increased reported version number to 7.1 when in PHP7 mode
+* the libsodium extension is now supported, and updated to be compatible with PHP 7.2
+* default mbstring encoding switched to `UTF8`
+* added `use namespace` and `use type` to Hack
+* the typechecker is now aware of `InvariantException`
+* add `hh_parse` binary, providing easy access to the parsed AST for Hack files
+* hashed admin server passwords are supported if built with libsodium support; this feature is not compatible with port-takeover
+* ongoing work on unifying the various parsers for Hack
+* improved autocomplete support for IDEs such as Nuclide
+
+## Sodium compatibility
+
+The PHP 7 extension contains implementations of several functions that were recently added to libsodium; we decided not to take that approach in HHVM, to reduce the risk of introducing HHVM-specific security issues.
+
+This means that HHVM only exposes functions that exist in your system libsodium, so if you have an older version of libsodium, some functions that are available in PHP 7.2 may not be available in HHVM. If you need to support older systems, you should check for availability at runtime via `function_exists()`.
+
+## The `dict`, `vec`, and `keyset` types ("Hack Arrays")
+
+These are intended to eventually replace the Hack collections objects (`Vector`, `Set`, `Map`, ...), though the Hack collections currently remain fully supported.
+
+These types:
+
+ - are array-like values, not objects; this includes copy-on-write semantics
+ - do not implicitly convert some string keys to ints
+ - throw exceptions instead of returning null when undefined indices are accessed
+ - [can not contain references](https://3v4l.org/cWYog)
+
+There are more details in [the initial announcement](http://hhvm.com/blog/10649/improving-arrays-in-hack) of this work, and the associated GitHub issues.
+
+As values don't have methods, a function library is required to use these types effectively. With this in mind, today we are also making a preview release of [the Hack Standard Library](https://github.com/hhvm/hsl/).
+
+## The Hack Standard Library (HSL)
+
+The HSL library:
+
+ - provides functions for common operations such as mapping, filtering, and counting with [`dict`](https://hhvm.github.io/hsl/api/Dict.html), [`keyset`](https://hhvm.github.io/hsl/api/Keyset.html), and [`vec`](https://hhvm.github.io/hsl/api/Vec.html)
+ - provides consistent and type-safe alternatives to other PHP builtins, such as [math](https://hhvm.github.io/hsl/api/Math.html) and [string](https://hhvm.github.io/hsl/api/Str.html) functions
+ - is designed for use with the Hack pipe operator (`|>`)
+ 
+We are planning on increasing the functionality offered by this library, however we will be conservative to avoid bloat and inconsistencies.
+
+
+Please see [the README](https://github.com/hhvm/hsl/blob/master/README.md) and [full API documentation](https://hhvm.github.io/hsl/api/) for details.
+
+### Example usage
+
+```hack
+<?hh // strict
+
+use namespace HH\Lib\{Vec,Dict,Keyset,Str,Math};
+
+function do_stuff(vec<?int> $foo): vec<string> {
+  return $foo
+    |> Vec\filter_nulls($$)
+    |> Vec\map($$, $it ==> (string) $it);
+}
+
+function main(): void {
+  $data = vec[null, 1, 2, 3];
+  var_dump(do_stuff($data));
+}
+```
