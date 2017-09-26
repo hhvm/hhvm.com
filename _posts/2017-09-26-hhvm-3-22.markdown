@@ -74,7 +74,7 @@ function main(): void {
   // As MyShape has no required fields, we're passing
   // in a valid subtype of it here, so this is fine
   foo(shape('myfiedl' => 'oops I typoed'));
-);
+};
 ```
 
 
