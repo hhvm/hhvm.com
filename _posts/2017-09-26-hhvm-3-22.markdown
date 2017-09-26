@@ -55,8 +55,6 @@ Migrations are for sweeping changes you want to apply across your entire codebas
 * replacing deprecated APIs with new ones
 * general clean-up of the codebase
 
-![Screenshot of migrations](/static/images/posts/hhvm-3.22/hhast-migrations.png)
-
 ## Upcoming Changes
 
 ### Nullable vs optional fields in shapes
@@ -127,7 +125,9 @@ So, you can migrate your code by:
 In HHVM 3.22, you can experiment with these changes by setting `enable_experimental_tc_features = optional_shape_field, unknown_fields_shape_is_not_subtype_of_known_fields_shape` in your projects' `.hhconfig` file. We expect to make this behavior opt-out in HHVM 3.23, and remove support for opting out in HHVM 3.24.
 
 We realize that adapting could be a substantial amount of work; to help, we are including a migration script with HHAST to make these changes for you:
-[Image: https://fb.quip.com/-/blob/VJAAAAEkyty/lb0fLJHWxCvLpYEX6AG9IA]
+
+![Screenshot of migrations](/static/images/posts/hhvm-3.22/hhast-migrations.png)
+
 ### `array`, `array<T>`, and `array<Tk, Tv>`
 
 In a future release, we expect the typechecker to stop considering `array<T>` a subtype of array (without generics), and for `array<Tk, Tv>` to stop being considered a subtype of either array or `array<T>`. For example, every function call below will be a type error:
