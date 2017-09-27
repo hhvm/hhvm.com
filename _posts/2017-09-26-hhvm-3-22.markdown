@@ -158,7 +158,7 @@ These options are experimental and will be removed in a future release of HHVM, 
 
 ### Hack arrays and The Hack Standard Library
 
-Once the [Hack Standard Library](https://github.com/hhvm/hsl) reaches v1.0 (currently expected before the HHVM 3.23 release), Hack Arrays (`vec<T>`, `dict<Tk, Tv>`, and `keyset<T>`) will become the recommendation collections in Hack. Over time, changes will include:
+Once the [Hack Standard Library](https://github.com/hhvm/hsl) reaches v1.0 (currently expected before the HHVM 3.23 release), Hack Arrays (`vec<T>`, `dict<Tk, Tv>`, and `keyset<T>`) will become the recommended collections in Hack. Over time, changes will include:
 
 * Hack libraries under [github.com/hhvm/](http://github.com/hhvm/) and [github.com/facebook/](http://github.com/facebook/) changing to accept hack arrays, and either return hack arrays or generic interfaces such as `Traversable<T>` or `KeyedTraversable<Tk, Tv>`.
 * Similar changes to HHVM-specific builtins, such as the async MySQL extension
