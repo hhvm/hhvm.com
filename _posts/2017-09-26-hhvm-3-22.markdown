@@ -42,7 +42,7 @@ We've included several linters as a starting point, including:
 * Don't use `await` in a loop
 * Methods should be `->lowerCamelCase()`, functions should be `under_scored()`
 * Always use braces for control flow
-* Always use `[<<__Override>>](https://docs.hhvm.com/hack/attributes/special#__override)` where possible
+* Always use [`<<__Override>>`](https://docs.hhvm.com/hack/attributes/special#__override) where possible
 
 Linters can be used both interactively, or unattended. Autofixing is not supported unattended, however it will exit with non-zero if there are any lint issues, to ease integration with CI systems.
 
