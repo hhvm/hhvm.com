@@ -14,6 +14,7 @@ Noteworthy changes include:
 * The typechecker is now aware that `async` is not valid in interfaces; this would previously be a runtime error. This is because `async` is an implementation detail: what matters for interfaces and abstract functions is that the function returns an `Awaitable`.
 * Allow trailing commas in group use statements; this fixes an incompatibility with hackfmt
 * Added 'throw' option to `unserialize()`, to throw an exception instead of returning a `__PHP_Incomplete_Class` when using a whitelist and the class isn't whitelisted; this is especially useful when the problem is nested.
+* Added nested indexing support for the `??` operator (e.g. `$nullable_container[0][1][2] ?? null`) to the Hack typechecker
 * Our[ docker images](https://hub.docker.com/r/hhvm/) now include git, wget, and curl. This should allow most composer-based projects to install dependencies without needing to use apt, reducing image build times. We've applied the same change to the updates for 3.18 and 3.21.
 * Security improvements (also in 3.18.5 and 3.21.3):
     * Fix potential crash in PCRE cache
