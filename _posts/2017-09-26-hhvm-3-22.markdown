@@ -123,7 +123,7 @@ So, you can migrate your code by:
 * prefixing the name of all optional fields with `?`
 * adding `...` to the end of all your shape definitions
 
-In HHVM 3.22, you can experiment with these changes by setting `enable_experimental_tc_features = optional_shape_field, unknown_fields_shape_is_not_subtype_of_known_fields_shape` in your projects' `.hhconfig` file. We expect to make this behavior opt-out in HHVM 3.23, and remove support for opting out in HHVM 3.24.
+In HHVM 3.22, you can experiment with these changes by setting `enable_experimental_tc_features = optional_shape_field, unknown_fields_shape_is_not_subtype_of_known_fields_shape` in your projects' `.hhconfig` file. We expect to make this behavior opt-out in HHVM 3.23, and remove support for opting out in HHVM 3.24. The `unknown_fields_shape_is_not_subtype_of_known_fields_shape` option requires the `optional_shape_field` to take effect.
 
 We realize that adapting could be a substantial amount of work; to help, we are including a migration script with HHAST to make these changes for you:
 
