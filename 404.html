@@ -6,10 +6,10 @@
       fb: 'https://facebook.com/hhvm/',
     };
 
-    var shortLink= window.location.pathname.split('/')[1];
+    var shortLink = window.location.pathname.split('/')[1];
 
     if (shortLinks.hasOwnProperty(shortLink)) {
-      loc = supportedProjects[project].replace('${from}', window.location.href)
+      var loc = shortLinks[project];
       window.location.href = loc;
     }
   </script>
