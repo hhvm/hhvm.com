@@ -9,7 +9,7 @@
     var shortLink = window.location.pathname.split('/')[1];
 
     if (shortLinks.hasOwnProperty(shortLink)) {
-      var loc = shortLinks[project];
+      var loc = shortLinks[shortLink];
       window.location.href = loc;
     }
   </script>
