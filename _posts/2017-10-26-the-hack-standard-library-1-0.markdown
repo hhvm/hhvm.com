@@ -5,7 +5,7 @@ author: fred
 category: blog
 ---
 
-Today, we're releasing the first stable version of the Hack Standard Library. The Hack Standard Library addresses several issues:
+Today, [we're releasing](https://github.com/hhvm/hsl/releases/tag/v1.0.0) the first stable version of the Hack Standard Library. The Hack Standard Library addresses several issues:
 
 * existing collection functionality (such as filtering and mapping) either returns PHP arrays, or [Hack Collection objects](https://docs.hhvm.com/hack/collections/introduction); we needed support for [the new `dict`, `keyset`, and `vec` types](https://docs.hhvm.com/hack/collections/hack-arrays) (Hack Arrays).
 * we want Hack to have a standard library that is internally consistent.
