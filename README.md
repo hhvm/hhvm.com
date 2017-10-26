@@ -29,7 +29,6 @@ The requirements for running a GitHub pages site locally is described in [GitHub
 1. Install the project's dependencies
 
     ```
-    # run this in the 'docs' directory
     bundle install
     ```
 
