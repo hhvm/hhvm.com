@@ -5,7 +5,7 @@ layout: post
 category: blog
 ---
 
-As part of modernizing and automating our binary packaging infrastructure, we're rotating the GPG key we use to sign our apt repositories; we will also be signing our source tarballs in the future.
+As part of modernizing and automating our binary packaging infrastructure, we're rotating the GPG key we use to sign our apt repositories; we will also be signing our source tarballs in the future. We expect to switch the key later this week.
 
 The new key can be installed with:
 
