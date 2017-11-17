@@ -1,0 +1,167 @@
+---
+title: HHVM 3.23
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 3.23 is released! This release contains new features, bug fixes, performance improvements, and supporting work for future improvements. Packages have been published in the usual places, however we have rotated the GPG key used to sign packages; see the [installation instructions](https://docs.hhvm.com/hhvm/installation/introduction) for more information.
+
+Highlights include:
+
+* optional shape fields are now distinct from nullable shape fields, and structural subtyping is now opt-in per shape. For details and tooling to help migrate, see [the 3.22 release announcement](https://hhvm.com/blog/2017/09/26/hhvm-3-22.html).
+* support for the VSCode Language Server Protocol, which will shortly be used by Nuclide's Hack integration.
+* functions may no longer be named `using()`, as this will conflict with the upcoming `using` feature
+* support for making the typechecker entirely ignore certain files; this is via the `ignored_paths` .`hhconfig` option, which contains an array of regular expressions - for example, `ignored_paths = [ ".*vendor/.*tests?/" ]`.
+* tuple constants are now supported.
+* method calls are now supported against parenthesized expressions.
+* fixed some situations where it would be necessary to interrupt (Ctrl-C) hh_client.
+* support for building against OpenSSL 1.1, e.g. Debian Stretch, Ubuntu Zesty, and Ubuntu Artful.
+* an experimental alternative bytecode emitter for Hack
+
+## Packaging Changes
+
+### GPG Key Rotation
+
+We have [rotated the GPG key](https://hhvm.com/blog/2017/11/14/gpg-key-migration.html) we use to sign our apt repositories; you will need to install the new key before installing updates:
+
+```
+sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xB4112585D386EB94
+# or
+curl https://dl.hhvm.com/conf/hhvm.gpg.key | sudo apt-key add -
+```
+
+### HTTPS Repositories
+
+Our downloads (including repositories) are now available via HTTPS, and distributed via CDN. You can migrate by running  `apt-get install apt-transport-https`, then editing your apt sources (either `/etc/apt/sources.list`, or a file in `/etc/apt/sources.list.d/`) to use `https://dl.hhvm.com/` instead of `http://dl.hhvm.com/`
+
+### Binary Packages for MacOS
+
+Binary packages are now available for MacOS Sierra and High Sierra. They can be installed by [installing Homebrew](https://brew.sh/), then:
+
+```
+brew tap hhvm/hhvm
+brew install hhvm
+```
+
+### Nightly Builds
+
+We are now publishing nightly builds for Debian, Ubuntu, and Docker. For apt, these are available in the main repository as the `hhvm-nightly` package, and for Docker, they're available as the `hhvm/hhvm:nightly` and `hhvm/hhvm-proxygen:nightly` tags.
+
+### Distribution Support
+
+This release adds support for Debian 9 (Stretch), Ubuntu 17.04 (Zesty), and Ubuntu 17.10 (Artful).
+
+The next release - 3.24 - will be the last release with support for Debian 7 (Wheezy). All HHVM support for Wheezy will end on the 31st of May, 2018, including for the 3.21 and 3.24 LTS releases. This is the same date that [Wheezy itself becomes unsupported](https://wiki.debian.org/LTS/Wheezy).
+
+
+## Language Server Protocol
+
+The language server protocol is a standard for languages to integrate with editors and IDEs. If you wish to create or contribute to on an integration, use `hh_client lsp` to launch an LSP server.
+
+Editors and IDEs should consider the language server protocol usable if `hh_client --json --version` reports an API version >= 5, and prefer the LSP over previous approaches.
+
+## Upcoming Changes
+
+### Call-Time Pass-By-Reference
+
+HHVM 3.24 will require that reference arguments are marked at the callsite - for example:
+
+```
+function foo(array<string> $bar): void {
+  sort(&$bar);
+}
+```
+
+Hack in 3.23 allows this syntax, but does not require it. You can opt-in to the requirement by adding `safe_pass_by_ref` to `enable_experimental_tc_features` in your `.hhconfig`.
+
+We are [planning on extending HHAST](https://github.com/hhvm/hhast/issues/21) to automate this migration.
+
+### Lambda Type Inference
+
+In HHVM 3.24, the expected types of lambdas will be used to refine them; for example, this currently has no errors:
+
+```
+<?hh // strict
+
+class MyClass {}
+
+class MyClosureRunner<-T> {
+  public function __construct(private (function(T): string) $closure) {}
+}
+
+function expectsMyClosureRunnerMyClass(
+  MyClosureRunner<MyClass> $x,
+): MyClosureRunner<MyClass> {
+  return $x;
+}
+
+function getThing1(): MyClosureRunner<MyClass> {
+  $var = expectsMyClosureRunnerMyClass(
+    new MyClosureRunner(
+      function(/* MyClass */ $arg) {
+        $arg->missing_method();
+        return "ok";
+      },
+    ),
+  );
+  return $var;
+}
+```
+
+In  3.24, or with `enable_experimental_tc_features=contextual_inference` in your `.hhconfig`, the following error will be raised by the typechecker:
+
+```
+test.php:19:15,28: Could not find method missing_method in an object of type MyClass (Typing[4053])
+  test.php:10:19,25: This is why I think it is an object of type MyClass
+  test.php:3:7,13: Declaration of MyClass is here
+```
+
+### Removing Support For Undefined References In Non-Strict Files
+
+In non-strict Hack code, the typechecker assumes that references to classes, functions, and so on that it doesn't know about are references to PHP code, so they are ignored. We will be removing this behavior in 3.24. You can experiment with this by adding `assume_php=false` to your `.hhconfig`.
+
+If your Hack code depends on PHP code, there are several options:
+
+* migrate to pure Hack
+* create an hhi file describing the API for Hack
+* use `HH_FIXME` comments in wrappers to suppress the errors
+
+### Opt-in Runtime ban Of Destructors
+
+Adding `hhvm.allow_object_destructors`` ``=`` false` to your HHVM configuration will cause runtime errors whenever a class with a destructor is instantiated. We have done this as many libraries use destructors, but only in components that appear to be very rarely used; this allows experimenting to determine what destructors actually are in use in your codebase.
+
+You can whitelist a destructor by adding the `<<__OptionalDestruct>>` attribute to the method; HHVM does not guarantee  whether a destructor marked with this attribute will be called or not, regardless of the value of the  `hhvm.allow_object_destructors` setting. This can be useful where the inheritance hierarchy requires the presence of a destructor, but invoking it is not actually necessary for program correctness.
+
+We are expecting to ban destructors in Hack in one of the next few releases, however they will still be supported in 3.24, and we currently have no timeline for removing them from our PHP support.
+
+### “using” statements
+
+We are working on a `using` statement, which limits a variable either to a specific block, or to the function as a whole. We provide interfaces for user-specified code to be executed on these objects when they are about to leave the scope.
+
+This is still a work in progress, and we expect it to be ready for experimentation in 3.24.
+
+### Experimental bytecode emitter for Hack (HackC)
+
+We are working on replacing the parser and bytecode emitter used for Hack, with the goal of using a single parser for execution, typechecking, formatting, linting, and all other tooling surrounding Hack.
+
+While this is not yet ready for production use, you can experiment with it on Linux by setting the following options in your HHVM ini file:
+
+```
+hhvm.hack_compiler_default=true
+hhvm.hack_compiler_command=/path/to/hh_single_compile --daemon
+```
+
+We **strongly** recommend only testing on Linux for now: there are known issues on other platforms which may affect overall system stability, especially on MacOS.
+
+When these options are set, HackC will only be used for Hack files, unless the `hhvm.force_hh` ini setting is turned on, in which case it will also be used for PHP files. You can check which emitter is being used for a particular file with:
+
+```
+<?hh
+
+var_dump(__COMPILER_FRONTEND__);
+```
+
+Currently, this will either output `string(4) "hhvm"` for the old frontend, or `string(5) "hackc"` if using `hh_single_compile`. This constant is also supported in PHP code, which will always contain `string(4) "hhvm"` unless  both `hackc` and `force_hh` are enabled..
+
+We would particularly appreciate bug reports related to namespaces, or interactions between Hack and PHP code that are only reproducible with the new emitter.
