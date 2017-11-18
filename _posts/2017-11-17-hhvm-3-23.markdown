@@ -12,7 +12,7 @@ Highlights include:
 * optional shape fields are now distinct from nullable shape fields, and structural subtyping is now opt-in per shape. For details and tooling to help migrate, see [the 3.22 release announcement](https://hhvm.com/blog/2017/09/26/hhvm-3-22.html).
 * support for the VSCode Language Server Protocol, which will shortly be used by Nuclide's Hack integration.
 * functions may no longer be named `using()`, as this will conflict with the upcoming `using` feature
-* support for making the typechecker entirely ignore certain files; this is via the `ignored_paths` .`hhconfig` option, which contains an array of regular expressions - for example, `ignored_paths = [ ".*vendor/.*tests?/" ]`.
+* support for making the typechecker entirely ignore certain files; this is via the `ignored_paths` .`hhconfig` option, which contains an array of regular expressions - for example, `ignored_paths = [ "vendor/.*tests?/" ]`.
 * tuple constants are now supported.
 * method calls are now supported against parenthesized expressions.
 * fixed some situations where it would be necessary to interrupt (Ctrl-C) hh_client.
