@@ -1,0 +1,20 @@
+---
+title: "HHVM 3.23.3, 3.21.4, and 3.18.6"
+layout: post
+author: fred
+category: blog
+---
+
+Today we're releasing HHVM 3.23.3, 3.21.4, and 3.18.6. These releases contain:
+
+- security improvements (listed below)
+- [a fix several MacOS crashes](https://github.com/facebook/hhvm/commit/b5e6a3275cefe2afc56e730cfa6cb8fec737bf9a)  (3.23.3 and 3.21.4 only)
+
+## Security Improvements
+
+- [Prevent write out of bounds at `number_format`](https://github.com/facebook/hhvm/commit/9de2e69ef51bf40f66b4ad8b3f927f3e97ccaeb6)
+- [memcpy negative parameter in _bc_new_num_ex](https://github.com/facebook/hhvm/commit/bc4a1a8663f45b3a776f8f4102aa17cd4c587539)
+- [Fix PHP #75075 unpack with X* causes infinite loop](https://github.com/facebook/hhvm/commit/e33bffbb787855d29480d8f43c5523036f9657d8)
+- [Fix PHP #75139 suspicious ternary](https://github.com/facebook/hhvm/commit/31c7a8102956db036d8961357029d8e69fb92b22)
+- [Fix PHP 74435 - Buffer over-read into uninitialized memory](https://github.com/facebook/hhvm/commit/54aeb01fb1c9d63504b3c97bcfd33a45c28f2c3f)
+- [Fix PHP 74651 - EVP_SealInit can return -1](https://github.com/facebook/hhvm/commit/a2b685b13618e662443e39070d167863fe036a96)
