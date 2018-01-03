@@ -8,7 +8,7 @@ category: blog
 Today we're releasing HHVM 3.23.3, 3.21.4, and 3.18.6. These releases contain:
 
 - security improvements (listed below)
-- [a fix several MacOS crashes](https://github.com/facebook/hhvm/commit/b5e6a3275cefe2afc56e730cfa6cb8fec737bf9a)  (3.23.3 and 3.21.4 only)
+- [a fix for several MacOS crashes](https://github.com/facebook/hhvm/commit/b5e6a3275cefe2afc56e730cfa6cb8fec737bf9a)  (3.23.3 and 3.21.4 only)
 
 ## Security Improvements
 
