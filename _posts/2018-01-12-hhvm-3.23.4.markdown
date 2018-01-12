@@ -1,0 +1,15 @@
+---
+title: "HHVM 3.23.4, 3.21.5, and 3.18.7"
+layout: post
+author: fred
+category: blog
+---
+
+Today we're releasing HHVM 3.23.4, 3.21.5, and 3.18.7. These releases contain security improvements:
+
+- [Ensure url parsing complies with rfc3986 to get the right hostname](https://github.com/facebook/hhvm/commit/80855dc1f2fe4d9de6bf4a4207ba88fbf7933b94)
+- [Prevent illegal write/read access caused by gdImageAALine overflow](https://github.com/facebook/hhvm/commit/b0c2d0114a47079819566afcc17467b0a92cefde)
+- [`preg_quote()` does not quote # control character](https://github.com/facebook/hhvm/commit/0b9e2f89da2b2d3270b6958731a3140a9845f22d)
+- [Fix memory leak in libgd](https://github.com/facebook/hhvm/commit/c5efa1557cb43aa5a0732cd87bc0167b963f04af)
+- [Accelerated Thrift: Protect against infinte loop in deserialization](https://github.com/facebook/hhvm/commit/7c61f20a51e476398f4d5a2b779ec53a06faa59c)
+- [`ext_zend_compat`: Fix potential memory issue with `USE_ZEND_ALLOC=0`](https://github.com/facebook/hhvm/commit/9942bdb63fddd01f835451e0d96768b622df9ae0)
