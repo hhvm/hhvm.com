@@ -25,6 +25,8 @@ As a release with long-term support, 3.24 is supported through 2018-12-17; it al
 
 [3.24 is the final release targeting PHP5](https://hhvm.com/blog/2017/09/18/the-future-of-hhvm.html); this includes source-level compatibility for PHP5 extensions (`ext_zend_compat`). We recommend migrating to Hack or PHP7.
 
+As 3.24 is supported though 2018-12-17, this means that support will end at roughly the same time as PHP5 itself is scheduled to become unsupported (2018-12-31).
+
 ## End Of Support For Debian 7 Wheezy and Ubuntu 17.04 Zesty
 
 The Debian project [is scheduled](https://wiki.debian.org/DebianReleases) to end support for Wheezy in May 2018, and the Ubuntu project [is scheduled](https://wiki.ubuntu.com/Releases) to end support for Ubuntu Zesty in January 2018; as such:
