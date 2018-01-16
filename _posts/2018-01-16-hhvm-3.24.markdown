@@ -1,4 +1,9 @@
-# HHVM 3.24
+---
+title: HHVM 3.24
+layout: post
+author: fred
+category: blog
+---
 
 HHVM 3.24 is released! This release contains new features, bug fixes, performance improvements, and supporting work for future improvements. Packages have been published in the usual places.
 
