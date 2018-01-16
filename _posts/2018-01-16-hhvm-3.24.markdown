@@ -1,0 +1,167 @@
+# HHVM 3.24
+
+HHVM 3.24 is released! This release contains new features, bug fixes, performance improvements, and supporting work for future improvements. Packages have been published in the usual places.
+
+Highlights include:
+
+* In Hack code, reference arguments must now be marked at the call site, e.g. `$foo = [3, 1, 2]; sort(&$foo);`
+* Support for `using` blocks - an alternative to destructors
+* Improved type inference and type checking for lambdas
+* Added the XHP attribute spread operator
+* Improved the typing of XHP attributes and children
+* Clearer error messages for constraint errors on generic methods
+* Improved handling of multiple debuggers (e.g. hphpd + xdebug)
+* `hh_parse` now offers a `--full-fidelity-text-json` option, which includes node content in the output
+* In partial mode, Hack no longer assumes that any unknown definitions must be defined in PHP
+
+As a release with long-term support, 3.24 is supported through 2018-12-17; it also marks the end of support for HHVM 3.18.
+
+## End Of Support For PHP5
+
+[3.24 is the final release targeting PHP5](https://hhvm.com/blog/2017/09/18/the-future-of-hhvm.html); this includes source-level compatibility for PHP5 extensions (`ext_zend_compat`). We recommend migrating to Hack or PHP7.
+
+## End Of Support For Debian 7 Wheezy and Ubuntu 17.04 Zesty
+
+The Debian project [is scheduled](https://wiki.debian.org/DebianReleases) to end support for Wheezy in May 2018, and the Ubuntu project [is scheduled](https://wiki.ubuntu.com/Releases) to end support for Ubuntu Zesty in January 2018; as such:
+
+* HHVM 3.24 will be the last release to support Wheezy and Zesty.
+* HHVM support for Wheezy and Zesty will end when the distributions themselves become unsupported; this includes ending support for the 3.21 and 3.24 HHVM releases.
+
+## Reference Arguments
+
+By-ref function arguments must now be marked at the callsite, not just at the function declaration. We have [extended HHAST](https://github.com/hhvm/hhast/releases/tag/v0.6) to automate migrations; for example:
+
+```
+$ bin/hhast-migrate --help
+Usage: bin/hhast-migrate [OPTIONS] PATH [PATH ...]
+
+Options:
+  --implicit-shape-subtypes
+    Allow implicit structural subtyping of all shapes
+  --optional-shape-fields
+    Migrate nullable shape fields to be both nullable and optional
+  --hhvm-3.22-to-3.23
+    Apply all migrations for moving from 3.22 to 3.23
+  --ctpbr
+    Add required ampersands at call sites for byref arguments
+  --hhvm-3.23-to-3.24
+    Apply all migrations for moving from 3.23 to 3.24
+  --include-vendor
+    Also migrate files in vendor/ subdirectories
+  -v, --verbose
+    Increase output verbosity
+  -h, --help
+    display this text and exit
+$ bin/hhast-migrate --ctpbr $HOME/code/fbmarkdown/src/
+$ cd $HOME/code/fbmarkdown/src/
+$ git diff
+diff --git a/src/_Private/decode_html_entity.php b/src/_Private/decode_html_entity.php
+index 7891b57..a44b441 100644
+--- a/src/_Private/decode_html_entity.php
++++ b/src/_Private/decode_html_entity.php
+@@ -25,7 +25,7 @@ function decode_html_entity(string $string): ?(string, string, string) {
+     \preg_match(
+       '/^&(#[0-9]{1,8}|#X[0-9a-f]{1,8}|[a-z][a-z0-9]*);/i',
+       $string,
+-      $matches,
++      &$matches,
+     ) !== 1
+   ) {
+     return null;
+...
+```
+
+## `using` Blocks
+
+“Using” blocks provide a mechanism to limit an object to a particular scope, invoking code on scope exit, without using destructors.
+This is done by implementing either `IDisposable` or `IAsyncDisposable`:
+
+```
+/**
+  * Objects that implement IDisposable must be constructed in using statements
+  */
+interface IDisposable {
+  /**
+   * This method is invoked exactly once at the end of the scope of the
+   * using statement, unless the program terminates with a fatal error.
+   */
+  public function __dispose(): void;
+}
+```
+
+For example:
+
+```
+class Handle implements IDisposable {
+  public function __dispose(): void {}
+  public function foo(): void {}
+}
+
+function disposable_example(): void {
+  // Block scope
+  using ($x = new Handle()) {
+    $x->foo();
+  } // $x->__dispose() is implicitly called here
+
+  // Function scope
+  using new Handle();
+  // handle still exists here
+} // __dispose() is now called on the anonymous handle
+```
+
+Further details are available in [the documentation](https://docs.hhvm.com/hack/disposables/introduction).
+
+
+
+## XHP Attribute Spread Operator
+
+Many XHP elements currently implicitly copy attributes to the root XHP element they produce; this silently overrides elements that are declared on the root element, and is hard to reason about in large codebases.
+
+We have added an attribute spread operator to explicitly copy attributes, and will be removing implicit copying from xhp-lib in the near future:
+
+```
+class :foo-old extends :x:element {
+  use XHPHelpers;
+  
+  attribute string color, int age;
+  public function render(): XHPChild {
+    return <bar color="red" />;
+  }
+
+class :foo-new {
+  attribute string color, int age;
+  public function render(): XHPCHild {
+    return <bar {...$this} color="red" />;
+  }
+}
+
+class :bar extends :x:element {
+  attribute string color, int age;
+}
+
+$xhp = <foo-old color="blue" />;
+$xhp2 = <foo-new color="blue" />;
+// Old: this XHP renders to <bar color="blue" />.
+// New: Spread position matters, so the XHP renders to <bar color="red" />
+```
+
+## XHP Attribute and Child Improvements
+
+* `@required` attributes can no longer be nullable
+* `@required` attributes can no longer have a default value
+* `Stringish` now extends `XHPChild`
+* XHP child expressions are now required to be of type `?XHPChild`
+* Attribute literals can now contain colons - e.g. `<foo bar:baz="foo">`
+
+## Unknown Definitions in Partial Hack
+
+In previous releases, Hack has assumed that if a partial file references an unknown definition (e.g. classes, functions, or constants), that it exists in a PHP file. This is no longer the case. We recommend adding HHI files for PHP libraries that are directly used in Hack code. Alternatively, `HH_FIXME` comments can be used to suppress these errors.
+
+It is currently also possible to enable the old behavior by setting `assume_php=true` in your project's `.hhconfig` file - however this is no longer a supported configuration, may be buggy, and will be removed from a future release (potentially 3.25). It should be considered a temporary migration aid only.
+
+We are doing this change to:
+
+* detect more errors; for example, when `assume_php=true`, Hack is unable to raise errors for typos in function, class, or constant names except in strict files
+* increase soundness
+* reduce the number of options available in Hack
+
