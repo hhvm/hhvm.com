@@ -36,7 +36,7 @@ The Debian project [is scheduled](https://wiki.debian.org/DebianReleases) to end
 
 ## Reference Arguments
 
-By-ref function arguments must now be marked at the callsite, not just at the function declaration. We have [extended HHAST](https://github.com/hhvm/hhast/releases/tag/v0.6) to automate migrations; for example:
+In Hack code, byy-ref function arguments must now be marked at the callsite, not just at the function declaration. We have [extended HHAST](https://github.com/hhvm/hhast/releases/tag/v0.6) to automate migrations; for example:
 
 ```
 $ bin/hhast-migrate --help
@@ -77,6 +77,8 @@ index 7891b57..a44b441 100644
      return null;
 ...
 ```
+
+This is not required for PHP code.
 
 ## `using` Blocks
 
