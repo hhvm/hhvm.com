@@ -1,0 +1,14 @@
+---
+title: "HHVM 3.24.1, 3.21.6, and 3.18.8"
+layout: post
+author: fred
+category: blog
+---
+
+These releases contains several bugfixes:
+
+* [Re-sync `parse_url()` with upstream (PHP7), fixing support for URLs containing usernames and passwords that contain unusual characters](https://github.com/facebook/hhvm/commit/71cf8e593a1999c09892713d5dec4e1536de5b9c) (3.24.1, 3.21.6, 3.18.8).
+* [Support the `JSON_FB_HACK_ARRAYS` flag for `json_decode()` when HHVM is built against the json-c library](https://github.com/facebook/hhvm/commit/fb70e3599df2173c5d7791b44f6280983ac58853) (3.24.1, 3.21.6).
+* [Fix an ordering issue that indirectly led to incorrect or incomplete IDE autocompletion results in some situations](https://github.com/facebook/hhvm/commit/864c84c890ff58a6a396d33a1ce999e07ada7aac) (3.24.1, 3.21.6)
+
+**HHVM 3.18 [is unsupported](https://docs.hhvm.com/hhvm/installation/release-schedule), and we recommend migrating to 3.21 or 3.24 as soon as possible.** We are making an exception by releasing 3.18.8 as it fixes a regression we recently introduced in 3.18.7 - we are not expecting to release any further 3.18 updates.
