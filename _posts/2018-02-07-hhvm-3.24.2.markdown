@@ -1,0 +1,14 @@
+---
+title: "HHVM 3.24.2"
+layout: post
+author: fred
+category: blog
+---
+
+This release contains several bugfixes:
+
+* [Fix crashes when connecting to some recent MySQL servers such as MariaDB 10](https://github.com/facebook/mysql-5.6/commit/b4ae418dbbd4913cbf0d523569a3d4ec9ba85343)
+* [Fix crashes when SSL is enabled, but certificates and keys are not correctly configured](https://github.com/facebook/wangle/commit/ab7a6f191c1150fb4aa95f325023b88ae4201850)
+* [If SSL is configured but the port is unavailable, exit cleanly instead of crashing](https://github.com/facebook/hhvm/commit/43edcb457094afe511d7da9abf72817f548902e0)
+
+Additionally, we have rebuilt the HHVM 3.21 MacOS binaries to be compatible with updates to other Homebrew packages.
