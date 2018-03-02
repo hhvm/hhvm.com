@@ -1,0 +1,12 @@
+---
+title: "HHVM 3.24.3 and 3.21.7"
+layout: post
+author: fred
+category: blog
+---
+
+These releases contains several bugfixes:
+
+ - [Fix a crash when closing a cURL handle from inside a cURL callback on the same handle](https://github.com/facebook/hhvm/commit/798604c98fad31229cd703727204fbde009002af)
+ - [Fix an IPC issue leading to `hh_client` hanging on Mac when spawning the server, or when the server was recently started](https://github.com/facebook/hhvm/commit/1ec4511fee3100fd769b8332414ec281f3665253)
+ - [Improve behavior of `--retries` option for `hh_client`](https://github.com/facebook/hhvm/commit/65a0e9da47f7e0e7248c26af5dfbe98eb96c2d9f)
