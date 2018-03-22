@@ -1,0 +1,11 @@
+---
+title: "HHVM 3.25.1, HHVM 3.24.5, and 3.21.9"
+layout: post
+author: fred
+category: blog
+---
+
+These releases contains several bugfixes:
+
+ - [Fix a potential DoS in Proxygen's handling of HTTP2 frame size limits](https://github.com/facebook/hhvm/commit/5434132a5a25f2be3c1783abcae5d02cfc545496)
+ - 3.25.1 only: [typechecker support for `throw`/`catch` of `Throwable`s that are not `Exception`s](https://github.com/hhvm/hhvm-staging/commit/9235b1f388d754a9e5e72fff88590ec602bfe6e0)
