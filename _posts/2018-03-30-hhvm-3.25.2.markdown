@@ -1,0 +1,13 @@
+---
+title: "HHVM 3.25.2, HHVM 3.24.6, and 3.21.10 (CVE-2018-6334)"
+layout: post
+author: fred
+category: blog
+---
+
+These releases contains several bugfixes:
+
+ - [CVE-2018-6334: ability to override global variables and members of `$GLOBALS` via file uploads](https://github.com/facebook/hhvm/commit/6937de5544c3eead3466b75020d8382080ed0cff)
+ - Linux packaging: fix a regression in our packaging environment that prevented our binary packages from using system time zone databases
+ - Mac packaging: add support for the system time zone database
+ - 3.25 and 3.24: [stop raising incorrect warnings about PHP4-style constructors in interfaces](https://github.com/facebook/hhvm/commit/305fa864ac6ad012bed1ab80d1854c371c0dbb06)
