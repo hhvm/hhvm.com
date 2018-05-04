@@ -7,10 +7,10 @@ category: blog
 
 These releases contain several bugfixes:
 
-* [CVE-2018-6335: potential DoS in Proxygen's handling of HTTP2 header padding](https://github.com/facebook/hhvm/g/commit/4cb57dd753a339654ca464c139db9871fe961d56)
-* [CVE-2018-5771: PHP Bug #75571: Potential infinite loop in gdImageCreateFromGifCtx()](https://github.com/facebook/hhvm/g/commit/2e4b6edb6a4eada13ccc5d5f024df300017982ca)
-* [PHP Bug #73957: signed integer conversion in imagescale()](https://github.com/facebook/hhvm/g/commit/5d0afa03d246fcbbccccd813cb9cd727e8d04f47)
-* [CVE-2017-10989, CVE-2017-13685, CVE-2017-15286, CVE-2018-8740: multiple issues in SQLite](https://github.com/facebook/hhvm/g/commit/6261025f7a4002cb2dc212d3c45786884fbabcfc)
+* [CVE-2018-6335: potential DoS in Proxygen's handling of HTTP2 header padding](https://github.com/facebook/hhvm/commit/4cb57dd753a339654ca464c139db9871fe961d56)
+* [CVE-2018-5771: PHP Bug #75571: Potential infinite loop in gdImageCreateFromGifCtx()](https://github.com/facebook/hhvm/commit/2e4b6edb6a4eada13ccc5d5f024df300017982ca)
+* [PHP Bug #73957: signed integer conversion in imagescale()](https://github.com/facebook/hhvm/commit/5d0afa03d246fcbbccccd813cb9cd727e8d04f47)
+* [CVE-2017-10989, CVE-2017-13685, CVE-2017-15286, CVE-2018-8740: multiple issues in SQLite](https://github.com/facebook/hhvm/commit/6261025f7a4002cb2dc212d3c45786884fbabcfc)
 
 Additionally:
 
