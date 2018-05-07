@@ -1,0 +1,106 @@
+---
+title: "HHVM 3.26 - Introducing HackC"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 3.26 is released! Highlights include a new frontend, relicensing of the typechecker and related tools and libraries to MIT, and support for Ubuntu 18.04. Packages have been published in the usual places.
+
+## HackC: The Hack Compiler
+
+The Hack & HHVM team is excited to announce that HackC — the new front-end for HHVM — is now on by default in this release, after about a year of work by many. This includes a full-fidelity parser (FFP) and bytecode emitter for the Hack and PHP languages. The FFP already powered several tools, such as Hack's IDE integration via the Language Server Protocol, `hackfmt`, and `hhast`; in addition to the runtime, we expect the typechecker (`hh_client` and `hh_server`) to use the FFP in the future, leading to a single unified parser for typechecking, execution, IDE services, and other tools.
+
+HackC passes all of HHVM's tests - including the PHP specification tests - and [produces semantically equivalent bytecode](https://github.com/facebook/hhvm/blob/master/hphp/hack/doc/semdiff-description.txt). That said, if you encounter problems:
+
+* you can *temporarily* revert to the legacy frontend with the `hhvm.hack_compiler_default=false` INI setting
+* please [file a GitHub issue](https://github.com/facebook/hhvm/issues/) including minimal example code to reproduce the problem; this is extremely important as **we plan to remove the legacy frontend in 3.27**
+
+You can verify which frontend is being used by inspecting the `__COMPILER_FRONTEND__` magic constant.
+
+## Hack Relicensing
+
+[As previously announced](https://hhvm.com/blog/2018/04/11/relicensing-hack.html), Hack is now available under the MIT license. 3.26 is the first stable release to include Hack under these terms.
+
+## Other Highlights
+
+* added the `nonnull` type, allowing more thorough and consistent typing - e.g.
+    `function nullthrows<T as nonnull>(?T $in): T`
+* added the `dynamic` type to allow safer dynamic code, as an alternative to untyped or `mixed`
+* improved handling of STDOUT with a Debug Adapter Protocol debugger attached
+* `hh_parse` now can produce dot (Graphviz) representations of the AST - e.g. `hh_parse --full-fidelity-dot test.hh | dot -Tpng ast.png; open ast.png`
+* legacy IDE support (`hh_client ide`) has been removed; the VSCode Language Server Protocol (`hh_client lsp`) should be used instead
+* many improvements to LSP-based IDE features, such as autocomplete and function hover information
+* several Hack changes that were opt-in [in HHVM 3.25](https://hhvm.com/blog/2018/03/15/hhvm-3.25.html) are no longer optional. PHP code is unaffected. These changes include:
+    * namespace fallback is no longer supported for functions or constants (e.g. '`FOO`' is always equivalent to '`namespace\FOO`')
+    * array unpacking will raise errors if there are potentially unmet requirements for the number of unpacked values
+    * destructors are no longer support. Use `using` blocks and `Disposable`s instead.
+    * arrays can no longer include references. This also means it's not possible to make references to array elements, or pass by array elements by reference.
+    * untyped lambdas can not be passed as non-function types (e.g. to functions that accept `mixed`)
+* opt-in: ban whitespace and comments in the 'elvis' (`?:`) operator - e.g. `$foo = bar() ? /* hello, world */ : baz();`. To ban this syntax, set `disallow_elvis_space=true` in your `.hhconfig`. We expect this to be required in 3.27.
+
+## The dynamic Type
+
+`dynamic` is a new type we've added to Hack's type system. The dynamic type is a special type in Hack used to help capture dynamism in our codebase in typed code, in a more manageable manner than `mixed`. With the `dynamic` type, the presence of dynamism in a function is *local to the function,* and dynamic behaviors cannot leak into code that doesn't know about it.
+
+For example, this untyped code will not raise type errors, as the typechecker assumes any use of untyped variables (`$x`) is valid:
+
+```
+function takesInt(int $x) : int {
+  //...
+}
+
+function f($x) {
+  $id = $x->getInt();
+  $y = takesInt($id);
+}
+```
+
+With `dynamic`, the local usage is allowed, but dynamism must be removed at the function boundaries:
+
+```
+function takesInt(int $x) : int {
+  //...
+}
+
+function f(dynamic $x) : void {
+  // Calling a method on a dynamic type is allowed,
+  //  and will result in another dynamic 
+  $id = $x->getInt(); 
+   // error! id is type dynamic, not compatible with int
+  $y = takesInt($id); 
+}
+```
+
+Finally, with `mixed`, the type must be refined before use:
+
+```
+function takesInt(int $x) : int {
+  //...
+}
+
+function f(mixed $x) : void {
+  $id = $x->getInt(); // error! $x is mixed, cannot call getInt()
+  $y = takesInt($id);
+}
+```
+
+### Details
+
+* A value of type `dynamic` is permissive of most local operations: like untyped expressions, you can treat it like an integer and add it, or a string and concatenate it, or call any methods on it.
+* When using a dynamic type in an operation, the typechecker will infer the *best possible type* with the information it has. For example, using a `dynamic` in an arithmetic operation like “+” or “-” will result in a num, using a `dynamic` in a string operation will result in a string, but calling a method on a `dynamic` will result in another `dynamic`:
+
+```
+function f(dynamic $x) : void {
+  $y = $x + 5; // $y is a num
+  $y = $x . "hello!"; // $y is a string 
+  $y = $x->anyMethod(); // $y is dynamic
+}
+```
+
+* In the type hierarchy, `dynamic` is a supertype of all types(including mixed, though this might change). If a function accepts or returns a `dynamic` type any value can be used without performing a cast. We may limit or change this behavior in the future based on feedback and usage.
+* `dynamic` is permissive locally, so you don't have to null check it. That said, this means there are no guarantees by the typechecker that your type is actually `nonnull`. We also may change this behavior in the future.
+* *Unlike* untyped expressions, `dynamic` is not a subtype of any regular type. That is, you cannot pass it to a function that expects a nondynamic type, or return it from a function that returns a nondynamic type (besides `mixed`) without casting.
+* Certain dynamic behaviors, (like dynamic method calls) are allowed on dynamic types, even in strict mode. These operations result in another dynamic type.
+
+
