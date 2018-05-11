@@ -1,0 +1,17 @@
+---
+title: "HHVM 3.26.1"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 3.26.1 is released! This release contains several bugfixes, primarily improving support for PHP code when using HackC:
+
+- [`ext_factparse`: return empty lists instead of null for empty files](https://github.com/facebook/hhvm/commit/f58f112975fc4ce8401d737ff8b57cde248e8e1f)
+- [HackC: fix `is_array()` and similar checks for superglobals](https://github.com/facebook/hhvm/commit/f6396127d2037883f8717b884fecff738ec4725b)
+- [HackC: fix `isset()` for superglobals](https://github.com/facebook/hhvm/commit/950b326f6dbe036a89ab7c227c3f2ecc2689af81)
+- [HackC: fix `if` statements with empty bodies when using the `if(0): endif;` syntax](https://github.com/facebook/hhvm/commit/94e18795f021193431ef3c687868a3dd245440a5)
+- [HackC: fix support for nested array elements as `inout` parameters](https://github.com/facebook/hhvm/commit/ca147be12943b2ea4ad5715fe0a367552d346ffb)
+- [HackC: fix support for unicode identifiers (e.g. property names)](https://github.com/facebook/hhvm/commit/3336daa921e45d43ef4a2254b85f87b97883ab65)
+- [HackC: fix support for class/enum constants as shape keys in namespaces](https://github.com/facebook/hhvm/commit/6272f6655338dabcec0dcc17e57490325c5df058)
+- [HackC: fix case-insensitivity of PHP keywords](https://github.com/facebook/hhvm/commit/27854f21176054bf83b437c5f295b804326d2b82)
