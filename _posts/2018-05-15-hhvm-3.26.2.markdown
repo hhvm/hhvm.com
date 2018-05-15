@@ -1,0 +1,12 @@
+---
+title: "HHVM 3.26.2"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 3.26.2 is released! This release contains several bugfixes and improvements:
+- [HackC: support files/directories containing backslashes](https://github.com/facebook/hhvm/commit/07761fc44f12deea14898cb4afcece371e02c6d6)
+- [HackC: fix support for type constants in shape definitions when using namespaces](https://github.com/facebook/hhvm/commit/cc441f67d0cacad31a28318671979ae484a39613)
+- [HackC: fix support for PHP files using Hack reserved words as class names](https://github.com/facebook/hhvm/commit/cdc91d7ea11d8360591db1b73708967dcce3d3dd)
+- [LSP: add support for `textDocument/signatureHelp`](https://github.com/facebook/hhvm/commit/7874525f86ad1621d5f8e5a5f23d318b861ebc46)
