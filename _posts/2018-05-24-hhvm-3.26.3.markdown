@@ -1,0 +1,17 @@
+---
+title: "HHVM 3.26.3"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 3.26.3 is released! This release contains several bugfixes, and improvements to IDE support:
+- [CVE-2018-6337: clear `folly::secureRandom` (`random_bytes()` and `random_int()`) buffer on fork](https://github.com/facebook/hhvm/commit/e2d10a1e32d01f71aaadd81169bcb9ae86c5d6b8). This does not affect 3.25 or below.
+- [HackC: narrower parsing of bracketed expressions as casts](https://github.com/facebook/hhvm/commit/1ef6d97af2cb12c83dedb9aa0aaf21bd53770f9d)
+- [HackC: fix PHP classes with the same name as special Hack classes](https://github.com/facebook/hhvm/commit/dd720bec27cdc90ba56c3f6b3fc6f3af7a38efa7)
+- [LSP: use `hackfmt` instead of `hh_format` for IDE code formatting features](https://github.com/facebook/hhvm/commit/45e90b056b9337cf64d5bc6af8a9e9023a0214e6) (`hh_format` fails on most modern Hack code)
+- [LSP: respect IDE-provided indent width and tabs-or-spaces preferences when formatting code](https://github.com/facebook/hhvm/commit/a7cdefc35ed43cd40640ae91eed89b33e8c8542a)
+- [LSP: fix support for as-you-type formatting in VSCode](https://github.com/facebook/hhvm/commit/2760d8639821b2c3105b2a0a3af7a437bed5f83b)
+- [LSP: `use` statements in classes autocomplete should only suggest traits](https://github.com/facebook/hhvm/commit/a4da482a6084d68fa9020a83b2e1f034733bc04e)
+- [Improve detection, handling, and errors for magic functions where `yield` and `await` are unsupported](https://github.com/facebook/hhvm/commit/2760d8639821b2c3105b2a0a3af7a437bed5f83b); this improves handling of `IDisposable`, `IAsyncDisposable`, `__callStatic`, and increases PHP compatibility.
+- [Add an `extra_paths=` option to `.hhconfig` to include dependencies outside of the project root](https://github.com/facebook/hhvm/commit/1574fa14e907399c9d3085686533c3eb7109dcfc). This is experimental, and may be removed at any time.
