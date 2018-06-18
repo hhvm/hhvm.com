@@ -1,0 +1,142 @@
+---
+title: "HHVM 3.27.0"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 3.27 is released! This version has long-term support, and contains performance, IDE, typechecker, and other improvements:
+
+* HackC is now the only supported frontend; the legacy parser is still included, but it is unsupported, and we expect it to be removed in 3.28
+* `Shapes::removeKey()` now takes the shape as an `inout` parameter instead of by reference
+* `await` and `yield` are now permitted in `finally` blocks
+* key types for Generators are now covariant instead of invariant
+* removed XDebug support. The VSCode Debug Protocol should be used instead
+* removed the ODBC extension
+* added `forward_compatibility_level` option to `.hhconfig` to make managing upgrades easier.
+* improved PHP support in HackC
+* support sealed interfaces and classes, and seal the collection hierarchy when when `enable_experimental_tc_features` in `.hhconfig` contains `sealed_clases`. This bans extending the built-in Container and KeyedContainer classes, and we expect this to be required in 3.28
+* disallow comparisons between incompatible types in Hack code when `disallow_unsafe_comparisons=true` is set in `.hhconfig`. We expect this to be required in 3.28
+* enforce that container keys are `arraykeys` in Hack code when `disallow_non_arraykey_keys=true` is set in `.hhconfig`. We expect this to be required in 3.28, and was already a runtime error if non-array keys were actually used.
+* require that subclasses in partial files specify the types of properties that override parent classes properties with types when `decl_override_require_hint=true` is set in `.hhconfig`
+* ban always-true and always-false `Shapes::keyExists()` checks when `enable_experimental_tc_features` in `.hhconfig` contains `shape_field_check`.
+* `Shapes::keyExist()` now refines the type when used as a condition
+* improved detection of sketchy null checks (for example, `$nullable_string ? $foo : $bar` is now detected), and always-false identity checks (e.g. `$not_nullable === null` or `$int === $string`).
+* add `varray<T>` and `darray<Tk, Tv>` types; these should be considered aliases for `array<T>` and `array<Tk, Tv>`, and are used as an implementation detail of some internals. Hack code should continue to use the `vec<T>`, `keyset<T>`, and `dict<Tk, Tv>` types instead.
+* the new LSP standard `relatedInformation` field is now used for Hack errors, providing more detailed diagnostic information in editors such as Visual Studio Code
+* support renaming symbols in LSP editors via `textDocument/rename`
+* support symbol lists in LSP editors via `textDocument/documentSymbol`
+* fixed several edge cases for PHP7 `strict_types` leading to crashes or unexpected TypeErrors
+* add `untrusted_mode` option to `.hhconfig`. When `true`, it is intended to be safe to run `hh_client` or `hh_server --check $(pwd)` on potentially malicious code: `hh_server` will fail early if dangerous options are also set. If you find issues with this feature, or any other security issue in HHVM or Hack, please report them via [Facebook's Whitehat (Bug Bounty) Program](https://www.facebook.com/whitehat).
+
+## Lifecycle and Release Schedule
+
+We have released 3.27 [two weeks ahead of schedule](https://docs.hhvm.com/hhvm/installation/release-schedule) - we expect future releases to follow the original schedule. To reduce issues:
+
+* 3.27's end of support is not changing: it will end support when 3.33 is released (expected 2019-09-05). This means that it is supported for approximately 50 weeks instead of the usual 48
+* 3.26 will remain supported until the original expected release date of 3.27 in two weeks (2018-07-02)
+* 3.28 is still expected on 2018-08-27 - in ~ 10 weeks.
+
+## Sealed Classes and Interfaces
+
+This feature is currently opt-in, though we expect it to be mandatory in 3.28.
+
+Sealed classes/interfaces are only able to be directly extended/implemented by a whitelist of classes and/or interfaces - though, those subclasses can be extended arbitrarily unless they are final or also sealed. In this way, sealing provides a single-level restraint on inheritance.
+
+Classes/interfaces are sealed by providing a whitelist of `classname`s to the `__Sealed` attribute:
+
+```
+<<__Sealed(Some::class, None::class)>>
+abstract class Option<T> {
+  abstract function get(): T;
+}
+
+final class Some<T> extends Option<T> {
+  public function __construct(
+    private T $value,
+  ) {}
+  public function get(): T {
+    return $this->value;
+  }
+}
+
+final class None<T> extends Option<T> {
+  public function get(): T {
+    invariant_violation('none');
+  }
+}
+
+// ERROR
+final class Few<T> extends Option<T> {}
+```
+
+### How do I use the `__Sealed` attribute?
+
+Attach it to a class/interface and specify classnames that may extend/implement it. These must be of the form `Foo::class`.
+
+### What is the typechecker/runtime behavior?
+
+Extending/implementing a sealed class/interface with a class/interface not in the whitelist will raise both a typechecker and runtime error.
+
+There is no runtime enforcement for sealing of the collection interfaces in 3.27, in order to keep sealed classes opt-in in this release. We expect runtime enforcement for these collection interfaces in 3.28.
+
+### What can I seal?
+
+Only classes and interfaces may be sealed — traits and enums may not. Further, traits may presently not implement sealed interfaces. We expect full support for traits in the future, both for sealing them and for implementing/using sealed interfaces/traits.
+
+### Can I seal final classes?
+
+Sealing a final class will raise a typechecker error and parse error at runtime, as that would be redundant.
+
+### Can I extend non-final classes that extend a sealed class (or implement a sealed interface)?
+
+Yes. Sealing only applies to direct extension.
+
+### When should I use this feature?
+
+Sparingly, if ever—your classes should be final whenever possible! Potential use cases for this feature include preventing new instances of a deprecated class from being added, or for simulating ADTs as demonstrated above.
+
+### Why was this feature added?
+
+The collection interfaces were only intended for internal implementations, and it has been unsafe to create custom implementations of the collection interfaces since they were introduced; however, users have implemented them, leading to unexpected and undefined behavior.
+
+## forward_compatibility_level
+
+This option exists to make it easier to upgrade to new versions of HHVM and Hack, however it is only a temporary migration aid - it does not allow permanently opting out of changes, and decreases the safety of your code.
+
+`forward_compatibility_level` can be set to a valid release number (such as `3.27`), a date as an integer (e.g. `20180618`), or omitted. Dates are intended to be used for incrementally supporting features as they're added to nightly builds. For each release, the branch cut date is equivalent; for example, “`forward_compatiblity_level=3.27`” is equivalent to “`forward_compatibility_level=20180604`”.
+
+### Behavior
+
+This option *suppresses* errors - it does not restore old behavior, and **may raise fewer errors**. This means that:
+
+* code that typechecks on 3.26 should typecheck on 3.27 if `forward_compatibility_level=3.26`
+* code that typechecks on 3.27 with `forward_compatiblity_level=3.26` **might be invalid** under 3.26
+
+### Lifecycle
+
+If set to the current release or newer, there is no change in behavior.
+
+If set to older than the current release, a warning will be reported, but the exit status of hh_client and hh_server will be 0. Some other Hack errors might not be raised that would be without this warning. For example, hh_client in 3.27 reports a warning if set to 3.26.
+
+If set to older than the previous release, an error will be reported, and hh_client and hh_server will exit with non-zero status, like any other error. For example, hh_client in 3.28 will report an error if set to 3.26.
+
+### Intended Use
+
+This option is intended for short-term use, to allow resolving issues when new releases raise errors with circular dependencies, or when doing a staged roll-out of a new version. The option should be removed as soon as possible.
+
+Additionally, it can be used to detect unintentional backwards-incompatible changes in Hack, especially when testing against nightly builds.
+
+## Summary of Opt-In Features
+
+The following `.hhconfig` features are opt-in, and we expect them to be required behavior in 3.28:
+
+```
+disallow_elvis_space=true
+disallow_non_arraykey_keys=true
+disallow_unsafe_comparisons=true
+decl_override_require_hint=true
+enable_experimental_tc_features=shape_field_check,sealed_classes
+```
+
+
