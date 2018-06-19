@@ -2,7 +2,7 @@ This provides guidance on how to contribute various content to `hhvm.com`.
 
 ## Blog
 
-To modify a blog post, edit the appopriate markdown file in `./_posts/`.
+To modify a blog post, edit the appropriate markdown file in `./_posts/`.
 
 Adding a new blog post is a four-step process.
 

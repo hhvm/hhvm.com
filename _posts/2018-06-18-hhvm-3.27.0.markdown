@@ -104,14 +104,14 @@ The collection interfaces were only intended for internal implementations, and i
 
 This option exists to make it easier to upgrade to new versions of HHVM and Hack, however it is only a temporary migration aid - it does not allow permanently opting out of changes, and decreases the safety of your code.
 
-`forward_compatibility_level` can be set to a valid release number (such as `3.27`), a date as an integer (e.g. `20180618`), or omitted. Dates are intended to be used for incrementally supporting features as they're added to nightly builds. For each release, the branch cut date is equivalent; for example, “`forward_compatiblity_level=3.27`” is equivalent to “`forward_compatibility_level=20180604`”.
+`forward_compatibility_level` can be set to a valid release number (such as `3.27`), a date as an integer (e.g. `20180618`), or omitted. Dates are intended to be used for incrementally supporting features as they're added to nightly builds. For each release, the branch cut date is equivalent; for example, “`forward_compatibility_level=3.27`” is equivalent to “`forward_compatibility_level=20180604`”.
 
 ### Behavior
 
 This option *suppresses* errors - it does not restore old behavior, and **may raise fewer errors**. This means that:
 
 * code that typechecks on 3.26 should typecheck on 3.27 if `forward_compatibility_level=3.26`
-* code that typechecks on 3.27 with `forward_compatiblity_level=3.26` **might be invalid** under 3.26
+* code that typechecks on 3.27 with `forward_compatibility_level=3.26` **might be invalid** under 3.26
 
 ### Lifecycle
 
