@@ -34,7 +34,7 @@ You can verify which frontend is being used by inspecting the `__COMPILER_FRONTE
 * several Hack changes that were opt-in [in HHVM 3.25](https://hhvm.com/blog/2018/03/15/hhvm-3.25.html) are no longer optional. PHP code is unaffected. These changes include:
     * namespace fallback is no longer supported for functions or constants (e.g. '`FOO`' is always equivalent to '`namespace\FOO`')
     * array unpacking will raise errors if there are potentially unmet requirements for the number of unpacked values
-    * destructors are no longer support. Use `using` blocks and `Disposable`s instead.
+    * destructors are no longer supported. Use `using` blocks and `Disposable`s instead.
     * arrays can no longer include references. This also means it's not possible to make references to array elements, or pass by array elements by reference.
     * untyped lambdas can not be passed as non-function types (e.g. to functions that accept `mixed`)
 * opt-in: ban whitespace and comments in the 'elvis' (`?:`) operator - e.g. `$foo = bar() ? /* hello, world */ : baz();`. To ban this syntax, set `disallow_elvis_space=true` in your `.hhconfig`. We expect this to be required in 3.27.
