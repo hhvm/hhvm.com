@@ -1,0 +1,28 @@
+---
+title: "HHVM 3.27.1 and 3.24.8"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 3.27.1 and 3.24.8 are released! The releases contain several bugfixes:
+
+# 3.27.1
+
+* [Fix stability issues when async if HHVM is linked against libevent2](https://github.com/facebook/hhvm/commit/9db89dc930f3d0d0b1f765535032a05eb8846312)
+* [Fix overly-strict parameter type variance for implementations of abstract methods](https://github.com/facebook/hhvm/commit/17fd9d0f9bc07e5d1af9046c3e53e3826acb9de2)
+* [Fix as-you-type formatting when using recent versions of Nuclide](https://github.com/facebook/hhvm/commit/15109e45914442fcd28d57b0061724d6f1f2c3c6)
+* [Fix formatting of comments that include tabs](https://github.com/facebook/hhvm/commit/ced95a0aa74d2978f9f24d34f3eb098a393bf561)
+* [Support debugging xbox requests](https://github.com/facebook/hhvm/commit/572d75b337e9c9b2c75b5de72689826110f573a3)
+* [Regression: Support `"{$$foo}"` in PHP files](https://github.com/facebook/hhvm/commit/e539f3254db8bd2da0f27bb25593208b91b5e5f4)
+* [Regression: Support closures in anonymous classes](https://github.com/facebook/hhvm/commit/1ec607a55ef78e3d0b898e793370f73c035c2228)
+* [Regression: Fix typechecker hangs/crashes if there are many `if (Shape::keyExists())` refinements](https://github.com/facebook/hhvm/commit/101d32457e8bcf12a761fe2e0331aa57d071edc5)
+* [Regression: Remove special meanings of some Hack keywords when file is PHP](https://github.com/facebook/hhvm/commit/16a87033933457bdc77b8249dbaa9b30b4f9e098)
+* [Autocomplete: Remove 'namespace fallback' behavior for functions, which is no longer part of Hack](https://github.com/facebook/hhvm/commit/65b0276a7feb8e2cf208ac33c4e4c01387402062)
+* [Autocomplete: Don't trigger autocomplete after colons in case statements in namespaces](https://github.com/facebook/hhvm/commit/ff979c963a8cf6c507233cae176b279a05f74380)
+* [Autocomplete: Don't trigger autocomplete after user attributes](https://github.com/facebook/hhvm/commit/7726f1da0aa37796dc35be45f98d20e8e5d1193f)
+
+## 3.24.8
+
+* [Fix stability issues when using async if HHVM is linked against libevent2](https://github.com/facebook/hhvm/commit/46e5dff56d0d9c0dd296b9f36615e1756bc07c07)
+* [Fix overly-strict parameter type variance for implementations of abstract methods](https://github.com/facebook/hhvm/commit/2e1ded3341a9298de688bdc9a9f73065373523f9)
