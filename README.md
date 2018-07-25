@@ -1,4 +1,4 @@
-## User Documentation for YOUR PROJECT
+## User Documentation for hhvm.com
 
 This directory will contain the landing page and other documentation for [hhvm.com](http://hhvm.com). It will contain links to the [HHVM user documentation over at docs.hhvm.com](https://docs.hhvm.com/hhvm) and other relevant places. [hhvm.com](http://hhvm.com) will be hosted on GitHub pages.
 
