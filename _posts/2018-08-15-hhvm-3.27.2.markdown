@@ -1,0 +1,16 @@
+---
+title: "HHVM 3.27.2"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 3.27.2 is released! This release contains several bugfixes:
+
+* [Fix various crashes on MacOS due to differing assembler conventions](https://github.com/facebook/hhvm/commit/05f97eb0388d84ba2e0685c2715582c3a41dd3d1)
+* [Fix deadlock when calling `HH\facts_parse` in multiple simultaneous requests](https://github.com/facebook/hhvm/commit/4089ed8b5042b2b1781b833653472b48acc6f07f)
+* [Fix conditional breakpoints in debugger](https://github.com/facebook/hhvm/commit/bbba234980bc183ddb3c6300c04fff8a18ae6915)
+* [Fix hang in debugger shutdown](https://github.com/facebook/hhvm/commit/a8fd6b8d1c47d24f8cbbfe887642c45688c418d3)
+* [Fix IDE symbol search for namespaced symbols that start with a lowercase letter](https://github.com/facebook/hhvm/commit/62a30953b2ffba94f0aeb21a3ee30a71d17e2527); this usually means namespaced functions.
+* [Fix `hh_client` crash on shutdown in some situations](https://github.com/facebook/hhvm/commit/67aa074dc9d7cc40342d55f3df2195cb97cdc7f8)
+* [Fix crash when an unsupported experimental feature was enabled](https://github.com/facebook/hhvm/commit/9ee09d4e654852135a0595285f44fca66841b5dd)
