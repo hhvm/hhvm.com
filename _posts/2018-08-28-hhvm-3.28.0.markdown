@@ -1,0 +1,295 @@
+---
+title: "HHVM 3.28.0"
+layout: post
+author: kmeht
+category: blog
+---
+
+HHVM 3.28 is released! This release contains new language features, bugfixes, performance improvements, and improvements to the debugger and editor/IDE support.
+
+# New Features
+
+* [`is` and `as` expressions][is-and-as] for type refinement, providing a consistent alternative to the `is_*()` functions and `instanceof`
+* autocomplete is now supported for shape keys
+* type constants with generics now support constraints - for example, `const type TMyVec<T as Foo> = vec<T>`
+* **Experimental**: `<<__MemoizeLSB>>` attribute: this is like `<<__Memoize>>`, but the cache has Late Static Binding: subclasses have their own memoize cache
+* **Experimental**: `<<__LateInit>>` attribute: this marks a property as being initialized via a non-standard mechanism, i.e. not via standard assignment in the constructor. Reading uninitialized `<<__LateInit>>` properties is a runtime error
+
+The experimental `<<__MemoizeLSB>>` and `<<__LateInit>>` attributes have not been tested as thoroughly as other features, and are more likely to have correctness or stability issues, or to require BC-breaking changes in the near future.
+
+# Backwards-Incompatible changes
+
+Language-level restrictions here only apply to Hack code, not PHP.
+
+* removed the legacy `hh_file_parse`, `hh_format`, and `format_hack` tools; these are replaced by `hh_parse` and `hackfmt`
+* it is now an error to declare the visibility of parameters to methods other than constructors; for constructors, this promotes the parameters to members, however it was meaningless for other methods
+* the collection hierarchy is now sealed, and can not be extended (`sealed_classes` option in 3.27)
+* `Traversable` and `KeyedTraversable` are now sealed, and do not allow direct user subclasses; you most likely want to extend `Iterator` or `KeyedIterator` instead
+* the built-in ASIO classes (`RescheduleWaitHandle`, `SleepWaitHandle`, `StaticWaitHandle` etc) are now sealed.
+* `$$` and `$this` can no longer be passed by reference in Hack code
+* direct method chaining after constructor calls (`new Foo()->bar()`) is a parse error again; support was unintentionally added in HackC, but not wanted as it is ambiguous: `(new Foo())->bar()` vs `new (Foo()->bar())` where `Foo()->bar()` could return a `classname<T>`
+* spaces and comments are not permitted between the `?` and `:` in the `?:` operator (`disallow_elvis_space` in 3.27)
+* `Set` is now a `KeyedIterator<arraykey, Tv>` instead of `KeyedIterator<mixed, Tv>`
+* `dict` keys are now constrained to `arraykey` - this was previously a runtime requirement, but not reported by the typechecker
+* checking the truthiness of `?enum`, `?bool`, `?array`, `?vec`, `?dict`, `?keyset`, `?Map`, `?Set`, `?Vector`, and the immutable/const variants of these, is now a 'sketchy null check' error
+* subclasses that override properties with types must also specify types (`decl_override_require_hint` in 3.27)
+* use clauses are not allowed to shadow global variables
+* non-abstract constants are required to have a value
+* the `abstract` keyword is not permitted in interface declarations
+
+# Other Changes
+
+* the legacy frontend is no longer usable; HackC is the only available frontend for runtime/bytecode generation, and for FactsParse
+* the typechecker is now using the full fidelity parser - the same parser as HackC and `hackfmt`
+* method search in editors/IDEs is now a substring search instead of a prefix search
+* the debugger REPL now interprets code as Hack, not PHP, even if `force_hh` is not set
+
+# Future Changes
+
+These changes are currently opt-in - we expect them to be mandatory in 3.29.
+
+* `assume_php=false` : raise errors for using types/functions in partial-mode files that aren't declared in Hack or HHI files. This was previously announced, but not actually enforced
+* `disallow_return_by_ref=true` : ban returning by reference
+* `disallow_array_cell_pass_by_ref=true` :bans `&$foo[0]`
+
+Separately, we expect to remove support for the previous approaches to type-refinement in a future version; we do not yet have a specific target version.
+
+# `is` and `as` Expressions
+
+## Cheat Sheet
+
+| Old | New |
+| --- | --- |
+| `is_int($x)` | `$x is int` |
+| `$x instanceof MyClass` | `$x is MyClass` |
+| `MyEnum::isValid($x)` | `$x is MyEnum` |
+| `is_int($x) \|\| is_string($x)` | `$x is arraykey` |
+| `$x === null \|\| is_int($x)` | `$x is ?int` |
+| `$x !== null` | `$x is nonnull` |
+| `is_vec($x)` | `$x is vec<_>;` |
+| `is_dict($x)` | `$x is dict<_, _>;` |
+| `TypeAssert\matches_type_structure(type_structure(static::class, "TFoo"), $x)` | `$x as this::TFoo` |
+
+## Introduction
+
+### Type Testing
+
+Hack previously had a collection of inconsistent APIs for type testing. For example, you currently use `instanceof` for classes/interfaces, the `is_int()` et al. functions for primitives, and the isValid static method for enums. Furthermore, it can be unclear which language constructs refine the type of a variable from the typechecker's perspective—we often receive questions in Hacklang Support about why a particular expression didn't refine the type of a variable. The goal of the is operator is to make type testing:
+* **Consistent** - testing for all types in the type system should be done the same way.
+* **Predictable** - only one language construct should be able to refine the types of values.
+* **Ergonomic** - testing for complex types should be just as easy as testing for simple types.
+
+At runtime, the `is` operator determines whether a value is of a certain type and evaluates to a boolean. Statically, it refines the type of a variable when used in an if statement, invariant, or ternary expression. If the type does not exist, the expression will evaluate to false (although that will be a typechecker error).
+
+```Hack
+$x is T;
+```
+
+### Type Assertion
+
+Similarly, type assertion in Hack is suboptimal. The goal of the `as` operator is to make type assertion consistent, predictable, and ergonomic, as well as more performant.
+
+At runtime, the `as` operator evaluates to the left operand if its type matches, otherwise it throws `TypeAssertionException`. Statically, it unconditionally refines the type of the left operand. The `as` operator also comes in a non-throwing variant `?as`, which evaluates to `null` if the type doesn't match.
+
+```Hack
+$x as T;
+$x ?as T;
+```
+
+The `as` operator has notable benefits over the userland assertion libraries, both statically and at runtime. For example, the operator is able to refine the type of variables in the typechecker, unlike TypeAssert and others. Not only does this allow you to write better, more natural code, but it also enables HHVM to better optimize during compilation, which makes it faster than the userland implementations!
+
+## Supported Types
+
+Aside from the typehints discussed in the "Limitations" section below, the `is` and `as` operators can be used with any type in the Hack language!
+
+For primitives and primitive unions, the operators work as you'd expect.
+
+```Hack
+1 is int; // true
+1 as int; // 1
+
+'foo' is int; // false
+'foo' as int; // TypeAssertionException
+
+1 is num; // true
+1 as num; // 1
+
+1.5 is num; // true
+1.5 as num; // 1.5
+
+'foo' is num; // false
+'foo' as num; // TypeAssertionException
+```
+
+For enums, the operators will validate that the value is in the given enum. **CAUTION: the operators will perform integral key coercion to preserve compatibility with `BuiltinEnum::isValid`**. We will fix this separately in the future.
+
+```Hack
+enum MyEnum: int {
+  FOO = 1;
+}
+
+1 is MyEnum; // true
+1 as MyEnum; // 1
+
+42 is MyEnum; // false
+42 as MyEnum; // TypeAssertionException
+
+'foo' is MyEnum; // false
+'foo' as MyEnum; // TypeAssertionException
+
+'1' is MyEnum; // CAUTION - true
+'1' as MyEnum; // CAUTION - '1'
+```
+
+For generic types, you must use the `_` (wildcard) placeholder for the type parameters. This is discussed in more detail in the [“Generics” subsection][is-as-generics] of the “Limitations” section below.
+
+```Hack
+interface MyInterface<T> {}
+
+$x is MyInterface<_>;
+$x as dict<_, _>;
+```
+
+For structural types (i.e. tuples and shapes), the operators will validate the size and recursively validate every field in the value. **This means you should be mindful of using them with enormous structural types***.
+
+```Hack
+$x is (int, ?string, bool); // OK
+$x as shape(
+  'foo' => int,
+  ?'bar' => (int, ?string, MyEnum),
+  ...
+); // OK
+```
+
+For type aliases and type constants, the operators will test the value against the underlying runtime type.
+
+```Hack
+type Foo = (int, ?string, bool);
+
+tuple(1, null, false) is Foo; // true
+varray[1, null, false] is Foo; // true
+dict[0 => 1, 1 => null, 2 => false] is Foo; // false
+
+abstract class C {
+  const type T as num = int;
+
+  public function isT(mixed $x): void {
+    $x is this::T; // OK
+  }
+}
+```
+
+### The `nonnull` Type
+
+Hack refines the `nonnull` type specially - if the input variable of `is nonnull` or `as nonnull` is known to be of type `?T`, it is refined to `T`, instead of simply to `nonnull`
+
+```Hack
+function foo(?string $x): void {
+  $y = $x as nonnull; // $y has type `string`
+}
+```
+
+## Limitations
+
+Types that cannot be properly tested at runtime are not supported. ***Use of the `is` and `as` operators with an unsupported type will raise an unfixmeable typechecker error and will potentially raise a fatal runtime error.**
+
+### Generics
+
+The use of generics with the `is` and `as` operators is unsupported, because generics are erased at runtime.
+
+```Hack
+final class Foo<Tu> {
+  public function bar<Tv>(mixed $x) {
+    if ($x is Tu) {...} // UNSUPPORTED
+    $x as Tv; // UNSUPPORTED
+  }
+}
+```
+
+Similarly, using the `is` and `as` operators on generic classes and type aliases is unsupported.
+
+```Hack
+final class Bar<T> {}
+type Baz = Bar<int>;
+
+if ($x is Bar<int>) {...} // UNSUPPORTED
+if ($x is Baz) {...} // UNSUPPORTED
+
+$x as Bar<int>; // UNSUPPORTED
+$x as Baz; // UNSUPPORTED
+```
+
+However, you can use the wildcard typehint in place of generics, and the typechecker will infer the type to the best of its ability. For now, the wildcard can only be used in `is` and `as` expressions. In the following example, we know that `vec<T>` is a `Container<T>`, so this code is valid:
+
+```Hack
+function f(Container<int> $x): void {
+  if ($x is vec<_>) {
+    expect_vec_of_int($x); // OK
+  }
+  expect_vec_of_int($x as vec<_>); // OK
+}
+
+function expect_vec_of_int(vec<int> $y): void {}
+```
+
+In this example, we know that the type parameter of `keyset`s must be `arraykey`s, so this code is valid:
+
+```Hack
+function f(mixed $x): void {
+  if ($x is keyset<_>) {
+    expect_keyset_of_arraykey($x); // OK
+  }
+  expect_keyset_of_arraykey($x as keyset<_>); // OK
+}
+
+function expect_keyset_of_arraykey(keyset<arraykey> $y): void {}
+```
+
+You may be asking, “The wildcard is ugly! Why do we have to use it when we don't have to use it for `instanceof`?” In strict mode, we require all typehints to have their type parameters specified. If type parameters are not specified, the typechecker assumes that they are the “any” type, an extremely permissive type that provides very poor typechecking. The instanceof operator is an exception to this rule—instead of the “any” type, we assume that each type parameter is some type for which we have no information, which allows us to infer its constraints. The wildcard makes this behavior explicit in syntax and allows us to consistently require that typehints have type parameters.
+
+### Functions
+
+Because we cannot verify the input/output types of a function at runtime, they are unsupported.
+
+```Hack
+if ($x is (function(string): int)) {...} // UNSUPPORTED
+$x as (function(string): int); // UNSUPPORTED
+```
+
+### PHP Arrays
+
+PHP arrays and the aliases are unsupported:
+
+```Hack
+$x is array<_>; // UNSUPPORTED
+$x is varray<_>; // UNSUPPORTED
+$x as darray<_, _>; // UNSUPPORTED
+```
+
+### Opaque Type Aliases
+
+Because opaque type aliases would require additional validation in Hack code, they are unsupported. For example, in the following code, we only know that IDs are ints at runtime—how would we know that the operand is a valid ID?
+
+```Hack
+newtype ID as int = int;
+
+if ($x is ID) {...} // UNSUPPORTED
+$x as ID; // UNSUPPORTED
+```
+
+### Complex Expressions
+
+Similarly to `instanceof`, we don't support complex expressions when refining types. For example, we'd expect that the following example would refine the type of `$x to Foo | Bar`, but it currently does not refine the type at all.
+
+```Hack
+function f(mixed $x): void {
+  if ($x is Foo || $x is Bar) {
+    // $x is of type mixed
+  }
+}
+```
+
+In the future, once we converge on only one operator that performs type testing, we can begin to invest in supporting more complex expressions and more intelligently refine types of local variables.
+
+[is-and-as]: #is-and-as-expressions
+[is-as-generics]: #generics
