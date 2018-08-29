@@ -63,8 +63,8 @@ Separately, we expect to remove support for the previous approaches to type-refi
 | `is_int($x)` | `$x is int` |
 | `$x instanceof MyClass` | `$x is MyClass` |
 | `MyEnum::isValid($x)` | `$x is MyEnum` |
-| `is_int($x) \|\| is_string($x)` | `$x is arraykey` |
-| `$x === null \|\| is_int($x)` | `$x is ?int` |
+| `is_int($x) || is_string($x)` | `$x is arraykey` |
+| `$x === null || is_int($x)` | `$x is ?int` |
 | `$x !== null` | `$x is nonnull` |
 | `is_vec($x)` | `$x is vec<_>;` |
 | `is_dict($x)` | `$x is dict<_, _>;` |
@@ -81,7 +81,7 @@ Hack previously had a collection of inconsistent APIs for type testing. For exam
 
 At runtime, the `is` operator determines whether a value is of a certain type and evaluates to a boolean. Statically, it refines the type of a variable when used in an if statement, invariant, or ternary expression. If the type does not exist, the expression will evaluate to false (although that will be a typechecker error).
 
-```Hack
+```
 $x is T;
 ```
 
@@ -91,7 +91,7 @@ Similarly, type assertion in Hack is suboptimal. The goal of the `as` operator i
 
 At runtime, the `as` operator evaluates to the left operand if its type matches, otherwise it throws `TypeAssertionException`. Statically, it unconditionally refines the type of the left operand. The `as` operator also comes in a non-throwing variant `?as`, which evaluates to `null` if the type doesn't match.
 
-```Hack
+```
 $x as T;
 $x ?as T;
 ```
@@ -104,7 +104,7 @@ Aside from the typehints discussed in the "Limitations" section below, the `is` 
 
 For primitives and primitive unions, the operators work as you'd expect.
 
-```Hack
+```
 1 is int; // true
 1 as int; // 1
 
@@ -123,7 +123,7 @@ For primitives and primitive unions, the operators work as you'd expect.
 
 For enums, the operators will validate that the value is in the given enum. **CAUTION: the operators will perform integral key coercion to preserve compatibility with `BuiltinEnum::isValid`**. We will fix this separately in the future.
 
-```Hack
+```
 enum MyEnum: int {
   FOO = 1;
 }
@@ -143,7 +143,7 @@ enum MyEnum: int {
 
 For generic types, you must use the `_` (wildcard) placeholder for the type parameters. This is discussed in more detail in the [“Generics” subsection][is-as-generics] of the “Limitations” section below.
 
-```Hack
+```
 interface MyInterface<T> {}
 
 $x is MyInterface<_>;
@@ -152,7 +152,7 @@ $x as dict<_, _>;
 
 For structural types (i.e. tuples and shapes), the operators will validate the size and recursively validate every field in the value. **This means you should be mindful of using them with enormous structural types***.
 
-```Hack
+```
 $x is (int, ?string, bool); // OK
 $x as shape(
   'foo' => int,
@@ -163,7 +163,7 @@ $x as shape(
 
 For type aliases and type constants, the operators will test the value against the underlying runtime type.
 
-```Hack
+```
 type Foo = (int, ?string, bool);
 
 tuple(1, null, false) is Foo; // true
@@ -183,7 +183,7 @@ abstract class C {
 
 Hack refines the `nonnull` type specially - if the input variable of `is nonnull` or `as nonnull` is known to be of type `?T`, it is refined to `T`, instead of simply to `nonnull`
 
-```Hack
+```
 function foo(?string $x): void {
   $y = $x as nonnull; // $y has type `string`
 }
@@ -197,7 +197,7 @@ Types that cannot be properly tested at runtime are not supported. ***Use of the
 
 The use of generics with the `is` and `as` operators is unsupported, because generics are erased at runtime.
 
-```Hack
+```
 final class Foo<Tu> {
   public function bar<Tv>(mixed $x) {
     if ($x is Tu) {...} // UNSUPPORTED
@@ -208,7 +208,7 @@ final class Foo<Tu> {
 
 Similarly, using the `is` and `as` operators on generic classes and type aliases is unsupported.
 
-```Hack
+```
 final class Bar<T> {}
 type Baz = Bar<int>;
 
@@ -221,7 +221,7 @@ $x as Baz; // UNSUPPORTED
 
 However, you can use the wildcard typehint in place of generics, and the typechecker will infer the type to the best of its ability. For now, the wildcard can only be used in `is` and `as` expressions. In the following example, we know that `vec<T>` is a `Container<T>`, so this code is valid:
 
-```Hack
+```
 function f(Container<int> $x): void {
   if ($x is vec<_>) {
     expect_vec_of_int($x); // OK
@@ -234,7 +234,7 @@ function expect_vec_of_int(vec<int> $y): void {}
 
 In this example, we know that the type parameter of `keyset`s must be `arraykey`s, so this code is valid:
 
-```Hack
+```
 function f(mixed $x): void {
   if ($x is keyset<_>) {
     expect_keyset_of_arraykey($x); // OK
@@ -251,7 +251,7 @@ You may be asking, “The wildcard is ugly! Why do we have to use it when we don
 
 Because we cannot verify the input/output types of a function at runtime, they are unsupported.
 
-```Hack
+```
 if ($x is (function(string): int)) {...} // UNSUPPORTED
 $x as (function(string): int); // UNSUPPORTED
 ```
@@ -260,7 +260,7 @@ $x as (function(string): int); // UNSUPPORTED
 
 PHP arrays and the aliases are unsupported:
 
-```Hack
+```
 $x is array<_>; // UNSUPPORTED
 $x is varray<_>; // UNSUPPORTED
 $x as darray<_, _>; // UNSUPPORTED
@@ -270,7 +270,7 @@ $x as darray<_, _>; // UNSUPPORTED
 
 Because opaque type aliases would require additional validation in Hack code, they are unsupported. For example, in the following code, we only know that IDs are ints at runtime—how would we know that the operand is a valid ID?
 
-```Hack
+```
 newtype ID as int = int;
 
 if ($x is ID) {...} // UNSUPPORTED
@@ -281,7 +281,7 @@ $x as ID; // UNSUPPORTED
 
 Similarly to `instanceof`, we don't support complex expressions when refining types. For example, we'd expect that the following example would refine the type of `$x to Foo | Bar`, but it currently does not refine the type at all.
 
-```Hack
+```
 function f(mixed $x): void {
   if ($x is Foo || $x is Bar) {
     // $x is of type mixed
