@@ -1,0 +1,9 @@
+---
+title: "HHVM 3.28.1"
+layout: post
+author: fe
+category: blog
+---
+
+HHVM 3.28.1 is released! This release fixes a segmentation fault when talking to
+recent MySQL server implementations.
