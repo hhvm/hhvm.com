@@ -1,4 +1,3 @@
-
 ---
 title: "Ending PHP Support, and The Future Of Hack"
 layout: post
