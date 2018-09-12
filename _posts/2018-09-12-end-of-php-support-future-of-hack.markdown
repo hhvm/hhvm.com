@@ -1,6 +1,12 @@
-# Ending PHP Support, and The Future Of Hack
 
-## Ending Support for PHP
+---
+title: "Ending PHP Support, and The Future Of Hack"
+layout: post
+author: fe
+category: blog
+---
+
+# Ending Support for PHP
 
 HHVM v3.30 will be the last release series where HHVM aims to support PHP. The key dates are:
 
@@ -15,7 +21,7 @@ We expect support for real-world PHP code to break rapidly: for example, we are 
 
 We're extremely grateful to the users and developers of PHP, and are glad to have been part of those communities.
 
-## The Future Of Hack
+# The Future Of Hack
 
 We are proud of Hack, but there are still many areas where we want to make major improvements to the language; during the next 2-3 years, we will be working towards making Hack a language that builds on the best parts of its' heritage to produce:
 
@@ -28,7 +34,7 @@ As we expect the language to evolve rapidly, we **strongly** recommend using the
 
 For this time period, most of Facebook's Hack libraries and tools on GitHub will only target the latest release, not LTS versions; branches and fixes will be made as-needed, but these branches will be community supported, except for security issues reported via [Facebook's Whitehat Program](https://www.facebook.com/whitehat).
 
-## Open Source Hack in 2018
+# Open Source Hack in 2018
 
 The priorities of the Hack/HHVM open source team are to support our existing users, and to reduce the pain of the removal of PHP support. This will involve creating additional projects, and polishing several existing projects to reach a state suitable for v1.x.
 
