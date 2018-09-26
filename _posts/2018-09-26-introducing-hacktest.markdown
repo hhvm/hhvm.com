@@ -105,7 +105,7 @@ myproject$ hhvm ~/composer.phar require --dev hhvm/hacktest facebook/fbexpect
 ...
 ```
 
-Then we migrate the tests and run them with HHAST instead of PHPUnit:
+Then we migrate the tests awith HHAST, and run them with HackTest instead of PHPUnit:
 
 ```
 myproject$ hhvm ~/code/hhast/bin/hhast-migrate --phpunit-to-hacktest tests/
@@ -131,6 +131,6 @@ myproject$ hhvm vendor/bin/hacktest tests/
 Summary: 1309 test(s), 1309 passed, 0 failed, 0 skipped, 0 error(s).
 ```
 
-Finally, you might need to update your CI systems (such as TravisCI or CircleCI) to use PHPUnit instead of HackTest.
+Finally, you might need to update your CI systems (such as TravisCI or CircleCI) to use HackTest instead of PHPUnit.
 
 If you find cases that HHAST does not migrate correctly, we welcome GitHub issues and pull requests against [the HHAST project](https://github.com/hhvm/hhast/).
