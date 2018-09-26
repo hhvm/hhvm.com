@@ -105,7 +105,7 @@ myproject$ hhvm ~/composer.phar require --dev hhvm/hacktest facebook/fbexpect
 ...
 ```
 
-Then we migrate the tests awith HHAST, and run them with HackTest instead of PHPUnit:
+Then we migrate the tests with HHAST, and run them with HackTest instead of PHPUnit:
 
 ```
 myproject$ hhvm ~/code/hhast/bin/hhast-migrate --phpunit-to-hacktest tests/
