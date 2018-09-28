@@ -1,0 +1,111 @@
+---
+title: "HHVM 3.28.2 and 3.27.3"
+layout: post
+author: fe
+category: blog
+---
+
+HHVM 3.28.2 contains bugfixes, and several features that weren't quite ready for 3.28.0:
+
+## Bugfixes
+
+* 3.27.3 and 3.28.2: handle EINTR when using HackC (common when using Xenon) - thanks to Keith Adams.
+* 3.27.3 and 3.28.2:  fix namespace resolution in anonymous classes when using HackC
+
+## Features and Improvements
+
+* 3.27.3 and 3.28.2: provide better information on mouse hover in LSP editors and IDEs
+* 3.28.2: Experimental: add `<<__Entrypoint>>`, removing the need for pseudo-mains
+* 3.28.2: Experimental: add regular expression support as a native type
+
+## <<__Entrypoint>>
+
+This is a new attribute, marking a single function in a file as being the 'main' function for this file:
+
+```
+<?hh // strict
+
+<<__Entrypoint>>
+function main(): noreturn {
+  exit(0);
+}
+
+// ... or ...
+<<__Entrypoint>>
+async function main(): Awaitable<noreturn> {
+  exit(0);
+}
+```
+
+Entrypoint functions will be automatically executed if they are in the top-level file; they will not be automatically executed if the file is included via include, require, or the autoloader.
+
+Like other functions in Hack, the function names must be unique within your project - i.e. projects with multiple entrypoints can not call both 'main'.
+
+### Open Issues
+
+* We have not yet finalized the signature of these functions; no parameters are passed, and the return value (if any) is ignored. We are likely to require `noreturn` or `Awaitable<noreturn>` in a future release, and we recommend using these types for now.
+* We have not yet established a Hack API for accessing request data or argv; for now, we recommend using partial-mode Hack wrappers around existing PHP interfaces, such as `$_GLOBALS['argv']`; in a later release, we are likely to expose this via a function, possibly called `HH\Request\argv()`; we welcome feedback and suggestions for this API
+
+## Regular Expressions
+
+This feature is a combination of a new language feature, and new library functions; the library functions are currently in the [hsl-experimental](https://github.com/hhvm/hsl-experimental/) package, and we expect them to move to the main HSL package in a future release.
+
+Regular expressions take advantage of a new Hack feature called *prefix strings*. Prefix strings allow the user to tag string literals, giving the typechecker more information.
+
+In the `Regex\` namespace, a regular expression is represented by the `Pattern` type instead of a string. A `Pattern` is obtained by using a `re`-prefixed string literal:
+
+```
+$pattern = re"/foo(bar)?/";
+```
+
+
+Now, the typechecker knows that the string is a regular expression! This means that it can warn us at typecheck time if we have written a malformed pattern:
+
+```
+$pattern = re"I am not a regular expression";
+// ERROR: Bad regex pattern; Missing delimiter(s). (Typing[4275])
+
+$pattern = re"/(no closing paren/";
+// ERROR: Bad regex pattern; Missing ) [17]. (Typing[4275])
+```
+
+
+Furthermore, the `Pattern` type has a type parameter which represents the shape of a match (containing positional and named capture groups), and the `Regex\` APIs return this shape. This means that the keys of the shape are also known at typecheck time:
+
+```
+use namespace HH\Lib\Regex;
+
+$match = Regex\first_match(
+  $some_string,
+  re"/^(positional)and(?<named>foo)$/"
+);
+
+if ($match is nonnull) {
+  $match[0]; // OK, full matched string
+  $match[1]; // OK, first positional group
+  $match['named']; // OK, named group
+  $match['nonexistent']; // ERROR: The field nonexistent is undefined (Typing[4108])
+}
+```
+
+If a capture group isn't matched in the input string, the value for its key will be set to the empty string.
+
+Regular expressions matches are supported by existing IDE features, such as
+type-on-hover and shape key autocomplete:
+
+![type-on-hover example, showing a nullable shape keyed by captures](/static/images/posts/2018-09-28-regex-types.png)
+![shape key autocomplete example, showing autocomplete for named and positional captures](/static/images/posts/2018-09-28-regex-autocomplete.png)
+
+For the full API, see [the source](https://github.com/hhvm/hsl-experimental/blob/03daf701049172f7061d23e76a04197ca1a1be10/src/regex/regex.php); it will join the main HSL documentation once the feature is no longer experimental.
+
+### Limitations
+
+For now, the prefix string is the only way to obtain a `Pattern`, meaning this library only works with statically known regular expressions. We will be introducing support for dynamic patterns soon.
+The `Regex\` namespace requires limited forms of two new Hack features: prefix strings and integer keys on shapes.
+
+* For now, only regular expressions may use prefix strings. The Hack team is considering generalizing the prefix string feature, but it's unlikely to happen this half.
+* Because shapes are darrays under the hood, we are still disallowing user-defined shapes to define integer keys due to intish string array key coercion.
+
+### Thanks
+
+Thanks to Marcy Park for building this feature, and Christopher Chedeau, Fred Emmott, Robert Lynch, and Kunal Mehta for API design.
