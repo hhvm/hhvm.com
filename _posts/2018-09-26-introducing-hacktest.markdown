@@ -20,22 +20,22 @@ final class MyTest extends HackTest {
   public static async function beforeFirstTestAsync(): Awaitable<void> {
     // this can be used to emulate setUpBeforeClass()
   }
-  
+
   <<__Override>>
   public async function beforeEachTestAsync(): Awaitable<void> {
     // this can be used to emulate setUp()
   }
-  
+
   <<__Override>>
   public async function afterEachTestAsync(): Awaitable<void> {
     // this can be used to emulate tearDown()
   }
-  
+
   <<__Override>>
   public static async function afterLastTestAsync(): Awaitable<void> {
     // this can be used to emulate tearDownAfterClass()
   }
-  
+
   public function testFoo(): void {
     // replaces $this->assertSame('bar', foo());
     expect(foo())->toBeSame('bar');
@@ -47,7 +47,7 @@ final class MyTest extends HackTest {
       tuple('bar', 456),
     ];
   }
-  
+
   <<DataProvider('provideBars')>> // replaces @dataProvider doccomment
   // tests can be async
   public async function testBar(string $a, int $_b): Awaitable<void> {
@@ -134,3 +134,6 @@ Summary: 1309 test(s), 1309 passed, 0 failed, 0 skipped, 0 error(s).
 Finally, you might need to update your CI systems (such as TravisCI or CircleCI) to use HackTest instead of PHPUnit.
 
 If you find cases that HHAST does not migrate correctly, we welcome GitHub issues and pull requests against [the HHAST project](https://github.com/hhvm/hhast/).
+
+Thanks to Wilson Lin, Robert Lynch, and Kunal Mehta for their work on these
+projects.
