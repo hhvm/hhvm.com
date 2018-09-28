@@ -11,6 +11,7 @@ HHVM 3.28.2 contains bugfixes, and several features that weren't quite ready for
 
 * 3.27.3 and 3.28.2: handle EINTR when using HackC (common when using Xenon) - thanks to Keith Adams.
 * 3.27.3 and 3.28.2:  fix namespace resolution in anonymous classes when using HackC
+* 3.28.2: Support single-line `if` statements in hackfmt
 
 ## Features and Improvements
 
