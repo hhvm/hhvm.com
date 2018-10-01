@@ -1,0 +1,13 @@
+---
+title: "HHVM 3.28.3"
+layout: post
+author: fe
+category: blog
+---
+
+HHVM 3.28.3 is released, containing two bugfixes:
+
+- the regex support introduced in 3.28.2 no longer requires a typechecker
+  option (though the feature is still experimental)
+- allow combining list assignment with `as` expressions, e.g.
+  `list($a, $b) = $foo as (int, int)`
