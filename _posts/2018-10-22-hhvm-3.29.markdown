@@ -1,0 +1,137 @@
+---
+title: "HHVM 3.29"
+layout: post
+author: fe
+category: blog
+---
+
+HHVM 3.29 is released! This release has a large amount of changes in the
+typechecker; these mostly are now raising type errors for situations that
+already failed at runtime, or banning rare cases that make the type system
+unsound.
+
+Breaking Changes
+================
+
+- [typechecker] correct inferred types for variables assigned in loops
+- [typechecker] ban using traits in interfaces (previously failed at runtime, but typechecked fine)
+- [typechecker] ban generic static properties, as the generic is unresolved until the class is instantiated
+- [typechecker] keywords are case sensitive again (e.g. `new` is valid, `NEW` is not)
+- [typechecker] ban using various keywords as identifiers, e.g. `class true {}` is not valid
+- [typechecker] improved typing of array append - e.g. `$x = vec[]; $x[] = 'a string';` now gets you a `vec<string>`
+- [typechecker] ban instance methods on abstract final classes
+- [typechecker] the `Throwable` class is now sealed to the `Exception` and `Error` classes
+- [typechecker] ban `await` in pseudomains
+- [typechecker] ban constructor parameter promotion in traits and interfaces
+- [typechecker] re-ban anonymous classes; was un-banned by parser replacement
+- [typechecker] ban the empty string as a shape key
+- [typechecker] make sure that properties are consistently static or non-static across the hierarchy. Previously a runtime error.
+- [typechecker] ban taking references to array literals. Previously a runtime error.
+- [typechecker] ban taking references to expressions including `?->` operator. Previously a runtime error.
+- [typechecker] ban `::class` on the RHS of `instanceof` expressions; uneeded.
+- [typechecker] require visibility specifiers for properties again; was un-banned by parser replacement
+- [typechecker] ban `await` in non-async lambdas. Previously a runtime error.
+- [typechecker] ban truthiness checks on objects that are not `Container`s or `SimpleXMLElement`s
+- [typechecker] ban impossible types (e.g. `abstract final` classes) as shape field types
+- [typechecker] fix typechecking of `case` statements that are after a `default` statement
+- [typechecker] ban the `(object)` cast (convert to `stdClass`) in strict mode
+- [typechecker+HackC] ban the `<>` operator in Hack -the equivalent `!=` operator is still available- migration included in [HHAST]: `hhast-migrate --ltgt-to-ne`
+- [typechecker] ban methods without a name. Previously a runtime error.
+- [typechecker] infer better types for `Shapes::toDict()`, in the same way as `Shapes::toArray()` - for example, if all the fields are strings, you can get a `dict<string, string>`
+- [runtime] removed support for `/e` modifier (eval) for `preg_replace()`. Deprecated in PHP 5.5, removed from 7.0. Use `preg_replace_callback()` instead.
+- [runtime] `stream_await()` will throw an `InvalidOperationException` if called on an unawaitable file descriptor. This includes actual on-disk files on Linux, as they are not supported by epoll. We recommend that callers attempt to `stream_await()`, and handle this exception if neccessary. The stream metadata can not be used to identify whether or not a stream is awaitable - for example, `hhvm foo.php` has an awaitable `STDIN`, but `hhvm foo.php < myfile` has an awaitable `STDIN` on MacOS (kqueue) but not on Linux (epoll). In prior releases, behavior varied; the most common result was writing an error to `STDOUT`, and the awaitable not resolving, with request timeout eventually being reached.
+- [hackc] ban variable variables (`$$foo`) in Hack code (previously required by the typechecker)
+- [hackc] colons are now required again after 'case' and 'default' labels (previously required by the typechecker)
+
+
+Features
+========
+
+- [hackfmt] added support for `// hackfmt-ignore` comments, to turn off formatting for a node
+- [typechecker] null checks on `Shapes::idx()` results now refine the type of the shape
+- add support for typed user attributes
+
+Typed User Attributes
+---------------------
+
+Currently, `<<Attributes>>` are unchecked, except if they start with `__` (indicating a builtin), and can contain any amount of static expressions of any type; it was possible to whitelist valid attribute names via `user_attributes=foo,bar`, but not to provide any additional checking.
+
+We have addressed these problems by introducing typed user attributes, where attributes are represented by classes and objects; the parameters of an attribute must be valid for the class constructor, and the objects can be retrived via reflection.
+
+For example:
+
+```
+<?hh // strict
+
+namespace MyTestFramework {
+  final class DataProvider implements \HH\MethodAttribute {
+    public function __construct(public string $function) {
+    }
+  }
+}
+
+namespace MyThingBeingTested {
+  use type MyTestFramework\DataProvider;
+  
+  final class MyTest extends MyTestFramework\TestCase {
+    <<DataProvider('provideFoo')>>
+    public function testFoo(): void {
+    }
+    
+    <<DataProvider(123)>> // type error, not a string
+    public function testBar(): void {
+    }
+    
+    <<DataProvider('foo', 'bar')>> // type error, too many arguments
+    public function testBaz(): void {
+    }
+  }
+  
+  <<DataProvider('foo')>> // type error, can't use DataProvider on functions, only methods
+  function doStuff(): void {
+  }
+}
+```
+
+Attributes can be retrieved via reflection:
+
+```
+<?hh
+$rc = new ReflectionClass('C');
+$my_attr = $rc->getAttributeClass(MyAttribute::class);
+invariant($my_attr is MyAttribute, 'we get an instance of the class');
+```
+
+Attribute classes implement at least one of these interfaces:
+- `ClassAttribute`
+- `EnumAttribute`
+- `TypeAliasAttribute`
+- `FunctionAttribute`
+- `MethodAttribute`
+- `InstancePropertyAttribute`
+- `StaticPropertyAttribute`
+- `ParameterAttribute`
+
+In 3.29, it is possible to declare attributes with this form, and if done, they were validated. In 3.30, declaring all attributes will be required, and it is possible to require this in 3.29 by setting an empty whitelist in `.hhconfig`:
+
+```
+user_attributes=
+```
+
+Other Highlights
+================
+
+- [typechecker] correct handling of `is` expressions in pipe expressions
+- [typechecker] fix handling of `as` expressions in `list` assignments, e.g. `list($a, $b) = $mixed as (int, int);`
+- [typechecker+HackC] support unambiguous `as` expressions in `foreach`, e.g. `foreach(f($x as nonnull) as $y)`
+- [runtime] async curl functions are now natively async again
+- [runtime] handle EINTR (e.g. Xenon) while invoking HackC
+- [runtime] `<<__LateInit>>` now works correctly for private properties on abstract classes
+
+Upcoming Changes
+================
+
+- [typechecker] remove support for type refinement via `is_bool()`, `is_int()` etc. This is currently opt-in via the `disable_primitive_refinement` `.hhconfig` option
+- typed user attributes will be required. This is currently opt-in via the `user_attributes=` `.hhconfig` option
+
+[HHAST]: https://github.com/hhvm/hhast/
