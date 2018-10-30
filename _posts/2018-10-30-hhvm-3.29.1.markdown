@@ -1,0 +1,26 @@
+---
+title: "HHVM 3.29.1 and 3.27.4"
+layout: post
+author: fe
+category: blog
+---
+
+HHVM 3.29.1 and 3.27.4 are released! These releases contain bugfixes and improvements:
+
+# 3.29.1
+
+- Fix reversed assignment when lambdas have multiple `inout` parameters
+- This release is available for Ubuntu 18.10 Cosmic
+- Significantly reduced lock contention when not running in repo-authoritative mode
+- Fix incorrect results for experimental HSL regex when combined with offset capture
+- Support building on systems where `$PATH` includes spaces
+
+# 3.27.4
+
+- Fix reversed assignment when lambdas have multiple `inout` parameters
+- Support `stream_await()` on FDs when using CLI server (included in 3.29.0)
+- `stream_await()` will throw an `InvalidOperationException` if called on an unawaitable file descriptor. This includes actual on-disk files on Linux, as they are not supported by epoll. We recommend that callers attempt to `stream_await()`, and handle this exception if neccessary. The stream metadata can not be used to identify whether or not a stream is awaitable - for example, `hhvm foo.php` has an awaitable `STDIN`, but `hhvm foo.php < myfile` has an awaitable `STDIN` on MacOS (kqueue) but not on Linux (epoll). In prior releases, behavior varied; the most common result was writing an error to `STDOUT`, and the awaitable not resolving, with request timeout eventually being reached (included in 3.29.0).
+
+The last issue is technically a BC break; we have included it in this release as the usual
+behavior without that patch is to hang forever; throwing immediately seems likely to be an
+improvement in the vast majority of cases.
