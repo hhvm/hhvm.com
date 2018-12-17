@@ -1,0 +1,59 @@
+---
+title: "HHVM 3.30"
+layout: post
+author: fe
+category: blog
+---
+
+HHVM 3.30 is released! This release has long term support, ending in November 2019.
+
+This release is the final release where we aim to support PHP code, and as such, contains several opt-in changes that break compatibility; as well as the specific options below (which we expect to remove during the next few releases), a `hhvm.enable_php=false` option is available, which disables support for files that begin with `<?php`. We do not anticipate removing this option in the immediate future - the primary purpose is to enable testing to make sure that Hack projects do not have hidden PHP dependencies.
+
+## New Features
+
+* list destrucuring of class constants is now supported (e.g. when the class constant is a tuple)
+* improved performance of `C\first`, `C\first_key`, `C\last`, and `C\last_key` on containers
+* traits may now implement sealed interfaces
+
+## Usability
+
+* the type-checker error for `$shape->foo` now suggests `$shape['foo']`
+* added type-checker error for importing the same method from multiple traits (previously a runtime error)
+* added type-checker error for overriding non-abstract interface constants (previously a runtime error)
+* added type-checker error for is/as on traits (previously a runtime error)
+* added type-checker error when calling parent::__construct() if parent does not have a defined constructor (previously a runtime error)
+
+## Breaking Changes
+
+* `is_int()` and similar can no longer be used to refine primitive types. Use `is int` etc instead (`hhast-migrate --is-refinement` applies this change)
+* the `<<__Entrypoint>>` attribute is now `<<__EntryPoint>>`; we consider the syntax stable, however the required function signature is not yet final. We recommend using `function(): noreturn` or` function(): Awaitable<noreturn>` for now, to provide the greatest compatibility for potential future changes
+* added typechecker error when checking truthiness of `Traversable`s; this is not a safe/meaningful test given that generators are Traversables
+
+## Future Changes
+
+* ints will wrap in future releases, instead of being converted to floats, allowing the type of `int + int` to be `int`, instead of `int + int = num`. This behavior can be enabled with the `hhvm.hack.lang.ints_overflow_to_ints` INI setting
+
+* Generators will no longer auto-prime; they should ideally be accessed via `foreach`. For manual iteration, `->next()` must be called before accessing the values. This behavior can be enabled with the `hhvm.hack.lang.autoprime_generators` INI setting
+
+* returning by reference will be completely unsupported. This behavior can be enabled with the `hhvm.disable_return_by_reference=1` INI setting
+* byref parameters will throw if the callsite is not annotated. This is currently a warning. Throwing can be enabled with the `hhvm.throw_on_call_by_ref_annotation_mismatch=1` INI setting
+* PHP-style anonymous functions will no longer support by-ref `use()` parameters. This restriction can be enabled in the typechecker by adding the `disallow_anon_use_capture_by_ref` `.hhconfig` option
+* `goto` will no longer be supported in Hack files. This restriction can be enabled in the type-checker by adding the `disallow_goto` `.hhconfig` option
+* Support for variable-variables (`$$foo`) will be removed (`hhvm.hack.lang.phpism.disable_variable_variables`)
+* Runtime namespace fallback support for constants will be removed (`hhvm.hack.lang.phpism.undefined_const_fallback`)
+* Undefined constants will no longer be converted to strings ('barewords' - `hhvm.hack.lang.phpism.undefined_const_as_string`)
+* `parse_str()` will require multiple arguments (`hhvm.hack.lang.phpism.disable_parse_str_single_arg`)
+* backticks will no longer be supported for process execution (`hhvm.hack.lang.phpism.disable_execution_operator`)
+* Variables called `$php_errormsg` or `$http_response_header` will no longer be special (`hhvm.hack.lang.phpism.disable_reserved_variables`)
+* Casting objects to strings will no longer be supported (`hhvm.fatal_on_convert_object_to_string`)
+* A notice will be raised on the use of `ArrayAccess` on non-builtin types (`hhvm.notice_on_array_access_use`)
+* several functions with special runtime behavior will be removed:
+    * `assert()`: `hhvm.hack.lang.phpism.disable_assert`
+    * `define()`: `hhvm.hack.lang.phpism.disable_define`
+    * `constant()`: `hhvm.hack.lang.phpism.disable_constant`
+    * `compact()`: `hhvm.hack.lang.phpism.disable_compact`
+    * `extract()`: `hhvm.hack.lang.phpism.disable_extract`
+    * `forward_static_call()`: `hhvm.hack.lang.phpism.disable_forward_static_call`
+    * `forward_static_call_array()`: `hhvm.hack.lang.phpism.disable_forward_static_call_array`
+    * `call_user_func()`: `hhvm.hack.lang.phpism.disable_call_user_func`
+    * `call_user_func_array()`: `hhvm.hack.lang.phpism.disable_call_user_func_array`
