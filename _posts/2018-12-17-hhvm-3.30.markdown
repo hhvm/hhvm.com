@@ -11,7 +11,7 @@ This release is the final release where we aim to support PHP code, and as such,
 
 ## New Features
 
-* list destrucuring of class constants is now supported (e.g. when the class constant is a tuple)
+* list destructuring of class constants is now supported (e.g. when the class constant is a tuple)
 * improved performance of `C\first`, `C\first_key`, `C\last`, and `C\last_key` on containers
 * traits may now implement sealed interfaces
 
