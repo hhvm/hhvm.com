@@ -45,7 +45,7 @@ This release is the final release where we aim to support PHP code, and as such,
 * `parse_str()` will require multiple arguments (`hhvm.hack.lang.phpism.disable_parse_str_single_arg`)
 * backticks will no longer be supported for process execution (`hhvm.hack.lang.phpism.disable_execution_operator`)
 * Variables called `$php_errormsg` or `$http_response_header` will no longer be special (`hhvm.hack.lang.phpism.disable_reserved_variables`)
-* Casting objects to strings will no longer be supported (`hhvm.fatal_on_convert_object_to_string`)
+* Casting objects to strings will no longer be supported (`hhvm.fatal_on_convert_object_to_string`); this includes removal of support for `__toString()`
 * A notice will be raised on the use of `ArrayAccess` on non-builtin types (`hhvm.notice_on_array_access_use`)
 * several functions with special runtime behavior will be removed:
     * `assert()`: `hhvm.hack.lang.phpism.disable_assert`
