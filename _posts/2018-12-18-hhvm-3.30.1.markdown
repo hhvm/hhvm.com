@@ -1,0 +1,15 @@
+---
+title: "HHVM 3.30.1 and 3.27.5"
+layout: post
+author: fe
+category: blog
+---
+
+HHVM 3.30.1 and 3.27.5 are released; these releases address CVE-2018-6340, a
+stack read overflow in Memcache::getExtendedStats(). Exploiting this requires
+control over memcached server hostnames and/or ports.
+
+Additionally:
+- 3.27.5 includes a fix for type coverage IDE support
+- our Mac binaries have been rebuilt to require sandybridge (model year 2011 or
+  later). This provides a 10x performance improvement on some common workloads.
