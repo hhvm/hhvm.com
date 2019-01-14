@@ -1,0 +1,12 @@
+---
+title: "HHVM 3.30.2 and 3.27.6"
+layout: post
+author: fe
+category: blog
+---
+
+HHVM 3.30.2 and 3.27.6 are released; these releases address:
+- CVE-2018-6345: data corruption in `number_format()` error cases
+- CVE-2019-3557: out of bounds read in `stream_get_line()` and bz2 reads
+- 3.30.2 fixes a regression in in `HH\Asio\curl_exec()` which was introduced in
+  3.30.0
