@@ -1,7 +1,7 @@
 ---
 title: "Ending PHP Support, and The Future Of Hack"
 layout: post
-author: fe
+author: fred
 category: blog
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Introducing HackTest"
 layout: post
-author: fe
+author: fred
 category: blog
 ---
 
