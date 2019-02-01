@@ -1,0 +1,13 @@
+---
+title: "HHVM 3.30.3"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 3.30.3 is released; this release contains several bugfixes:
+- Fix support for single-core computers of virtual machines
+- Fix an issue in hhbbc that could lead to a segfault when building for
+  repo-authoritative mode
+- Fix support for `#` comments in IDE integration - previously these would be
+  rendered as markdown headings.
