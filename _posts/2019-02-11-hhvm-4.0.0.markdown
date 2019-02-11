@@ -1,0 +1,122 @@
+---
+title: "HHVM 4.0.0"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.0 is released! This release adds support for `.hack` files, non-experimental support for HSL regular expressions, and removes several PHP behaviors.
+
+## PHP Is Unsupported
+
+With this release, we no longer aim to be compatible with PHP. While this release does not ban `<?php` and similar tags, various changes make HHVM unable to execute most PHP projects. PHP-incompatible changes in this release mostly fit in to one of three goals:
+
+* remove behavior that exists in PHP Arrays but not Hack Arrays or Hack Collections.
+* deprecation of references
+* removal of functions (or ways to invoke functions) that need to inspect or alter the caller frame such as `compact()`, `extract()`, `get_declared_variables()`, `func_get_args()`, or `parse_str()` with a single argument.
+
+
+We are considering removing support for `<?php` in the next release: the primary benefit would be a clearer error message (such as “HHVM no longer supports PHP code”) rather than more-specific messages such as parse errors which may be less useful. We welcome feedback on this via IRC, [Facebook](https://www.facebook.com/groups/hhvm.general/), or [Twitter](https://twitter.com/hiphopvm).
+
+## Using Composer
+
+HHVM is no longer able to execute Composer; Composer 1.8.4 includes support for identifying the HHVM version when executing via PHP, which is how we currently recommend installing dependencies for Hack projects.
+
+We are currently working to move to a package manager that fully supports multiple languages.
+
+## New Release Schedule
+
+HHVM 4.1 will be released and supported following the current release schedule (i.e. released in 8 weeks, and then supported for 8 weeks). 4.2 will be released 1 week later, and mark the start of a weekly release schedule.
+
+Each weekly release will receive security support for 6 weeks, and we are keeping the current long-term-release cycle: every 24 weeks, a release is made that will be supported for 48 weeks. This means that there will be up to 8 releases concurrently supported.
+
+We recommend updating weekly, but holding back if a release is particularly painful. We decided on 6 weeks to also make monthly upgrades a workable option.
+
+## New Features
+
+### `.hack` File Extension
+
+We now recommend using the `.hack` file extension if your editor/IDE support it; files with this extension are **always** strict, and do not require or allow a `<?` header line. For example, this is a complete `.hack` file:
+
+```
+#!/usr/bin/env hhvm
+
+<<__EntryPoint>>
+function main(): noreturn {
+  print("Hello, world!\n");
+  exit(0);
+}
+```
+
+Other extensions such as `.php` and `.hh` remain supported, and require the `<?hh` header. We recommend only using these temporarily, for existing code - not for new projects.
+
+It's important to note that this means that HHVM will attempt to execute any `.hack` files that users can request, even if they do not include '`<?`'.
+
+### HH\lib\Regex is No Longer Experimental
+
+The `HH\Lib\Regex` namespace is no longer part of hsl-experimental, and is now part of the main HSL project. [The 3.28.2 release notes](https://hhvm.com/blog/2018/09/28/hhvm-3.28.2.html) provide an overview of this feature.
+
+## Breaking changes
+
+* return-by-reference is no longer supported
+* Using references in combination with array_map, array_reduce, array_walk, array_walk_recursive, or array_filter has differing behavior in some edge cases, especially when the reference is mutated while iterating.
+* ASP tags (`<% %>`) are no longer supported
+* Functions that depend on the old C++ lexer and parser (instead of HackC) have been removed. This includes `token_get_all()`, `token_name()`, `php_strip_whitespace()`, `show_source()`, `highlight_file()`, and `highlight_string()`; these functions have been unable to fully handle Hack code since 3.27.
+* `create_function()` has been removed; use lambdas or closures instead.
+* Our Docker images are now based on Ubuntu 18.04 instead of Ubuntu 16.04.
+* Generators no longer auto-prime; they should ideally be accessed via `foreach`. For manual iteration, `->next()` must be called before accessing the values.
+* All by-ref parameters must be marked with `&` at the callsite. This was previously a typechecker error, and is now also a runtime error.
+* Variable-variables (`$$foo`) are no longer supported
+* `parse_str()` now requires two arguments
+* `assert()` will no longer evaluate string arguments
+* `extract()` has been removed
+* `compact()` has been removed
+
+## Future Changes
+
+* With the exception of `.hack` files, specifying a mode will be required; for example, `<?hh // strict` will remain valid, but `<?hh` by itself will not. We recommend moving to `.hack` files if possible, otherwise `<?hh // strict`. If neither is immediately practical, `<?hh` can be replaced with `<?hh // partial`. You can enable this behavior with the “`default_mode=error`” `.hhconfig` option.
+* Non-top-level declarations will no longer be supported. For example, it will no longer be possible to declare classes or functions from other functions, or from `if` statements. In 4.0, you can disable support via the `hhvm.hack.lang.phpism.disable_nontoplevel_declarations` INI setting.
+* The operator precedence of `await` will be changing, to allow `await` to be used as an expression. You can enable the new precedence with the `hhvm.hack.lang.enable_stronger_await_binding=true` INI setting - in problematic cases, this will lead to await being parsed as an expression, which will currently raise an error. We expect this to mostly affect await statements using the ternary operator, such as `await $foo ? $bar : $baz`; currently, this is parsed as `await ($foo ? $bar : $baz)`, but in future releases it will be parsed as `(await $foo) ? $bar : $baz`. `hhast-migrate --await-precedence` can be used to add parentheses automatically.
+* Support for the `hhvm.enable_zend_sorting` option will be removed. This option makes HHVM use a slower, PHP-compatible sorting algorithm, which has different behavior in edge cases such as when elements compare as equal.
+* Reference assignment (`$x =& $y`) will be removed. The `disallow_assign_by_ref` typechecker option can be used to opt-in to this behavior now.
+* It will no longer be possible to take references to superglobals in 4.1, e.g. `some_function(&$_GET)`
+* The `global` keyword will be removed, e.g. `function foo() { global $bar; }`
+* Support for static locals will be removed by 4.2 (``function f() { static $foo = 42; return ++$foo; }``); we plan to provide an optional ban in 4.1
+* `func_num_args`, `func_get_args`, and `func_get_arg` will be removed in 4.1. Use variadics instead.
+* Providing too few or too many arguments to a function will be an error
+* `get_defined_vars()` will be removed
+* `get_class()` will require an argument.
+* `get_called_class()` will be removed.
+* `get_class_vars()` will be removed.
+* Passing the wrong types to builtins will throw, instead of returning false or null. You can enable logging for this with the `hhvm.warn_on_coerce_builtin_params` INI setting.
+* Builtins will respect method visibility when invoking array callbacks - e.g. `array_map([$this, 'privateFunc'], $arr)` will fail as array_map is not part of the class.
+* Type parameters will no longer be able to shadow global type names; for example, `class T<T> {}` will be invalid.
+* Several behaviors will be removed from PHP arrays; the general principle is that PHP arrays should work as “vec or dict”. Notices can be enabled for these behaviors by setting both the `hhvm.hack_arr_compat_notices` option and the associated notice options listed below:
+    * Int-like string keys will not be converted to integers. Set `hhvm.hack_arr_compat_check_intish_cast` to raise notices.
+    * Binding references to array elements will not be permitted. Set `hhvm.hack_arr_compat_check_ref_bind` to raise notices.
+    * The values `null`, `false`, or uninitialized variables will not be able to be treated as arrays. Set `hhvm.hack_arr_compat_check_falsey_promote` to raise notices.
+    * Empty strings will not be able to be treated as arrays. Set `hhvm.hack_arr_compat_check_empty_string_promote` to raise notices.
+    * Arrays will not be able to be compared to non-arrays. Setting `hhvm.hack_arr_compat_check_compare` will raise notices for ordering comparisons between arrays and non-arrays (scalars and objects) and for equality comparisons between arrays and Hack arrays. For example, `[] > 3` or `[] === vec[]`
+    * Non-`arraykey` values will not be able to be used as array keys and will not be automatically coerced. Set `hhvm.hack_arr_compat_check_array_key_cast` to raise notices. For example, `false` will no longer be converted to 0, `null` will not be converted to `""`, and `1.23` will no longer be automatically converted to `1` or `"1.23"` depending on the context.
+    * Arrays will not be able to be used with the plus (`+`) operator. Set `hhvm.hack_arr_compat_check_array_plus` to raise notices.
+
+Additionally, several 'future changes' that were announced with 3.30 are still planned:
+
+* ints will wrap in future releases, instead of being converted to floats, allowing the type of `int + int` to be `int`, instead of `int + int = num`. This behavior can be enabled with the `hhvm.hack.lang.ints_overflow_to_ints` INI setting
+* PHP-style anonymous functions will no longer support by-ref `use()` parameters. This restriction can be enabled in the typechecker by adding the `disallow_anon_use_capture_by_ref` `.hhconfig` option
+* `goto` will no longer be supported in Hack files. This restriction can be enabled in the type-checker by adding the `disallow_goto``.hhconfig` option
+* Runtime namespace fallback support for constants will be removed (`hhvm.hack.lang.phpism.undefined_const_fallback`)
+* Undefined constants will no longer be converted to strings (‘barewords’ - `hhvm.hack.lang.phpism.undefined_const_as_string`)
+* Variables called `$php_errormsg` or `$http_response_header` will no longer be special (`hhvm.hack.lang.phpism.disable_reserved_variables`)
+* Casting objects to strings will no longer be supported (`hhvm.fatal_on_convert_object_to_string`); this includes removal of support for `__toString()`
+* Array-access on non-builtins will no longer be supported (a notice will be raised if `hhvm.notice_on_array_access_use` is enabled)
+* Several functions with special runtime behavior will be removed:
+    * `constant()`: `hhvm.hack.lang.phpism.disable_constant`
+    * `define()`: `hhvm.hack.lang.phpism.disable_define`
+    * `forward_static_call()`: `hhvm.hack.lang.phpism.disable_forward_static_call`
+    * `forward_static_call_array()`: `hhvm.hack.lang.phpism.disable_forward_static_call_array`
+    * `call_user_func()`: `hhvm.hack.lang.phpism.disable_call_user_func`
+    * `call_user_func_array()`: `hhvm.hack.lang.phpism.disable_call_user_func_array`
+
+
+
