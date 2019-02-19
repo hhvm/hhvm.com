@@ -1,0 +1,12 @@
+---
+title: "HHVM 4.0.1"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.0.2 is released! This release:
+- fixes some issues with the `.hhconfig` `default_mode` option being
+  inconsistently applied
+- supports `.hack` files as HTTP request entrypoints by default; previously,
+  the `hhvm.php_file.extensions[hack]=1` INI setting was required.
