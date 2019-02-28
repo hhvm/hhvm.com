@@ -1,0 +1,29 @@
+---
+title: "HHVM 4.0.3"
+layout: post
+author: fred
+category: blog
+---
+
+This release is fixes some IDE features in `.hack` files, especially in
+`.hack` files which contain the string `<?hh` such as code generators.
+
+Unfortunately, fixing this required breaking the same IDE features for PHP
+files that contain leading markup (content before the `<?`) - for example:
+
+```
+<html>
+<head>
+<title><?php echo htmlspecialchars(get_page_title(); ?></title>
+</head>
+...
+</html>
+```
+
+Files that start with `<?` or a shebang line (e.g. `#!/usr/bin/env hhvm`)
+immediately followed by `<?` at the start of the second line are not affected.
+
+Additionally, our MacOS packages have been rebuilt to workaround some
+incompatibilities with recent versinos of dependencies, and to require
+Sandybridge-or-newer processors. Requiring Sandybridge provides a 19x speedup
+over Homebrew's defaults for some real-world workloads.
