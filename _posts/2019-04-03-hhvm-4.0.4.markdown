@@ -1,0 +1,18 @@
+---
+title: "HHVM 4.0.4, 3.30.5, and 3.27.8"
+layout: post
+author: fred
+category: blog
+---
+
+These releases address CVE-2019-3561; it was previously possible to read
+unintended memory locations if invalid offsets were passed to `strrpos`.
+
+Additionally, 3.30.5 makes it possible to configure `hackfmt` behavior via
+`.hhconfig`, such as:
+- `hackfmt.add_trailing_commas`
+- `hackfmt.indent_width`
+- `hackfmt.tabs`
+- `hackfmt.line_width`
+
+These options were already supported in 4.0.
