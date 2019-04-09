@@ -121,7 +121,8 @@ line of a file.
 - static locals will be removed in HHVM 4.2; a type checker error can be raised
   by setting the `disable_static_local_variables=true` option in .hhconfig
 - property types will be enforced in a future release
-- The `hhvm.hard_type_hints` option will be removed; they will always be
+- The `hhvm.hard_type_hints` option will be removed; type hints will always
+  be enforced (this has been the default behavior for some time).
 - static closures will be removed in a future release; the
   `hhvm.hack.lang.phpism.disable_static_closures` INI setting can be used to
   disable support in 4.0
