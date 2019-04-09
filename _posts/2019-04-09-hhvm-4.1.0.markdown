@@ -3,6 +3,7 @@ title: "HHVM 4.1.0"
 layout: post
 author: fred
 category: blog
+redirect_from: "/blog/2019/05/09/hhvm-4.1.0.html"
 ---
 
 HHVM 4.1 is released! This release will be supported for 8 weeks; we aim to
