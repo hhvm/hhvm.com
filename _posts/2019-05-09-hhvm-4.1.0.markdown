@@ -20,7 +20,7 @@ lifecycle for HHVM 4.1.
 - IDE integrations now better support `.hack` files
 - added the `disable_unsafe_block` `.hhconfig` option to ban `// UNSAFE`
 - `ReflectionProperty::getAttribute()` and `::getAttributes()` are now supported
-- Anonymous fucntions with `inout` parameters are now supported in async
+- Anonymous functions with `inout` parameters are now supported in async
   functions
 - shape string keys can now start with integers, as long as they are not
   entirely integers
