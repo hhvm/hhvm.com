@@ -1,0 +1,167 @@
+---
+title: "HHVM 4.1.0"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.1 is released! This release will be supported for 8 weeks; we aim to
+start publishing weekly releases shortly, however this will not change the
+lifecycle for HHVM 4.1.
+
+## New Features
+
+- added the `null` type; this allows `$foo is null` as an alternative
+  to `$foo === null`, consistent with `$foo is nonnull`.
+- added the `nothing` (bottom/empty) type.
+- `.hh` and `.hack` files are now supported in repo-authoritiative mode. We
+  recommend using `.hack` files.
+- user attributes are now supported on type constants
+- IDE integrations now better support `.hack` files
+- added the `disable_unsafe_block` `.hhconfig` option to ban `// UNSAFE`
+- `ReflectionProperty::getAttribute()` and `::getAttributes()` are now supported
+- Anonymous fucntions with `inout` parameters are now supported in async
+  functions
+- shape string keys can now start with integers, as long as they are not
+  entirely integers
+
+## Breaking Changes
+
+These changes are mostly working towards removing references from the language,
+and removing support for functions that can inspect or modify the caller, such
+as `compact()` or `extract()`
+
+- `<?hh` is no longer valid by itself; replace with `<?hh // partial`;
+  `hhast-migrate --explicit-partial-mode` can be used for this change.
+- the `assume_php` `.hhconfig` option has been removed; it is always false.
+- `global` statements (e.g. `global $foo`) are no longer supported
+- the `disallow_array_cell_pass_by_ref` and `diasallow_assign_by_ref` options
+  have been removed; these behaviors are now errors
+- it is now both a runtime error and a type error to access superglobals by
+  reference, e.g. `&$_SERVER` or `&$GLOBALS['foo']`
+- by-ref use clauses for anonymous functions (e.g. `function () use (&$foo) {}`)
+  are no longer supported
+- `is_array()`, `is_object()` and similar functions are no longer auto-imported
+  to every namespace; use `hhast-migrate --no-namespace-fallback`
+- support for PHP files is disabled by default
+- markup sections are no longer supported
+- variable variables (`$$foo`) are no longer supported
+- `get_magic_quotes_gpc()`, `get_magic_quotes_runtime()`, and
+  `set_magic_quotes_runtime()` have been removed.
+- The `hhvm.enable_zend_sorting` option has been removed; when the sort order
+  was undefined, this option would make HHVM match PHP5's behavior, but this
+  would use a slower algorithm
+- the WDDX extension has been removed
+- `.phpt` (PHP template) files are no longer supported in repo-authoritative
+  mode.
+- destructors are no longer supported or called
+- a warning is now raised if too many arguments are passed to non-variadic
+  functions
+- an exception is thrown if functions are called with too few arguments
+- invoking `forward_static_call()` now raises an error
+- `define()` has been removed
+- the execution (backtick) operator is no longer supported
+- Variance is now enforced for `where` constraints
+- `this::` is no longer used in `is` or `as` constraints at generics make it
+  unsafe
+- `stdClass` is now final
+- `__PHP_Incomplete_Class` is now final, does not typecheck, and is no longer
+  directly instantiable
+- `func_get_args()`, `func_get_arg()`, and `func_num_args()` have been removed.
+- `get_defined_vars()` has been removed
+- `get_called_class()` has been removed
+- `KeyedContainer` keys must now be `arraykey`; this affects `Map`, `ImmMap`,
+  `Set`, and `ImmSet`.
+- variables called `$php_errormsg` or `$http_response_header` are no longer
+  special
+- Calling instance methods statically or static methods as instance methods
+  now raises a warning.
+- `array_keys()` now only takes one argument
+- undefined constants ('barewords') now always raise an error
+- the `phar` extension has been removed, as HHVM does not support building
+  phars and was no longer able to execute PHP phars.
+- integers now wrap instead of overflowing to floats
+- `Closure::bindTo` and `Closure::call` have been removed; these were already
+  typechecker errors
+
+### PHP Files
+
+`<?php` now raises a runtime error; while PHP is no longer supported by HHVM,
+it is still possible to allow the `<?php` tag by setting the
+`hhvm.enable_php=true` INI setting.
+
+We disabled it by default as executing PHP files with HHVM 4 tends to give
+confusing and misleading error messages due to changes around references;
+disabling support allows a much clearer error message to be provided.
+
+### Markup Sections
+
+The parser no longer understands markup sections; they are both typechecker
+and runtime errors. Relatedly, `?>` is no longer recognized.
+
+```
+This is a leading markup section
+<?php
+// foo
+?>
+This is a markup section, but not a leading markup section
+```
+
+Shebang lines (e.g. `#!/usr/bin/env hhvm`) are still permitted as the first
+line of a file.
+
+## Future Changes
+
+- in 4.2, `<?hh` will imply strict mode, instead of being an error
+- `filter_input()` and `filter_array()` will be removed in a future release
+- the IPC and extension will be removed in a future release
+- the session extension and `$_SESSION` will be removed in a future release
+- `declare()` will be removed in a future release
+- user streams and stream filters will be removed in a future release
+- static locals will be removed in HHVM 4.2; a type checker error can be raised
+  by setting the `disable_static_local_variables=true` option in .hhconfig
+- property types will be enforced in a future release
+- The `hhvm.hard_type_hints` option will be removed; they will always be
+- static closures will be removed in a future release; the
+  `hhvm.hack.lang.phpism.disable_static_closures` INI setting can be used to
+  disable support in 4.0
+- Calling instance methods statically or static methods as instance methods will
+  be an error in a future release. In 4.0, this raises a warning.
+- Removed `hackificator`, `augmented_types`, `remove_soft_types`, and
+  `compare_coverage.py` as they have been unmaintained for some time.
+- Dynamic calls will not be allowed to take by-reference parameters; this can
+  be currently be enforced with the `disallow_byref_dynamic_calls` `.hhconfig`
+  option 
+
+### Static Locals
+
+Static local variables will no longer be supported - for example:
+
+```
+function foo(): void {
+  static $foo = null;
+  // ...
+}
+```
+
+There are several approaches for replacing them:
+- replace with `<<__Memoize>>` or `<<__MemoizeLSB>>`
+- use instance properties
+- use static properties; care is needed to make sure that `self::` or `static::`
+  is used correctly; the behavior of static local variables dependeded on the
+  caller, so this could not be inferred.
+
+If the function is potentially recursive, you may need to copy the property
+into a local, so that deeper calls do not affect the value in their callers.
+
+### Property Type Enforcment
+
+The `hhvm.check_prop_type_hints` INI setting can be used to enable runtime
+enforcement of property types. This enables additional optimizations.
+
+Valid values are:
+- 1: raise a warning
+- 2: raise a recoverable error
+- 3: raises a non-recoverable error
+
+We expect property type enforcement to be mandatory in a future version.
