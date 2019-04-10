@@ -83,6 +83,7 @@ as `compact()` or `extract()`
 - integers now wrap instead of overflowing to floats
 - `Closure::bindTo` and `Closure::call` have been removed; these were already
   typechecker errors
+- `record` is a reserved word in preparation for a new data structure type.
 
 ### PHP Files
 
