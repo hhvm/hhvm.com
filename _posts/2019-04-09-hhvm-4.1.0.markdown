@@ -84,6 +84,9 @@ as `compact()` or `extract()`
 - `Closure::bindTo` and `Closure::call` have been removed; these were already
   typechecker errors
 - `record` is a reserved word in preparation for a new data structure type.
+- functions must be declared at the top level, or directly inside a namespace
+  block. For example, they can no longer be defined conditionally, or inside
+  another function.
 
 ### PHP Files
 
