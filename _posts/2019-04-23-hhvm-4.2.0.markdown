@@ -1,0 +1,73 @@
+---
+title: "HHVM 4.2.0"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.2 is released! This release will be supported for 6 weeks, and HHVM 4.1
+remains supported.
+
+This is the first release on an accelerated schedule; we now aim to make new
+releases every monday, each supported for 6 weeks. There is no planned change
+to the LTS cycle.
+
+4.1's release branch was cut in late March, so 4.2 contains approximately a
+month's changes; 4.2 and future releases do not have the same branch cut system,
+so 4.3 and above should be expected to contain approximately one weeks' changes.
+
+## New Features
+
+- Added a `statcache-clear` admin server command
+- Added the `CURLPROXY_HTTPS` constant
+- Added context to typechecker error output; the previous output is available
+  with `--error-format=raw` for scripting/automation
+- `$x is MyAbstractFinalClass` now raises a typechecker error, as it is
+  impossible for any `$x` to be an instance of an uninstantiable class
+
+## Breaking Changes
+
+- The typechecker now requires an argument to `get_class()`
+- The `settype()` function has been removed
+- Static locals have been removed
+- User-defined stream wrappers and filters have been removed
+- Support for PHP anonymous classes have been removed from the runtime; these
+  were not supported in Hack.
+- int-like-strings are no longer converted to ints when used as PHP array
+  keys. To help migration, this behavior can be tested on 4.1 with the
+  `hhvm.enable_intish_cast=0` option.
+- `<<__UNSAFE_Construct>>` has been removed.
+- The runtime now requires that all keywords (e.g. `if`) to be lowercase; this
+  was previously only required by the typechecker.
+- Calls to undefined functions are now fatal errors.
+- `filter_has_var()`, `filter_input()`, and `filter_input_array()` have been
+  removed.
+- Attempting to store a reference in `$GLOBALS` will result in a runtime error.
+- Callback support has been removed from `Memcached::get()` and
+  `Memcached::getbykey()`
+
+## Other Changes
+
+- Corrected reflection for `inout` parameters.
+- All `array`-like kinds are now valid `Keyed{Traversable,Container}` (without
+  generics).
+- Improved typing of `$x['foo'] ?? $bar` where `$x['foo']` is not a valid
+  field.
+- Hack (and related ocaml tools) are now built using Dune instead of ocamlbuild.
+- `make hack_test` now runs Hack's tests; previously it built various test
+  utilities, but did not run the tests.
+- The option to have ints overflow to floats has been removed.
+- the `hhvm.hard_type_hints` option has been removed; type-hint violations now
+  always raise runtime errors, unless they are explicit soft type hints. This
+  option was primarily useful for enabling stricter enforcement of parameter
+  types for PHP5 code.
+- Improved `hackfmt`'s handling of empty function bodies (e.g. HHI definitions).
+  This does not affect abstract or interface methods.
+- If numa is supported and not explicitly disabled, threads will always use
+  local memory; this was previously the default in server mode only.
+
+## Future Changes
+
+- `instanceof` will be removed, in favor of the `is` and `as` operators. It
+  can be disabled with the `disable_instanceof=true` `.hhconfig` and
+  `hhvm.hack.lang.phpism.disable_instanceof` HHVM INI settings.
