@@ -45,6 +45,9 @@ so 4.3 and above should be expected to contain approximately one weeks' changes.
 - Attempting to store a reference in `$GLOBALS` will result in a runtime error.
 - Callback support has been removed from `Memcached::get()` and
   `Memcached::getbykey()`
+- classes must be declared at the top level, or directly inside a namespace
+  block. For example, they can no longer be defined conditionally, or inside
+  a function.
 
 ## Other Changes
 
