@@ -1,0 +1,43 @@
+---
+title: "HHVM 4.3.0"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.2 is released! This release will be supported for 6 weeks, and HHVM
+4.1+ remain supported.
+
+## Improvements and New Features
+
+- Fixed some cases where typechecker errors would be missing position data
+- Fixed potential bugs when using `__LateInit` in repo-authoritative mode
+- Autocomplete for `parent::` now includes instance methods, not just static
+  methods
+- VSDebug no longer intercepts STDERR when attaching to HHVM in server mode
+- Improved typechecker error for `isset()` usage
+
+## Breaking Changes
+
+- Improved consistency of raising errors for traits or interfaces that define
+  constructors with parameter promotion; this is not supported.
+- Errors are now raised if an XHP class contains multiple child or category
+  declarations; the first declaration would always be used. Muiltiple children
+  and categories are still supported, but they must be in a single declaration.
+- Builtin function parameters will no longer be coerced - instead, an exception
+  is thrown. On prior versions, warnings can be enabled on coercion with the
+  `hhvm.warn_on_coerce_builtin_params` INI setting
+- Removed the `<>` operator; this can be replaced with `!=`, and is supported
+  by `hhast-migrate --hhvm-4.2-to-4.3` or `hhast-migrate --ltgt-to-ne`
+- Type errors are now raised if `parent::__construct()` is called with
+  parameters that violate `where` constraints
+- Division by zero now throws an exception; this can be controlled with the
+  `hhvm.forbid_division_by_zero` ini setting.
+- The typechecker is no longer aware of `ext_session`
+
+# Other Notes
+
+- Removed the `hhvm.jit_profile_interp_requests` INI setting as other changes
+  made it unused
+- Removed the `disable_optional_and_unknown_shape_fields` experimental hhconfig
+  option from 3.23.
