@@ -5,7 +5,7 @@ author: fred
 category: blog
 ---
 
-HHVM 4.2 is released! This release will be supported for 6 weeks, and HHVM
+HHVM 4.3 is released! This release will be supported for 6 weeks, and HHVM
 4.1+ remain supported.
 
 ## Improvements and New Features
