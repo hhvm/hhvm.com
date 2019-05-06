@@ -1,0 +1,31 @@
+---
+title: "HHVM 4.4.0"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.4 is released! This release will be supported for 6 weeks, and HHVM
+4.1+ remain supported.
+
+This weeks' work was mostly performance improvements, bug fixes, and work on
+future features.
+
+# Highlights
+
+- Improved error messages for variadic functions that are not passed enough
+  arguments
+- Fix support for `hh_server --config`, allowing overriding hhconfig options
+  via the CLI
+
+# Breaking Changes
+
+- `__callStatic()` is no longer supported; if manual analysis is not practical
+  for migration, we recommend adding logging wrappers while using a previous
+  version of HHVM.
+- `ext_session` and the `$_SESSION` superglobal have been removed
+
+# Other Notes
+
+- The `hhvm.jit_profile_interp_requests` option has been removed, as it no
+  has any effect
