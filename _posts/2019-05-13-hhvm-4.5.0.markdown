@@ -1,0 +1,51 @@
+---
+title: "HHVM 4.5.0"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.5 is released! This release will be supported for 6 weeks, and HHVM
+4.1+ remain supported.
+
+This weeks's release is focused on performance improvements and increased
+consistency between typechecker and runtime errors.
+
+
+# Highlights
+
+- Adds `Shapes::at()`, which is similar to `Shapes::idx()`, but throws if the
+  field is not set. This is useful for optional fields.
+
+# Breaking Changes
+
+- Dynamic method invocations (`$foo->$bar()`) and property access (`$foo->$bar`)
+  now raise a typechecker error unless `$foo` is `dynamic`.
+- A typechecker error is now raised for contravariant or covariance in method
+  and function type parameters. This was previously a runtime error.
+- It is now a runtime error to invoke static methods as if they were instance
+  methods (e.g. `$foo->someStaticMethod()`). This was previously a typechecker
+  error.
+- Deprecation notices are now raised at runtime for invoking instance methods
+  statically. This was previously a typechecker error.
+
+# Other Notes
+
+- Raise a clearer error when the type of a Hack array literal contains typos
+- Improved compatibility with hhbbc and GCC 9.1
+
+# Future Changes
+
+- we plan to remove support for `UNSAFE`, `UNSAFE_BLOCK`, and `UNSAFE_EXPR`
+  comments in a future release, in favor of more explicit `HH_FIXME[code]`
+  comments and future language features. The behavior of `UNSAFE` comments
+  can be disabled with the `disable_unsafe_expr` and `disable_unsafe_block`
+  options in `.hhconfig`
+
+# New features in HSL-Experimental
+
+HSL-Experimental 4.5.0 adds advanced async helper classes, including
+`Async\Poll` and `Async\Semaphore` among others. We **strongly** recommend
+avoiding `Async\Poll` when alternatives exist.
+
+For details, see [the release notes](https://github.com/hhvm/hsl-experimental/releases/tag/v4.5.0).
