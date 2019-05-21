@@ -1,0 +1,66 @@
+---
+title: "HHVM 4.6.0"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.6 is released! This release will be supported for 6 weeks, and HHVM
+4.1+ remain supported.
+
+# Highlights
+
+- `await` is now supported in many expressions.
+- added `concurrent {}` blocks as a more readable replacement for
+  `HH\Lib\Tuple\from_async()` and `\HH\Asio\va()`.
+- added `hh_client --file-dependents foo.hack [bar.hack ...]` to provide a list
+  of files that are known to dependent on the specified files.
+- generics are now included in typechecker error messages that involve types.
+- Improved typechecker errors for bad uses of `Shapes::idx()` and `Shapes::at()`
+- If `$c` has type errors, do not raise additional errors for `$c::f()`, to
+  reduce noise.
+- `hackfmt` now provides information on the problem if it encounters a parse
+  error.
+- Increased performance and reduced memory usage for `json_decode()` when string
+  keys are already present as literals in the source code.
+- Parser exceptions are now reported as parser errors.
+- Improved performance of `type_structure()`
+
+## `await`-as-an-expression
+
+For example, `$sum = await x() + await y();` is now valid Hack; for details, see
+[the documentation](https://docs.hhvm.com/hack/asynchronous-operations/await-as-an-expression).
+
+## `concurrent`
+
+Concurrent blocks provide a more readable alternative to
+`HH\Lib\Tuple\from_async()` and `HH\Asio\va()`; we expect these functions to be
+removed in a future release of HHVM and the HSL.
+
+```
+// Old style:
+list($x, $y) = await Tuple\from_async(foo(), bar());
+// New style:
+concurrent {
+  $x = await foo();
+  $y = await bar();
+}
+```
+
+For details, see
+[the documentation](https://docs.hhvm.com/hack/asynchronous-operations/concurrent).
+
+# Breaking Changes
+
+- To allow `await` as an expression, the precedence has changed.
+  `hhast-migrate --await-precedence` can be used with HHVM 4.5 and HHAST 4.5 to
+  parenthesize affected expresisons.
+- Removed support for variadic references in `sscanf()` and `fscanf()`.
+- By-reference access to class static variables is no longer supported.
+- By-reference access to pipe variables is no longer supported.
+- The `(real)` cast has been removed; use `(float)` instead.
+- `func_num_args()` is no longer supported; use variadics instead.
+- PHP4-style constructors (`class Foo { function Foo() {} }`) are no longer
+  supported. Use `function __construct() {}` instead.
+- If `hh_parse` encounters errors, it will now report them and exit non-0,
+  unless another behavior is specified with CLI arguments.
