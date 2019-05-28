@@ -1,0 +1,35 @@
+---
+title: "HHVM 4.7.0"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.7 is released! This release will be supported for 6 weeks, and HHVM 4.2+
+remain supported. This release marks the end of support for HHVM 4.1.
+
+# Highlights
+
+- the typechecker has a new type inference engine; this leads to errors being
+  raised in more cases due to better type information. If code is intentionally
+  unsafe, this can also lead to errors moving, so suppression comments may need
+  to be moved.
+- added `\HH\global_keys()` and `\HH\global_key_exists()`; in these can be used
+  in combination with `\HH\global_get()` and `\HH\global_set()` as a replacement
+  for `$_GLOBALS`; these are currently undocumented, and we aim to resolve this
+  shortly.
+- await-as-an-expression is now supported in XHP expressions
+- improved handling of EINTR in hhvm-hackc and hh\_client-hh\_server communication
+- added HHI definition for various request tracing functions in the
+  `HH\rqtrace` namespace
+
+# Breaking Changes
+
+- the typechecker's new inference can lead to more errors, or errors in
+  different locations.
+- Corrected capitalization of `DOMDocument::createAttributeNS`
+- `declare()` and `enddeclare()` are no longer supported
+- it is no longer possible to reference type `Ta::Tb` if `Ta` is nullable.
+- `empty()` is no longer supported; `hhast-migrate --empty-expression` can be
+  used to replace `empty($expr)` with `(!$expr ?? false)` in HHAST 4.6.1 under
+  HHVM 4.6
