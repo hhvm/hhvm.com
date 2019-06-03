@@ -31,8 +31,9 @@ remain supported. This release marks the end of support for HHVM 4.2.
 
 # Breaking Changes
 
-- The typechecker will now raise errors if it can identify that a boolean check
-  is always false; for example, `$x = null; if ($x) { /* ... */ }`
+- The typechecker will now raise errors if it can identify that an expression
+  being used in a boolean context is falsey, but not actually the boolean value
+  `false`; for example, `$x = null; if ($x) { /* ... */ }`.
 - The `and`, `or`, and `xor` operators have been removed from the runtime; they
   previously raised typechecker errors. Use `$a && $b`, `$a || $b`, or
  `(bool) $a !== (bool) $b` instead.
