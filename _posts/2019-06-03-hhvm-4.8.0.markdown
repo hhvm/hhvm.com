@@ -1,0 +1,41 @@
+---
+title: "HHVM 4.8.0"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.8 is released! This release will be supported for 6 weeks, and HHVM 4.3+
+remain supported. This release marks the end of support for HHVM 4.2.
+
+# Highlights
+
+- XHP attributes can now be marked `@lateinit`, to indicate that an attribute
+  is required, but may be set via `->setAttribute()`. This is currently
+  equivalent to `@required`, however if the `check_xhp_attribute` option is set
+  in `.hhconfig`, an error is raised if a `@required` attribute is ommitted at
+  instantiation; for example, `class :a { attribute string b @required; } <a />`
+  will raise a typechecker error because of `b` not being specified, however
+  `class :c { attribute string d @lateinit; } <c />` will raise a runtime error
+  if `->setAttribute('d', 'someValue')` is not called before render, but will
+  not raise a typechecker error. This new behavior will not be optional in a
+  future release.
+- The `.hhconfig` options `disable_unsafe_expr` and `disable_unsafe_block` are
+  now supported, removing support for `// UNSAFE` and `/* UNSAFE_EXPR */`; we
+  recommend using `hhast-migrate --add-fixmes` then using `sed` or similar to
+  remove the `UNSAFE` and `UNSAFE_EXPR` comments. This behavior will not be
+  optional in a future release.
+- HSL v4.7.0
+  [adds a `Ref<T>` class](https://github.com/hhvm/hsl/releases/tag/v4.7.0),
+  to wrap values in objects.
+
+# Breaking Changes
+
+- The typechecker will now raise errors if it can identify that a boolean check
+  is always false; for example, `$x = null; if ($x) { /* ... */ }`
+- The `and`, `or`, and `xor` operators have been removed from the runtime; they
+  previously raised typechecker errors. Use `$a && $b`, `$a || $b`, or
+ `(bool) $a !== (bool) $b` instead.
+- By-reference properties are now a parse error.
+- Fix some unsoundness issues when using `is` or `instanceof` with generics;
+  this may lead to the typechecker raising errors in more places.
