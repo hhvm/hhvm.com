@@ -5,8 +5,10 @@ author: fred
 category: blog
 ---
 
-HHVM 4.8 is released! This release will be supported for 6 weeks, and HHVM 4.3+
-remain supported. This release marks the end of support for HHVM 4.2.
+HHVM 4.8 is released! This release has long term support, so:
+- this release will be supported for approximately 24 weeks
+- HHVM 3.30 and HHVM 4.3-4.7 remain supported
+- HHVM 3.27 are no longer supported
 
 # Highlights
 
