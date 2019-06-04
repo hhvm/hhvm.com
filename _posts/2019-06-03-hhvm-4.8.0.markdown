@@ -6,7 +6,8 @@ category: blog
 ---
 
 HHVM 4.8 is released! This release has long term support, so:
-- this release will be supported for approximately 24 weeks
+- this release will be supported for approximately 48 weeks
+- the next LTS will be released in approximately 24 weeks
 - HHVM 3.30 and HHVM 4.3-4.7 remain supported
 - HHVM 3.27 are no longer supported
 
