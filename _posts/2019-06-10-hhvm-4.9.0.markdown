@@ -1,0 +1,112 @@
+---
+title: "HHVM 4.9.0, and security updates for 3.30, and 4.3-4.7"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.9 is released! Additionally, 3.30.6, 4.3.1, 4.4.1, 4.5.1, 4.6.1, 4.7.1,
+and 4.8.1 are released with security updates. This release marks the end of
+support for the 4.3.x series.
+
+In 4.9, it is no longer possible to enable PHP support, and various conditional
+behaviors have been unified, especially in the parser. For example, the lexer
+no longer special-cases PHP files for different behavior.
+
+Additionally, the `mysqli` extension has been removed in favor of Hack's
+async MySQL extension. Users of the mysqli extension may find it useful to use
+the 4.8 release while migrating, which is an LTS release.
+
+# Security Updates
+
+- CVE-2019-3569: FastCGI interface. By default prior versions of HHVM would
+  listen for FactCGI connections on all interfaces. This behavior may have been
+  unexpected, and new releases change to listen on `localhost` by default. This
+  behavior can be controlled by the `hhvm.server.host` INI setting. The HTTP
+  server mode (Proxygen) continues to listen on all interfaces by default.
+- CVE-2019-3570: Heap corruption in `scrypt_enc()`; heap corruption was possible
+  if the scrypt parameters (N, r, and p) were configurable by an attacker - for
+  example, by providing the output of `scrypt_enc()` in a context where Hack/PHP
+  code would attempt to verify it by re-running `scrypt_enc()` with the same
+  parameters. This has been resolved by changing `scrypt_enc()` to use
+  libsodium's implementation, and `scrypt_enc()` now requires that HHVM was
+  built with libsodium support. In 4.9, we consider `scrypt_enc()` deprecated,
+  and it will be removed in a future release.
+
+# Highlights
+
+- Xenon now uses SIGPROF, and is usable in CLI mode.
+
+# Breaking Changes
+
+- The MySQLi extension has been removed.
+- the lexer now lexes all files as Hack files; collection literals are
+  always recognized, XHP is always enabled, and many smaller changes.
+- the `this` type is now enforced at runtime by default; this behavior can
+  currently be controlled via the `hhvm.this_type_hint_level` INI setting:
+  4.9 defaults to `3`, and prior release default to `0`.
+- if HHVM is asked to invoke a `.php` file, it *must*` start with `<?hh`; the
+  previous behavior of outputting leading content verbatim has been removed.
+- incrementing or decrementing non-numeric strings (e.g. `$a = 'a'; ++$a`) now
+  raises a notice.
+- `array_fill_keys()` will now raise an error if used with non-arraykey keys;
+  `array_fill_keys()` has different coercion rules than actual array access,
+  which can lead to subtle bugs.
+- duplicate cookies are no longer permitted; this can be controlled by the
+  `hhvm.server.allow_duplicate_cookies` INI setting.
+- `array_multisort()` is now limited to 9 arguments, to allow the removal of
+  byref-variadics from the runtime.
+- variadic by-ref parameters are no longer supported.
+- accessing a container with an invalid key now raises an error instead of a
+  notice. This was already the case for Hack arrays.
+- it is now a parse error to attempt to nest declarations in partial files - for
+  example, by declaring a class inside a function.
+- `type_structure()`, various Xenon functions, and ASIO monitoring functions
+  are now in the `HH` namespaces; these functions are autoimported in both
+  4.9 and prior versions, so the leading backslash can be removed.
+- The `hhvm.force_hh` INI setting now defaults to true; as all files are now
+  handled as Hack files, this only controls some smaller behaviors which are
+  not to PHP vs Hack:
+  - additional warnings are raised for many edge cases
+  - `json_encode()` now returns `false` if used for an unsupported type
+  - if `JSON_PARTIAL_OUTPUT_ON_ERROR` is set, `json_encode()` will use `null`
+    to represent unsupported types.
+  - `shell_exec()` returns `""` instead of `null` on failure
+  - the string of `-0.0` is now `"0"` instead of `"-0"`
+
+# Future Changes
+
+- `scrypt_enc()` will be removed in a future release.
+- support for incrementing and decrementing non-numeric strings will be removed;
+  this currently raises a notice.
+- the `hhvm.force_hh` INI setting will be removed in a future release.
+
+# Migrating from `scrypt_enc()`
+
+We recommend migrating password storage to:
+- `sodium_crypto_pwhash_str()`
+- `sodium_crypto_pwhash_str_verify()`
+- `sodium_crypto_pwhash_str_needs_rehash()`
+
+For migration purposes, it is possible to verify `scrypt_enc()` hashes using
+the sodium extension:
+
+```
+function verify_scrypt_enc(string $password, string $stored): bool {
+	list($_, $algo, $n, $r, $p, $salt, $stored_hash) = Str\split($stored, '$');
+	invariant($algo === 's', 'did not get an scrypt result');
+	$salt = \base64_decode($salt);
+	$stored_hash = \base64_decode($stored_hash);
+
+	$opslimit = (1 << $n) * $r * $p * 4;
+	$memlimit = (1 << $n) * $r * 128;
+	$password_hash = sodium_crypto_pwhash_scryptsalsa208sha256(
+		Str\length($stored_hash),
+		$password,
+		$salt,
+		$opslimit,
+		$memlimit,
+	);
+	return \hash_equals($password_hash, $stored_hash);
+}
+```
