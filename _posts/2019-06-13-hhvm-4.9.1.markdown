@@ -1,5 +1,5 @@
 ---
-title: "HHVM 4.9.1, apt repository changes"
+title: "HHVM 4.9.1, repository changes"
 layout: post
 author: fred
 category: blog
