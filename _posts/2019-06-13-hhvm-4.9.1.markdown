@@ -1,0 +1,33 @@
+---
+title: "HHVM 4.9.1, apt repository changes"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.9.1 is released, fixing a performance regression on MacOS. There are no
+significant changes on other platforms.
+
+We have added additional apt distributions to make it easier to update
+to releases that are not the latest, but are still supported: for 4.3-4.9, we
+have added `DISTRIBUTION-MAJOR.MINOR` apt distributions. For example, if your
+`/etc/apt/sources.list` currently contains
+`deb https://dl.hhvm.com/ubuntu bionic main`, you can replace `bionic` with
+`bionic-4.3`, `bionic-4.4` etc through to `bionic-4.9`.
+
+Given all new releases have overlapping support, we are no longer handling
+LTS releases specially in apt; for example, the 4.8 series is available through
+`bionic-4.8`. We have not changed the distribution names for past releases, so
+3.30 remains available through `bionic-lts-3.30` instead of `bionic-3.30`.
+
+We have also made similar changes to our MacOS bottles:
+
+```
+$ brew tap hhvm/hhvm
+$ brew install hhvm # install the latest release
+$ brew install hhvm-nightly # install the latest nightly build
+$ brew install hhvm-4.8 # install the lastest 4.8.x
+```
+
+We have not renamed past releases, so 3.30 remains available as `hhvm@3.30-lts`
+in homebrew.
