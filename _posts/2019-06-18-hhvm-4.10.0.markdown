@@ -1,0 +1,25 @@
+---
+title: "HHVM 4.10.0"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.10 is released! This release marks the end of support for the 4.4.x
+series.
+
+# Highlights
+
+- Callable properties can now be invoked by parenthesizing,
+  e.g. `($foo->bar)()`.
+- await expressions are now supported in XHP contexts, e.g.
+  `<foo bar={await baz()}>{await foo()}</foo>`.
+
+# Breaking Changes
+
+- runtime support for alternate control-flow syntax (`if: else: endif;`) has
+  been removed; this was previously banned by the typechecker in hack files, but
+  supported at runtime.
+- warnings are now raised when arguments to builtin Hack functions are coerced
+  to match the type.
+- by-ref assignemnts (`$x = &$y`) are no longer supported by the parser.
