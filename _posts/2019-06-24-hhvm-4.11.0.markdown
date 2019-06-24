@@ -1,0 +1,35 @@
+---
+title: "HHVM 4.11.0"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.11 is released! This release marks the end of support for the 4.5.x
+series.
+
+# Highlights
+
+- improved error locations for `inst_meth()`/`class_meth()` with
+  private or protected methods.
+- added an admin server endpoint to remove units from the unit cache; for
+  example: `curl 'http://localhost:8003/invalidate-units?path=/my/file.php&path=/my/other/file.php'`
+- type mismatch errors (4110) now report the full types
+- PHP sort functions are now annotated as `inout` instead of by-reference in the
+  HHIs; both `inout` and references continue to work at runtime.
+- added `hh_client --extract-standalone`, to create self-contained files
+  containing a function and all recursive dependencies.
+- bytecode is no longer regenerated for source files that are touched but
+  have an unchanged SHA.
+- if, at runtime, a class uses multiple traits that declare the same method,
+  the error message now includes the trait names.
+
+# Breaking Changes
+
+- the key generic for the `darray` type and the `HH\darray()` function
+  (autoimported) is now required to be an `arraykey`.
+- PHP7-style anonymous function `use()` clause positioning is now a parser
+  error; Hack requires `use()` after the return type, while PHP7 has `use()`
+  before the return type.
+- `dict()`, `vec()`, and `keyset()` are now in the `HH\` namespace; they remain
+  autoimported, so this change only breaks fully-qualified references.
