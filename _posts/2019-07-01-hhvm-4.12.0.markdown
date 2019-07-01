@@ -1,0 +1,29 @@
+---
+title: "HHVM 4.12.0"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.12 is released! This release marks the end of support for the 4.6.x
+series.
+
+# Highlights
+
+- Abstract methods are now able to be overridden by other abstract methods.
+- Improved error messages for inappropriate usage of the `async` keyword, e.g.
+  abstract methods and interfaces.
+- Methods with the same name as the class are no longer parsed as constructors.
+- XBox tasks now execute `<<__EntryPoint>>` functions.
+- Fixed assertion failure when building repo-authoritative bytecode repositories
+  with HHVM built against libc++ instead of libstdc++ (e.g. MacOS).
+- Autocomplete docblocks are now sent to IDEs as markdown.
+- If using CLI server mode, PSP is now ran before exit.
+- Fixed a segmentation fault when using vsdebug as a REPL.
+- Improved response time when IDEs request docblocks.
+
+# Breaking Changes
+
+- `hh_client --retries` is now a synonym of `--timeout`
+- The optional `&$output_headers` argument has been removed from
+  `SoapClient::__soapcall`, as optional `inout` parameters are not supported.
