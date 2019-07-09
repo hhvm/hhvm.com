@@ -1,0 +1,50 @@
+---
+title: "HHVM 4.13.0"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.13 is released! This release marks the end of support for the 4.7.x
+series.
+
+# Highlights
+
+- Fixed positions (incorrect 'PRIMARY ERROR POSITION IS NOT IN CURRENT FILE')
+  for certain await expression that were implicitly rewritten as `concurrent`
+  statements.
+- improved performance for `is` and `as` expressions with wildcard generics
+  when not using repo-authoritative mode (~ 5x in some tests).
+- added `hhvm.trust_autoloader_path` option (defaults to false); if true, the
+  autoloader will not invoke `realpath`.
+- improved subtyping of shapes.
+- calling undefined functions now only raises an unbound function typechecker
+  error, instead of both an unbound function and unbound global constant error.
+- null checks in `if` statements now refine the type in both the `if` block and
+  `else` block.
+- when Xenon is enabled, fix race condition that can lead to the HHVM process
+  being terminated during startup.
+
+# Breaking Changes
+
+- `zend_logo_guid()`, `zend_thread_id()`, and `zend_version()` have been
+  removed.
+- it is now a parse error to declare or invoke constructors with by-reference
+  parameters.
+- removed `HH\\global_get_safe()` as it functioned identically to
+  `HH\\global_get()`.
+- improved shape subtyping can lead to needing to suppress error 4110 (type
+  error) where error 4166 (unknown field) is currently suppressed.
+- assignments in ternary expressions can now assign type information - for
+  example, after `($foo ? $x = 1 : $x = 2)`, `$x` is an int. This is expected
+  to reduce the number of errors for safe code, but may raise new errors in
+  some situations.
+- `Shapes::keyExists($shape, 'field')` now refines the type in the same way as
+  `$shape is shape('field' => mixed, ...)`. This is expected to reduce the
+  number of errors for safe code, but may raise new errors in some situations.
+
+# Future Changes
+
+- To remove conflicts with other planned syntax changes, the syntax for soft
+  type hints will be changing from `@sometype $foo` to
+  `<<__Soft>> sometype $foo`; this new syntax is supported for experimental use.
