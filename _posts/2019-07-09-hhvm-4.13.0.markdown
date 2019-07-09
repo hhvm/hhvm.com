@@ -31,8 +31,8 @@ series.
   removed.
 - it is now a parse error to declare or invoke constructors with by-reference
   parameters.
-- removed `HH\\global_get_safe()` as it functioned identically to
-  `HH\\global_get()`.
+- removed `HH\global_get_safe()` as it functioned identically to
+  `HH\global_get()`.
 - improved shape subtyping can lead to needing to suppress error 4110 (type
   error) where error 4166 (unknown field) is currently suppressed.
 - assignments in ternary expressions can now assign type information - for
