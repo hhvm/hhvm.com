@@ -38,8 +38,8 @@ HHVM 4.14 is released! As 4.8 has long term support, it remains supported, as do
 # Future Changes
 
 - visibility modifiers for class constants are currently banned by the type
-  checker, but permitted-and-ignored by the runtime. We expected them to be
-  permitted and and enforced by both the typechecker and runtime in a future
+  checker, but permitted-and-ignored by the runtime. We expect them to be
+  permitted and enforced by both the typechecker and runtime in a future
   release.
 
 # Intersection Types
