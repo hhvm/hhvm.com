@@ -50,7 +50,7 @@ declared in source code.
 
 For example:
 
-```Hack
+```
 function f(Foo $x): void {
   // $x is Foo
   if ($x is IBar) {
@@ -78,7 +78,7 @@ improve type refinement in Hack, leading to a more intuitive experience.
 
 As part of this work, tracking for unions has also been improved:
 
-```Hack
+```
 function f(mixed $x): void {
   if ($x is int || $x is string) {
     // before: $x is mixed
@@ -92,7 +92,7 @@ function f(mixed $x): void {
 Previously, it was common to work around this limitation with temporary
 variables or type assertions:
 
-```Hack
+```
 function f(Foo $x): void {
   $x_for_hack = $x; // now unnecessary
   if ($x_for_hack is IBar) {
@@ -105,7 +105,7 @@ function f(Foo $x): void {
 
 These workarounds can now be removed:
 
-```Hack
+```
 function f(Foo $x): void {
   if ($x is IBar) {
     expects_an_IBar($x);
@@ -123,7 +123,7 @@ same as the one between the logical ‘AND’ and the logical ‘OR’.
 Something is an intersection type `(I1 & I2)` if it is **both** `I1` and `I2`.
 Intersections are obtained with refinements:
 
-```Hack
+```
 function f(I1 $x): void {
   if ($x is I2) {
     // here $x is both an I1 and I2, and gets type (I1 & I2)
@@ -134,7 +134,7 @@ function f(I1 $x): void {
 Something is a union type `(A | B)` if it is **either** `A` or `B`; the
 type system does not know which one it actually is.
 
-```Hack
+```
 if (something()) {
   $x = new A();
 } else {
@@ -155,7 +155,7 @@ In previous versions of Hack/HHVM, expressions of the form `$x instanceof Foo`
 would inform the typechecker that `$x` is of type `Foo`; this is no longer the
 case, replaced by `is` and `as` expressions. For example:
 
-```Hack
+```
 class Foo {}
 function takes_foo(Foo $_): void {}
 
@@ -171,7 +171,7 @@ function do_stuff(mixed $in): void {
 
 `is` expressions require matching generics; for example:
 
-```Hack
+```
 class NoGenerics {}
 class OneGeneric<T> {}
 class TwoGenerics<Ta, Tb> {}
