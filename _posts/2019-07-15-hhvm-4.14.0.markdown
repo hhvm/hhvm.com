@@ -1,0 +1,196 @@
+---
+title: "HHVM 4.14.0"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.14 is released! As 4.8 has long term support, it remains supported, as do
+3.30 and 4.19-4.13.
+
+# Highlights
+
+- The typechecker is now able to track intersections - i.e. when a variable is
+  known to have multiple supertypes, not one of multiple.
+- `instanceof` no longer refines types; use `is` expressions instead.
+  `hhast-migrate --instanceof-is` can be used to automatically convert
+  expressions of the form `$x instanceof SomeType` to expressions of the form
+  `$x is SomeType`, `$x is SomeType<_>`, `$x is SomeType<_, _>` etc.
+- Regexp literals can now nest brace-like delimiters; for example, `re"(())"`
+  is now handled correctly.
+- Improved error messages, autocompletion, and fixed several crashes in the
+  VSDebug server implementation.
+- Improved namespace support for autocompletion.
+
+# Breaking Changes
+
+- `instanceof` no longer refines types.
+- `$this` is no longer allowed in PHP-style static closures, e.g.
+   `$x = static function () { $this->foo(); }`.
+- the fatal errors for subclassing or using `new` on `Closure` are now
+  case-insensitive to match the runtime behavior.
+- `DateTime::COOKIE` and `DATE_COOKIE` now use the correct format for cookies.
+  The old value is available as `DATE_RFC850`. This replaces full day-of-week
+  (e.g. 'Monday') with 3-letter abbreviations (e.g. 'Mon').
+- `$shape['somefield'] ?? null` is now a type error if `'somefield'` is known
+  not to exist; it is still permitted if `'somefield'` /may/ exist.
+
+# Future Changes
+
+- visibility modifiers for class constants are currently banned by the type
+  checker, but permitted-and-ignored by the runtime. We expected them to be
+  permitted and and enforced by both the typechecker and runtime in a future
+  release.
+
+# Intersection Types
+
+The typechecker is now able to track multiple type constraints for the same
+variable, creating intersection types; they can not be
+declared in source code.
+
+For example:
+
+```Hack
+function f(Foo $x): void {
+  // $x is Foo
+  if ($x is IBar) {
+    // before: $x is IBar
+    // now: $x is Foo & IBar (intersection)
+    expects_an_IBar($x); // correctly works in both
+    expects_a_Foo($x); // no longer an error!
+  }
+  // before: $x is Foo | IBar (union)
+  // now: $x is Foo
+  expects_an_IBar($x); // correctly an error in both
+  expects_a_Foo($x); // no longer an error!
+}
+```
+
+As well as allowing more valid code to be understood by the typechecker, this
+can exposed via hover type information and via error messages.
+
+An expression is of type `(A & B)` if it is **both** of type `A` and of type
+`B`, which is the case inside the if statement above. Intersections are in some
+ways similar to type *unions *(denoted by |), which allow tracking types through
+control flow and are also internal to the typechecker (they can not be declared
+in source code). Having both intersections and unions allows us to greatly
+improve type refinement in Hack, leading to a more intuitive experience.
+
+As part of this work, tracking for unions has also been improved:
+
+```Hack
+function f(mixed $x): void {
+  if ($x is int || $x is string) {
+    // before: $x is mixed
+    // now: $x is int | string
+    expects_an_arraykey($x); // no longer an error!
+  }
+  // both: $x is mixed
+}
+```
+
+Previously, it was common to work around this limitation with temporary
+variables or type assertions:
+
+```Hack
+function f(Foo $x): void {
+  $x_for_hack = $x; // now unnecessary
+  if ($x_for_hack is IBar) {
+    expects_an_IBar($x_for_hack);
+    expects_a_Foo($x);
+  }
+  expects_a_Foo($x as Foo); // "as" no longer needed
+}
+```
+
+These workarounds can now be removed:
+
+```Hack
+function f(Foo $x): void {
+  if ($x is IBar) {
+    expects_an_IBar($x);
+    expects_a_Foo($x);
+  }
+  expects_a_Foo($x);
+}
+```
+
+## intersections vs unions
+
+The difference between type /intersections/ and type /unions/ is essentially the
+same as the one between the logical ‘AND’ and the logical ‘OR’.
+
+Something is an intersection type `(I1 & I2)` if it is **both** `I1` and `I2`.
+Intersections are obtained with refinements:
+
+```Hack
+function f(I1 $x): void {
+  if ($x is I2) {
+    // here $x is both an I1 and I2, and gets type (I1 & I2)
+  }
+}
+```
+
+Something is a union type `(A | B)` if it is **either** `A` or `B`; the
+type system does not know which one it actually is.
+
+```Hack
+if (something()) {
+  $x = new A();
+} else {
+  $x = new B();
+}
+
+// here $x is either A or B and has type (A | B)
+
+$v = vec[new A(), new B()];
+$y = $v[$i]
+
+// $y is either A or B and has type (A | B)
+```
+
+# `instanceof` Refinement
+
+In previous versions of Hack/HHVM, expressions of the form `$x instanceof Foo`
+would inform the typechecker that `$x` is of type `Foo`; this is no longer the
+case, replaced by `is` and `as` expressions. For example:
+
+```Hack
+class Foo {}
+function takes_foo(Foo $_): void {}
+
+function do_stuff(mixed $in): void {
+  if ($in instanceof Foo) {
+    takes_foo($in); // valid in 4.13, but not in 4.14
+  }
+  if ($in is Foo) {
+    takes_foo($in); // valid in 3.28+, including 4.14
+  }
+}
+```
+
+`is` expressions require matching generics; for example:
+
+```Hack
+class NoGenerics {}
+class OneGeneric<T> {}
+class TwoGenerics<Ta, Tb> {}
+
+function do_stuff(mixed $in): void {
+  if ($in is NoGenerics) { }
+  if ($in is OneGeneric<_>) { }
+  if ($in is TwoGenerics<_, _>) { }
+}
+```
+
+`hhast-migrate --instanceof-is` can be used in
+[HHAST 4.13](https://github.com/hhvm/hhast/releases/tag/v4.13.0) to
+automatically convert these expressions.
+
+`instanceof` also permits a string or `classname<T>` on the right hand side.
+No automatic conversion is available, as we believe these are sufficently rare
+and unique that manual conversion is both practical and gives better results. If
+neccessary, `hhast-migrate --add-fixmes` can be used.
+
+The old behavior of `instanceof` can also be disabled on 4.13 by setting
+`disable_instanceof_refinement=true` in `.hhconfig`.
