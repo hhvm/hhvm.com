@@ -1,0 +1,37 @@
+---
+title: "HHVM 4.15.0"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.15 is released! This release marks the end of support for 4.9;
+4.10-4.14 remain supported, as do the LTS releases 3.30 and 4.8.
+
+# Highlights
+
+- IDE integrations now show docblocks for namespaced functions.
+- Fixed an issue that could lead to CLI server clients hanging on exit in some
+  Linux environments.
+- Improved typing of `noreturn` methods.
+
+# Breaking Changes
+
+- Untyped variadics now raise type errors; replace with `mixed ...$foo`.
+- `inout` parameter types are now invariant - both co- and contra- variant.
+  They were previously incorrectly treated as contravariant.
+- `instanceof` is now a parse error. In 4.14.x, it was not a parser error, but
+  no longer refined types. In HHAST 4.14.x, `hhast-migrate --instanceof-is` can
+  be used to replace expressions of the form `$x instanceof Foo` with
+  `$x is Foo`, and expressions of the form `$x instanceof $some_expression` with
+  `\is_a($x, $some_expression)`.
+
+# Future Changes
+
+- In a future release, all support for calling functions by-reference will be
+  removed. Typechecker enforcement can be enabled now with the
+  `disallow_byref_calls=true` `.hhconfig` option.
+- Support for `"${foo}"` will be removed, and can be replaced with `"{$foo}"`;
+  `hhast-migrate --dollar-brace-variable-migration` can be used to migrate
+  code, and the `disable_outside_dollar_str_interp=true` `.hhconfig` setting can
+  be used to enforce this immediately.
