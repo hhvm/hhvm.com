@@ -17,7 +17,7 @@ HHVM 4.14 is released! As 4.8 has long term support, it remains supported, as do
   expressions of the form `$x instanceof SomeType` to expressions of the form
   `$x is SomeType`, `$x is SomeType<_>`, `$x is SomeType<_, _>` etc.
   If the RHS of an `instanceof` is not a classname in sourcecode, but rather
-  an expression, HHAST will migrate to a `\is_a()` call. This does not
+  an expression, HHAST4.14.4 and up will migrate to a `\is_a()` call. This does not
   refine the variable on the LHS for the typechecker.
 - Regexp literals can now nest brace-like delimiters; for example, `re"(())"`
   is now handled correctly.
