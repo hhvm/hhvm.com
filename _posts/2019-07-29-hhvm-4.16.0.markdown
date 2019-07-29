@@ -1,0 +1,25 @@
+---
+title: "HHVM 4.16.0"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.16 is released! This release marks the end of support for 4.10;
+4.11-4.15 remain supported, as do the LTS releases 3.30 and 4.8.
+
+# Highlights
+
+- typechecker error messages now suggest similar methods and variables
+
+# Breaking Changes
+
+- fixed a bug that would incorrectly typecheck most files containing XHP in partial mode instead of strict
+
+```
+class :a {
+  attribute string foo;
+  public function bar($baz): void {}
+  //                  ^ previously undetected missing type annotation
+}
+```
