@@ -1,0 +1,46 @@
+---
+title: "HHVM 4.17.0"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.17 is released! This release marks the end of support for 4.11;
+4.12-4.16 remain supported, as do the LTS releases 3.30 and 4.8.
+
+# Highlights
+
+**Reified generics** are now supported. See
+[full documentation](https://docs.hhvm.com/hack/generics/reified-generics) and
+[migration guide](https://docs.hhvm.com/hack/generics/reified-generics-migration).
+
+```php
+function foo<reify T>(T $arg): void { ... }
+
+foo<int>(42);
+foo<string>(42);  // now a runtime error
+```
+
+Reified generic types can be used in the function code:
+
+```php
+abstract class BaseClass {
+  abstract public function foo(): void;
+}
+
+// Before:
+function bar(classname<BaseClass> $classname): void {
+  $classname::foo();
+}
+
+// After:
+function bar<reify T as BaseClass>(): void {
+  T::foo();
+}
+```
+
+Also see how to
+[test and assert](https://docs.hhvm.com/hack/generics/reified-generics#reified-generics__type-testing-and-assertion-with-is-and-as-expressions)
+reified generic types and how to
+[create `new` instances](https://docs.hhvm.com/hack/generics/reified-generics#reified-generics__creating-an-instance-of-a-class-with-new)
+of reified generic classes.
