@@ -1,0 +1,17 @@
+---
+title: "Bugfixes for 3.30, 4.8, and 4.12-17"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 3.30.7, 4.8.2, 4.12.1, 4.13.1, 4.14.1, 4.15.1, 4.16.2, and 4.17.1 are now
+available; these are non-urgent bugfix releases, containing fixes backported
+from later releases.
+
+| Versions | Issue
+| - | -
+| 4.16, 4.17 | Fixed a bug where HackC would access shared memory (unneeded by HackC), leading to an exception being thrown.
+| 3.30, 4.8, 4.12-4.14 | Fixed a bug when using CLI server mode that could lead to CLI clients hanging forever when the script is finished.
+| 3.30, 4.8 | Improve reliability when Xenon is enabled by using `SIGPROF` instead of `SIGVTALRM`, and by ignoring Xenon signals if received extremely early in HHVM startup
+| 4.8 | Fix crash when attempting to use repo-authorititative mode on MacOS
