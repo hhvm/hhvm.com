@@ -22,7 +22,7 @@ the 4.8 release while migrating, which is an LTS release.
 - CVE-2019-3569: FastCGI interface. By default prior versions of HHVM would
   listen for FactCGI connections on all interfaces. This behavior may have been
   unexpected, and new releases change to listen on `localhost` by default. This
-  behavior can be controlled by the `hhvm.server.host` INI setting. The HTTP
+  behavior can be controlled by the `hhvm.server.ip` INI setting. The HTTP
   server mode (Proxygen) continues to listen on all interfaces by default.
 - CVE-2019-3570: Heap corruption in `scrypt_enc()`; heap corruption was possible
   if the scrypt parameters (N, r, and p) were configurable by an attacker - for
