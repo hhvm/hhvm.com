@@ -1,0 +1,19 @@
+---
+title: "HHVM 4.18.0"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.18 is released! This release marks the end of support for 4.12;
+4.13-4.17 remain supported, as do the LTS releases 3.30 and 4.8.
+
+This release only contains minor improvements/cleanups, but there is one notable
+future change to be aware of.
+
+# Future changes
+
+- Typechecker error code 4110 (currently covering almost all "type mismatch"
+  errors) will soon be replaced with several more specific error codes. This
+  will not cause any runtime changes, but any code that uses `HH_FIXME[4110]`
+  may need to be updated to avoid typechecker errors.
