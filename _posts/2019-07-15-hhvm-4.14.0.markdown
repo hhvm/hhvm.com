@@ -6,7 +6,7 @@ category: blog
 ---
 
 HHVM 4.14 is released! As 4.8 has long term support, it remains supported, as do
-3.30 and 4.19-4.13.
+3.30 and 4.9-4.13.
 
 # Highlights
 
@@ -16,6 +16,9 @@ HHVM 4.14 is released! As 4.8 has long term support, it remains supported, as do
   `hhast-migrate --instanceof-is` can be used to automatically convert
   expressions of the form `$x instanceof SomeType` to expressions of the form
   `$x is SomeType`, `$x is SomeType<_>`, `$x is SomeType<_, _>` etc.
+  If the RHS of an `instanceof` is not a classname in sourcecode, but rather
+  an expression, HHAST4.14.4 and up will migrate to a `\is_a()` call. This does not
+  refine the variable on the LHS for the typechecker.
 - Regexp literals can now nest brace-like delimiters; for example, `re"(())"`
   is now handled correctly.
 - Improved error messages, autocompletion, and fixed several crashes in the
@@ -176,10 +179,11 @@ class NoGenerics {}
 class OneGeneric<T> {}
 class TwoGenerics<Ta, Tb> {}
 
-function do_stuff(mixed $in): void {
+function do_stuff(mixed $in, classname<SomeType> $what): void {
   if ($in is NoGenerics) { }
   if ($in is OneGeneric<_>) { }
   if ($in is TwoGenerics<_, _>) { }
+  if (is_a($in, $what)){ /*$in is still mixed here*/ }
 }
 ```
 
@@ -187,10 +191,6 @@ function do_stuff(mixed $in): void {
 [HHAST 4.13](https://github.com/hhvm/hhast/releases/tag/v4.13.0) to
 automatically convert these expressions.
 
-`instanceof` also permits a string or `classname<T>` on the right hand side.
-No automatic conversion is available, as we believe these are sufficently rare
-and unique that manual conversion is both practical and gives better results. If
-neccessary, `hhast-migrate --add-fixmes` can be used.
 
 The old behavior of `instanceof` can also be disabled on 4.13 by setting
 `disable_instanceof_refinement=true` in `.hhconfig`.
