@@ -1,0 +1,72 @@
+---
+title: "HHVM 4.19.0"
+layout: post
+author: fred 
+category: blog
+---
+
+HHVM 4.19 is released! This release marks the end of support for 4.13;
+4.14-4.18 remain supported, as do the LTS releases 3.30 and 4.8.
+
+# Highlights
+
+- Added the `<<__Explicit>>` attribute, requiring that generics are specified;
+  for example, `function foo<T>(T $a, T $b) {}` `foo(123, 'abc').` is valid,
+  as `mixed` is a valid type for `T`; however, for
+  `function foo<<<__Explicit>> T>(T $a, T $b) {}`, `foo<int>(123, 456)` is
+  valid, but `foo<int>(123, 'abc')` is not.
+- Added `ReflectionFunctionAbstract::getReifiedTypeParamInfo()`
+- As a migration aid, `dict`s are now callable in the runtime; this will raise
+  a typechecker error, and is not suitable for use in new code.
+- As a migration aid, added `current_ref()`, `key_ref()`, and
+  `xml_set_object_ref()`, in preparation for modifying `current()`, `key()`,
+  and `xml_set_object()` to not take their parameters by-reference.
+- Added `openssl_encrypt_with_tag()`, as optional inout arguments are not
+  supported, in preparation for removing the optional byref tag argument from
+  `openssl_encrypt()`
+- Added TLS client certificate authentication support to the proxygen server;
+  this can be configured via the `hhvm.server.ssl_client_ca_file` and
+  `hhvm.server.ssl_client_auth_level` options; level 0 is disabled,
+  1 is optional, 2 is mandatory. If level is not 0, the CA file must be
+  specified.
+
+# Breaking Changes
+
+- Added typechecker error for unsafe calls to generic static methods via
+ `classname<T>` variables.
+- Removed support for `"${foo}"`-style string interpolation; use `"{$foo}"`
+  instead. `hhast-migrate --dollar-brace-interpolation` can be used to update
+  code as needed, and the `disable_outside_dollar_str_interp=true` `.hhconfig`
+  option can be used on previous versions to find problem cases.
+- `usort()`, `uasort()`, and `uksort()` now specify the type of the callback,
+  instead of taking `mixed`.
+- `final interface` and `final trait` are now parse errors.
+- A typechecker error is now raised if abstract properties are declared on
+  non-abstract classes.
+- It is now a parse error to attempt to use the return value of a function
+  by-reference.
+- Added typechecker errors where builtin attributes are used in unsupported
+  places; for example, it is now an error to attach the `<<__EntryPoint>>`
+  attribute to a class.
+- Fixed variance checks for generic variadics.
+- It is now a parse error to declare a property using the PHP `var` keyword.
+- The `Stringish` interface is deprecated, and can not be converted to a string
+  without a typechecker error. As a temporary aid, it may be useful to define a
+  function like the following:
+
+```
+function stringish_cast(mixed $value): string {
+    return is_object($value) && $value is Stringish
+      /* HH_IGNORE_ERROR[4128] This is intentionally deprecated */
+      ? $value->__toString()
+      : (string)$value;
+}
+```
+
+# Future changes
+
+- Error messages will be improved for use of `Stringish`
+- The 4110 (type/unification error) code will be split into multiple error
+  codes; this will need changes to `HH_FIXME[4110]` and similar suppressions.
+  These changes can be found now with the `use_new_type_errors=true` option in
+  `.hhconfig`.
