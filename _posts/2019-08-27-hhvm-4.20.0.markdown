@@ -1,0 +1,58 @@
+---
+title: "HHVM 4.20.0 and 4.20.1"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.20 is released! This release marks the end of support for 4.14;
+4.15-4.19 remain supported, as do the LTS releases 3.30 and 4.8.
+
+HHVM 4.20.1 was released to fix a build issue related to the new Rust parser on
+Mac OS X. All Linux builds for 4.20.1 are identical to 4.20.0.
+
+# Highlights
+
+- We are rewriting parts of our code from OCaml to Rust. This should not cause
+  any user-facing changes. The 4.20 release adds a new parser written in Rust,
+  which you can test by adding `hack.lang.hack_compiler_use_rust_parser=1` to
+  `hhvm.ini`. If you see any differences in behavior or other issues, please
+  [open a GitHub issue](https://github.com/facebook/hhvm/issues/new).
+- A new command `hh_client --rewrite-return-type <filename>` is now available to
+  help with migration from partial to strict mode. It adds `<<__Soft>>` type
+  annotations based on inferred return types.
+- Invalid method calls on reified generic types now throw a
+  `BadMethodCallException` instead of causing a fatal error.
+- A new function
+  [`fb_intercept2()`](https://github.com/facebook/hhvm/blob/eafc93691184c201ab5a07f40f88531ccc161829/hphp/runtime/ext/fb/ext_fb.php#L79)
+  was added as a replacement for `fb_intercept()`.
+- A new function
+  [`fun_get_function()`](https://github.com/facebook/hhvm/blob/9ff2c8c4ef3e5d116f36a96808d6daa0078592cd/hphp/runtime/ext/std/ext_std_function.php#L108)
+  was added.
+
+# Breaking Changes
+
+- `HH_FIXME[4110]` has been replaced with several new, more specific error
+  codes. HHAST 4.15.2 provides an automated migration:
+  `hhast-migrate --migrate-fixme-4110 <path>` (this migration adds the new
+  `FIXME`s without removing the old ones - after upgrading to HHVM 4.20, the old
+  `FIXME`s can be removed with `hh_client --remove-dead-fixmes`). The Hack
+  Standard Library and other Hack libraries all provide a new release that works
+  on both HHVM 4.20 and previous HHVM versions.
+- Using attributes on variadic arguments (`<<Attrib>> ...$arg`) is now a parser
+  error.
+- We are no longer building packages for Ubuntu 14.04 (Trusty Tahr).
+
+# Future changes
+
+- In HHVM 4.21, the new Rust parser will be enabled by default (with the option
+  to opt-out).
+- In HHVM 4.22, the old parser will be removed and the Rust parser will become
+  the only one available.
+- Using `unset()` on a class constant will soon be a parser error (previously,
+  such calls did nothing). You can enable this behavior now by adding
+  `disable_unset_class_const=true` to `.hhconfig`.
+- Calling `class_meth()` with arguments that are not string literals will soon
+  trigger a runtime warning (it is already a typechecker error). You can enable
+  this behavior now by running HHVM with
+  `-vEval.EmitFuncPointers=1 -vEval.EmitClsMethPointers=1 -vEval.WarnOnNonLiteralClsMeth=1`
