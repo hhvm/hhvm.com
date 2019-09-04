@@ -1,0 +1,92 @@
+---
+title: "HHVM 4.21.0"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.21 is released! This release marks the end of support for 4.15;
+4.16-4.20 remain supported, as do the LTS releases 3.30 and 4.8.
+
+# Highlights
+
+- This release includes the
+  [security patch](https://hhvm.com/blog/2019/09/03/security-update.html)
+  that was also applied to all supported older releases.
+- We are rewriting parts of our code from OCaml to Rust. This should not cause
+  any user-facing changes. In the previous release (HHVM 4.20), a new parser
+  written in Rust was added. It is now enabled by default, but you can still
+  disable it by adding `hack.lang.hack_compiler_use_rust_parser=0` to
+  `hhvm.ini`. If you see any differences in behavior or other issues, please
+  [open a GitHub issue](https://github.com/facebook/hhvm/issues/new).
+- A new command `hh_client --rewrite-parameter-types <filename>` is now
+  available to help with migration from partial to strict mode. It adds
+  `<<__Soft>>` type annotations based on inferred parameter types.
+- Class constants in a subclass can now be declared with a subtype of their type
+  in the parent class (previously the exact same type was required).
+
+```lang=php
+class A { const arraykey C = 'string'; }
+class B extends A { const int C = 42; }
+```
+
+- Fixed a bug that prevented `await` from working inside `echo` and `unset`
+  statements in some cases.
+- Fixed a bug that prevented the documentation for many built-in functions from
+  being correctly parsed. As a result, many more functions are now documented at
+  [docs.hhvm.com](https://docs.hhvm.com/).
+
+# Breaking Changes
+
+- An optional passed-by-reference argument was **removed** from the following
+  functions. For most of them, a replacement with the old signature is
+  available. For `preg_match` and `preg_match_all`, automated migration is
+  available in HHAST 4.15.5 (runs on HHVM 4.18-4.20) and 4.21.2 (runs on
+  HHVM 4.21).
+  - `icu_match` (use `icu_match_with_matches` instead)
+  - `idn_to_ascii` (no replacement available)
+  - `idn_to_unicode` (no replacement available)
+  - `idn_to_utf8` (no replacement available)
+  - `is_callable` (use `is_callable_with_name` instead)
+  - `preg_match` (use `preg_match_with_matches` instead)
+  - `preg_match_all` (use `preg_match_all_with_matches` instead)
+- The last argument (passed by reference) was **changed from optional to
+  required** in the following functions.
+  - `apc_dec` (last 2 arguments)
+  - `apc_inc` (last 2 arguments)
+  - `curl_multi_info_read`
+  - `datefmt_parse`
+  - `grapheme_extract`
+  - `IntlTimeZone::getCanonicalID`
+  - `intltz_get_canonical_id`
+  - `NumberFormatter::parseCurrency`
+  - `numfmt_parse`
+  - `numfmt_parse_currency`
+  - `SpoofChecker::areConfusable`
+  - `SpoofChecker::isSuspicious`
+- Fixed a bug where the last argument of the following functions was incorrectly
+  declared as optional. It was already a runtime error to omit the argument, but
+  now it is also a typechecker error.
+  - `apc_fetch`
+  - `datefmt_localtime`
+  - `IntlDateFormatter::localtime`
+- Fixed a bug that allowed an abstract constant to remain undefined when
+  [a trait with `require extends`](https://github.com/facebook/hhvm/blob/b7716973c15ccb5e31951beaa7ecb48e2c7475e7/hphp/hack/test/typecheck/tconst/abstract_type_in_concrete_class_with_trait.php)
+  is used.
+
+
+# Future changes
+
+- In HHVM 4.22 (the next release), the old parser will be removed and the Rust
+  parser will become the only one available.
+- The last argument (passed by reference) of `NumberFormatter::parse` will be
+  removed in the next release. Any calls that require this argument can be
+  migrated to `NumberFormatter::parseWithPosition` which has the old signature.
+- Soon, it will be an error to use a built-in attribute in an invalid location.
+  You can enable this behavior now by adding
+  `check_attribute_locations=true` to `.hhconfig`.
+
+```lang=php
+<<__Memoize>> class C { ... }  // invalid!
+<<__ConsistentConstruct>> function f() { ... }  // invalid!
+```
