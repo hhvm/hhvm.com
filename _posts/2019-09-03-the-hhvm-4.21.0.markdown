@@ -25,7 +25,7 @@ HHVM 4.21 is released! This release marks the end of support for 4.15;
 - Class constants in a subclass can now be declared with a subtype of their type
   in the parent class (previously the exact same type was required).
 
-```lang=php
+```php
 class A { const arraykey C = 'string'; }
 class B extends A { const int C = 42; }
 ```
@@ -86,7 +86,7 @@ class B extends A { const int C = 42; }
   You can enable this behavior now by adding
   `check_attribute_locations=true` to `.hhconfig`.
 
-```lang=php
+```php
 <<__Memoize>> class C { ... }  // invalid!
 <<__ConsistentConstruct>> function f() { ... }  // invalid!
 ```
