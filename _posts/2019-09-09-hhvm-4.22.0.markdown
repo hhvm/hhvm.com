@@ -1,0 +1,39 @@
+---
+title: "HHVM 4.22.0"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.22 is released! This release marks the end of support for 4.16;
+4.17-4.21 remain supported, as do the LTS releases 3.30 and 4.8.
+
+# Highlights
+
+- The Hack language parser has been rewritten in Rust (previously OCaml). In the
+  previous two HHVM versions, using the new parser was optional, but this
+  release completely removes the old parser and the new parser is now always
+  used. This should not cause any user-facing changes, but if you see any
+  differences in behavior or other issues, please
+  [open a GitHub issue](https://github.com/facebook/hhvm/issues/new).
+- Fixed various bugs at [docs.hhvm.com](https://docs.hhvm.com/)
+  (wrong namespaces, missing links, etc.)
+
+# Breaking Changes
+
+- fixed a bug that allowed arbitrary values to be coerced to `?dynamic`
+
+```php
+function foo(): ?dynamic {
+  return 42;  // now an error
+}
+```
+
+- it is now a typechecker error to specify generic type parameters for `dynamic` (previously they were simply ignored)
+- fixed a bug that prevented the typechecker from correctly detecting conflicting `use const` declarations in some cases
+
+```php
+use const Foo\A as A;
+...
+use const Foo\B as A;  // now an error, previously not always an error
+```
