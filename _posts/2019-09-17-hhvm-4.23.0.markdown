@@ -1,0 +1,77 @@
+---
+title: "HHVM 4.23.0"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.23 is released! This release marks the end of support for 4.17;
+4.18-4.22 remain supported, as do the LTS releases 3.30 and 4.8.
+
+# Highlights
+
+- fixed runtime error calling static methods with reified generics on dynamic
+  class names, e.g. `$class::foo<int>()`
+- clearer typechecker error messages for invalid method and property access
+- clearer runtime error when calling an undefined method with `inout` parameters
+- if the admin server is enabled with a passsword, it is now possible to allow
+  access to statistics without the password with the
+  `hhvm.admin_server.stats_need_password` INI setting.
+
+# Breaking Changes
+
+- Fix variance checks for `where` constraints with generics
+- It is now a typechecker error to have multiple `default:` cases in a `switch`;
+  this was previously a runtime error
+- A typechecker error is now raised if a `default:` case is present in a
+  `switch` but is not the last case.
+- Deleted temporary APIs for reified generics:
+  - `HH\\ReifiedGenerics\\getTypeStructure()`: use
+    `HH\\ReifiedGenerics\\get_type_structure()` instead
+  - `HH\\ReifiedGenerics\\getClassname()`: use
+    `HH\\ReifiedGenerics\\get_classname()` instead
+- Accessing `$GLOBALS` without a subcript is now a parse error. Use
+  `HH\global_keys()` instead if you need to enumarate the full list.
+- The XML, memcache, memcached, and PCRE extensions have been migrated from
+  taking parameters by reference to taking `inout` parameters; in many cases
+  this is just a change to the calling convention, however there are
+  more significant changes, due to `inout` parameters not permitting default
+  values; in particular:
+  - `Memcache::get()` and `memcache_get()` no longer take a `&$flags` parameter;
+    this parameter previously had no effect in HHVM.
+  - `preg_replace_callback()` no longer has an optional `$count` parameter;
+    call `preg_replace_callback_with_count()` if a count is required.
+  - the `$position` parameter for `NumberFormatter::parseCurrency()` is no longer
+    optional
+  - the `$isSystemID` parameter for `IntlTimeZone::getCanonicalID()` is no longer
+    optional
+  - the `$issuesFound` parameters for `SpoofChecker::areConfusable()` and
+    `SpoofChecker::isSuspicious()` are no longer optional
+  - the `ereg()` and `eregi()` functions have been removed
+  - the `array_walk()` and `array_walk_recursive()` functions have been removed
+  - `idn_to_ascii()`, `idn_to_utf8()`, and `idn_to_unicode()` no longer take an
+    optional `&$info` parameter
+
+[`hhast-migrate --ref-to-inout`](https://github.com/hhvm/hhast) can be used to
+automatically migrate many of these cases.
+
+# Future Changes
+
+- We will shortly be switching to an improved implementation of autocomplete
+  for editors that use LSP, such as Visual Studio Code or Vim with ALE. This
+  can be trialled now by starting `hh_server` with
+  `--config symbolindex_search_provider=SqliteIndex`
+- The optional `&$cas_token` parameters for various memcached functions will
+  be removed; we recommend moving to the `inout` versions of these functions.
+- The optional `&$position` parameters for `NumberFormatter::parse()` and
+  `IntlDateFormatter::parse()` will be removed; use
+  `::parseWithPosition()` instead.
+- The following functions and methods that depend on references will be removed:
+  - `call_user_method()`
+  - `call_user_method_array()`
+  - `PDO::bindParam()`
+  - `PDO::bindColumn()`
+  - `SQLite3::bindparam()`
+
+[`hhast-migrate --ref-to-inout`](https://github.com/hhvm/hhast) can be used to
+automatically migrate many of these cases.
