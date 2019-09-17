@@ -26,10 +26,10 @@ HHVM 4.23 is released! This release marks the end of support for 4.17;
 - A typechecker error is now raised if a `default:` case is present in a
   `switch` but is not the last case.
 - Deleted temporary APIs for reified generics:
-  - `HH\\ReifiedGenerics\\getTypeStructure()`: use
-    `HH\\ReifiedGenerics\\get_type_structure()` instead
-  - `HH\\ReifiedGenerics\\getClassname()`: use
-    `HH\\ReifiedGenerics\\get_classname()` instead
+  - `HH\ReifiedGenerics\getTypeStructure()`: use
+    `HH\ReifiedGenerics\get_type_structure()` instead
+  - `HH\ReifiedGenerics\getClassname()`: use
+    `HH\ReifiedGenerics\get_classname()` instead
 - Accessing `$GLOBALS` without a subcript is now a parse error. Use
   `HH\global_keys()` instead if you need to enumarate the full list.
 - The XML, memcache, memcached, and PCRE extensions have been migrated from
