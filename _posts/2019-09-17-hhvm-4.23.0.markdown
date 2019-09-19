@@ -14,7 +14,7 @@ HHVM 4.23 is released! This release marks the end of support for 4.17;
   class names, e.g. `$class::foo<int>()`
 - clearer typechecker error messages for invalid method and property access
 - clearer runtime error when calling an undefined method with `inout` parameters
-- if the admin server is enabled with a passsword, it is now possible to allow
+- if the admin server is enabled with a password, it is now possible to allow
   access to statistics without the password with the
   `hhvm.admin_server.stats_need_password` INI setting.
 
