@@ -1,0 +1,56 @@
+---
+title: "HHVM 4.24.0"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.24 is released! This release marks the end of support for 4.18;
+4.19-4.23 remain supported, as do the LTS releases 3.30 and 4.8.
+
+# Highlights
+
+- We are now building packages for Debian 10 (Buster). Debian 10 support is currently experimental, please [open an issue](https://github.com/hhvm/packaging/issues/new) if you notice any problems.
+- Fixed a bug that could cause segfaults in JIT internals (i.e., not while executing code) on Ubuntu 19.04 (Disco Dingo).
+- Parser error handling has been rewritten from OCaml to Rust. This should cause no user-facing changes, but please [open an issue](https://github.com/facebook/hhvm/issues/new) if you notice any problems. This can be disabled by adding `hhvm.hack.lang.hack_compiler_use_rust_parser_errors` to `hhvm.ini`.
+- Fixed misleading error message when `await` was used on the right side of a pipe `|>` operator.
+- `fun()` and `class_meth()` can now be used inside constant expressions (this can be disabled by adding `disallow_func_ptrs_in_constants=true` to `.hhconfig`).
+
+```php
+class C {
+  const (function():void) FUNCTION = fun('time');
+  private static (function():void) $method = class_meth('Foo', 'bar');
+}
+```
+
+# Breaking Changes
+
+- casting to `object` (`(object)$value`) is no longer supported by the runtime (it was already a type checker error)
+- the built-in function `pg_fetch_object` was removed (use `pg_fetch_assoc` instead)
+- the following built-in functions had an optional passed-by-reference parameter **removed**:
+  - `str_replace` (use `str_replace_with_count` instead when needed)
+  - `str_ireplace` (use `str_ireplace_with_count`)
+  - `headers_sent` (use `headers_sent_with_file_line`)
+  - `openssl_encrypt` (use `openssl_encrypt_with_tag`)
+  - `array_multisort` was removed completely (use `array_multisort1`, `array_multisort2`, etc. depending on the number of arguments you need to pass in&mdash;up to `array_multisort9`)
+  - use `hhast-migrate --ref-to-inout` to automatically migrate your calls
+- the following built-in functions that previously had optional passed-by-reference parameters, now have **non-optional** [`inout` parameters](https://docs.hhvm.com/hack/functions/inout-parameters):
+  - string functions: `similar_text`, `parse_str`
+  - multi-byte string functions: `mb_convert_variables`, `mb_ereg`, `mb_eregi`, `mb_parse_str`
+  - image functions: `getimagesize`, `exif_thumbnail`
+  - IPC functions: `msg_send`, `msg_receive`
+  - LDAP functions: `ldap_parse_result`, `ldap_control_paged_result_response`
+  - exec-family functions: `exec`, `passthru`, `system`
+  - socket functions: `fsockopen`, `pfsockopen`, `socket_server`, `stream_socket_accept`, `stream_socket_server`, `stream_socket_client`, `stream_socket_recvfrom`, `socket_getpeername`, `socket_getsockname`, `socket_recvfrom`
+  - network functions: `dns_get_record`, `dns_get_mx`, `getmxrr`
+  - OpenSSL functions: `openssl_random_pseudo_bytes`
+  - use `hhast-migrate --ref-to-inout` to automatically migrate your calls
+- `AsyncMysqlConnectionPool::connect(): Awaitable<AsyncMysqlConnection>` now declares a return type (previously untyped)
+- `hh_client --typed-full-fidelity-json` is no longer supported (it has been producing incorrect results in most cases)
+
+
+# Future Changes
+
+- The `hhvm.ini` option `hhvm.hack.lang.hack_compiler_use_rust_parser_errors` (see above) is expected to be removed in the next release (HHVM 4.25).
+- The `.hhconfig` option `coercion_from_dynamic` will be removed soon. See [documentation](https://docs.hhvm.com/hack/built-in-types/dynamic) for detailed coercion rules for the `dynamic` type.
+- The default values for the `hhvm.ini` options `hhvm.check_prop_type_hints` and `hhvm.check_return_type_hints` will soon be changed to `3` (fatal error) and the options should be removed soon after that.
