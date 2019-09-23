@@ -25,7 +25,7 @@ class C {
 
 # Breaking Changes
 
-- casting to `object` (`(object)$value`) is no longer supported by the runtime (it was already a type checker error)
+- casting to `object` (`(object)$value`) is no longer supported by the runtime (it was already a type checker error in strict mode)
 - the built-in function `pg_fetch_object` was removed (use `pg_fetch_assoc` instead)
 - the following built-in functions had an optional passed-by-reference parameter **removed**:
   - `str_replace` (use `str_replace_with_count` instead when needed)
