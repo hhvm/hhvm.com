@@ -18,8 +18,8 @@ HHVM 4.24 is released! This release marks the end of support for 4.18;
 
 ```php
 class C {
-  const (function():void) FUNCTION = fun('time');
-  private static (function():void) $method = class_meth('Foo', 'bar');
+  const (function(): int) FUNCTION = fun('time');
+  private static (function(): void) $method = class_meth('Foo', 'bar');
 }
 ```
 
