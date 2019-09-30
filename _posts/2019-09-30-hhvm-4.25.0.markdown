@@ -1,0 +1,38 @@
+---
+title: "HHVM 4.25.0"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.25 is released! This release marks the end of support for 4.19;
+4.20-4.24 remain supported, as do the LTS releases 3.30 and 4.8.
+
+# Highlights
+
+- Corrected stack trace file names and line numbers for inlined functions;
+  previously, the file name and line number from the first non-inlined frame
+   would be used instead.
+- It is no longer a type error for a disposable to implement a non-disposable
+  interface.
+- Added return types to many Async MySQL methods.
+- `@param` documentation is now shown in IDE signature help.
+
+# Breaking Changes
+
+- The `getAttributeRecursive` and `getAttributesRecursive` reflection methods
+  have been removed; they were previously marked as `__Deprecated`.
+- Many functions and methods have had their by-ref parameters replaced
+  with `inout` parameters:
+  - `natsort()`, `natcasesort()`, `sort()`, `rsort()`, `asort()`, `arsort()`,
+    `ksort()`, `krsort()`, `usort()`, `uasort()`, and `uksort()`
+  - `array_pop()`, `array_push()`, `array_shift()`, `array_splice()`,
+    `array_unshift()`, and `shuffle()`
+  - `IntlTimeZone::getOffset()`
+  - `pagelet_server_task_result()`, `xbox_send_message()`, and
+    `xbox_task_result()`
+- `call_user_method()` and `call_user_method_array()` have been removed - they
+  have been deprecated since PHP4.
+- the runtime no longer recognizes the aliases `double`, `real`, `integer`, and
+  `boolean`; use `float`, `int`, and `bool` instead. These aliases were
+  previously typechecker errors.
