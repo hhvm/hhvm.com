@@ -1,7 +1,7 @@
 ---
 title: "Deprecating &$references"
 layout: post
-author: daniel
+author: dneiter
 category: blog
 ---
 
