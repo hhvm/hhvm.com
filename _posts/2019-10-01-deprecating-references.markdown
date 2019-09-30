@@ -21,7 +21,17 @@ by reference.
 built to address this use case without relying on PHP references. See also
 [Migrating to inout parameters](https://docs.hhvm.com/hack/functions/inout-parameters#references-deprecated__migrating-to-inout-parameters).
 
-For other cases, the
+We have updated all built-in functions with reference parameters (such as
+`sort()`, `array_pop()`, or `preg_match()` with a `&$matches` argument) to use
+inout parameters instead. In some cases, the function that takes an inout
+argument has a new name (e.g. `preg_match_with_matches()`). You can migrate your
+calls automatically using HHAST v4.21.7 or newer:
+
+```
+hhast-migrate --ref-to-inout
+```
+
+For references other than function parameters, the
 [`Ref`](https://docs.hhvm.com/hsl/reference/class/HH.Lib.Ref/) class can be used
 to explicitly achieve reference semantics when necessary. A common example is
 needing to share mutable state between a lambda and enclosing function:
