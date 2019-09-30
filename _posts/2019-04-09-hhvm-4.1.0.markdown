@@ -136,7 +136,7 @@ line of a file.
   `compare_coverage.py` as they have been unmaintained for some time.
 - Dynamic calls will not be allowed to take by-reference parameters; this can
   be currently be enforced with the `disallow_byref_dynamic_calls` `.hhconfig`
-  option 
+  option
 
 ### Static Locals
 
@@ -159,7 +159,7 @@ There are several approaches for replacing them:
 If the function is potentially recursive, you may need to copy the property
 into a local, so that deeper calls do not affect the value in their callers.
 
-### Property Type Enforcment
+### Property Type Enforcement
 
 The `hhvm.check_prop_type_hints` INI setting can be used to enable runtime
 enforcement of property types. This enables additional optimizations.
