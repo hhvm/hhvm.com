@@ -98,7 +98,7 @@ foreach ($arr as $v) {
 ```
 
 What is the produced output, and more importantly why does it work this way?
-([Spoilers](https://3v4l.org/BeGi3)).
+([Spoilers](https://3v4l.org/Bi4c0)).
 
 This is almost never intended behavior, and the resulting issue is very easy to
 miss. As part of deprecating foreach-by-reference support at Facebook we have
