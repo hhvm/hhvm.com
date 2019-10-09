@@ -1,0 +1,67 @@
+---
+title: "HHVM 4.26.0"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.26 is released! This release marks the end of support for 4.20;
+4.21&ndash;4.25 remain supported, as do the LTS releases 3.30 and 4.8.
+
+# Highlights
+
+- various IDE integration improvements (better autocompletion, more contextual
+  information on hover)
+- values with
+  [`dynamic` type](https://docs.hhvm.com/hack/built-in-types/dynamic) can now be
+  used in more places (inside XHP, `unset` statements)
+- it is no longer a Hack error to declare a method with the same name as its
+  encompassing class (previously error 3007, which was added to prevent
+  confusion due to the fact that these methods would act as constructors in HHVM
+  versions prior to 4.0)
+- closing an SQLite connection when there are unfinalized prepared statements
+  will now schedule the connection to be
+  [closed later](https://www.sqlite.org/c3ref/close.html), instead of returning
+  an error
+- an experimental new syntax was added for union types `(Cat | Dog)` and
+  intersection types `(FourLegged & Mammal)` &ndash; this is an early
+  experimental prototype not meant for general use, but if you want to
+  experiment with it, add `union_intersection_type_hints=true` to your
+  `.hhconfig`
+
+# Breaking Changes
+
+- most built-in types (e.g. `int`, `vec`, `Vector`, `Traversable`, `Awaitable`)
+  are now case-sensitive at runtime (previously only the typechecker treated
+  them as case-sensitive)
+- magic methods (e.g. `__get`, `__call`) can no longer have
+  [inout parameters](https://docs.hhvm.com/hack/functions/inout-parameters)
+- all remaining `&$reference` parameters in built-in functions were migrated to
+  inout parameters or removed &ndash; from those, the following ones are not
+  backwards compatible:
+  - previously optional argument is now required:
+    - `flock` (use `hhast-migrate --ref-to-inout` for automated migration)
+    - `SplFileObject::flock`
+  - previously optional argument was completely removed:
+    - `NumberFormatter::parse` (use `parseWithPosition` when the optional
+      argument is needed)
+    - `IntlDateFormatter::parse` (use `parseWithPosition`)
+    - `Memcached::get` (use `getWithCasToken`)
+    - `Memcached::getByKey` (use `getByKeyWithCasToken`)
+    - `Memcached::getMulti` (use `getMultiWithCasTokens`)
+    - `Memcached::getMultiByKey` (use `getMultiByKeyWithCasTokens`)
+  - the following functions were completely removed because they used reference
+    parameters in undesirable ways:
+    - `current_ref` (use `current` which returns the same value, but takes a
+      non-reference argument)
+    - `key_ref` (use `key`)
+    - `xml_set_object_ref` (use `xml_set_object`)
+    - `PDOStatement::bindParam` (use `bindValue` instead)
+    - `PDOStatement::bindColumn` (use `bindValue`)
+    - `SQLite3Stmt::bindparam` (use `bindvalue`)
+
+# Future Changes
+
+With all `&$references` in built-in functions gone, we expect that references
+will be completely removed from the Hack language within the next few releases.
+See [detailed blog post](https://hhvm.com/blog/2019/10/01/deprecating-references.html).
