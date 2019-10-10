@@ -25,9 +25,11 @@ HHVM 4.26 is released! This release marks the end of support for 4.20;
   an error
 - an experimental new syntax was added for union types `(Cat | Dog)` and
   intersection types `(FourLegged & Mammal)` &ndash; this is an early
-  experimental prototype not meant for general use, but if you want to
-  experiment with it, add `union_intersection_type_hints=true` to your
-  `.hhconfig`
+  experimental prototype not meant for general use (it is entirely possible that
+  the prototype will *never* make it to a final release, depending on, for
+  example, how it affects typechecking performance in various scenarios), but if
+  you want to experiment with it, add `union_intersection_type_hints=true` to
+  your `.hhconfig`
 
 # Breaking Changes
 
