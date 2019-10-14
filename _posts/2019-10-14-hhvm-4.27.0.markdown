@@ -1,0 +1,35 @@
+---
+title: "HHVM 4.27.0"
+layout: post
+author: fred 
+category: blog
+---
+
+HHVM 4.27 is released! This release marks the end of support for 4.21;
+4.22&ndash;4.26 remain supported, as do the LTS releases 3.30 and 4.8.
+
+# Highlights
+
+- Clearer typechecker error message when a function does not explicitly
+  return a value in all branches
+- Added 'jump-to-definition' for overridden methods
+- go-to-implementation ("textDocument/implementation") is now implemented in
+  LSP-based editors (e.g. Visual Studio Code) for common situations.
+- added `set_pre_timeout_handler(int $seconds, 
+
+# Breaking Changes
+
+- `register_postsend_function()` and `register_shutdown_function()` now take
+  a single `function(): T` argument, instead of a callable and variadic
+  arguments
+- `break` and `continue` with a level (e.g. `break 3;`) is now a parse error;
+  previously, a typechecker error was raised
+- usage of abstract type constants now raises a type error in some places where
+  they do not have meaning (e.g.
+  `abstract class C { abstract const type T; } function foo(C::T $x)`)
+
+# Future Changes
+
+- We aim to drop support for MacOS High Sierra (10.13) and introduce support for
+  MacOS Catalina (10.15) as soon Catalina is available from our build
+  infrastructure provider.
