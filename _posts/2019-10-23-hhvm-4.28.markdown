@@ -1,0 +1,59 @@
+---
+title: "HHVM 4.28"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.28 is released! This release marks the end of support for 4.22;
+4.23&ndash;4.27 remain supported, as do the LTS releases 3.30 and 4.8.
+
+Release 4.28.1 (in progress) fixes some minor bugs that were introduced in
+4.28.0.
+
+# Highlights
+
+- New implementation of auto-completion for LSP-based editors, fixing issues
+  with namespaces.
+- A new function,
+  [`set_pre_timeout_handler`](https://docs.hhvm.com/hack/reference/function/set_pre_timeout_handler/),
+  was added. The pre-timeout handler allows cheaper debugging of timeouts by
+  invoking analysis code a few seconds prior to requests timing out. It also
+  allows re-registering a new pre-timeout callback much like the memory
+  threshold callbacks.
+- Fixed a bug that would cause `hackfmt` to reformat code in a way that breaks
+  `HH_FIXME` comments in some cases.
+- It is no longer a type error to reference the built-in type
+  `HH\BuiltinEnum`&mdash;the parent type of all `enum`s (previously error 2053).
+
+# Breaking Changes
+
+- Declaring a type with the same name as a built-in type (e.g. `int`, `Vector`,
+  `Awaitable`) will no longer override the built-in type. Such types can now
+  only be referenced using their namespaced name (e.g. `MyNamespace\Vector`, or
+  `namespace\Vector` if in the same namespace).
+- It is now a type error to `use` multiple traits that declare `__construct()`
+  from the same class.
+- Trying to call a non-static method &ldquo;statically&rdquo; will now always
+  trigger a fatal error. This was already true in most cases, except some
+  special cases where it was previously only a warning (e.g. using a non-static
+  method in `array_map(['ClassName', 'nonStaticMethodName'], $arr)`).
+- It is now a type error to pass a value of type `array` where a tuple is
+  expected or vice-versa (previously, this was only an error if the
+  `disallow_array_as_tuple` flag was enabled). Note that this change only
+  affects `array`s with a missing generic type, which would already be an error
+  in strict mode.
+- It is now a type error to call `unset` on an element of an `array` or `varray`
+  (previously, this was only an error if the `disallow_unset_on_varray` flag was
+  enabled). It can only be called on `dict` and `darray` elements now.
+- The following `.hhconfig` flags were removed:
+  - `coercion_from_dynamic` (see
+    [documentation](https://docs.hhvm.com/hack/built-in-types/dynamic#coercion)
+    for current coercion rules for `dynamic` values)
+  - `coercion_from_union`
+  - `safe_array` (it is now always a type error to use `array` where `array<T>`
+    is expected, which had already been the default behavior)
+  - `safe_vector_array` (it is now always a type error to use `array<Tv>` where
+    `array<Tk, Tv>` is expected, which had already been the default behavior)
+  - `disallow_array_as_tuple` (this changes the default behavior, see above)
+  - `disallow_unset_on_varray` (also changes the default behavior)
