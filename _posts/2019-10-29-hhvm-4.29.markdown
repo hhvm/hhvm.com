@@ -1,0 +1,47 @@
+---
+title: "HHVM 4.29.0"
+layout: post
+author: fred 
+category: blog
+---
+
+HHVM 4.29 is released! This release marks the end of support for 4.23;
+4.24&ndash;4.28 remain supported, as do the LTS releases 3.30 and 4.8.
+
+# Highlights
+
+- Error messages now strip `HH\` from names that are automatically imported into
+  every namespace
+- Fixed `.hack` files not being correctly indexed by some IDE features
+- Shape key autocomplete now detects pre-existing quotes, avoiding completions
+  such as `$someshape['somekey'']` with two apostrophes; this was most common
+  with IDEs configured to automatically insert matching quotation marks.
+- Added `RuntimeOption::CheckIntOverflow` option:
+  - if 0 (the default), overflows will silently wrap; this setting has the best
+    performance
+  - if 1, overflows will wrap and warn
+  - if 2, overflows will throw an exception
+- Autocomplete now downranks magic methods and functions/methods with
+  `DO_NOT_USE` in the name
+
+# Breaking Changes
+
+- `$c->toVector()`, `$c->toSet()`, `$c->toMap()` have been removed from Hack
+  collections; use `new Vector($c)` etc or Hack Arrays instead; this is because
+  they are not type-safe, as variance checks were added for generics
+- auto-imported reserved names (e.g. 'self') are now case-sensitive at runtime
+- `Set::zip()` now returns `Set<nothing>`, as pairs can not be stored in Sets;
+  this could lead to new type errors in code that would previously fail at
+  runtime. Similar changes have been made to `ImmSet` and other related classes
+- `unserialize()` no longer creates references; if old serialized data
+  containing references is used, the referenced value will be copied instead
+- references are no longer supported by the parser
+- the runtime and typechecker now agree that `Awaitable`'s fully-qualified name
+  is `HH\Awaitable`; it remains autoimported. In previous releases, the
+  runtime considered it to be `HH\Awaitable`, but the typechecker considered it
+  to be `\Awaitable`
+- it is now an error to pass a superglobal as `inout`
+- `array` (without generics) is now considered to be the union of `array<_>`
+  (a.k.a `varray`) and `array<_, _>` (a.k.a. `darray`); this can lead to
+  stricter handling of key ([example 1](https://github.com/hhvm/user-documentation/commit/20b292e),
+  [example 2](https://github.com/hhvm/type-assert/commit/597b0f9))
