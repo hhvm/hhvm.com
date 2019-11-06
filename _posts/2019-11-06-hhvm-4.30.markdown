@@ -10,11 +10,6 @@ HHVM 4.30 is released! This release marks the end of support for 4.24;
 
 # Highlights
 
-- `hh_client` supports a new command `--extract-standalone` which extracts the
-  specified function and any code it depends on, while trying to keep the amount
-  of extracted code to a minimum (useful for debugging or similar purposes, but
-  note that this is an experimental feature that may be changed or removed in
-  the future)
 - fixed handling of parsing errors in the `mailparse` extension (issue
   [#8532](https://github.com/facebook/hhvm/issues/8532))
 - the typechecker now considers most built-in &ldquo;auto-imported&rdquo; types
