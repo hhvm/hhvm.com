@@ -1,0 +1,52 @@
+---
+title: "HHVM 4.30.0"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.30 is released! This release marks the end of support for 4.24;
+4.25&ndash;4.29 remain supported, as do the LTS releases 3.30 and 4.8.
+
+# Highlights
+
+- fixed handling of parsing errors in the `mailparse` extension (issue
+  [#8532](https://github.com/facebook/hhvm/issues/8532))
+- the typechecker now considers most built-in &ldquo;auto-imported&rdquo; types
+  to be in the `HH` namespace (`HH\dict`, `HH\Container`, etc.), consistently
+  with how the runtime already treated them
+  - previously, the typechecker incorrectly considered them to belong to the
+    root namespace, so this fixes cases where the typechecker would report
+    errors in correct code (`HH\dict`), or not report errors in code that would
+    fail at runtime (`\dict`)
+  - that said, as these types are auto-imported, it is never necessary, and not
+    recommended, to refer to them using their fully qualified names (use `dict`
+    instead of `HH\dict`, etc.)
+  - specific types fixed in the current release: `vec`, `dict`, `keyset`,
+    `Container`, `KeyedContainer`, `Traversable`, `KeyedTraversable`,
+    `Iterable`, `KeyedIterable`, `Iterator`, `KeyedIterator`, `AsyncIterator`,
+    `AsyncKeyedIterator`, `AsyncGenerator`
+
+
+# Breaking changes
+
+- it is no longer possible to override built-in types using `use` statements
+  (`use MyVector as Vector`, `use MyType as string`, etc.)
+- fixed a few remaining places where built-in types were still treated as
+  case-insensitive (should not affect most users, as they were already treated
+  as case-sensitive almost everywhere)
+
+
+# Future changes
+
+- we are starting to work on deprecating PHP-style anonymous functions
+  (`function($num) { return $num * 2; }`) in favor of lambdas
+  (`$num ==> $num * 2`)
+  - you can test this by adding `error_php_lambdas=true` to your `.hhconfig`
+    (this will likely become the default behavior in the future)
+- we are working on extending
+  [`fb_serialize()`](https://docs.hhvm.com/hack/reference/function/fb_serialize/)
+  to correctly distinguish between all the different array-like types (`vec`,
+  `dict`, `keyset`, `varray`, `darray`, `array`)
+  - these changes should be backwards compatible, generally hidden behind new
+    flags
