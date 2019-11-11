@@ -1,0 +1,32 @@
+---
+title: "HHVM 4.31.0"
+layout: post
+author: fred 
+category: blog
+---
+
+HHVM 4.31 is released! This release marks the end of support for 4.25;
+4.26&ndash;4.30 remain supported, as do the LTS releases 3.30 and 4.8.
+
+# Highlights
+
+- Added new `HH\Lib\SQL\Query` object, and `AsyncMysqlConnectino::queryAsync()`
+  method; this is an alternative to `::queryf()`. `Query` objects:
+  - are constructed with a `queryf`-style format string and a list of parameters
+  - accept `vec<>`s instead of `Vector<>`s
+  - add support for the `%Q` placeholder, which accepts another `Query` object;
+    this allows much more flexibility, such as concatenating queries with
+    `$ab = new Query('%Q %Q', $a, $b)`
+- Fixed incorrect 'out of memory' errors in `hh_server` when `posix_fallocate`
+  fails with `EINTR`
+
+# Breaking Changes
+
+- Removed typechecker special-casing of `HH\Tuple\from_async()` and
+  `HH\Asio\va()`; ideally, these should be replaced with `concurrent` blocks,
+  or, if a tuple is actually desired, `tuple(await foo(), await bar())` can be
+  used instead
+- Removed `HH\Asio\va()`'s typechecker definition as it is no longer useful
+- `ldap_mod_(del|replace|modify)` now take a `darray` entry argument
+- the `(unset)` cast has been removed. Use the `null` literal instead
+- `unserialize()`ing a PHP array will now create a `varray` or `darray`
