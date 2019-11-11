@@ -10,7 +10,7 @@ HHVM 4.31 is released! This release marks the end of support for 4.25;
 
 # Highlights
 
-- Added new `HH\Lib\SQL\Query` object, and `AsyncMysqlConnectino::queryAsync()`
+- Added new `HH\Lib\SQL\Query` object, and `AsyncMysqlConnection::queryAsync()`
   method; this is an alternative to `::queryf()`. `Query` objects:
   - are constructed with a `queryf`-style format string and a list of parameters
   - accept `vec<>`s instead of `Vector<>`s
