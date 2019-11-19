@@ -54,7 +54,7 @@ Given we want to remove support for OpenSSL 1.0 and for systems using the C++5
 ABI, we expect to stop building packages for several distributions - especially
 Debian 8 Jessie and Ubuntu 16.04 very shortly after the release of HHVM 4.56.
 
-## Bugfix and security update release
+## Bugfix and security updates
 
 If we build a package for a distribution for a x.y.0 release, we intend to build
 packages for that distribution for any x.y.z releases - as long as the
