@@ -1,0 +1,60 @@
+---
+title: "HHVM 4.32 (LTS)"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.32 is released! This release has long term support, so:
+
+- this release will be supported for approximately 48 weeks
+- the next LTS will be released in approximately 24 weeks
+- HHVM 4.8 and HHVM 4.27&ndash;4.31 remain supported
+- support ends for HHVM 3.30, the last HHVM release compatible with PHP
+
+See also the new
+[support lifecycle for older distributions](https://hhvm.com/blog/2019/11/19/distribution-support.html).
+
+# Highlights
+
+- Fixed an issue where some built-in functions, available at runtime, were not
+  recognized by the typechecker (e.g. `fb_intercept2`, `fb_serialize`,
+  `xhprof_enable`). See
+  [header file](https://github.com/facebook/hhvm/blob/HHVM-4.32/hphp/hack/hhi/builtins_fb.hhi)
+  for the full list.
+- For developers: You can now use `source $BUILD/hphp/hack/dev_env.sh` to set up
+  the correct environment for all OCaml tools (dune/cargo/opam/ocamlformat/...).
+- The HTTP server bundled with HHVM (Proxygen) now allows the `MOVE` method.
+- The type `varray_or_darray` (a helper type, only existing in the typechecker,
+  for migrating from legacy arrays) now has two generic type parameters.
+  - For backwards compatibility, it can still be used with a single generic type
+    parameter, where `varray_or_darray<T>` is implied to mean
+    `varray_or_darray<arraykey, T>`.
+  - See
+    [recently updated guide](https://docs.hhvm.com/hack/built-in-types/arrays#migrating-from-legacy-arrays)
+    for more information about legacy array migration types.
+
+# Breaking Changes
+
+- All types that can be iterated with `foreach` now extend a single
+  `Traversable` interface.
+  - Fully qualified name is `\HH\Traversable`, but since this is an
+    &ldquo;autoimported&rdquo; type, the fully qualified name should never be
+    needed.
+  - Previously, there were two separate interfaces, `\Traversable` and
+    `\HH\Traversable`, with most (but not all!) types implementing
+    `\HH\Traversable` (an example exception is `DOMNodeList` which only
+    implemented `\Traversable`).
+  - The `\Traversable` and `\Iterator` interfaces (inherited from PHP) have been
+    removed in favor of `\HH\Traversable` and `\HH\Iterator`. Hack code that
+    refers to `Traversable` and `Iterator` with no leading backslash will
+    continue to work unchanged, but code that had `\Traversable` or `\Iterator`
+    needs to either remove the leading backslash or add `\HH` (note that this
+    changes the behavior of the affected code, making it refer to a much larger
+    set of iterable types).
+- Using `HH\BuiltinEnum` outside of built-in header files is once again
+  disallowed by the typechecker (error 2053). This restriction had recently been
+  lifted (in [HHVM 4.28](https://hhvm.com/blog/2019/10/23/hhvm-4.28.html)), but
+  it is being reintroduced because we discovered some new runtime issues when
+  the type is used.
+- The runtime config option `hhvm.php7.int_semantics` has been removed.
