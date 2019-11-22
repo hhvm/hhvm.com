@@ -6,9 +6,9 @@ id: home
 
 ## What is HHVM?
 
-HHVM is an [open-source](http://github.com/facebook/hhvm) virtual machine designed for executing programs written in [Hack](http://hacklang.org/) and [PHP](http://php.net/). HHVM uses a just-in-time (JIT) compilation approach to achieve superior performance while maintaining the development flexibility that PHP provides.
+HHVM is an [open-source](http://github.com/facebook/hhvm) virtual machine designed for executing programs written in [Hack](http://hacklang.org/). HHVM uses a just-in-time (JIT) compilation approach to achieve great runtime performance while maintaining amazing development flexibility.
 
-HHVM supports [Hack](http://hacklang.org/), [PHP 5](http://php.net/) and the major features of [PHP 7](http://hhvm.com/blog/10859/php-7-support). We are aware of [minor incompatibilities](https://github.com/facebook/hhvm/issues?q=is%3Aopen+is%3Aissue+label%3A%22php5+incompatibility%22), so please [open issues](https://github.com/facebook/hhvm/issues/new) when you find them. HHVM also [supports many extensions](http://docs.hhvm.com/hhvm/extensions/introduction) as well.
+HHVM supports the [Hack](http://hacklang.org/) programming language. We are moving fast, making changes daily and releasing often. If you notice a regression in the typechecker or the runtime, please [open issues](https://github.com/facebook/hhvm/issues/new) when you find them.
 
 <div class="gridBlock">
   <div class="blockElement twoByGridBlock alignLeft">
@@ -29,7 +29,7 @@ HHVM supports [Hack](http://hacklang.org/), [PHP 5](http://php.net/) and the maj
     <div class="blockContent">
       <h3>The JIT Compiler</h3>
       <p>
-        Rather than directly interpret or <a href="https://en.wikipedia.org/wiki/HipHop_for_PHP#History_Before_HHVM">compile PHP code directly to C++</a>, HHVM compiles Hack and PHP into an intermediate bytecode. This bytecode is then translated into <a href="https://en.wikipedia.org/wiki/X64">x64</a> machine code dynamically at runtime by a just-in-time (<a href="https://en.wikipedia.org/wiki/Just-in-time_compilation">JIT</a>) compiler. This compilation process allows for all sorts of optimizations that cannot be made in a statically compiled binary, thus enabling higher performance of your Hack and PHP programs.
+        Rather than directly interpret or <a href="https://en.wikipedia.org/wiki/HipHop_for_PHP#History_Before_HHVM">compile source code directly to C++</a>, HHVM compiles Hack into an intermediate bytecode. This bytecode is then translated into <a href="https://en.wikipedia.org/wiki/X64">x64</a> machine code dynamically at runtime by a just-in-time (<a href="https://en.wikipedia.org/wiki/Just-in-time_compilation">JIT</a>) compiler. This compilation process allows for all sorts of optimizations that cannot be made in a statically compiled binary, thus enabling higher performance of your Hack programs.
       </p>
     </div>
   </div>
