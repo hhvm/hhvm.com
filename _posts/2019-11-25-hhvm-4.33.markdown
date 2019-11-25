@@ -10,14 +10,6 @@ HHVM 4.33 is released! This release marks the end of support for 4.27;
 
 # Highlights
 
-- Added `hh_client --concatenate-all paths/ morepaths/` to create a single-file
-  version of a Hack code base, respecting required inclusion order (class
-  hierarchy), namespace declarations, and potentially-conflicting `use`
-  statements. Current limitations:
-  - all code most be namespaced; we expect this limitation to be removed in a
-    future release
-  - there must not be more than one `<<__EntryPoint>>` function; no entrypoints
-    is also acceptable
 - For developers working on the implementation of Hack itself (in rust/ocaml):
   - the test suite now passes in open source builds
   - the code generation tools for updating the parser and rust/ocaml FFI are now
