@@ -1,0 +1,43 @@
+---
+title: "HHVM 4.33"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.33 is released! This release marks the end of support for 4.27;
+4.28&ndash;4.32 remain supported, as does the 4.8 LTS release.
+
+# Highlights
+
+- Added `hh_client --concatenate-all paths/ morepaths/` to create a single-file
+  version of a Hack code base, respecting required inclusion order (class
+  hierarchy), namespace declarations, and potentially-conflicting `use`
+  statements. Current limitations:
+  - all code most be namespaced; we expect this limitation to be removed in a
+    future release
+  - there must not be more than one `<<__EntryPoint>>` function; no entrypoints
+    is also acceptable
+- For developers working on the implementation of Hack itself (in rust/ocaml):
+  - the test suite now passes in open source builds
+  - the code generation tools for updating the parser and rust/ocaml FFI are now
+    usable in opensource builds
+
+# Breaking Changes
+
+- Fixed issue where some FIXMEs had no effect on the code they were attached to
+  instead having action-at-a-distance. This could lead to errors being reported
+  in the wrong file. This bugfix may require fixmes to be added or moved.
+- An error is now raised if a reified function call is made without all required
+  generics; for example, `foo<vec>()` now raises an error, as `vec` requires
+  a generic type
+- Type structures for type aliases are now keyed by opaqueness and the alias
+  name. In previous versions, if multiple types/type aliases resolved to the
+  same concrete type, the wrong type structure would sometimes be returned - for
+  example,
+  with `newtype FOO = int;`, it was previously unpredicable if the type stucture
+  for `new MyClass<FOO>()` would return the type alias information
+  or not, and `new MyClass<int>()` could return `FOO`'s type alias
+  information. The correct type structure will now consistently be returned.
+  This only affects classes with reified generics - functions using reified
+  generics are unaffected
