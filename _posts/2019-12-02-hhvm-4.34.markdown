@@ -1,0 +1,34 @@
+---
+title: "HHVM 4.34"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.34 is released! This release marks the end of support for 4.28;
+4.29&ndash;4.33 remain supported, as does the 4.8 LTS release.
+
+# Highlights
+
+- Added `hh_client --concatenate-all path/ [morepaths/ ...]`, which creates a
+  single-file version of a Hack project. This respects required inclusion order
+  (e.g. parent classes before child classes), and resolves syntax issues such as
+  namespace declarations and potentially conflicting `use` statements. Example
+  usage:
+  - `hh_client --concatenate-all src/` for a library
+  - `hh_client --concatenate-all src/ vendor/ bin/foo.hack` for an executable
+
+# Breaking Changes
+
+- It is now always a type error to use `self::abstractStaticMethod()` to call an
+  abstract static method **inside a trait**. Previously, this was only a type
+  error if any classes used the trait without implementing the respective
+  method. The new behavior is consistent with abstract classes, where calling
+  `self::abstractStaticMethod()` was already an error. Use
+  `static::abstractStaticMethod()` instead (note that this may change the
+  behavior in some cases, but most likely the new behavior better captures the
+  original intent of the code).
+- Type errors about incorrectly overridden type constants are now reported in
+  the child class that overrides the constant, not in the parent class that
+  declares it. This may require some `HH_FIXME`s to be moved from a parent class
+  to its child classes.
