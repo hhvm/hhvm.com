@@ -1,0 +1,30 @@
+---
+title: "HHVM 4.35"
+layout: post
+author:  fred
+category: blog
+---
+
+HHVM 4.35 is released! This release marks the end of support for 4.29;
+4.30&ndash;4.34 remain supported, as does the 4.8 LTS release.
+
+# Highlights
+
+- resolving recursive type structure now raises a fatal error, instead of HHVM
+  infinitely recursing.
+- improved error messages for unsatisfiable constructor constraints, e.g.
+  `__construct(classname<T> $f) where T = nothing`.
+
+# Breaking Changes
+
+- `__halt_compiler()` and `__COMPILER_HALT_OFFSET__` have been removed.
+- `require extends T;` and `... extends T {}` now consistently raise naming
+  errors (2049); previously, `extend T` was a naming error, while
+  `require extends T` raised a type error (4026). This may require modifying
+  FIXMEs in unsafe/invalid Hack code.
+- it is no longer possible to completely disable the checking of return type
+  hints: if `hhvm.check_return_type_hints` is less than 2, an `E_WARNING` will
+  be raised. If set to 2, an `E_RECOVERABLE_ERROR` will be raised for hard type.
+  hints, and `E_WARNING` for soft.
+- split list and tuple destructuring errors out to new codes; this may require
+  modifying FIXMEs (4110 to 4105 or 4357) in unsafe/invalid Hack code.
