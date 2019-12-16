@@ -1,0 +1,36 @@
+---
+title: "HHVM 4.36"
+layout: post
+author:  jjergus
+category: blog
+---
+
+HHVM 4.36 is released! This release marks the end of support for 4.30;
+4.31&ndash;4.35 remain supported, as does the 4.8 LTS release.
+
+# Highlights
+
+- Statically links [jemalloc](http://jemalloc.net/) 5 if the system version is
+  older. HHVM requires 2MB-aligned 2MB allocations; older versions of jemalloc
+  will give a 4MB allocation, leading to request OOMs. Some old versions of HHVM
+  detected the 4MB allocation and attempted to use it, but did not do so
+  correctly.
+- Symbol search in IDEs now finds namespaced symbols again.
+- Fixed the "Unbound name" typechecker error (2049) to correctly report the type
+  of the missing entity ("an object type", "a global function", etc.).
+  Previously it would incorrectly say "an object type" in most cases.
+
+# Breaking Changes
+
+- It is now a runtime error to declare multiple constants with the same name.
+  It had already been a typechecker error, but only a notice at runtime.
+- It is now a typechecker error for a static method to use a reified generic
+  type parameter from the encompassing class. The generic type parameter must
+  instead be reified at the static method itself.
+- Fixed a bug causing the typechecker to not report missing generic type
+  parameters for class constants.
+- Fixed incorrect typehints for some built-in sorting functions (`asort`,
+  `arsort`, `krsort`, `uasort`, `uksort`). These functions may change the type
+  of the passed-in container (e.g. `vec` to `dict`), which the original
+  typehints didn't account for. This change may reveal new type errors in code
+  that uses these functions.
