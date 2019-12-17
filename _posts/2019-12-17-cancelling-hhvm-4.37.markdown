@@ -12,7 +12,7 @@ unaffected by this change.
 
 Our usual schedule is to release on Mondays or Tuesdays, and we expect many
 people - both at Facebook, and among our users - to be on vacation for Tuesday
-and Wednesday for the next two weeks - both at Facebook, and among our users. We
+and Wednesday for the next two weeks. We
 believe that releasing new versions with breaking changes at this time would not
 be in the best interests of our users, especially as we would be less able to
 support them during this time.
