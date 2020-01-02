@@ -1,0 +1,31 @@
+---
+title: "HHVM 4.38"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.38 is released! This release marks the end of support for 4.31;
+4.32&ndash;4.36 remain supported, as does the 4.8 LTS release.
+
+The [4.37 release was skipped](https://hhvm.com/blog/2019/12/17/cancelling-hhvm-4.37.html)
+due to the holiday season.
+
+# Highlights
+
+- Added `SA_RESTART` to `SIGVTALARM` flags, allowing operations such as `flock`
+  to continue when interrupted by some profiling tools, instead of failing
+  with `EINTR`.
+- Changed typechecker definitions of base64/url/rawurl encode/decode
+  functions to return `string`, rather than untyped data. They already always
+  returned strings in the runtime.
+
+# Breaking Changes
+
+- building with readline now requires `-DNON_DISTRIBUTABLE_BUILD=ON` to be
+  passed to `cmake`; editline remains supported as the default implementation.
+- the `disallowed_decl_fixmes` typechecker option is now supported by the Rust
+  (default) lowerer.
+- using assignments as an expression is now a typechecker error. This can
+  temporarily be disabled by setting the `disable_lval_as_an_expression=false`
+  `.hhconfig` option; this option will be removed in a future release.
