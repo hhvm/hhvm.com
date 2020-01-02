@@ -23,9 +23,9 @@ due to the holiday season.
 # Breaking Changes
 
 - building with readline now requires `-DNON_DISTRIBUTABLE_BUILD=ON` to be
-  passed to `cmake`; editline remains supported as the default implementation.
-- the `disallowed_decl_fixmes` typechecker option is now supported by the Rust
-  (default) lowerer.
+  passed to `cmake`; editline remains supported as the default implementation,
+  and this does not affect our builds. In custom builds, `hphpd` and the PHP
+  readline-related functions may switch to using editline instead of readline.
 - using assignments as an expression is now a typechecker error. This can
   temporarily be disabled by setting the `disable_lval_as_an_expression=false`
   `.hhconfig` option; this option will be removed in a future release.
