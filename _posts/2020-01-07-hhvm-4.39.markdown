@@ -1,0 +1,30 @@
+---
+title: "HHVM 4.39"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.39 is released! Since the 4.32 release has long term support, it remains
+supported, as do the 4.8 LTS and 4.33&ndash;4.38 releases.
+
+# Highlights
+
+- Removed redundant typechecker output for some errors related to type constants
+  (such as the second part of "Expected ClassName::T / resulting from expanding
+  the type constant ClassName::T").
+
+# Breaking Changes
+
+- Improved typechecker output for errors related to mismatches between `int`,
+  `float`, `num` and
+  [`dynamic`](https://docs.hhvm.com/hack/built-in-types/dynamic). In rare cases
+  this may result in a typechecker error moving to a different location, e.g.
+  from where a value is assigned to where it is used.
+- The callback passed to `set_pre_timeout_handler()` must now accept a nullable
+  wait handle argument (`?Awaitable<mixed>`). The wait handle will have a value
+  when the callback is invoked right after a wait handle had finished. The wait
+  handle is required in order to get a good backtrace. This is a similar
+  behavior to the wait handle that is returned in the
+  [`IntervalTimer`](https://docs.hhvm.com/hack/reference/class/IntervalTimer/)
+  class.
