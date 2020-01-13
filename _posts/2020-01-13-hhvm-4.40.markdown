@@ -1,0 +1,47 @@
+---
+title: "HHVM 4.40"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.40 is released! This release marks the end of support for 4.33;
+hhvm 4.34&ndash;4.39 remain supported, as do the 4.8 and 4.32 LTS releases.
+
+# Breaking Changes
+
+- specifying the same XHP attribute twice (`<foo x="1" x="2" />`) is now
+  a syntax error
+
+# Future Changes
+
+A change last year unintentionally made the parser accept arbitrary types
+for XHP `children` declarations, however:
+- this remains unsupported by the XHP class library.
+- the typechecker does not validate children.
+- this can lead to impossible-to-satisfy children declarations, such as
+  references to undefined types.
+
+**We are changing the typechecker to verify that XHP children declarations do
+not refer to undefined types**; in the context of XHP children declarations, the
+following types will be considered valid *by the typechecker*:
+- the case-sensitive special values `pcdata`, `any`, or `empty`.
+- XHP category names, such as `%foo`.
+- a defined, non-aliased, non-generic Hack type, such as a class name, XHP
+  classname, or interface.
+
+We expect this change to be included in 4.41.
+
+There are some additional things to be aware of:
+- only the declaration is validated; the typechecker will not verify that
+  provided children actually match the declaration. This will remain a
+  runtime-only check, which must be supported by the XHP class library.
+- there are no typechecker checks for XHP categories in children declarations.
+- types other than XHP class names - such as standard classes or interfaces - 
+  may not be fully supported by the XHP class library.
+- type aliases are not permitted.
+
+Additionally, this release includes disabled support for `xhp class foo {}`
+as an alternative syntax to `class :foo {}`; this is to unblock future work on
+improving interactions between XHP and namespaces - usage is not recommended at
+this time.
