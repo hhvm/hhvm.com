@@ -1,0 +1,46 @@
+---
+title: "HHVM 4.41"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.41 is released! This release marks the end of support for 4.34;
+HHVM 4.35&ndash;4.40 remain supported, as do the 4.8 and 4.32 LTS releases.
+
+# Highlights
+
+- A new type alias, `HH\enumname<TEnum>`, represents the name of the enum type
+  `TEnum` (similarly to `classname<TClass>`).
+- A new function, `HH\type_structure_for_alias`, returns the `TypeStructure` of
+  the specified type alias (similarly to `HH\type_structure` for type constants
+  in classes).
+  - Note that the `TypeStructure` API remains experimental and may be changed or
+    removed in the future.
+- Builtin functions `usort`, `uasort`, `uksort` now accept callbacks that return
+  any `num` value (`int` or `float`), allowing for more convenient sorting of
+  `float` arrays.
+  - Note that these functions return
+    [legacy arrays](https://docs.hhvm.com/hack/built-in-types/arrays#php-arrays-array-varray-and-darray)
+    which are deprecated. Prefer
+    [`Vec\sort`](https://docs.hhvm.com/hsl/reference/function/HH.Lib.Vec.sort/),
+    [`Dict\sort`](https://docs.hhvm.com/hsl/reference/function/HH.Lib.Dict.sort/),
+    [`Keyset\sort`](https://docs.hhvm.com/hsl/reference/function/HH.Lib.Keyset.sort/).
+
+# Breaking Changes
+
+- Fixed a bug that allowed XHP children declarations to contain undefined types.
+  This may reveal many previously ignored errors.
+  - XHP children declarations can now only contain defined, non-aliased,
+    non-generic Hack types, XHP category names (`%foo`), and the special values
+    `pcdata`, `any` and `empty` (case-sensitive).
+  - Note that only the children declaration is type-checked, not the actual
+    children where the XHP element is used. A library such as
+    [xhp-lib](https://github.com/hhvm/xhp-lib) must be used for that.
+- Typechecker errors due to assigning a value of the wrong type to an
+  [inout parameter](https://docs.hhvm.com/hack/functions/inout-parameters) are
+  now reported at the location where the inout parameter is declared. This may
+  require some `HH_FIXME`s to be moved.
+- The method `returnsReference` was removed from `ReflectionFunction` and
+  `ReflectionMethod`. It always returned `false` since HHVM
+  [no longer supports references](https://hhvm.com/blog/2019/10/01/deprecating-references.html).
