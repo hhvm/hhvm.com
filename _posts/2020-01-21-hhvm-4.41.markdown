@@ -41,6 +41,10 @@ HHVM 4.35&ndash;4.40 remain supported, as do the 4.8 and 4.32 LTS releases.
   [inout parameter](https://docs.hhvm.com/hack/functions/inout-parameters) are
   now reported at the location where the inout parameter is declared. This may
   require some `HH_FIXME`s to be moved.
+- Typechecker errors due to incorrect use of the argument unpacking operator
+  (`...$args`) were updated to provide more information in different cases. In
+  some cases this results in changed error numbers, but it shouldn't result in
+  any new errors.
 - The method `returnsReference` was removed from `ReflectionFunction` and
   `ReflectionMethod`. It always returned `false` since HHVM
   [no longer supports references](https://hhvm.com/blog/2019/10/01/deprecating-references.html).
