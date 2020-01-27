@@ -1,0 +1,57 @@
+---
+title: "HHVM 4.42"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.42 is released! This release marks the end of support for 4.35;
+HHVM 4.36&ndash;4.41 remain supported, as do the 4.8 and 4.32 LTS releases.
+
+# Highlights
+
+- Bugs in the typechecker's AST handling now result in error `4361`, instead of
+  an exception. This error code should never be suppressed - please [file a bug
+  report](https://github.com/facebook/hhvm/issues/new/choose) if you see this
+  error code.
+- Fix escaping of variables autocomplete snippets - e.g. `Foo::bar|` can
+  now autocomplete to `Foo::bar($id)`.
+- Added `HHVM_VERSION_MAJOR`, `HHVM_VERSION_MINOR`, and `HHVM_VERSION_PATCH`
+  constants; these should be used instead of parsing the `HHVM_VERSION` or
+  `HHVM_VERSION_ID` constants. `HHVM_VERSION_ID` is recommended for direct
+  comparisons, e.g. with `>=`.
+- Added `\HH\enumname<T>` type to the runtime; this is similar to
+  `classname<T>`, for Hack enums.
+- Fixed crash in `readdir()` and `rewinddir()` if the directory is already
+  closed; `false` will be returned instead.
+- Improved error message for `() ==> async {}` (returning an async block);
+  it now suggests `async () ==> { }` instead (an async lambda).
+
+# Breaking Changes
+
+- If an interface defines a constructor, the typechecker now requires that
+  classes that implement the interface are either abstract, or implement the
+  constructor in accordance with the interface, matching the behavior for other
+  methods.
+
+# Future Changes
+
+- We will stop building any binaries for MacOS High Sierra on March 23rd, as our
+  provider is ending support for this operating system version. We will continue
+  to build packages for Mojave (which are usable on Catalina), and expect to
+  begin building packages specifically for Catalina from early February.
+- `HHVM_VERSION_ID` will change from `XX.YY.ZZ` to `XX.YYY.ZZ`, to support the
+  expected release of HHVM 4.100 later this year; if using standard comparison
+  operators to compare two version IDs, this should not be a significant change,
+  unless checking for `< 50000` or similar - replace that check with
+  `HHVM_VERSION_MAJOR === 4`. If you’re converting to/from human-readable form,
+  consider migrating to the new `HHVM_VERSION_MAJOR`, `HHVM_VERSION_MINOR`, and
+  `HHVM_VERSION_PATCH` or existing `HHVM_VERSION` (string "x.y.z") constants.
+- The special behavior of `ArrayAccess` objects is being removed.
+  - this is already a typechecker error.
+  - this includes `$x['foo']` for both read and write (replace with explicit
+    `offsetSet` or `offsetGet` calls)
+  - this also includes `isset($x['foo'])` (`$x->offsetExists('foo')`) and
+    `unset($x['foo'])` (`$x->offsetUnset('foo'`).
+  - the `hhvm.notice_on_array_access_use=true` INI setting can be used to raise
+    notices for this behavior at runtime.
