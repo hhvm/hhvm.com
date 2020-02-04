@@ -1,0 +1,35 @@
+---
+title: "HHVM 4.43"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.43 is released! This release marks the end of support for 4.36;
+HHVM 4.37&ndash;4.42 remain supported, as do the 4.8 and 4.32 LTS releases.
+
+# Highlights
+
+- We are now building Homebrew packages for MacOS 10.15 Catalina. Please report
+  MacOS-specific issues in the
+  [homebrew-hhvm](https://github.com/hhvm/homebrew-hhvm/issues/new)
+  repository.
+- Extending an undefined parent class no longer produces a redundant typechecker
+  error 4123 ("Class has a non-<?hh grandparent"), it now only produces the
+  relevant error 2049 ("Unbound name").
+- Improved typechecker error message when attempting to declare the type of a
+  local variable (`int $x = 42;`).
+
+# Breaking Changes
+
+- Built-in functions `json_decode`, `str_split`, `array_fill`,
+  `class_implements`, `class_uses`, `class_parents` now return `darray` instead
+  of the legacy `array` type. This change should be largely transparent, as
+  `darray` and `array` are interchangeable at runtime, but the change might be
+  observable by `serialize`, `var_dump` or similar functions.
+  - For `json_decode`, this also changes the behavior for arrays with numeric
+    keys stored as `string`s, they will no longer be automatically cast to
+    `int`.
+- The `contains` method on `Set`, `ImmSet` and `ConstSet` is now declared to
+  take an `arraykey` argument instead of `mixed`. The method would already throw
+  at runtime when called with any non-`arraykey` value.
