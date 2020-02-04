@@ -27,9 +27,6 @@ HHVM 4.37&ndash;4.42 remain supported, as do the 4.8 and 4.32 LTS releases.
   of the legacy `array` type. This change should be largely transparent, as
   `darray` and `array` are interchangeable at runtime, but the change might be
   observable by `serialize`, `var_dump` or similar functions.
-  - For `json_decode`, this also changes the behavior for arrays with numeric
-    keys stored as `string`s, they will no longer be automatically cast to
-    `int`.
 - The `contains` method on `Set`, `ImmSet` and `ConstSet` is now declared to
   take an `arraykey` argument instead of `mixed`. The method would already throw
   at runtime when called with any non-`arraykey` value.
