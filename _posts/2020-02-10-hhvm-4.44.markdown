@@ -16,7 +16,8 @@ HHVM 4.38&ndash;4.43 remain supported, as do the 4.8 and 4.32 LTS releases.
   0. In previous releases, this behavior could differ at runtime compared to
   when constant-folding.
 - square bracket literals for PHP arrays (e.g. `['foo', 'bar']`) are now a
-  parse error.
+  parse error. `array()` is still supported, but we strongly recommend using
+  `vec`/`dict`/`keyset` instead.
 
 # Future Changes
 
