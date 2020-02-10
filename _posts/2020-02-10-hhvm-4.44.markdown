@@ -23,7 +23,8 @@ HHVM 4.38&ndash;4.43 remain supported, as do the 4.8 and 4.32 LTS releases.
 - comparison operators (e.g. `<`, `<=`, `>` etc) will throw when a PHP array
   is compared with a non-array. This operation currently raises a typechecker
   error, and raises a notice if `hhvm.hack_arr_compat_notices=true` and
-  `hhvm.hack_arr_compat_check_compare=true` INI options are set.
+  `hhvm.hack_arr_compat_check_compare_non_any_array=true` INI options are set.
+  This does not change equality operators.
 - `array_key_exists()` will throw an exception if the specified key is null. A
   notice is raised if the `hhvm.hack_arr_compat_check_null_hack_array_key=true`
   and `hhvm.hack_arr_compat_notices=true` INI options are set.
