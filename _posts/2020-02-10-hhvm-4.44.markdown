@@ -12,9 +12,11 @@ HHVM 4.38&ndash;4.43 remain supported, as do the 4.8 and 4.32 LTS releases.
 
 - the `__Deprecated` attribute is no longer permitted on any types, such as
   classes, enums, or type aliases; it had no effect in these positions.
-- `(int) NAN` is now the minimum 64-bit signed integer, instead of 0.
-- square bracket literals for PHP arrays (e.g. `['foo', 'bar']`) are now a parse
-  error.
+- `(int) NAN` is now consistently the minimum 64-bit signed integer, instead of
+  0. In previous releases, this behavior could differ at runtime compared to
+  when constant-folding.
+- square bracket literals for PHP arrays (e.g. `['foo', 'bar']`) are now a
+  parse error.
 
 # Future Changes
 
@@ -43,7 +45,7 @@ If the type can not be inferred in a usable way, the typechecker will now raise
 an error instead of assuming the behavior is safe.
 
 ```
-function just_return_it<T>((function(T): void) $f):(function(T): void) { 
+function just_return_it<T>((function(T): void) $f):(function(T): void) {
   return $f;
 }
 
