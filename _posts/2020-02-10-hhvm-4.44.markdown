@@ -22,7 +22,7 @@ HHVM 4.38&ndash;4.43 remain supported, as do the 4.8 and 4.32 LTS releases.
 
 # Future Changes
 
-- comparison operations (e.g. `<`, `<=`, `>`, `cmp`, `<=>` etc) will be changed
+- comparison operations (e.g. `<`, `<=`, `<=>` etc) will be changed
   to throw when a PHP array is compared with a non-array. This operation
   currently raises a typechecker error, and raises a notice if
   `hhvm.hack_arr_compat_notices=true` and
