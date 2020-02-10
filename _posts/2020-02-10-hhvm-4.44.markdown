@@ -1,0 +1,56 @@
+---
+title: "HHVM 4.44"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.44 is released! This release marks the end of support for 4.37;
+HHVM 4.38&ndash;4.43 remain supported, as do the 4.8 and 4.32 LTS releases.
+
+# Breaking Changes
+
+- the `__Deprecated` attribute is no longer permitted on any types, such as
+  classes, enums, or type aliases; it had no effect in these positions.
+- `(int) NAN` is now the minimum 64-bit signed integer, instead of 0.
+- square bracket literals for PHP arrays (e.g. `['foo', 'bar']`) are now a parse
+  error.
+
+# Future Changes
+
+- comparison operators (e.g. `<`, `<=`, `>` etc) will throw when a PHP array
+  is compared with a non-array. This operation currently raises a typechecker
+  error, and raises a notice if `hhvm.hack_arr_compat_notices=true` and
+  `hhvm.hack_arr_compat_check_compare=true` INI options are set.
+- `array_key_exists()` will throw an exception if the specified key is null. A
+  notice is raised if the `hhvm.hack_arr_compat_check_null_hack_array_key=true`
+  and `hhvm.hack_arr_compat_notices=true` INI options are set.
+- lambda type inference is being changed in the next release; the new behavior
+  can be enabled now with the `new_inference_lambda=true` `.hhconfig` setting;
+  this can lead to the detection of additional type errors (example below)
+- string casts of `Stringish` objects will raise a runtime exception; the
+  `hhvm.notice_on_implicit_invoke_to_string` option can be used to detect this.
+  - this includes both explicit `(string)` casts, and various forms of implicit
+    casting; searching for `(string)` will not find all problematic code.
+- empty switch blocks ( `switch ($foo) { /* empty */ }`) will become a parse
+  error.
+- switch statements with no `default` or matching `case` will throw a runtime
+  exception.
+
+## New lambda inference
+
+If the type can not be inferred in a usable way, the typechecker will now raise
+an error instead of assuming the behavior is safe.
+
+```
+function just_return_it<T>((function(T): void) $f):(function(T): void) { 
+  return $f;
+}
+
+function break_it():void {
+  // No error here
+  $g = just_return_it($y ==> $y->this_method_does_not_exist());
+  // Can even try and invoke it on a string
+  $g('ohno');
+}
+```
