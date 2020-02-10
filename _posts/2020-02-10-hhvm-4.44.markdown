@@ -36,7 +36,8 @@ HHVM 4.38&ndash;4.43 remain supported, as do the 4.8 and 4.32 LTS releases.
 - string casts of `Stringish` objects will raise a runtime exception; the
   `hhvm.notice_on_implicit_invoke_to_string` option can be used to detect this.
   - this includes both explicit `(string)` casts, and various forms of implicit
-    casting; searching for `(string)` will not find all problematic code.
+    casting (e.g. concatenation, comparisons, printfs, and interpolation);
+    searching for `(string)` will not find all problematic code.
 - empty switch blocks ( `switch ($foo) { /* empty */ }`) will become a parse
   error.
 - `array()` literals will be removed; use `vec`/`dict`/`keyset` instead if
