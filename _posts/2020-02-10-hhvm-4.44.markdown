@@ -5,7 +5,7 @@ author: fred
 category: blog
 ---
 
-HHVM 4.44 is released! This release marks the end of support for 4.37;
+HHVM 4.44 is released!
 HHVM 4.38&ndash;4.43 remain supported, as do the 4.8 and 4.32 LTS releases.
 
 # Breaking Changes
