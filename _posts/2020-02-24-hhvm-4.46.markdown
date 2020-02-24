@@ -1,0 +1,37 @@
+---
+title: "HHVM 4.46"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.46 is released! This release marks the end of support for 4.40;
+HHVM 4.41&ndash;4.45 remain supported, as do the 4.8 and 4.32 LTS releases.
+
+# Highlights
+
+- clearer error message for unsuitably different expression types in
+  `case foo_expr:` vs `switch(bar_expr)` 
+- removed typechecker error for 'exhaustive' enum switch statements with a
+  `default` case; as enums are not enforced at runtime, these defaults are
+  not strictly unreachable.
+- added `HH\autoload_get_paths()`, returning a list of all files known to the
+  autoloader.
+
+# Future Changes
+
+- Support for XHP `children` declarations will be removed; special syntax is no
+  longer required to support this feature, and allows more easily making it
+  compatible with the main XHP type system.
+  - [xhp-lib v3.1](https://github.com/hhvm/xhp-lib/releases/tag/v3.1.0) provides
+    the new implementation, via two traits:
+    - `XHPChildDeclarationConsistencyValidation` requires that the new and old
+      forms of child declaration are equivalent
+    - `XHPChildValidation` requires that only a new declaration is present
+  - [hhast-migrate v4.33.7](https://github.com/hhvm/hhast/releases/tag/v4.33.7)
+    adds `--add-xhp-children-declaration-method` and
+    `--remove-xhp-child-declarations`
+- After support for XHP `children` declarations is completely removed, we expect
+  to remove support for XHP `category` declarations: they are only used with
+  children declarations, and by moving children declarations to standard Hack
+  code, they can be replaced with normal interfaces.
