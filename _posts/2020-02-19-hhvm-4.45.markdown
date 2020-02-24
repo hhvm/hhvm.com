@@ -24,8 +24,6 @@ HHVM 4.40&ndash;4.44 remain supported, as do the 4.8 and 4.32 LTS releases.
   used to look up entries in the autoload map (e.g. for debugging).
 - `hh_client --type-at-pos` now returns additional information about how the
   type was determined.
-- `hh_single_type_check --global-inference` has a new option `--patches` which
-  returns a list of suggested changes based on the inferred types.
 - Various small clarifications in type-checker error messages (e.g. "missing
   property" instead of "missing member").
 
