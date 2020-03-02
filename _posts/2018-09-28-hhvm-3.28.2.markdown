@@ -16,12 +16,15 @@ HHVM 3.28.2 contains bugfixes, and several features that weren't quite ready for
 ## Features and Improvements
 
 * 3.27.3 and 3.28.2: provide better information on mouse hover in LSP editors and IDEs
-* 3.28.2: Experimental: add `<<__Entrypoint>>`, removing the need for pseudo-mains
+* 3.28.2: Experimental: add `<<__Entrypoint>>`, removing the need for pseudo-mains.
+  *Update*: as of 3.30, this is now `<<__EntryPoint>>`
 * 3.28.2: Experimental: add regular expression support as a native type
 
 ## <<__Entrypoint>>
 
 This is a new attribute, marking a single function in a file as being the 'main' function for this file:
+
+*Update: as of 3.30, this attribute is now called `<<__EntryPoint>>`*
 
 ```
 <?hh // strict
