@@ -1,0 +1,63 @@
+---
+title: "HHVM 4.47"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.47 is released! This release marks the end of support for 4.41;
+HHVM 4.42&ndash;4.46 remain supported, as do the 4.8 and 4.32 LTS releases.
+
+# Highlights
+
+- We’re looking to help people migrate towards strictness! Part of that is a
+  series of `.hhconfig` flags:
+    - `ignored_fixme_codes`: a comma delimited list of error codes (4110, 2071,
+      etc.) that allow you to gradually forbid HH_FIXMEs in your codebase. Hack
+      will ignore any HH_FIXME or HH_IGNORE_ERROR with the specified codes. An
+      empty list is the default, meaning only the hardcoded unfixmeable codes (see
+      [default_ignored_fixme_codes in errors.ml](https://github.com/facebook/hhvm/blob/master/hphp/hack/src/errors/errors.ml#L702))
+      are forbidden.
+    - `disallowed_decl_fixmes`: a comma delimited list of error codes (4110,
+      2071, etc.) that allow you to gradually forbid HH_FIXMEs in your codebase.
+      Hack will ignore any HH_FIXME or HH_IGNORE_ERROR outside of the body of a
+      function with the specified codes. Declaration-level FIXMEs tend to
+      obscure more errors than intended, so tend to be more important to fix up.
+    * `error_codes_treated_strictly`: a comma delimited list of error codes
+      (4110, 2071, etc.) that allow you to gradually forbid HH_FIXMEs in your
+      codebase. Partial mode files accept a number of errors that are not
+      allowed in strict mode. If an error is in this list, we will report it as
+      an error&mdash;even in a partial mode file. Not every error and position
+      can be reported clearly though. Certain errors (like missing types) can
+      cascade into other code, yielding other error codes or being hidden by
+      partial mode. Still, this list can provide a means to incrementally fix
+      things in partial mode files without strictifying the whole file. The
+      default is an empty list, which uses the normal partial/strict modes.
+
+# Breaking Changes
+
+- Trying to declare a function, constant, or enum type with the same name as a
+  preceeding `use function`, `use const`, or `use type` declaration is now a
+  parser error.
+  - It had already been a runtime error.
+  - This makes the behavior consistent with classes, where it was already a
+    parser error.
+- `namespace` is now a reserved keyword, trying to use it as an identifier will
+  result in a parser error.
+  - It had already been a runtime error.
+- `HHVM_VERSION_ID` is now `XXYYYZZ` instead of `XXYYZZ`.
+  - This preserves compatibility for comparisons using `<`/`>`, but breaks any
+    code trying to parse `HHVM_VERSION_ID` into individual parts.
+  - Use the new constants `HHVM_VERSION_MAJOR`, `HHVM_VERSION_MINOR`,
+    `HHVM_VERSION_PATCH` (added in HHVM 4.42) instead of parsing the value.
+
+# Future Changes
+
+- Support for XHP `children` declarations will be removed.
+  - The `XHPChildValidation` trait from
+    [xhp-lib v3.1](https://github.com/hhvm/xhp-lib/releases/tag/v3.1.1)
+    should be used instead, see
+    [HHVM 4.46 release notes](https://hhvm.com/blog/2020/02/24/hhvm-4.46.html#future-changes)
+    for more information and migration instructions.
+  - New `.hhconfig` option `disable_xhp_children_declarations=true` can be used
+    to get the future behavior now.
