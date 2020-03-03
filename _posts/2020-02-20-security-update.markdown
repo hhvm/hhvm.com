@@ -28,6 +28,9 @@ This security update addresses vulnerabilies in JSON decoding:
   Insufficient boundary checks when decoding JSON in JSON_parser allows read
   access to out of bounds memory, potentially leading to information leak and
   DOS.
+- [CVE-2020-1893](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-1893):
+  Insufficient boundary checks when decoding JSON in TryParse reads out of
+  bounds memory, potentially leading to DOS.
 
 The new packages also include updates to some of the bundled dependencies:
 
