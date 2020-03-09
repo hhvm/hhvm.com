@@ -45,11 +45,4 @@ HHVM 4.43&ndash;4.47 remain supported, as do the 4.8 and 4.32 LTS releases.
 
 # Future Changes
 
-* We are aiming to remove support for "modes" (such as `<?hh // partial`), and
-  are now providing several `.hhconfig` options to aid with this.
-    * `ignored_fixme_codes` - a comma delimited list of error codes (4110, 2071, etc.) that allow you to gradually forbid HH_FIXMEs in your codebase. Hack will ignore any HH_FIXME or HH_IGNORE_ERROR with the specified codes. An empty list is the default, meaning only the hardcoded unfixmeable codes (see default_ignored_fixme_codes in errors.ml) are forbidden.
-    * `disallowed_decl_fixmes` - a comma delimited list of error codes (4110, 2071, etc.) that allow you to gradually forbid HH_FIXMEs in your codebase. Hack will ignore any HH_FIXME or HH_IGNORE_ERROR outside of the body of a function with the specified codes. Declaration level fixmes tend to obscure more errors than intended, so tend to be more important to fix up.
-    * `error_codes_treated_strictly` - a comma delimited list of error codes (4110, 2071, etc.) that allow you to gradually forbid HH_FIXMEs in your codebase. Partial mode files accept a number of errors that are not allowed in strict mode. If an error is in this list, we will report it as an error - even in a partial mode file. Not every error and position can be reported clearly though. Certain errors (like missing types) can cascade into other code, yielding other error codes or being hidden by partial mode. Still, this list can provide a means to incrementally fix things in partial mode files without strictifying the whole file. The default is an empty list, which uses the normal partial/strict modes.
-    * `disable_partial` (will be renamed `disable_modes` shortly) - a boolean flag that disables partial mode (and all other modes!) from Hack completely. Comments after the `<?hh` are just comments, and non-hhi files are inherently strict. The default value will be false for the foreseeable future.
-
-
+- added `disable_partial` (will be renamed `disable_modes` shortly) - a boolean flag that disables partial mode (and all other modes!) from Hack completely. Comments after the `<?hh` are just comments, and non-hhi files are inherently strict. The default value will be false for the foreseeable future.
