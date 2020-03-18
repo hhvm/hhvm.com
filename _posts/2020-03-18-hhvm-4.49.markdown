@@ -1,0 +1,53 @@
+---
+title: "HHVM 4.49"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.49 is released! This release marks the end of support for 4.43;
+HHVM 4.44&ndash;4.48 remain supported, as do the 4.8 and 4.32 LTS releases.
+
+# Highlights
+
+- New `.hhconfig` option `disable_modes` (previously `disable_partial`) will
+  cause the typechecker to treat all files as strict (comments after `<?hh`
+  no longer have special meaning).
+  - The default value will be `false` for the foreseeable future.
+- New `hackfmt` flag `--format-generated-code` can be used to format generated
+  and partially generated files.
+- Fixed a bug that could cause part of `hackfmt` output to be missing when
+  formatting partially generated files, and other minor fixes and improvements
+  for `hackfmt`.
+- Fixed a bug that could prevent the "go to type" IDE feature from working
+  inside async functions.
+- Improved various typechecker error messages, e.g. when accessing an optional
+  shape field it now recommends using `Shapes::idx` instead of `??`.
+
+# Breaking Changes
+
+- Comparing (`<`, `>`, `<=`, `>=`, `<=>`) a legacy PHP array with a non-array
+  now throws `InvalidOperationException` (previously only raised a Notice). It
+  had already been a typechecker error.
+- It is now a runtime error if `class_meth` is used with arguments that are not
+  a `::class` and a string literal (a string literal as the 1st argument will
+  also not cause a runtime error, but `::class` literal is recommended). It had
+  already been a typechecker error.
+  - If a dynamic pointer is required, annotate the method with
+    `<<__DynamicallyCallable>>` and use `HH\dynamic_class_meth()`.
+
+# Future Changes
+
+- We are working towards deprecating (and eventually removing from the language)
+  ["magic methods"](https://www.php.net/manual/en/language.oop5.magic.php)
+  such as `__call` or `__get`. Currently, you can use the INI option
+  `hhvm.no_use_magic_methods=true` to trigger warnings whenever a magic method
+  is invoked, e.g. when an undefined method is called on a class that has the
+  `__call` magic method.
+- Comparing Hack arrays to `true`, `false`, and `null` with the "fuzzy" equality
+  operators (`==`, `!=`) will be changed so that non-empty Hack arrays are
+  `== true` and empty Hack arrays are `== false` and `== null`.
+  - The INI option `hhvm.hack_arr_empty_based_bool_eq_cmp=true` can be used to
+    enable this behavior now.
+  - The new behavior is consistent with legacy arrays, making it easier to
+    migrate to Hack arrays.
