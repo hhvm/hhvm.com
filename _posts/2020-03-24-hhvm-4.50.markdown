@@ -1,0 +1,41 @@
+---
+title: "HHVM 4.50"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.50 is released! This release marks the end of support for 4.44;
+HHVM 4.45&ndash;4.49 remain supported, as do the 4.8 and 4.32 LTS releases.
+
+Additionally, we are no longer building binary packages for MacOS High Sierra
+for any version of HHVM, as High Sierra is no longer offered by our build
+infrastructure provider.
+
+# Highlights
+
+- added the `hhvm.hack_arr_is_shape_tuple_notices` INI setting, which raises
+  a notice on `$dict is shape()` and `$vec is tuple()`; these are currently
+  always false, but may be true in the future, so are unsafe to depend on.
+- `HH\BuiltinEnum<T>` is now covariant.
+- Improve hackfmt's range formatting when suppressions outside the requested
+  range affect code within the requested range.
+
+# Breaking Changes
+
+- magic methods (`__get`, `__set`, `__isset`, `__unset`) have been removed from
+  the typechecker definitions of builtins, such as the XMLReader, Imagick,
+  DateTime, and SimpleXML extensions.
+- it is now a type error to use argument unpacking when invoking a default
+  constructor. It was already an error to make a variadic call to functions that
+  take exactly zero arguments, and as default constructors always have exactly
+  zero arguments, this makes the behavior consistent. This was previously
+  a runtime error.
+
+# Future Changes
+
+- `array()` literals will be removed; the `hhvm.hack.lang.disable_array=true`
+  INI setting can be used to enable a runtime fatal when they are used, in
+  addition to the preexisting `disallow_array_literal=true` `.hhconfig` option.
+- The magic methods on builtins that were removed from the typechecker in this
+  release will be removed from the runtime in a future release.
