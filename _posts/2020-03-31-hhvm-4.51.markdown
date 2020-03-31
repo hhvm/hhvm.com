@@ -1,0 +1,43 @@
+---
+title: "HHVM 4.51"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.51 is released! This release marks the end of support for 4.45;
+HHVM 4.46&ndash;4.50 remain supported, as do the 4.8 and 4.32 LTS releases.
+
+# Highlights
+
+- A new method `getEnumUnderlyingType()` was added to `ReflectionClass`. It
+  returns the underlying type of the enum's values (usually `HH\int` or
+  `HH\string`, but can also be the name of another enum, type alias, or
+  `HH\arraykey`).
+  - If the `ReflectionClass` instance doesn't represent an enum, the method
+    throws.
+- Improved optimization of async tail calls (`return await ...`) can
+  significantly improve performance of code that uses a lot of such calls.
+
+# Breaking Changes
+
+- Using the array-appending operator `[]` on a `Map` object
+  (`$map[] = Pair {$key, $value};`) is now a type-checker error.
+  - Use `$map[$key] = $value;` instead.
+  - The runtime still allows both variants, so `HH_FIXME` can be used
+    temporarily, to help migrating code. Runtime support will likely be removed
+    in a future release.
+- The type-checker no longer supports the
+  ["magic method" `__call`](https://www.php.net/manual/en/language.oop5.overloading.php#object.call),
+  so calling any method that is not explicitly declared is now a type-checker
+  error.
+  - Runtime behavior is unchanged, so `HH_FIXME` can be used temporarily, to
+    help migrating code. Runtime support will likely be removed in a future
+    release.
+  - In the long term, we recommend migrating any affected code to only call
+    explicitly declared methods.
+
+# Future Changes
+
+- We expect the removed type-checker features listed above to also be removed
+  from the runtime in a future release.
