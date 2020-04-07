@@ -1,0 +1,33 @@
+---
+title: "HHVM 4.52"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.52 is released! This release marks the end of support for 4.46;
+HHVM 4.47&ndash;4.51 remain supported, as do the 4.8 and 4.32 LTS releases.
+
+HHVM 4.52.1 fixes a regression introduced in 4.52.0, which made the typechecker
+report Hack parse errors in PHP code, instead of ignoring actual PHP source
+files.
+
+# Highlights
+
+- fixed crash in `ext_soap` if a SoapServer's handler class does not exist.
+- `?>` and `<?=` are no longer recognized by the parser; this has replaced
+  dedicated errors with parse errors.
+
+# Breaking Changes
+
+- it is now a type error to `use` the same trait twice in the same class; using
+  the same trait in related classes (e.g. subclasses and parents) is still
+  permitted.
+
+# Future Changes
+
+- Runtime support for casting objects to strings via `__toString` will be
+  removed shortly; this includes `(string) $obj`, `print($obj)`,
+  `sprintf('%s', $obj)` among others. The
+  `hhvm.notice_on_implicit_invoke_to_string` INI setting can be used to find
+  calls that will break.
