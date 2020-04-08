@@ -30,15 +30,13 @@
     {% if page.comments %}
       {% assign wrote_header = false %}
       {% for comment in page.comments %}
-        {% if comment.author_email and comment.author_email != '' %}
-          {% if wrote_header == false %}
-            <h3> Comments </h3>
-            <br/>
-            <ul>
-            {% assign wrote_header = true %}
-          {% endif %}
-          <li><b><a href="{{ comment.author_email }}">{{ comment.author }}</a></b>: {{ comment.content }}</li>
+        {% if wrote_header == false %}
+          <h3> Comments </h3>
+          <br/>
+          <ul>
+          {% assign wrote_header = true %}
         {% endif %}
+        <li><b>{{ comment.author }}</b>: {{ comment.content }}</li>
       {% endfor %}
       {% if wrote_header == true %}
         </ul>
