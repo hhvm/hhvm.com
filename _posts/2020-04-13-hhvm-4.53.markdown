@@ -1,0 +1,22 @@
+---
+title: "HHVM 4.53"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.53 is released! This release marks the end of support for 4.47;
+HHVM 4.48&ndash;4.52 remain supported, as do the 4.8 and 4.32 LTS releases.
+
+# Highlights
+
+- We now build binary packages for Ubuntu 19.10. Packages for Ubuntu 20.04
+  should become available after its final release.
+- The type-checker now provides more helpful error messages when cyclic shape
+  type aliases are detected, pointing out both the invalid type alias and the
+  cause of the cycle.
+
+# Breaking Changes
+
+- `?>` can no longer be used to terminate `//` comments (`?>` for all other
+  purposes was removed in HHVM 4.52)
