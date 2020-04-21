@@ -1,0 +1,38 @@
+---
+title: "HHVM 4.54"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.54 is released! This release marks the end of support for 4.48;
+HHVM 4.49&ndash;4.53 remain supported, as do the 4.8 and 4.32 LTS releases.
+
+# Highlights
+
+- `inout` parameters on async functions now only raise a parse error, instead
+  of a parse error and a NastCheck error.
+- improved accuracy of line numbers for errors or backtraces within `concurrent`
+  blocks
+- The `ignored_fixme_codes` (errors that can not be suppresed) hack option is
+  no longer respected for HHI files; this allows projects to use a stricter
+  list than is compatible with builtins.
+- If using CLI server mode, a warning is now logged if the CLI client does not
+  recognize a command send to the CLI server. We **strongly** recommend using
+  the `hhvm.check_cli_client_commands=2` INI setting to raise an error instead:
+  these warnings indicate a bug in HHVM, and can not be safely recovered from.
+  If you see this warning, please file a bug report. It can also be set to `0`
+  to disable the warnings. Any value other than `2` leads to undefined behavior
+  in this error case.
+- Increased the efficiency of `idx()` and array access on empty containers.
+
+# Breaking Changes
+
+- Containers are now more consistently checked for valid `arraykey`s; this
+  behavior can be enabled on old releases with the
+  `disallow_invalid_arraykey=true` `.hhconfig` setting.
+
+# Future Changes
+
+- The `hhvm.check_cli_client_commands` INI setting will default to `2` (error)
+  in a future release.
