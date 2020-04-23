@@ -18,7 +18,7 @@ HHVM 4.49&ndash;4.53 remain supported, as do the 4.8 and 4.32 LTS releases.
   no longer respected for HHI files; this allows projects to use a stricter
   list than is compatible with builtins.
 - If using CLI server mode, a warning is now logged if the CLI client does not
-  recognize a command send to the CLI server. We **strongly** recommend using
+  recognize a command sent to the CLI server. We **strongly** recommend using
   the `hhvm.check_cli_client_commands=2` INI setting to raise an error instead:
   these warnings indicate a bug in HHVM, and can not be safely recovered from.
   If you see this warning, please file a bug report. It can also be set to `0`
