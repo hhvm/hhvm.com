@@ -1,0 +1,47 @@
+---
+title: "HHVM 4.55"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.55 is released! This release marks the end of support for 4.49;
+HHVM 4.50&ndash;4.54 remain supported, as do the 4.8 and 4.32 LTS releases.
+
+# Highlights
+
+- We now also build binary packages for Ubuntu 20.04.
+- Improved typechecker error messages for various cases where a subclass
+  incorrectly overrides a method or property from a parent class.
+
+# Breaking Changes
+
+- Comparing Hack arrays (`vec`, `dict`, `keyset`) to `true`, `false`, and `null`
+  with the “fuzzy” equality operators (`==`, `!=`) now considers non-empty Hack arrays `== true`, and empty Hack arrays `== false` and `== null`.
+  - In HHVM 4.49 to 4.54, the INI option
+    `hhvm.hack_arr_empty_based_bool_eq_cmp=true` can be used to enable this
+    behavior.
+  - The new behavior is consistent with legacy arrays, making it easier to
+    migrate to Hack arrays.
+- Fixed a bug that would cause the typechecker to not catch some uninitialized
+  instance variables or static variables. This may reveal previously
+  ignored typechecker errors.
+  - All non-nullable instance variables
+    must be initialized either as part of the variable's declaration or inside
+    the class' constructor, but the typechecker previously wouldn't catch some
+    cases where generics or type aliases were involved.
+- The typechecker no longer completely ignores arguments of calls on values of type
+  [`nothing`](https://docs.hhvm.com/hack/built-in-types/nothing). As before, any number/types of arguments are allowed (due to `nothing` being Hack's bottom
+  type), but previously ignored nonsensical arguments like `1 + 'foo'` are now rejected.
+- The `%s` placeholder in `printf()` now expects an `?arraykey` argument instead
+  of `mixed`.
+  - In the future, we expect implicit string casts on arrays and objects to
+    raise exceptions. This change should make it easier to find such dangerous
+    casts earlier.
+  - `Str\format()` is unchanged, it has always expected a `string` argument.
+- Boolean `.hhconfig` options now treat the value `2` (as well as any other
+  value except `1`/`true`/`yes`/`on`) as `false`. Previously, the behavior was
+  not consistent across all boolean options, sometimes all positive numbers
+  were treated as `true`.
+  - This is most likely to affect options that previously had `2` as a valid
+    value, but later became boolean options (a somewhat common pattern).
