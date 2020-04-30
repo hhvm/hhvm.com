@@ -13,6 +13,13 @@ HHVM 4.50&ndash;4.54 remain supported, as do the 4.8 and 4.32 LTS releases.
 - We now also build binary packages for Ubuntu 20.04.
 - Improved typechecker error messages for various cases where a subclass
   incorrectly overrides a method or property from a parent class.
+- Fixed a bug that would cause the typechecker to report some instance variables
+  or static variables as uninitialized, even if they are nullable.
+  - Instance/class variables
+    must be initialized either as part of the variable's declaration or inside
+    the class' constructor, but only if they are non-nullable. The typechecker
+    would previously not correctly detect all nullable variables when generics
+    or type aliases were involved.
 
 # Breaking Changes
 
@@ -23,13 +30,6 @@ HHVM 4.50&ndash;4.54 remain supported, as do the 4.8 and 4.32 LTS releases.
     behavior.
   - The new behavior is consistent with legacy arrays, making it easier to
     migrate to Hack arrays.
-- Fixed a bug that would cause the typechecker to not catch some uninitialized
-  instance variables or static variables. This may reveal previously
-  ignored typechecker errors.
-  - All non-nullable instance variables
-    must be initialized either as part of the variable's declaration or inside
-    the class' constructor, but the typechecker previously wouldn't catch some
-    cases where generics or type aliases were involved.
 - The typechecker no longer completely ignores arguments of calls on values of type
   [`nothing`](https://docs.hhvm.com/hack/built-in-types/nothing). As before, any number/types of arguments are allowed (due to `nothing` being Hack's bottom
   type), but previously ignored nonsensical arguments like `1 + 'foo'` are now rejected.
