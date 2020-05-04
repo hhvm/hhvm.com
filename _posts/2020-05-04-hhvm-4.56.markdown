@@ -47,7 +47,7 @@ builds and the next release:
 - Debian: we aim to support Debian stable. When a new version is promoted to
   stable, we plan to support both for 6 months.
 - Ubuntu LTS: we aim to support the current LTS release (20.04); when a new
-  Ubuntu LTS is released, we plan to support both for the next month.
+  Ubuntu LTS is released, we plan to support both for the next 6 months.
 - Ubuntu 'interim' releases: we plan to support these for 9 months, matching
   the length of time they are supported by Canonical.
 
