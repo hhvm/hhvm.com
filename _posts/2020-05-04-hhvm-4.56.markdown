@@ -14,8 +14,8 @@ HHVM 4.56 is released! This release has long term support, so:
 
 Additionally, 4.56 is the last release with support for several older Linux
 distributions and MacOS versions. In particular, we expect this to be the last
-release with support for Ubuntu 16.04 (Xenial) and Debian 8 Jessie - see
-'Future Changes' below for details.
+release with support for Ubuntu 16.04 (Xenial), Debian 8 (Jessie), and
+Debian 9 (Stretch). See 'Future Changes' below for details.
 
 # Highlights
 
@@ -66,11 +66,11 @@ Concretely, this means that we no longer commit to supporting:
 We will generally keep building packages for distributions we no longer support
 as long as they keep working and they do not hold back development. That said,
 starting with 4.57, we are immediately ending support for distributions that
-include GCC5 or below:
+include GCC6 or below:
 
 - Debian 8 (Jessie)
+- Debian 9 (Stretch).
 - Ubuntu 16.04 (Xenial)
 
 Other unsupported distributions may be removed from future releases without
-futher notice; Debian 9 (Stretch) is particularly likely to be removed, as it
-is the only GCC6-based target we support.
+futher notice.
