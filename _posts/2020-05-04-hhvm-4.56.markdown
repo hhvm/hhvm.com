@@ -1,0 +1,76 @@
+---
+title: "HHVM 4.56"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.56 is released! This release has long term support, so:
+
+- this release will be supported for approximately 48 weeks
+- the next LTS will be released in approximately 24 weeks
+- HHVM 4.32 (LTS) and HHVM 4.51&ndash;4.55 remain supported.
+- support has ended for HHVM 4.8 (LTS)
+
+Additionally, 4.56 is the last release with support for several older Linux
+distributions and MacOS versions. In particular, we expect this to be the last
+release with support for Ubuntu 16.04 (Xenial), Debian 8 (Jessie), and
+Debian 9 (Stretch). See 'Future Changes' below for details.
+
+# Highlights
+
+- `apc_fetch()` expiration is now deferred until the end of the first request
+  that sees an expired result; this request will return `false`, but any
+  concurrent requests will see the old value until the first request has
+  finished. This change aims to reduce 'thundering herd' problems when many
+  requests simultaneously attempt to refresh a hot key.
+
+# Breaking Changes
+
+- `\HH\INCORRECT_TYPE<T>` has been removed from the HHI definitions.
+- Support for `__get`, `__set`, `__isset`, and `__unset` has been removed from
+  HHVM and the parser. Builtin classes that used these with fixed property names
+  have a new native implementation.
+- The Redis extension has been removed. This extension contained no native code,
+  so can be extracted from past versions of HHVM and updated as a standalone
+  library if required, though we do not support this usage.
+
+# Future Changes
+
+[As announced in November](https://hhvm.com/blog/2019/11/19/distribution-support.html),
+we are changing our distribution support lifecycle, starting with nightly
+builds and the next release:
+
+- MacOS: we aim to support the latest stable release - currently Catalina.
+  When a new version of MacOS is released, we plan to support both for 6
+  months.
+- Debian: we aim to support Debian stable. When a new version is promoted to
+  stable, we plan to support both for 6 months.
+- Ubuntu LTS: we aim to support the current LTS release (20.04); when a new
+  Ubuntu LTS is released, we plan to support both for the next 6 months.
+- Ubuntu 'interim' releases: we plan to support these for 9 months, matching
+  the length of time they are supported by Canonical.
+
+As long as dependencies are available from official upstream repositories, we
+plan to package `x.y.z` releases for any Linux distributions where we packaged
+`x.y.0`; we also aim to do this for MacOS as long as the versions are available
+from our build infrastructure provider.
+
+Concretely, this means that we no longer commit to supporting:
+
+- Debian 8 (Jessie)
+- Debian 9 (Stretch)
+- Ubuntu 16.04 (Xenial)
+- MacOS 10.14 (Mojave)
+
+We will generally keep building packages for distributions we no longer support
+as long as they keep working and they do not hold back development. That said,
+starting with 4.57, we are immediately ending support for distributions that
+include GCC6 or below:
+
+- Debian 8 (Jessie)
+- Debian 9 (Stretch).
+- Ubuntu 16.04 (Xenial)
+
+Other unsupported distributions may be removed from future releases without
+futher notice.
