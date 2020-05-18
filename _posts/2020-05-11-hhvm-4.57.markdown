@@ -6,7 +6,7 @@ category: blog
 ---
 
 HHVM 4.57 is released! This release marks the end of support for 4.51;
-HHVM 4.52&ndash;4.56 remain supported, as does the 4.8 LTS release.
+HHVM 4.52&ndash;4.56 remain supported, as does the 4.32 LTS release.
 
 # Highlights
 
