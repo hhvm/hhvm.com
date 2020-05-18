@@ -1,0 +1,59 @@
+---
+title: "HHVM 4.58"
+layout: post
+author: fred 
+category: blog
+---
+
+HHVM 4.58 is released! This release marks the end of support for 4.52;
+HHVM 4.53&ndash;4.57 remain supported, as does the 4.32 LTS release.
+
+# Highlights
+
+- Errors for cyclic definitions (e.g. when using type aliases) are no longer
+  duplicated, or raised in files that merely use a problematic type.
+- If an error is raised for type constant in a superclass, duplicate errors are
+  no longer raised for subclasses.
+- When trait methods are incorrectly overridden, the typechecker now reports
+  errors at the override, instead of at the original trait definition.
+- Added `.hackpartial` files, to replace `<?hh // partial`; like `.hack` files,
+  these **must not** contain a header line. See 'future changes' for upcoming
+  breaking changes related to partial files.
+- Fixed issues passing FDs to child processes via `proc_open` when using
+  LightProcess, especially when `STDIN` was not specified, or other low-numbers
+  FDs were specified.
+
+# Breaking Changes
+
+- Support for soft type hints using `@` (e.g. `@int $foo`) has been disabled;
+  use `<<__Soft>> int $foo` instead.
+- Static closures (e.g. `$f = static function() { return 1;}`) has been disabled
+  as they were never safely typechecked.
+- `goto` is now a parse error; it has never been supported in Hack code.
+- `$foo[] += $bar` is now a typechecker error.
+- it is now an error for `<<__EntryPoint>>` functions to take arguments.
+- typechecker errors are now raised if built-in attributes are used in invalid
+  places, for example, `__Override` on a standalone function (i.e. not a
+ method).
+- Error code 4005 (bad array access) has been split into:
+  - 4005: array access on unsupported type (read)
+  - 4370: array access on unsupported type (write)
+- Error code 4298 (bad array key) has been split into:
+  - 4298: array access with invalid key type (read)
+  - 4371: array access with invalid key type (write)
+- Error code 4062 (member on non-object) has been split into:
+  - 4062: member read on non-object
+  - 4373: member write on non-object
+- Error code 4064 (member on null) has been split into:
+  - 4064: member read on null
+  - 4372: member write on null
+
+# Future Changes
+
+- Support for `<?hh // partial` will be removed; use `.hackpartial` files
+  instead.
+- We are expecting to entirely remove partial mode in early 2021 - this will
+  include ending support for `.hackpartial` files. We strongly recommend
+  migrating any remaining partial code in 2020.
+- non-literal attribute arguments will be a type-error; previously the
+  typechecker would permit them, but HHVM would fatal at runtime.
