@@ -1,0 +1,31 @@
+---
+title: "HHVM 4.59"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.59 is released! This release marks the end of support for 4.53;
+HHVM 4.54&ndash;4.58 remain supported, as does the 4.32 LTS release.
+
+# Highlights
+
+- Improved output of `hh_client` to more accurately describe the status of the
+  server in various cases.
+
+# Breaking Changes
+
+- The typechecker now raises an error if any attribute arguments
+  (`<<Attr('arg1', 'arg2')>>`) are not literal values. These had already been
+  runtime errors.
+  - Array, shape and tuple literals are allowed.
+- The `.hhconfig` option `stronger_shape_idx_return` has been removed. This was
+  an experimental option that was never enabled by default, so this change
+  should not affect most users.
+- If a `where` constraint on a constructor isn't satisfied at the point of using
+  `new`, the typechecker would previously raise an error pointing to the
+  constructor definition. Instead, it now points to the use (the `new`
+  construct).
+  - This provides more helpful output and fixes an issue where typechecking a
+    file could raise an error in a different file, but it may require some
+    `HH_FIXME`s to be moved.
