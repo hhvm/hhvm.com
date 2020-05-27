@@ -13,8 +13,12 @@ layout: null
     <generator>Jekyll v{{ jekyll.version }}</generator>
     {% for post in site.posts limit:10 %}
       <item>
+        {% assign author = site.data.authors[post.author] %}
         <title>{{ post.title | xml_escape }}</title>
         <description>{{ post.content | xml_escape }}</description>
+        {% if author.full_name %}
+          <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">{{ author.full_name }}</dc:creator>
+        {% endif %}
         <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
         <link>{{ post.url | absolute_url }}</link>
         <guid isPermaLink="true">{{ post.url | absolute_url }}</guid>
