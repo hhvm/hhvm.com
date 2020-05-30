@@ -14,31 +14,40 @@ The requirements for running a GitHub pages site locally is described in [GitHub
 
 1. Ensure that you are in the root directory in this local hhvm.com repo clone (i.e., the same directory where this `README.md` exists). The below RubyGems commands, etc. must be run from there.
 
-1. Make sure you have Ruby and [RubyGems](https://rubygems.org/) installed.
+2. Make sure you have Ruby and [RubyGems](https://rubygems.org/) installed.
 
    > Ruby >= 2.2 is required for the gems. On the latest versions of Mac OS X, Ruby 2.0 is the
    > default. Use `brew install ruby` (or your preferred upgrade mechanism) to install a newer
    > version of Ruby for your Mac OS X system.
 
-1. Make sure you have [Bundler](http://bundler.io/) installed.
+3. Make sure you have [Bundler](http://bundler.io/) installed.
 
     ```
     # may require sudo
     gem install bundler
     ```
-1. Install the project's dependencies
+4. Install the project's dependencies
 
     ```
     bundle install
     ```
 
-    > If you get an error when installing `nokogiri`, you may be running into the problem described
+    > If you get an error stating `mkmf.rb can't find header files for ruby at /usr/lib/ruby/include/ruby.h`
+    > on linux, you'll need to install the ruby dev package. I followed the advice from this
+    > [stackoverflow post](https://stackoverflow.com/questions/20559255/error-while-installing-json-gem-mkmf-rb-cant-find-header-files-for-ruby).
+    > It instructed the user to run `apt-get install ruby-dev`, which resolved the issue for me.
+
+    > If you get an error when installing `nokogiri` on linux (I used ubuntu 20.04 focal),
+    > you need to install some dependencies before running `bundle install`, see [Installing nokogiri](https://nokogiri.org/tutorials/installing_nokogiri.html).
+    > `apt-get install build-essential patch ruby-dev zlib1g-dev liblzma-dev`
+
+    > If you get an error when installing `nokogiri` on OSX, you may be running into the problem described
     > in [this nokogiri issue](https://github.com/sparklemotion/nokogiri/issues/1483). You can
     > either `brew uninstall xz` (and then `brew install xz` after the bundle is installed) or
     > `xcode-select --install` (although this may not work if you have already installed command
     > line tools).
 
-1. Run Jekyll's server.
+5. Run Jekyll's server.
 
     - On first runs or for structural changes to the documentation (e.g., new sidebar menu item), do a full build.
 
@@ -64,7 +73,7 @@ The requirements for running a GitHub pages site locally is described in [GitHub
 
     e.g., on a Mac, you can your IP address with something like `ifconfig | grep "inet " | grep -v 127.0.0.1`.
 
-1. Either of commands in the previous step will serve up the site on your local device at http://127.0.0.1:4000/ or http://localhost:4000.
+6. Either of commands in the previous step will serve up the site on your local device at http://127.0.0.1:4000/ or http://localhost:4000.
 
 ### Updating the Bundle
 
