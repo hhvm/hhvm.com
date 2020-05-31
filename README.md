@@ -39,7 +39,7 @@ The requirements for running a GitHub pages site locally is described in [GitHub
 
     > If you get an error when installing `nokogiri` on linux (I used ubuntu 20.04 focal),
     > you need to install some dependencies before running `bundle install`, see [Installing nokogiri](https://nokogiri.org/tutorials/installing_nokogiri.html).
-    > `apt-get install build-essential patch ruby-dev zlib1g-dev liblzma-dev`
+
 
     > If you get an error when installing `nokogiri` on OSX, you may be running into the problem described
     > in [this nokogiri issue](https://github.com/sparklemotion/nokogiri/issues/1483). You can
