@@ -33,9 +33,9 @@ The requirements for running a GitHub pages site locally is described in [GitHub
     ```
 
     > If you get an error stating `mkmf.rb can't find header files for ruby at /usr/lib/ruby/include/ruby.h`
-    > on linux, you'll need to install the ruby dev package. I followed the advice from this
-    > [stackoverflow post](https://stackoverflow.com/questions/20559255/error-while-installing-json-gem-mkmf-rb-cant-find-header-files-for-ruby).
-    > It instructed the user to run `apt-get install ruby-dev`, which resolved the issue for me.
+    > on Linux, you would most likely need to install the ruby-dev package. 
+    > You can do so by running the following command : 
+    > `$ sudo apt install ruby-dev`
 
     > If you get an error when installing `nokogiri` on linux (I used ubuntu 20.04 focal),
     > you need to install some dependencies before running `bundle install`, see [Installing nokogiri](https://nokogiri.org/tutorials/installing_nokogiri.html).
