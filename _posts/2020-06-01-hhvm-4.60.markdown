@@ -1,0 +1,24 @@
+---
+title: "HHVM 4.60"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.60 is released! This release marks the end of support for 4.54;
+HHVM 4.55&ndash;4.58 remain supported, as does the 4.32 LTS release.
+
+# Highlights
+
+- Added `hh_parse --pretty-print-json`
+- Improved error readability for recursive types.
+- `Shapes::idx()` now permits `null` as the first argument, for consistency
+  with `idx()`.
+
+# Breaking Changes
+
+- Fix typing bug that allowed calling invalid static methods on reified
+  generics, e.g.
+  `function test<reifiy T as arraykey>() : void { T::foo(); }`
+- `Removed Exception::setPreviousChain()`; using this was already a type error
+  as it was not in the HHI files.
