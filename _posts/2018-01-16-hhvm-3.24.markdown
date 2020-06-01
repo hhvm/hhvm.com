@@ -118,7 +118,7 @@ function disposable_example(): void {
 } // __dispose() is now called on the anonymous handle
 ```
 
-Further details are available in [the documentation](https://docs.hhvm.com/hack/disposables/introduction).
+Further details are available in [the documentation](https://docs.hhvm.com/hack/classes/object-disposal).
 
 
 
