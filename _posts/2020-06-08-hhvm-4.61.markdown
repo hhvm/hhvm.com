@@ -1,0 +1,25 @@
+---
+title: "HHVM 4.61"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.61 is released! This release marks the end of support for 4.55;
+HHVM 4.56&ndash;4.60 remain supported, as does the 4.32 LTS release.
+
+# Highlights
+
+- The typechecker no longer reports multiple redundant errors when a class
+  (interface) is extended (implemented) with incompatible generic type
+  parameters
+  ([example](https://github.com/facebook/hhvm/blob/ba6a6cb57eabd7135e5aeb169c306d53b454dc44/hphp/hack/test/typecheck/constraints/extend_generic2.php)).
+- Fixed a bug where using `array_unshift` on a `keyset` could cause the `keyset`
+  to contain multiple identical values.
+
+# Future Changes
+
+- Support for `HH_IGNORE_ERROR` may be removed in the future, making `HH_FIXME`
+  the only way to silence typechecker errors.
+  - You can add `disable_hh_ignore_error=true` to your `.hhconfig` to get this
+    behavior now.
