@@ -25,6 +25,8 @@ and 4.56 LTS releases.
   initialized with keys, or if Map or ImmMap are initialized without keys.
   Previously, this would lead to a bytecode emitting error.
 - FIXME codes now need whitelisting in the project root .hhconfig
+- FIXME whitelisting does not support `<?hh // partial`; as such, you are likely
+  to need to migrate any remaining partial code to `.hackpartial` files.
 
 ## FIXME whitelisting
 
@@ -39,7 +41,8 @@ itself an error. The relevant configuration options are:
 - `allowed_decl_fixme_codes=1234,5678`: FIXME codes that are permitted in
   declaration contexts, such as function type signatures. Any codes here must
   *also* be listed in the `_strict` or `_partial` options to be permitted in
-  this files
+  this files; this is to allow banning a code from strict files, while still
+  permitting it in decl contexts in partial files.
 
 For example, the HSL is configured with:
 
@@ -56,5 +59,7 @@ This change is intended to allow projects to control what kinds of unsafe
 operations they are comfortable permitting, and to avoid accidentally
 regressions and introducing new forms.
 
-An empty whitelist is likely not a practical goal for the majority of projects
-at this time.
+Empty strict/partial whitelists are likely not a practical goal for the majority
+of projects at this time, however, there is significant benefit in entirely
+eliminating fixmes in declaration contexts, so we recommend that all projects
+attempt to have an empty `allowed_decl_fixme_codes` whitelist.
