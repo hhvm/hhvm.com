@@ -41,7 +41,7 @@ itself an error. The relevant configuration options are:
 - `allowed_decl_fixme_codes=1234,5678`: FIXME codes that are permitted in
   declaration contexts, such as function type signatures. Any codes here must
   *also* be listed in the `_strict` or `_partial` options to be permitted in
-  this files; this is to allow banning a code from strict files, while still
+  those files; this is to allow banning a code from strict files, while still
   permitting it in decl contexts in partial files.
 
 For example, the HSL is configured with:
