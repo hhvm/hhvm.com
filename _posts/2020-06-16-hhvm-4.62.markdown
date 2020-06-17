@@ -53,7 +53,7 @@ allowed_fixme_codes_strict=2011,2049,2050,2053,4027,4045,4106,4108,4110,4128,413
 
 [A script](https://gist.github.com/fredemmott/6fe221cacc1221b84264b2a476eaa2a7)
 is available to generate these configuration options; this script requires
-[jq](https://stedolan.github.io/jq/).
+[jq](https://stedolan.github.io/jq/) version 1.6 or newer.
 
 This change is intended to allow projects to control what kinds of unsafe
 operations they are comfortable permitting, and to avoid accidentally
