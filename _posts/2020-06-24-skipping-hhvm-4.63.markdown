@@ -36,13 +36,14 @@ legacy (PHP-style) arrays.
   * `varray`s will now maintain a “`vec`-like” layout, with integer keys from 0 to
     (size - 1). Attempting to set a string key in a `varray` will throw, as will
     attempting to unset any element other than the last one.
-  * tuples and shapes are subtypes of `varray`s and `darray`s, respectively. As a
+  * Tuples and shapes are internally represented as `varray`s and `darray`s,
+    respectively. As a
     result, `darray is tuple(...)` will return `false` and `darray as tuple(...)`
     will throw. The same goes for `varray is shape(...)` and
     `varray as shape(...)`.
   * Comparing a `varray` and a `darray` using `==` or `===` will always return
     `false`.
-  * Attempting to compare to `darray`s relationally with `<`, `<=`, `>`, or `>=`
-    will result in an exception.
+  * Attempting to compare `varray`s to `darray`s relationally with `<`, `<=`,
+    `>`, or `>=` will result in an exception.
 
 
