@@ -1,0 +1,58 @@
+---
+title: "HHVM 4.64"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.64 is released! This release marks the end of support for 4.57;
+HHVM 4.58&ndash;4.62 remain supported (4.63 was skipped), as do the 4.32
+and 4.56 LTS releases.
+
+# Breaking Changes
+
+- The INI flag `hhvm.hack_arr_compat_specialization` was removed and its
+  behavior is now enabled by default.
+  This change disables the implicit inter-operability between `varray`s and
+  `darray`s. Instead, `varray`, `darray` and `array` (soon to be removed) are
+  now treated as types in their own right. Specifically:
+  * Using a `varray` where a `darray` is expected (at parameter and return value
+    typehints) throws, and vice versa. The same goes for property typehints,
+    if they are checked at runtime.
+  * `varray`s now maintain a “`vec`-like” layout, with integer keys from 0 to
+    (size - 1). Attempting to set a string key in a `varray` throws, as does
+    attempting to unset any element other than the last one.
+  * Tuples and shapes are internally represented as `varray`s and `darray`s,
+    respectively. As a
+    result, `darray is tuple(...)` returns `false` and `darray as tuple(...)`
+    throws. The same goes for `varray is shape(...)` and
+    `varray as shape(...)`.
+  * Comparing a `varray` and a `darray` using `==` or `===` always returns
+    `false`.
+  * Attempting to compare `varray`s to `darray`s relationally with `<`, `<=`,
+    `>`, or `>=` results in an exception.
+  * Additional related INI flags were removed, since they no longer have any
+    effect:
+    - `hhvm.hack_arr_compat_type_hint_notices`
+    - `hhvm.hack_arr_compat_check_varray_promote`
+    - `hhvm.hack_arr_compat_check_implicit_varray_append`
+    - `hhvm.hack_arr_compat_dv_cmp_notices`
+- Attempting to override a non-abstract constant defined in an interface when
+  implementing or extending that interface is now a typechecker error. It had
+  already been a runtime error.
+- The function `HH\global_keys()` was removed. Other methods of enumerating all
+  global variables, such as `HH\global_get('GLOBALS')` or `$GLOBALS['GLOBALS']`,
+  are also expected to stop working soon.
+
+# Future Changes
+
+- We expect `array(...)` literals to be completely removed in the next release.
+  All code will need to be migrated to `varray[...]` and `darray[...]`, or
+  preferably `vec[...]` and `dict[...]` (if it can be done safely).
+  - Automated migration is available in [HHAST](https://github.com/hhvm/hhast)
+    v4.33.6 or newer: `hhast-migrate --php-arrays`
+- Any remaining methods of enumerating all global variables, such as
+  `HH\global_get('GLOBALS')` or `$GLOBALS['GLOBALS']`, are expected to stop
+  working in a future release.
+- We expect to remove the `yield from` syntax in a future release. In almost all
+  cases, this syntax can be replaced with a `foreach` loop.
