@@ -62,14 +62,15 @@ and 4.56 LTS releases.
 - We expect to remove the `yield from` syntax in a future release. In most
   cases, it can be replaced by other syntax.
 
-## Replacing `yield from`
+
+### Replacing `yield from`
 
 Here's a list of replacements to use based on the complexity of the use case:
 
 If only the values, or only (key, value) pairs, are used, replace `yield from`
 with `foreach...yield`:
 
-```
+```php
 function only_values_old($gen) {
   yield from $gen;
 }
@@ -87,7 +88,7 @@ function keys_values_new($gen) {
 
 Use `getReturn` to evaluate the result of the `yield from` expression:
 
-```
+```php
 function return_old($gen) {
   $x = yield from $gen;
   var_dump($x);
@@ -102,7 +103,7 @@ function return_new($gen) {
 Use `send` to pass values back into the inner generator (if callers of the
 `yield from` outer generator do so). This use case is quite rare.
 
-```
+```php
 function send_old($gen) {
   yield from $gen;
 }
