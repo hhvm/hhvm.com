@@ -1,0 +1,119 @@
+---
+title: "HHVM 4.64"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.64 is released! This release marks the end of support for 4.57;
+HHVM 4.58&ndash;4.62 remain supported (4.63 was skipped), as do the 4.32
+and 4.56 LTS releases.
+
+# Breaking Changes
+
+- The INI flag `hhvm.hack_arr_compat_specialization` was removed and its
+  behavior is now enabled by default.
+  This change disables the implicit inter-operability between `varray`s and
+  `darray`s. Instead, `array` (soon to be removed), `varray` and `darray` are
+  now treated as types in their own right. Specifically:
+  * Using a `varray` where a `darray` is expected (at parameter and return value
+    typehints) throws, and vice versa. The same goes for property typehints,
+    if they are checked at runtime.
+  * `varray`s now maintain a “`vec`-like” layout, with integer keys from 0 to
+    (size - 1). Attempting to set a string key in a `varray` throws, as does
+    attempting to unset any element other than the last one.
+  * Tuples and shapes are internally represented as `varray`s and `darray`s,
+    respectively. As a
+    result, `darray is tuple(...)` returns `false` and `darray as tuple(...)`
+    throws. The same goes for `varray is shape(...)` and
+    `varray as shape(...)`.
+  * Comparing a `varray` and a `darray` using `==` or `===` always returns
+    `false`.
+  * Comparing a `darray` with a `varray`, or two `darray`s using `>`, `<`, `<=`,
+    `>=`, `<>`, `<=>` results in an exception. Two `varray`s can still be
+    compared.
+  * If property type enforcement is turned on, property type invariance rules
+    for class hierarchies will apply to `varray`, `darray` and `array`. For
+    example, a child class will not be able to redeclare a property with type
+    `varray<Tv>` if the parent class' property is typed `darray<Tk, Tv>`.
+  * Additional related INI flags were removed, since they no longer have any
+    effect:
+    - `hhvm.hack_arr_compat_type_hint_notices`
+    - `hhvm.hack_arr_compat_check_varray_promote`
+    - `hhvm.hack_arr_compat_check_implicit_varray_append`
+    - `hhvm.hack_arr_compat_dv_cmp_notices`
+- Attempting to override a non-abstract constant defined in an interface when
+  implementing or extending that interface is now a typechecker error. It had
+  already been a runtime error.
+- The function `HH\global_keys()` was removed. Other methods of enumerating all
+  global variables, such as `HH\global_get('GLOBALS')` or `$GLOBALS['GLOBALS']`,
+  are also expected to stop working soon.
+
+# Future Changes
+
+- We expect `array(...)` literals to be completely removed in the next release.
+  All code will need to be migrated to `varray[...]` and `darray[...]`, or
+  preferably `vec[...]` and `dict[...]` (if it can be done safely).
+  - Automated migration is available in [HHAST](https://github.com/hhvm/hhast)
+    v4.33.6 or newer: `hhast-migrate --php-arrays`
+- Any remaining methods of enumerating all global variables, such as
+  `HH\global_get('GLOBALS')` or `$GLOBALS['GLOBALS']`, are expected to stop
+  working in a future release.
+- We expect to remove the `yield from` syntax in a future release. In most
+  cases, it can be replaced by other syntax.
+
+## Replacing `yield from`
+
+Here's a list of replacements to use based on the complexity of the use case:
+
+If only the values, or only (key, value) pairs, are used, replace `yield from`
+with `foreach...yield`:
+
+```
+function only_values_old($gen) {
+  yield from $gen;
+}
+function only_values_new($gen) {
+  foreach ($gen as $v) { yield $v; }
+}
+
+function keys_values_old($gen) {
+  yield from $gen;
+}
+function keys_values_new($gen) {
+  foreach ($gen as $k => $v) { yield $k => $v; }
+}
+```
+
+Use `getReturn` to evaluate the result of the `yield from` expression:
+
+```
+function return_old($gen) {
+  $x = yield from $gen;
+  var_dump($x);
+}
+function return_new($gen) {
+  foreach ($gen as $v) { yield $v; }
+  $x = $gen->getReturn();
+  var_dump($x);
+}
+```
+
+Use `send` to pass values back into the inner generator (if callers of the
+`yield from` outer generator do so). This use case is quite rare.
+
+```
+function send_old($gen) {
+  yield from $gen;
+}
+function send_new($gen) {
+  for ($gen->next(); $gen->valid(); $gen->send($s)) {
+    $s = yield $gen->key() => $gen->current();
+  }
+}
+```
+
+There's one behavior of `yield from` syntax that can't be captured easily by
+rewrites like the above: if the same generator is aliased by a `yield from` and
+elsewhere, `next()` on that generator will advance the `yield from`. Such code
+will need a rewrite to make state explicit.
