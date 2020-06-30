@@ -14,7 +14,7 @@ and 4.56 LTS releases.
 - The INI flag `hhvm.hack_arr_compat_specialization` was removed and its
   behavior is now enabled by default.
   This change disables the implicit inter-operability between `varray`s and
-  `darray`s. Instead, `varray`, `darray` and `array` (soon to be removed) are
+  `darray`s. Instead, `array` (soon to be removed), `varray` and `darray` are
   now treated as types in their own right. Specifically:
   * Using a `varray` where a `darray` is expected (at parameter and return value
     typehints) throws, and vice versa. The same goes for property typehints,
@@ -29,8 +29,13 @@ and 4.56 LTS releases.
     `varray as shape(...)`.
   * Comparing a `varray` and a `darray` using `==` or `===` always returns
     `false`.
-  * Attempting to compare `varray`s to `darray`s relationally with `<`, `<=`,
-    `>`, or `>=` results in an exception.
+  * Comparing a `darray` with a `varray`, or two `darray`s using `>`, `<`, `<=`,
+    `>=`, `<>`, `<=>` results in an exception. Two `varray`s can still be
+    compared.
+  * If property type enforcement is turned on, property type invariance rules
+    for class hierarchies will apply to `varray`, `darray` and `array`. For
+    example, a child class will not be able to redeclare a property with type
+    `varray<Tv>` if the parent class' property is typed `darray<Tk, Tv>`.
   * Additional related INI flags were removed, since they no longer have any
     effect:
     - `hhvm.hack_arr_compat_type_hint_notices`
@@ -54,5 +59,61 @@ and 4.56 LTS releases.
 - Any remaining methods of enumerating all global variables, such as
   `HH\global_get('GLOBALS')` or `$GLOBALS['GLOBALS']`, are expected to stop
   working in a future release.
-- We expect to remove the `yield from` syntax in a future release. In almost all
-  cases, this syntax can be replaced with a `foreach` loop.
+- We expect to remove the `yield from` syntax in a future release. In most
+  cases, it can be replaced by other syntax.
+
+## Replacing `yield from`
+
+Here's a list of replacements to use based on the complexity of the use case:
+
+If only the values, or only (key, value) pairs, are used, replace `yield from`
+with `foreach...yield`:
+
+```
+function only_values_old($gen) {
+  yield from $gen;
+}
+function only_values_new($gen) {
+  foreach ($gen as $v) { yield $v; }
+}
+
+function keys_values_old($gen) {
+  yield from $gen;
+}
+function keys_values_new($gen) {
+  foreach ($gen as $k => $v) { yield $k => $v; }
+}
+```
+
+Use `getReturn` to evaluate the result of the `yield from` expression:
+
+```
+function return_old($gen) {
+  $x = yield from $gen;
+  var_dump($x);
+}
+function return_new($gen) {
+  foreach ($gen as $v) { yield $v; }
+  $x = $gen->getReturn();
+  var_dump($x);
+}
+```
+
+Use `send` to pass values back into the inner generator (if callers of the
+`yield from` outer generator do so). This use case is quite rare.
+
+```
+function send_old($gen) {
+  yield from $gen;
+}
+function send_new($gen) {
+  for ($gen->next(); $gen->valid(); $gen->send($s)) {
+    $s = yield $gen->key() => $gen->current();
+  }
+}
+```
+
+There's one behavior of `yield from` syntax that can't be captured easily by
+rewrites like the above: if the same generator is aliased by a `yield from` and
+elsewhere, `next()` on that generator will advance the `yield from`. Such code
+will need a rewrite to make state explicit.
