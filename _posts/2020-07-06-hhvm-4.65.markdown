@@ -1,0 +1,44 @@
+---
+title: "HHVM 4.65"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.65 is released! This release marks the end of support for 4.58;
+HHVM 4.59&ndash;4.64 remain supported, as do the 4.32
+and 4.56 LTS releases.
+
+# Highlights
+
+- `is` and `as` checks for reified enums now only check the underlying type,
+  not the values; this makes them consistent with parameter and return type
+  enforcement.
+- added `_with_error()` variants of preg functions, e.g.
+  `preg_grep_with_error()`, `preg_match_with_error()`,
+  `preg_replace_with_error()`, to avoid the need for `preg_last_error()` calls
+  and the global state that entails.
+- added `HH\is_vec_or_varray()` and `HH\is_dict_or_darray()` functions.
+- clearer error messages when incompatible kinds `extend` each other - for
+  example, a class can not `extend` an interface, but it can `implement` one.
+
+# Breaking Changes
+
+- `array()` literals are no longer supported by the parser; `[]` literals were
+  already banned. Replace with `darray[]` or `varray[]`. On older versions of
+  HHVM, `hhast-migrate --php-arrays` can be used to automate this.
+- the globals array has been removed - for example, `HH\global_get('GLOBALS')`
+  now returns null. Fetch specific known keys instead.
+  - `$GLOBALS['foo']` (i.e. with a key) is still supported, however migrating to
+    `HH\global_get('foo')` is encouraged.
+- it is now a typechecker error to mark an abstract method as `__Memoize`; this
+  was previously a runtime error.
+- `yield from` has been removed; the
+  [release notes for 4.64](https://hhvm.com/blog/2020/06/30/hhvm-4.64.html)
+  contain suggestions for migrating.
+
+# Future Changes
+
+- `(array)` casts will be a parse error; they are currently a typechecker error.
+  A runtime error can be enabled now with the new
+  `hhvm.hack.lang.disable_array_cast` INI setting.
