@@ -1,0 +1,79 @@
+---
+title: "HHVM 4.66"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.66 is released! This release marks the end of support for 4.59;
+HHVM 4.60&ndash;4.65 remain supported, as do the 4.32 and 4.56 LTS releases.
+
+# Highlights
+
+- `HH\is_any_array()` now refines the type of its argument to `KeyedContainer`.
+  This doesn't change what programs are accepted by the typechecker, but
+  results in clearer error messages for those that aren't.
+
+# Breaking Changes
+
+- Casting any array (`vec`, `dict`, `keyset`, `varray`, `darray`) to `string`
+  now throws an exception at runtime. It had already been a typechecker error.
+- Using a non-int/string array index is now a runtime error. It had
+  already been a typechecker error.
+  - In recent HHVM versions, this behavior can be enabled using the INI options
+    `hhvm.hack_arr_compat_notices=1` and
+    `hhvm.hack_arr_compat_check_array_key_cast=1`.
+- Fixed a bug that caused `strtr()`, when called with a `darray` that contains
+  int-like keys, to silently ignore them (`strtr('123', darray['2' => 'x'])`
+  now correctly returns `'1x3'`). The behavior is now consistent with `dict`,
+  which wasn't affected by this bug.
+- The typechecker now reports an error if there are multiple `<<__EntryPoint>>`
+  functions in a file. It had already been a runtime error.
+- The typechecker now reports an error when comparing an enum value with a
+  value of an incompatible primitive type. This may reveal new errors of the
+  form "This expression is always false".
+- Fixed a bug where the typechecker would not report an error when a trait with
+  generic parameters that depend on each other is used incorrectly (e.g. `trait Foo<Ta, Tb as Ta>` with `use Foo<string, int>`). This may reveal
+  previously undetected errors.
+- Fixed a bug that caused the typechecker to incorrectly conflate generic
+  types on a class and its methods in some cases. This may reveal previously
+  undetected errors
+  ([example](https://github.com/facebook/hhvm/blob/HHVM-4.66/hphp/hack/test/typecheck/constraints/override_generic_parameter_bad.php)).
+
+# Future Changes
+
+* "plain arrays" (PHP arrays created by `array(...)`) are going away. In a
+  previous release, we eliminated the Hack syntax for these arrays, but some
+  builtins (e.g. `array_intersect_key()` and many other array builtins) could
+  still produce them. We will change these builtins to return `darray` instead.
+    * darrays behave nearly identically to plain arrays. The full list of
+      behavior differences is as follows:
+        * Plain arrays support relational comparison (`<`, `<=`, `>`, `>=`);
+          darrays throw on comparison.
+        * Plain arrays don't compare equal to darrays with the same elements.
+        * Plain arrays fail darray typehints, while darrays pass them.
+    * The typehint behavior difference shouldn't cause problems; it only
+      affects behavior that currently causes TypehintViolationException which
+      should be quite uncommon.
+    * For the comparison cases, turn on: `hhvm.hack_arr_compat_notices` and
+      `hhvm.hack_arr_compat_check_compare` and look for the following two
+      notices:
+        * "Comparing two plain arrays relationally"
+        * "Comparing plain array and darray"
+    * The first notice here will become an error; the second one may return
+      true where it currently returns false (and so requires manual inspection).
+      We don't expect either case to be common.
+* If a function has a parameter with an invalid default value, accessing it via
+  `ReflectionFunction` or `ReflectionMethod` may currently throw. In the
+  future, it will only raise a warning (making reflection safer to use).
+  * Use the INI option `hhvm.fix_default_arg_reflection=2` to enable the future
+    behavior now.
+* In the future, using `class_meth` with an abstract function will be a runtime
+  error. Currently, this is only a runtime error if the method is actually
+  called.
+  * Use the INI options `hhvm.emit_cls_meth_pointers=1` and
+    `hhvm.is_compatible_cls_meth_type=1` to enable this behavior now.
+* Output of `var_dump()` will start differentiating between `varray`s and
+  `darray`s.
+  * Use the INI option `hhvm.hack_arr_dv_arr_var_dump=1` to enable this
+    behavior now.
