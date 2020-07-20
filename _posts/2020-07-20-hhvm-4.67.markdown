@@ -1,0 +1,24 @@
+---
+title: "HHVM 4.67"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.67 is released! This release marks the end of support for 4.60;
+HHVM 4.61&ndash;4.66 remain supported, as do the 4.32 and 4.56 LTS releases.
+
+# Highlights
+
+- Server stats are now cleared after warmup, to reduce noise from requests that
+  should be unrepresentative.
+- Runtime type errors now consistently say `varray` or `darray` as appropriate,
+  instead of just `array`.
+
+# Breaking Changes
+
+- An exception is now thrown when a file contains top-level code.
+- HackC will no longer emit top-level code outside of the debugger.
+- Backticks are no longer parsed as quotation separators; they were previously
+  equivalent to double quotes.
+- `(array)` casts are now disabled in the runtime.
