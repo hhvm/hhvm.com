@@ -36,9 +36,9 @@ HHVM 4.62&ndash;4.67 remain supported, as do the 4.32 and 4.56 LTS releases.
     some built-ins). You can use `<<__Soft>>` to turn these errors into
     warnings.
   - HHAST migration for `array` type annotations should be available soon.
-- The functions `current`, `key`, `next`, `prev`, `reset`, `end` were removed
-  (arrays no longer maintain an "internal iterator", which should also reduce
-  their memory usage in the future).
+- The built-in functions `each`, `next`, `prev` were removed. Any other
+  built-ins that use arrays' "internal iterator" (`current`, `key`, `reset`,
+  `end`) will also be removed soon.
   - Additional iterators and related classes were removed:
     - all methods of `ArrayIterator` other than `current`, `key`, `next`,
       `rewind`, `valid`
@@ -54,11 +54,6 @@ HHVM 4.62&ndash;4.67 remain supported, as do the 4.32 and 4.56 LTS releases.
     - `RecursiveTreeIterator`
     - `SplFixedArray`
     - `SplObjectStorage`
-  - Most users of these iteration APIs can be rewritten with `foreach` loops,
-    and would be much faster to boot. For cases that can't be converted this
-    way, you can use `Vec\keys($array)` to get an array of keys and
-    `vec($array)` to get an array of values and use a `for` loop over indices
-    for these two arrays.
 - Attempting to merge arrays using the `+` or `+=` operators now throws an
   exception. It had already been a typechecker error.
   - In recent HHVM versions, you can use the INI options
@@ -111,6 +106,15 @@ HHVM 4.62&ndash;4.67 remain supported, as do the 4.32 and 4.56 LTS releases.
 
 # Future Changes
 
+- Arrays will soon no longer maintain an "internal iterator", which should
+  reduce their memory usage. Any built-ins that depend on the internal iterator
+  are either already removed (`each`, `next`, `prev`) or will be removed soon
+  (`current`, `key`, `reset`, `end`).
+  - Most users of these iteration APIs can be rewritten with `foreach` loops,
+    and would be much faster to boot. For cases that can't be converted this
+    way, you can use `Vec\keys($array)` to get an array of keys and
+    `vec($array)` to get an array of values and use a `for` loop over indices
+    for these two arrays.
 - The INI options mentioned above are expected to have stricter defaults and/or
   be removed completely in the future:
   - `hhvm.throw_on_non_exhaustive_switch`
