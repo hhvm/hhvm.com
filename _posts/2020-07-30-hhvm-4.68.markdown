@@ -77,8 +77,12 @@ HHVM 4.62&ndash;4.67 remain supported, as do the 4.32 and 4.56 LTS releases.
   - Use the INI option `hhvm.throw_on_non_exhaustive_switch=0` to temporarily
     disable this warning, or `hhvm.throw_on_non_exhaustive_switch=2` to enable
     the future behavior now (throw an exception).
-- By default, HHVM now triggers an unrecoverable error if any function return
-  type annotations are violated.
+- By default, HHVM no longer allows user-defined error handlers to silence the
+  errors when function return type annotations are violated.
+  - This is only relevant if the INI option `hhvm.php7.engine_exceptions` is set
+    to `false`. If this option is `true` (default), return type violations throw
+    a `TypeError` which can be caught, but it is never possible to continue
+    execution in the same scope.
   - The INI option
     [`hhvm.check_return_type_hints`](https://github.com/facebook/hhvm/blob/HHVM-4.68/hphp/runtime/base/runtime-option.h#L734)
     can be used to temporarily reduce this to a recoverable error or a warning,
