@@ -1,0 +1,115 @@
+---
+title: "HHVM 4.68"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.68 is released! This release marks the end of support for 4.61;
+HHVM 4.62&ndash;4.67 remain supported, as do the 4.32 and 4.56 LTS releases.
+
+# Highlights
+
+- Hack no longer reports duplicate errors when an invalid type constant is
+  referenced from another type constant.
+
+# Breaking Changes
+
+- The `array` type has been completely removed from HHVM. All arrays are now
+  either `varray` or `darray`, which are treated as separate incompatible types
+  by both the typechecker and the runtime.
+  - In recent HHVM versions, it had already been impossible to create `array`
+    values that are neither `varray` or `darray` from Hack code, but some
+    built-in functions could still return them. These have all been migrated to
+    return `varray` or `darray` now.
+  - The type `varray_or_darray` with either one or two generic parameters can be
+    used to migrate code that needs to accept/return both types of arrays.
+    However, using `Container` or `KeyedContainer` is usually preferable for
+    any code that is intended to work with multiple array-like types.
+  - Migrating `array` type annotations to `varray_or_darray` is guaranteed to be
+    safe in HHVM 4.68. In previous HHVM versions, it is safer to use
+    `<<__Soft>> varray_or_darray`, as it is possible to have `array` values that
+    are neither `varray` nor `darray`, depending on the exact INI options.
+  - Migrating `array` type annotations to `varray` and `darray` (or even `vec`
+    and `dict`) might be preferable, but it may cause runtime errors, possibly
+    undetected by the typechecker (for values coming from untyped code including
+    some built-ins). You can use `<<__Soft>>` to turn these errors into
+    warnings.
+  - HHAST migration for `array` type annotations should be available soon.
+- The functions `current`, `key`, `next`, `prev`, `reset`, `end` were removed
+  (arrays no longer maintain an "internal iterator", which should also reduce
+  their memory usage in the future).
+  - Additional iterators and related classes were removed:
+    - all methods of `ArrayIterator` other than `current`, `key`, `next`,
+      `rewind`, `valid`
+    - `AppendIterator`
+    - `CachingIterator`
+    - `CallbackFilterIterator`
+    - `LimitIterator`
+    - `MultipleIterator`
+    - `ParentIterator`
+    - `RecursiveArrayIterator`
+    - `RecursiveCachingIterator`
+    - `RecursiveCallbackFilterIterator`
+    - `RecursiveTreeIterator`
+    - `SplFixedArray`
+    - `SplObjectStorage`
+  - Most users of these iteration APIs can be rewritten with `foreach` loops,
+    and would be much faster to boot. For cases that can't be converted this
+    way, you can use `Vec\keys($array)` to get an array of keys and
+    `vec($array)` to get an array of values and use a `for` loop over indices
+    for these two arrays.
+- Attempting to merge arrays using the `+` or `+=` operators now throws an
+  exception. It had already been a typechecker error.
+  - In recent HHVM versions, you can use the INI options
+    `hhvm.hack_arr_compat_notices=true` and
+    `hhvm.hack_arr_compat_check_array_plus=true` to raise a notice.
+- Fixed the position at which the typechecker reports an error for a missing
+  type constant. This may require some `HH_FIXME`s to be moved.
+- Using `meth_caller` with a trait now raises a typechecker error. Runtime
+  behavior hasn't changed, HHVM currently allows constructing such `meth_caller`
+  but throws an exception when the method call is invoked.
+- By default, HHVM now raises a warning for any `switch` statements where none
+  of the cases matched the provided value. In the future, this will be changed
+  to throw an exception.
+  - A `default` branch should be added to any `switch` statements that
+    intentionally don't cover all possible cases.
+  - Use the INI option `hhvm.throw_on_non_exhaustive_switch=0` to temporarily
+    disable this warning, or `hhvm.throw_on_non_exhaustive_switch=2` to enable
+    the future behavior now (throw an exception).
+- By default, HHVM now triggers an unrecoverable error if any function return
+  type annotations are violated.
+  - The INI option
+    [`hhvm.check_return_type_hints`](https://github.com/facebook/hhvm/blob/HHVM-4.68/hphp/runtime/base/runtime-option.h#L734)
+    can be used to temporarily reduce this to a recoverable error or a warning,
+    but this option will be removed in the future.
+- By default, HHVM now raises a warning if any type annotations on properties
+  (static and instance variables) are violated. In the future, this will be
+  changed to throw an exception.
+  - The INI option
+    [`hhvm.check_prop_type_hints`](https://github.com/facebook/hhvm/blob/HHVM-4.68/hphp/runtime/base/runtime-option.h#L747)
+    can be used to temporarily disable the warning or to enable the future
+    behavior now.
+- Generic type parameters with upper bounds (`TFoo as FooBaseClass`), when used
+  as function parameter or return types, will now raise a warning if the upper
+  bound is violated. This had already been a typechecker error, but previously
+  ignored at runtime.
+  - Note that only the upper bound is enforced at runtime, so code shouldn't
+    rely on any assumptions stronger than that. In the above example, HHVM will
+    enforce that `TFoo` is an instance of some subclass of `FooBaseClass`, but
+    can't enforce that it matches the exact type of `TFoo` in the given context,
+    as generic types are erased at runtime.
+  - Use the INI option `hhvm.enforce_generics_ub=0` to temporarily disable this
+    warning, or `hhvm.enforce_generics_ub=2` to enable the future behavior now
+    (throw an exception).
+- The INI option `hhvm.forbid_thrift_integer_values_out_of_range` (used by the
+  Thrift extension) has been removed.
+
+# Future Changes
+
+- The INI options mentioned above are expected to have stricter defaults and/or
+  be removed completely in the future:
+  - `hhvm.throw_on_non_exhaustive_switch`
+  - `hhvm.check_return_type_hints`
+  - `hhvm.check_prop_type_hints`
+  - `hhvm.enforce_generics_ub`
