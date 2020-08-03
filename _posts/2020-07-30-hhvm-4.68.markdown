@@ -35,7 +35,8 @@ HHVM 4.62&ndash;4.67 remain supported, as do the 4.32 and 4.56 LTS releases.
     undetected by the typechecker (for values coming from untyped code including
     some built-ins). You can use `<<__Soft>>` to turn these errors into
     warnings.
-  - HHAST migration for `array` type annotations should be available soon.
+  - Automated migrations for `array` type annotations are available in
+    [HHAST v4.64.4](https://github.com/hhvm/hhast/releases/tag/v4.64.4).
 - The built-in functions `each`, `next`, `prev` were removed. Any other
   built-ins that use arrays' "internal iterator" (`current`, `key`, `reset`,
   `end`) will also be removed soon.
