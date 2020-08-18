@@ -1,0 +1,59 @@
+---
+title: "HHVM 4.71"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.71 is released! This release marks the end of support for 4.64;
+HHVM 4.65&ndash;4.69 remain supported, as do the 4.32 and 4.56 LTS releases.
+
+# Highlights
+
+- The console output of `hh_client` has been significantly improved, with better
+  color highlighting, error messages shown in a better order, smarter handling
+  of overlapping positions, added surrounding lines of code, and other
+  improvements.
+  - `hh_client --error-format ...` can be used to switch between the different
+    output formats.
+- Building HHVM from source should be easier now, and the source packages are
+  much smaller, due to the removal of multiple large "submodules" like Boost and
+  MySQL (these are now downloaded as needed, e.g. if the system version is too
+  old).
+
+# Breaking Changes
+
+- The built-in function `is_array()` was removed from the typechecker and will
+  soon be removed completely. Instead, use one of the following:
+  - `HH\is_php_array()` accepts only legacy arrays (varray, darray). This is
+    equivalent to `is_array()`, so it guarantees no change in behavior, but
+    makes it harder to migrate from legacy arrays to Hack arrays in the future.
+  - `HH\is_any_array()` accepts legacy array types (varray, darray) as well as
+    Hack arrays (vec, dict, keyset). This makes any future migration from legacy
+    arrays to Hack arrays safer, but it is not equivalent to `is_array()`, so
+    the change may need some manual review and testing.
+  - `HH\is_vec_or_varray()` and `HH\is_dict_or_darray()` allow you to test for
+    vec/dict-like behavior, while still making it safe to migrate from legacy
+    arrays to Hack arrays in the future.
+  - For code that doesn't care about the exact container type, consider using a
+    more generic interface, e.g. `$var is Container<_>` or
+    `$var is KeyedContainer<_, _>`.
+- HHVM no longer parses PHP files (files with the `.php` extension starting
+  with `<?php` instead of `<?hh`). The typechecker ignores them (making it
+  possible for Hack and PHP code to live in the same repository), while the
+  runtime and some other commands (e.g. `hh_parse`) will raise errors when
+  trying to process them.
+  - HHVM hasn't supported PHP since HHVM 4.0, but until now the behavior for
+    PHP files was inconsistent and could depend on whether they happened to
+    contain valid Hack code or not.
+- The typechecker will now complain about incorrect mode (e.g. `<?hh // struct`)
+  even when the `--disable-modes` flag is used.
+- Fixed a bug where the typechecker would not detect a missing generic type
+  parameter in a var-args function declaration (`class A<T> {}`, `function test(A ...$a): void {}`). This may reveal previously undetected errors.
+- Fixed a bug where `isset` would return an incorrect value when used with dict
+  or keyset elements (`isset($dict['key'])`).
+
+# Future Changes
+
+- The `is_array()` function will also be removed from the runtime (currently, it
+  has only been removed from the typechecker).
