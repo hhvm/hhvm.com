@@ -1,0 +1,68 @@
+---
+title: "HHVM 4.72"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.72 is released! This release marks the end of support for 4.65;
+HHVM 4.64&ndash;4.71 remain supported, as do the 4.32 and 4.56 LTS releases.
+
+# Highlights
+
+- Various `varray` and `darray` runtime errors (e.g. out of bounds access) now
+  have clearer error messages, and are consistent with the equivalent `vec`/
+  `dict` error messages.
+- If `hhvm.hack_arr_compat_notices` is enabled, a notice is now raised when
+  a `varray` is indexed by a `string`.
+- Typechecker errors for uninitialized properties now suggest the specific
+  nullable type and property (e.g. `?int $myPropertyName`) instead of the
+  placeholder `?YourTypeHere`.
+- It is now possible to enable unstable features on a per-file basis for
+  experimentation - see below for details.
+
+# Breaking Changes
+
+- `<<__Override>>` attributes were not checked on abstract classes; this bug
+  has now been fixed, so type errors will now be raised if a method on an
+  abstract class is marked with this attribute, but it is in fact not overriding
+  a parent definition.
+- it is now a typechecker error to use `class_meth()`, `fun()`, `meth_caller()`
+  etc to create a reference to functions or methods with reified generics, as
+  any call to such a reference is an error.
+- references to abstract methods have been similarly banned.
+- `class_meth(__CLASS__)` in non-final classes is now a typechecker error. This
+  can be resolved by:
+  - making the class final.
+  - replacing with the more-explicit `static::class` or `self::class`.
+
+# Enabling Unstable Features
+
+Unstable features are **likely** to be completely rewritten, restricted to
+builtins, or removed entirely, and any issues will generally be considered very
+low priority.
+
+Experimental features can be enabled by:
+- adding `allow_unstable_features=true` to `/etc/hh.conf` or
+  `/usr/local/etc/hh.conf` (location may vary depending on your platform and
+  package source).
+- adding `hhvm.hack.lang.allow_unstable_features=true` to your HHVM
+  configuration
+- adding a file-level attribute at every usage, indicating which specific
+  experimental feature is being used.
+
+For example:
+
+```
+<<file:__EnableUnstableFeatures('union_intersection_type_hints')>>
+
+function use_unstable_feature((int | bool) $x): int {
+  if ($x is bool) {
+    return $x ? 1 : 0;
+  } else {
+    return $x as int;
+  }
+}
+```
+
+Experimental features should not be used in production code.
