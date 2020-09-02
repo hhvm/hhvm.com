@@ -1,0 +1,47 @@
+---
+title: "HHVM 4.73"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.73 is released! This release marks the end of support for 4.66;
+HHVM 4.67&ndash;4.72 remain supported, as do the 4.32 and 4.56 LTS releases.
+
+# Highlights
+
+- Support for using XHP classes (elements) with namespaces is now enabled by
+  default.
+  - See
+    [updated documentation](TODO)
+    for a detailed comparison.
+  - See
+    [setup instructions](TODO)
+    for how to enable this in previous HHVM versions or disable it in HHVM 4.73.
+  - These changes are incompatible with xhp-lib v3. Hack projects must upgrade
+    to [xhp-lib v4](TODO)
+    to use XHP with namespaces.
+  - Automated migration from xhp-lib v3 to v4 is available in
+    [HHAST 4.64.6](https://github.com/hhvm/hhast/releases) or newer.
+- Various improvements to the
+  [new hh_client error formatter](https://hhvm.com/blog/2020/08/18/hhvm-4.71.html#highlights).
+
+# Breaking Changes
+
+- The built-in functions `current()`, `key()`, `reset()` and `end()` were
+  removed. This continues the
+  [previously announced](http://hhvm.com/blog/2020/07/30/hhvm-4.68.html#future-changes)
+  removal of arrays' built-in "internal iterators".
+- Using the built-in function `\HH\global_keys()` now raises a typechecker
+  error. It had already been removed from the runtime, but was incorrectly still
+  accepted by the typechecker.
+- Declaring a non-static variable (property) in an `abstract final` class is now
+  a typechecker error. It had already been a runtime error.
+- The INI option `hhvm.dynamic_invoke_functions` has been removed. This option
+  allowed specifying a list of functions that could be used with `fb_intercept`
+  or `fb_rename_function` in repo-authoritative mode. It's no longer possible to
+  control this per-function, but it can still be controlled globally using
+  `hhvm.jit_enable_rename_function`.
+- The INI option `hhvm.use_repo_autoload_map` has been removed (preserving
+  default `true`). The built-in autoload map is now always used in
+  repo-authoritative mode.
