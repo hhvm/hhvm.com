@@ -14,20 +14,36 @@ HHVM 4.67&ndash;4.72 remain supported, as do the 4.32 and 4.56 LTS releases.
   default.
   - See
     [updated documentation](TODO)
-    for a detailed comparison.
+    for a detailed comparison. Most important breaking changes are also listed
+    below.
   - See
     [setup instructions](TODO)
     for how to enable this in previous HHVM versions or disable it in HHVM 4.73.
   - These changes are incompatible with xhp-lib v3. Hack projects must upgrade
     to [xhp-lib v4](TODO)
     to use XHP with namespaces.
-  - Automated migration from xhp-lib v3 to v4 is available in
+  - Automated migrations for all language changes and from xhp-lib v3 to v4 are
+    available in
     [HHAST 4.64.6](https://github.com/hhvm/hhast/releases) or newer.
 - Various improvements to the
   [new hh_client error formatter](https://hhvm.com/blog/2020/08/18/hhvm-4.71.html#highlights).
 
 # Breaking Changes
 
+- Related to XHP namespace support:
+  - Syntax changed from `class :foo` to `xhp class foo`.
+  - Name mangling is no longer used, `xhp class foo` now
+    declares a class named `foo`, not `xhp_foo`. This can cause new naming
+    conflicts, and can also cause issues anywhere the old mangled class names
+    are passed around as strings.
+  - `-` is no longer allowed inside XHP class names.
+  - `:` is now a namespace separator, `class foo:bar` declares a class
+    named `bar` in the `foo` sub-namespace of the current namespace
+    (`namespace\foo\bar`).
+  - The `category %foo, %bar` syntax is no longer supported.
+  - The `children (...)` syntax is not supported by xhp-lib v4, we recommend
+    disabling it in the typechecker by adding
+    `disable_xhp_children_declarations=true` to `.hhconfig`.
 - The built-in functions `current()`, `key()`, `reset()` and `end()` were
   removed. This continues the
   [previously announced](http://hhvm.com/blog/2020/07/30/hhvm-4.68.html#future-changes)
