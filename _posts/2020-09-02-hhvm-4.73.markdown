@@ -11,22 +11,22 @@ HHVM 4.67&ndash;4.72 remain supported, as do the 4.32 and 4.56 LTS releases.
 # Highlights
 
 - Support for using XHP classes (elements) with namespaces is now enabled by
-  default.
+  default. This comes with many related XHP changes.
   - See
-    [updated documentation](TODO)
-    for a detailed comparison. Most important breaking changes are also listed
-    below.
+    [separate blog post](https://hhvm.com/blog/2020/09/02/XHP-namespaces-and-syntax.html)
+    for a detailed list of changes. Most important breaking changes are also
+    listed below.
   - See
-    [setup instructions](TODO)
+    [setup instructions](https://docs.hhvm.com/hack/XHP/setup)
     for how to enable this in previous HHVM versions or disable it in HHVM 4.73.
   - These changes are incompatible with xhp-lib v3. Hack projects must upgrade
-    to [xhp-lib v4](TODO)
+    to [xhp-lib v4](https://github.com/hhvm/xhp-lib/releases)
     to use XHP with namespaces.
   - Automated migrations for all language changes and from xhp-lib v3 to v4 are
     available in
     [HHAST 4.64.6](https://github.com/hhvm/hhast/releases) or newer.
-- Various improvements to the
-  [new hh_client error formatter](https://hhvm.com/blog/2020/08/18/hhvm-4.71.html#highlights).
+- Various improvements to the new `hh_client`
+  [error formatter](https://hhvm.com/blog/2020/08/18/hhvm-4.71.html#highlights).
 
 # Breaking Changes
 
