@@ -1,0 +1,21 @@
+---
+title: "HHVM 4.74"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.74 is released! This release marks the end of support for 4.67;
+HHVM 4.68&ndash;4.73 remain supported, as do the 4.32 and 4.56 LTS releases.
+
+# Breaking Changes
+
+- Previous versions of the typechecker checked for overridden final methods in
+  two places; now this is consistently checked once in the typechecking phase,
+  which can result in changed error codes.
+- Single-quoted string shape keys that contain escape sequences (backslashes)
+  are now handled the same way as other single-quoted strings. Previous versions
+  would incorrectly include the backslash in the key.
+- The typechecker now verifies method `where` constraints are well-formed;
+  method generic constraints (e.g. `public function foo<T as Bar>()`) were
+  already verified in this way.
