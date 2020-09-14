@@ -1,0 +1,71 @@
+---
+title: "HHVM 4.75"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.75 is released! This release marks the end of support for 4.68;
+HHVM 4.69&ndash;4.74 remain supported, as do the 4.32 and 4.56 LTS releases.
+
+# Highlights
+
+- Continued improvements to the recently added
+  [highlighted error formatter](https://hhvm.com/blog/2020/08/18/hhvm-4.71.html).
+- The environment variable `FORCE_ERROR_COLOR` can be used to force `hh_client`
+  to output color escape sequences even if the output is not a terminal, e.g. to
+  save the output into a file that can be printed to a compatible terminal
+  later.
+
+# Breaking Changes
+
+- `is_array()` is now equivalent to `HH\is_any_array()` (previously equivalent
+  to `HH\is_php_array()`). We expect this to be the last step before
+  `is_array()` is removed completely (it had already been removed
+  from the typechecker since HHVM 4.71, but for now is still available at
+  runtime), so please migrate to `HH\is_any_array()` (preserving the new
+  behavior), `HH\is_php_array()` (preserving the old behavior), or another of
+  the alternatives listed in
+  [HHVM 4.71](https://hhvm.com/blog/2020/08/18/hhvm-4.71.html)
+  release notes.
+- The built-in functions `call_user_func()` and `call_user_func_array()` were
+  deprecated. Using them raises a typechecker error, but for now still works at
+  runtime (we expect runtime support to also be removed soon).
+  - Use `$callable()` instead, where `$callable` is an
+    [anonymous function](https://docs.hhvm.com/hack/functions/anonymous-functions), or the return value from
+    [`fun()`](https://docs.hhvm.com/hack/reference/function/HH.fun/),
+    [`class_meth()`](https://docs.hhvm.com/hack/reference/function/HH.class_meth/),
+    [`inst_meth()`](https://docs.hhvm.com/hack/reference/function/HH.inst_meth/) or
+    [`meth_caller()`](https://docs.hhvm.com/hack/reference/function/HH.meth_caller/).
+    All of these are understood by the typechecker, so the change may reveal
+    previously hidden errors.
+  - Using a `string` as `$callable` raises a typechecker error, but for now
+    still works at runtime. However, we expect it to stop working soon, as the
+    native "function pointer" types returned by the functions above will become
+    the only valid representations of functions and methods.
+- The INI option `hhvm.emit_func_pointers` has been removed, `fun()` now always
+  returns a native "function pointer" type instead of a `string`.
+  - `hhvm.emit_cls_meth_pointers` and other related flags are also expected to
+    be removed soon.
+- The type of exception thrown when using a `string` key (instead of `int`) to
+  index into a `varray` changed from `OutOfBoundsException` to
+  `InvalidArgumentException`.
+  - In previous HHVM versions, the `hhvm.hack_arr_compat_notices` INI option can
+    be used to raise a notice (in addition to the `OutOfBoundsException`) in
+    these cases.
+- Changed behavior of the `>` and `>=` operators on `varray`s to be consistent
+  with `vec`s. This only affects rare cases such as comparing arrays of objects
+  or `NAN` values.
+  - Both before and after this change, comparing any array types using these
+    operators raises a typechecker error and often has surprising and
+    inconsistent results at runtime, so it should be avoided.
+
+# Future Changes
+
+- `is_array()` will be removed completely.
+- Support for using `string`s or tuples to represent functions and methods will
+  be removed in a future release. They are being replaced by a native "function
+  pointer" type.
+  - Using `fun()` or another option listed above guarantees that the return
+    value will be compatible with the specific HHVM version being used, no
+    matter which type it uses to represent functions.
