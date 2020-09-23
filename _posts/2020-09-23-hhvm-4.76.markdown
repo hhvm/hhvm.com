@@ -24,6 +24,13 @@ as do the 4.32 and 4.56 LTS releases.
 
 # Breaking Changes
 
+- `$GLOBALS` was removed. Global variables can still be accessed using the
+  following functions:
+  - [HH\global_get](https://docs.hhvm.com/hack/reference/function/HH.global_get/)
+  - [HH\global_isset](https://docs.hhvm.com/hack/reference/function/HH.global_isset/)
+  - [HH\global_key_exists](https://docs.hhvm.com/hack/reference/function/HH.global_key_exists/)
+  - [HH\global_set](https://docs.hhvm.com/hack/reference/function/HH.global_set/)
+  - [HH\global_unset](https://docs.hhvm.com/hack/reference/function/HH.global_unset/)
 - The typechecker now reports an error if a trait with any final methods is
   included multiple times in the same class (this can happen e.g. if the trait
   is used from a class as well as its parent class). Previously, this caused a
