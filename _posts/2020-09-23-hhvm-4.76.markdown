@@ -1,0 +1,50 @@
+---
+title: "HHVM 4.76"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.76 is released! This release marks the end of support for 4.69;
+HHVM 4.71&ndash;4.75 remain supported
+(4.70 was [skipped](https://hhvm.com/blog/2020/08/13/skipping-hhvm-4.70.html)),
+as do the 4.32 and 4.56 LTS releases.
+
+# Highlights
+
+- The typechecker now allows method calls on generic types with multiple
+  upper bounds, as long as the method call is valid for all of them
+  ([example](https://github.com/facebook/hhvm/blob/HHVM-4.76/hphp/hack/test/typecheck/constraints/multi_as_invoke_ambiguous_2.php)).
+  Previously, it was an error if the method declarations weren't identical on
+  all of the upper bound types.
+- The typechecker now more accurately tracks the types of all local variables
+  when dealing with nested `try`/`catch`/`finally` blocks
+  ([examples](https://github.com/facebook/hhvm/blob/HHVM-4.76/hphp/hack/test/typecheck/finally_typing.php#L51)). This allows some programs to typecheck
+  that previously would have failed.
+
+# Breaking Changes
+
+- `$GLOBALS` was removed. Global variables can still be accessed using the
+  following functions:
+  - [HH\global_get](https://docs.hhvm.com/hack/reference/function/HH.global_get/)
+  - [HH\global_isset](https://docs.hhvm.com/hack/reference/function/HH.global_isset/)
+  - [HH\global_key_exists](https://docs.hhvm.com/hack/reference/function/HH.global_key_exists/)
+  - [HH\global_set](https://docs.hhvm.com/hack/reference/function/HH.global_set/)
+  - [HH\global_unset](https://docs.hhvm.com/hack/reference/function/HH.global_unset/)
+- The typechecker now reports an error if a trait with any final methods is
+  included multiple times in the same class (this can happen e.g. if the trait
+  is used from a class as well as its parent class). Previously, this caused a
+  runtime error but wasn't caught by the typechecker.
+- Fixed some loopholes that allowed assigning a value to a variable named
+  `$this`. In almost all cases, it had already been banned by both the
+  typechecker and the runtime, but there were some remaining edge cases:
+  - `catch (Exception $this)`
+  - calling a function with `inout $this` as an argument
+  - `unset($this)`
+- `?enum {...}` is no longer a valid XHP attribute type. Use `enum {...}`
+  instead, which is equivalent (XHP attributes are nullable unless declared as
+  `@required`).
+- Using `$$` (special variable inside a
+  [pipe expression](https://docs.hhvm.com/hack/expressions-and-operators/pipe))
+  as an `inout` argument now raises a fatal error at runtime. It had already
+  been a typechecker error.
