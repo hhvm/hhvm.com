@@ -1,0 +1,30 @@
+---
+title: "HHVM 4.77"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.77 is released! This release marks the end of support for 4.71;
+HHVM 4.72&ndash;4.76 remain supported, as do the 4.32 and 4.56 LTS releases.
+
+# Highlights
+
+- Removed redundant typechecker error 4164 ("Properties cannot be declared
+  final"). The same issue is already reported as a parsing error (1002).
+- Improved IDE support: The "rename" operation now also supports type aliases.
+
+# Breaking Changes
+
+- The Xbox extension no longer supports inter-process communication (local or
+  remote). It can still be used for in-process parallelism (`xbox_task_*`
+  functions). Removed built-in functions:
+  - `xbox_send_message`
+  - `xbox_post_message`
+  - `xbox_get_thread_timeout`
+  - `xbox_set_thread_timeout`
+  - `xbox_schedule_thread_reset`
+  - `xbox_get_thread_time`
+- A constant can no longer be used as a `shape` key if its type is an opaque
+  type alias (a `newtype` not from the same file). This makes it more consistent
+  with how opaque type aliases can be used in other contexts.
