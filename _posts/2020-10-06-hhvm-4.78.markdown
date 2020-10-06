@@ -1,0 +1,35 @@
+---
+title: "HHVM 4.78"
+layout: post
+author: fred 
+category: blog
+---
+
+HHVM 4.78 is released! This release marks the end of support for 4.72;
+HHVM 4.73&ndash;4.77 remain supported, as do the 4.32 and 4.56 LTS releases.
+
+# Highlights
+
+- The `(class|function|interface|trait)_exists` functions are now more optimized
+  in repo-authoritative mode. This takes advantage of the fact that all HHBBC
+  definitions are now unique and persistent.
+- Improved the typechecker error for invalid `(string)` casts.
+- `var_dump()` now distinguishes between `varray`s and `darray`s by default,
+  instead of reporting both as `array`.
+
+# Breaking Changes
+
+- `is shape(...)` requires a `darray`, and `is tuple(...)` requires a `varray`;
+  `is` checks with reified generics are now consistent with this when the
+  generic is a shape or tuple. Previously, reified generics were more
+  permissive.
+- `require()` and related functions no longer support URIs,
+  e.g. `file://foo.hack`.
+- All special-casing for `array` has been removed from the parser. It is 
+
+# Future Changes
+
+- calling `array_fill_keys()` will require that `$keys` is a
+  `Container<Tk as arraykey>`; this will allow specifying a
+  `darray<Tk, Tv>` return type. Currently, it will return `null` if `$keys`
+  is not a `Container`.
