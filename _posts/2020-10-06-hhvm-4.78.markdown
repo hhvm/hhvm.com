@@ -25,7 +25,8 @@ HHVM 4.73&ndash;4.77 remain supported, as do the 4.32 and 4.56 LTS releases.
   permissive.
 - `require()` and related functions no longer support URIs,
   e.g. `file://foo.hack`.
-- All special-casing for `array` has been removed from the parser. It is 
+- All special-casing for `array` has been removed from the parser. It is now
+  parsed as a `name` token, like user-defined types.
 
 # Future Changes
 
