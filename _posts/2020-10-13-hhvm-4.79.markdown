@@ -45,8 +45,5 @@ HHVM 4.74&ndash;4.78 remain supported, as do the 4.32 and 4.56 LTS releases.
 
 - The built-in functions `fun` and `class_meth` will be removed in a future HHVM
   release, in favor of the new function reference syntax.
-- We expect method names to become case sensitive in the future (currently a
+- We expect method names to become case sensitive soon (currently a
   typechecker error but only a notice at runtime, see above).
-- Class names and function names with invalid case should also start raising
-  notices soon, and become case sensitive later (both already raise typechecker
-  errors).
