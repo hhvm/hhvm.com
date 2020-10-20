@@ -1,0 +1,50 @@
+---
+title: "HHVM 4.80"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.80 is released! This release has long term support, so:
+
+- this release will be supported for approximately 48 weeks
+- the next LTS will be released in approximately 24 weeks
+- HHVM 4.56 (LTS) and HHVM 4.75&ndash;4.79 remain supported.
+- support has ended for HHVM 4.32 (LTS)
+
+# Highlights
+
+- The bytecode cache can now store SystemLib units; this can lead to a better
+  experience if HHVM is executed multiple times.
+- Clearer error messages for unresolved subtypes of `mixed`; prior versions can
+  refer to the `null` or `nonnull` subtypes of `mixed`, which are more specific,
+  but can be confusing.
+- Clearer error messages for variance mismatches: errors now say a type argument
+  "only allows supertypes (it is contravariant") or "must match exactly (it is
+  invariant)".
+- Fixed a caching bug when a source file appears to be modified, but the content
+  (or bytecode) is unchanged, for example, by using `touch`; in prior versions,
+  this leads to immediately exiting earlier, however the metadata should be
+  updated to reflect the new modification time.
+
+# Breaking Changes
+
+- A typechecker error is now raised if the `__LSB` or `__MemoizeLSB` attributes
+  are used in a final class. If this is raised, fix by removing the `__LSB`
+  attribute, and replacing `__MemoizeLSB` with `__Memoize`.
+- Switch statements now throw if no case or default matches.
+- `for` loop conditions no longer permit comma-separated expressions. In prior
+  versions, the behavior could be surprising - for example, in
+  `for(;foo(), bar();) {}`, the return value of `foo()` is ignored. Commas are
+  still permitted in other positions other positions, e.g.
+  `for ($i = 0, $j = 0; some_func($i, $j); ++$i, $++j)`.
+
+# Future Changes
+
+- The following runtime type warnings will be changed to raise errors in a
+  future release. Initially, this will be done by changing the INI setting from
+  `1` (warn) to `2` (error), and we then expect to remove the options entirely.
+  Attempting to recover from these errors may lead to additional irrecoverable
+  errors.
+  - Upper bounds of generics: `hhvm.enforce_generics_ub`
+  - Property type hints: `hhvm.check_prop_type_hints`
