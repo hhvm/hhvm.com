@@ -1,0 +1,32 @@
+---
+title: "HHVM 4.81"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.81 is released! This release marks the end of support for 4.75;
+HHVM 4.76&ndash;4.80 remain supported, as does the 4.56 LTS release.
+
+# Highlights
+
+- A new built-in type `AnyArray` was added, representing the parent type of all
+  containers that are *values* (`vec`, `dict`, `keyset`, `varray`, `darray`;
+  does not include containers with *reference* semantics like `Vector`). It is
+  a subtype of `KeyedContainer`.
+
+# Breaking Changes
+
+- The INI option `hhvm.hack_arr_dv_arr_var_dump` was removed. `var_dump` will
+  now always output `varray` or `darray` instead of `array`.
+
+# Future Changes
+
+- Similarly to `var_dump`, `var_export` will also start distinguishing between
+  `varray` and `darray`.
+  - Use the INI option `hhvm.hack_arr_dv_arr_var_export=1` to enable this
+    behavior now.
+- Support for `#` comments will be removed in a future release.
+  Use `//` or `/*` instead.
+  - [Shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) at the beginning of
+    a Hack file will stay supported.
