@@ -1,0 +1,26 @@
+---
+title: "HHVM 4.82"
+layout: post
+author: fred 
+category: blog
+---
+
+HHVM 4.82 is released! This release marks the end of support for 4.76;
+HHVM 4.77&ndash;4.81 remain supported, as does the 4.56 LTS release.
+
+# Highlights
+
+- `AsyncMysqlQueryResults` has the new method
+  `dictRowsTyped(): vec<dict<string, arraykey>>`.
+- Improved several typechecker error messages for incompatible method overrides,
+  e.g. when an override has more mandatory arguments.
+
+# Breaking Changes
+
+- `array_fill_keys()` will now throw an `InvalidArgumentException` if the first
+  argument is not a `Container`; in previous versions,
+  HHVM would return `false`. With this change, `array_fill_keys()` now only
+  returns `darray`s.
+- improved correctness when type constants are accessed via inferred union or
+  intersection types. This can both lead to fewer incorrect type checker errors,
+  but also additional correct type checker errors.
