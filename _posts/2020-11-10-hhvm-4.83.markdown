@@ -1,0 +1,35 @@
+---
+title: "HHVM 4.83"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.83 is released! This release marks the end of support for 4.77;
+HHVM 4.78&ndash;4.82 remain supported, as does the 4.56 LTS release.
+
+# Breaking Changes
+
+- Attributes used on lambda functions must now be
+  [defined](https://docs.hhvm.com/hack/attributes/introduction#defining-an-attribute), similarly to attributes used in any other position. To allow an attribute to
+  be used on lambda functions, its definition must implement the interface
+  `\HH\LambdaAttribute`.
+- The option `hhvm.hack.lang.enable_first_class_function_pointers` was removed.
+  The new
+  [function reference](https://docs.hhvm.com/hack/functions/function-references)
+  syntax is now always enabled.
+- The option `hhvm.emit_cls_meth_pointers` is now enabled by default. It causes
+  the built-in function `class_meth()` to return values in the same format as
+  the new *function reference* syntax, which should make migrating easier.
+  - For easier migration, the additional option
+    `hhvm.is_compatible_cls_meth_type = 1` can be used to
+    allow both formats to be considered valid.
+
+# Future Changes
+
+- The built-in functions `fun()` and `class_meth()` will be removed in a future
+  release. Use the new
+  [function reference](https://docs.hhvm.com/hack/functions/function-references)
+  syntax instead.
+  - The option `hhvm.hack.lang.disallow_fun_and_cls_meth_pseudo_funcs = 1` can
+    be used to disable these functions in the current HHVM release.
