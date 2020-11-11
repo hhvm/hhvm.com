@@ -31,5 +31,6 @@ HHVM 4.78&ndash;4.82 remain supported, as does the 4.56 LTS release.
   release. Use the new
   [function reference](https://docs.hhvm.com/hack/functions/function-references)
   syntax instead.
-  - The option `hhvm.hack.lang.disallow_fun_and_cls_meth_pseudo_funcs = 1` can
+  - The INI option `hhvm.hack.lang.disallow_fun_and_cls_meth_pseudo_funcs = 1`
+    and `.hhconfig` option `disallow_fun_and_cls_meth_pseudo_funcs = true` can
     be used to disable these functions in the current HHVM release.
