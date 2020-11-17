@@ -1,0 +1,25 @@
+---
+title: "HHVM 4.84"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.84 is released! This release marks the end of support for 4.78;
+HHVM 4.79&ndash;4.82 remain supported, as does the 4.56 LTS release. This
+primarily contains internal improvements for performance, maintainability, and
+preparation for future work.
+
+**We will not be releasing 4.85 next week** due to US holidays; we
+expect the next release to be 4.86, during the week of 2020-11-30.
+
+# Highlights
+
+- Fixed propagation of reified generics in `class B<T> extends A<T>` when `A`'s
+  `T` parameter is reified, but `B`'s is not.
+
+# Future Changes
+
+- Indexing into a string with an index that is not an `arraykey` will throw an
+  `InvalidArgumentException`; currently, it emits a
+  `String offset cast occurred` notice.
