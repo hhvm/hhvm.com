@@ -1,0 +1,41 @@
+---
+title: "HHVM 4.86"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.86 is released! This release marks the end of support for 4.79;
+HHVM 4.80&ndash;4.84 remain supported (4.85 was skipped),
+as does the 4.56 LTS release.
+
+# Breaking Changes
+
+- The built-in function `\preg_last_error` may now return a new value,
+  `\PREG_BAD_REGEX_ERROR`. Various `\preg_...` functions use this error code
+  when called with an invalid regular expression (previously, they would return
+  `false` without setting an error code).
+- If an `async` function is declared with a non-`Awaitable` return type, the
+  typechecker now raises an error at the position of the return type
+  (previously, it would raise an error at the position of the function name).
+  This doesn't introduce any new errors but may require some `HH_FIXME`s to be
+  moved.
+
+# Future Changes
+
+- Calling a function or method "dynamically" (e.g. calling a function/method
+  whose name is stored in a variable) will become more restricted in the future.
+  - The function/method must have the `<<__DynamicallyCallable>>` attribute.
+  - The reference to the function/method to be called must be created using
+    `\HH\dynamic_fun($function_name)` or
+    `\HH\dynamic_class_meth($class_name, $method_name)` (a way to dynamically
+    call non-static methods is in the works).
+  - To enable the future behavior now, set the INI options
+    `hhvm.forbid_dynamic_calls_to_func`,
+    `hhvm.forbid_dynamic_calls_to_cls_meth` and/or
+    `hhvm.forbid_dynamic_calls_to_inst_meth` to:
+    - `0` -- Do nothing
+    - `1` -- Warn if target is not annotated
+    - `2` -- Throw exception if target is not annotated; warn if dynamic
+      callsite is using a raw string or array
+    - `3` -- Throw exception
