@@ -39,11 +39,3 @@ HHVM 4.81&ndash;4.86 remain supported, as do the 4.56 and 4.80 LTS releases.
   - There are a few behaviors, like "casting to array" and serialization, where
     the runtime treats these classes specially; those won't be supported going
     forward.
-- As announced
-  [last week](https://hhvm.com/blog/2020/11/30/hhvm-4.86.html#future-changes),
-  dynamic function/method calls will become more restricted in the future. This
-  release adds a new built-in function and INI option for instance (non-static)
-  methods.
-  - `\HH\dynamic_meth_caller($class_name, $method_name)`
-  - `hhvm.forbid_dynamic_calls_to_meth_caller` with the same set of values
-    described in the linked announcement
