@@ -30,6 +30,15 @@ HHVM 4.81&ndash;4.86 remain supported, as do the 4.56 and 4.80 LTS releases.
 
 # Future Changes
 
+- `ArrayIterator` and all the collections' iterators (`VectorIterator`,
+  `MapIterator`, etc.) are deprecated. Most use cases can be replaced by
+  `foreach` loops, which HHVM can also optimize in the JIT. For the remaining
+  cases, the
+  [current implementation](https://github.com/facebook/hhvm/blob/HHVM-4.87.0/hphp/system/php/spl/iterators/ArrayIterator.php)
+  can be replicated in pure Hack code.
+  - There are a few behaviors, like "casting to array" and serialization, where
+    the runtime treats these classes specially; those won't be supported going
+    forward.
 - As announced
   [last week](https://hhvm.com/blog/2020/11/30/hhvm-4.86.html#future-changes),
   dynamic function/method calls will become more restricted in the future. This
@@ -38,4 +47,3 @@ HHVM 4.81&ndash;4.86 remain supported, as do the 4.56 and 4.80 LTS releases.
   - `\HH\dynamic_meth_caller($class_name, $method_name)`
   - `hhvm.forbid_dynamic_calls_to_meth_caller` with the same set of values
     described in the linked announcement
-
