@@ -1,0 +1,25 @@
+---
+title: "HHVM 4.88"
+layout: post
+author:fred 
+category: blog
+---
+
+HHVM 4.88 is released!
+HHVM 4.82&ndash;4.87 remain supported, as do the 4.56 and 4.80 LTS releases.
+
+We intend to skip 4.89 and 4.90 due to the holiday season; support for 4.82 and
+4.83 will be extended until the release of 4.91 and 4.92 respectively.
+
+# Highlights
+
+- Error messages for parse errors now include file name and line number again.
+
+# Breaking Changes
+
+- Unrecoverable fatals such as parse errors no longer throw, so are no longer
+  catchable. If you are using `try`/`catch` around `require()` (e.g. to attempt
+  to find an autoloader), `HH\could_include()` is a useful replacement.
+- We are no longer building for Ubuntu 19.10 'Eoan Ermine', as we are no longer
+  able to fetch the dependencies from upstream repositories. Ubuntu 19.10
+  reached end of life on the 17th of July, 2020.
