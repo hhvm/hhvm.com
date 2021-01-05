@@ -1,0 +1,53 @@
+---
+title: "HHVM 4.91"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.91 is released! This release marks the end of support for 4.82;
+HHVM 4.83&ndash;4.88 remain supported, as do the 4.56 and 4.80 LTS releases.
+
+(Note: HHVM 4.85, 4.89 and 4.90 were skipped.)
+
+# Highlights
+
+- Improved typechecker handling of generic type parameters with multiple bounds.
+  Some programs that were previously rejected despite being correct, now pass
+  ([example](https://github.com/facebook/hhvm/commit/0a6eafc12b93686565319acb5e1fef3d0ecc3afe#diff-f011324c4e48b5af8a493dbd35ea445abe8bb5203f2624102779e52682b08781)).
+- Improved error message when `getNames()` is called on an enum with duplicate
+  values.
+- `hackfmt` now ignores non-Hack files instead of printing unhelpful error
+  messages.
+- `curl_setopt()` now allows passing in keys and certificates as strings if HHVM
+  is built with libcurl >= 7.71.0. New options:
+  - [CURLOPT_SSLCERT_BLOB](https://curl.se/libcurl/c/CURLOPT_SSLCERT_BLOB.html)
+  - [CURLOPT_SSLKEY_BLOB](https://curl.se/libcurl/c/CURLOPT_SSLKEY_BLOB.html)
+  - [CURLOPT_PROXY_SSLCERT_BLOB](https://curl.se/libcurl/c/CURLOPT_PROXY_SSLCERT_BLOB.html)
+  - [CURLOPT_PROXY_SSLKEY_BLOB](https://curl.se/libcurl/c/CURLOPT_PROXY_SSLKEY_BLOB.html)
+  - [CURLOPT_ISSUERCERT_BLOB](https://curl.se/libcurl/c/CURLOPT_ISSUERCERT_BLOB.html)
+  - [CURLOPT_PROXY_ISSUERCERT_BLOB](https://curl.se/libcurl/c/CURLOPT_PROXY_ISSUERCERT_BLOB.html)
+- Optimized various `ReflectionClass` methods.
+- Fixed a bug where `number_format` and `json_decode` could allocate large
+  amounts of memory before checking the configured request memory limit.
+- Fixed a bug where casting a `string` to `int` would behave inconsistently for
+  strings containing the minimum `int` value with trailing whitespace
+  (`"-9223372036854775808 "`).
+- For developers working on Hack: The
+  [AST definition](https://github.com/facebook/hhvm/blob/HHVM-4.91.0/hphp/hack/src/annotated_ast/aast.ml)
+  now contains a description and example for every type of AST node.
+
+# Breaking Changes
+
+- The INI option `hhvm.forbid_division_by_zero` was removed. Division by zero
+  now always raises an exception (this had already been the default behavior).
+- The INI option `hhvm.error_handling.no_infinite_recursion_detection` was
+  removed. Comparing objects with cyclical references now always raises an
+  error (this had already been the default behavior).
+
+# Future Changes
+
+- We are planning to make implicit coercions between different types more
+  restrictive.
+  A [detailed proposal](https://github.com/facebook/hhvm/discussions/8792)
+  is available for discussion.
