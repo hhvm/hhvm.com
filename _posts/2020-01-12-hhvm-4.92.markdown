@@ -1,0 +1,34 @@
+---
+title: "HHVM 4.92"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.92 is released! This release marks the end of support for 4.83;
+HHVM 4.84&ndash;4.91 remain supported, as do the 4.56 and 4.80 LTS releases.
+
+(Note: HHVM 4.85, 4.89 and 4.90 were skipped.)
+
+# Highlights
+
+- If a class A is a supertype of class/interface B via `require extends`, it
+  is now able to call its' own private methods on instances of B.
+- Corrected error line number for reified generic errors.
+- Replaced sometimes-confusing "expected dynamic, got nonnull" with clearer
+  "expected dynamic, got mixed".
+
+# Breaking Changes
+
+- The `APCIterator` class has been removed from the runtime, as it has generally
+  not been kept up to date or correct, and was not exposed to the typechecker.
+- `apc_cache_info()` now correctly returns an `uncounted_entries` key instead of
+  `uncounted_entires`.
+- Calling methods on `dynamic` values requires that all values are coercable to
+  `dynamic`, and the return type will be `dynamic`.
+- it is now a syntax error to declare a function as `async` without an
+  `Awaitable` return type; previously this was separately checked by the type
+  checker and the bytecode emitter, and the typechecker did not detect invalid
+  async lambdas.
+
+# Future Changes
