@@ -34,5 +34,3 @@ HHVM 4.84&ndash;4.91 remain supported, as do the 4.56 and 4.80 LTS releases.
   `Awaitable` return type; previously this was separately checked by the type
   checker and the bytecode emitter, and the typechecker did not detect invalid
   async lambdas.
-
-# Future Changes
