@@ -14,12 +14,16 @@ HHVM 4.84&ndash;4.91 remain supported, as do the 4.56 and 4.80 LTS releases.
 
 - If a class A is a supertype of class/interface B via `require extends`, it
   is now able to call its' own private methods on instances of B.
-- Corrected error line number for reified generic errors.
 - Replaced sometimes-confusing "expected dynamic, got nonnull" with clearer
-  "expected dynamic, got mixed".
+  "expected dynamic, got mixed". While `nonnull` was technically accurate (as
+  `mixed` is `?nonnull`), some users misinterpreted the error as meaning that
+  `null` was expected, or still consider `mixed` values to be `mixed` after a
+  null check.
 
 # Breaking Changes
 
+- Corrected error line number for reified generic errors; FIXME comments may
+  need to be moved.
 - The `APCIterator` class has been removed from the runtime, as it has generally
   not been kept up to date or correct, and was not exposed to the typechecker.
 - `apc_cache_info()` now correctly returns an `uncounted_entries` key instead of
