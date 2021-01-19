@@ -1,0 +1,28 @@
+---
+title: "HHVM 4.93"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.93 is released! This release marks the end of support for 4.84;
+HHVM 4.86&ndash;4.92 remain supported, as do the 4.56 and 4.80 LTS releases.
+
+(Note: HHVM 4.85, 4.89 and 4.90 were skipped.)
+
+# Highlights
+
+- New feature:
+  [Contexts and Capabilities](https://docs.hhvm.com/hack/contexts-and-capabilities)
+  - The `hhconfig` flags `enable_coeffects_syntax`, `call_coeffects`, `local_coeffects`, and the INI option `hhvm.hack.lang.enable_coeffects` can be
+  used to enabled this feature in recent HHVM versions, or to disable this
+  feature in HHVM 4.93.
+- Improved typechecker handling of subtyping with generic type parameters.
+  Some programs that were previously rejected despite being correct, now pass
+  ([example](https://github.com/facebook/hhvm/commit/6542f53f2c7b4b0e032c10cf3ec74209e869304e#diff-b86d69809399e569ab38b89eb45516f029a9ffd0139ee895c0f742a90f462731)).
+
+# Breaking Changes
+
+- Accessing an undefined property on an object now throws an
+  `UndefinedPropertyException` at runtime (previously only a notice). It had
+  already been a typechecker error.
