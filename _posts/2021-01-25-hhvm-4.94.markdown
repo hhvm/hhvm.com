@@ -1,0 +1,36 @@
+---
+title: "HHVM 4.94.0, 4.88.1, 4.91.1, 4.92.1, and 4.93.1"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.94 is released! This release marks the end of support for 4.86;
+HHVM 4.87&ndash;4.93 remain supported, as do the 4.56 and 4.80 LTS releases.
+
+Additionally, 4.88.1, 4.91.1, 4.92.1, and 4.93.1 have been released, fixing a
+segmentation fault on machines with less than 8GB of RAM.
+
+(Note: HHVM 4.89 and 4.90 were skipped.)
+
+# Highlights
+
+- Fixed a regression where HHVM would segfault on startup on systems with less
+  than 8GB of RAM; this included most TravisCI and CircleCI configurations.
+- Fixed line numbers for some runtime errors being incorrectly reported as -1.
+- Fixed `debug_zval_dump()` incorrectly reporting a refcount of `1` for
+  uncounted or static values; these are now explicitly marked as `uncounted` or
+  `static`.
+- The error message for attempting to use first class function pointer syntax
+  with instance methods (as opposed to static methods) now suggests
+  `meth_caller()`.
+- first class function pointers are now supported by debugging functions such as
+  `print_r`, `var_dump`, and `=` in hphpd.
+
+# Breaking Changes
+
+- Fixed a bug that led to a typechecker error not being consistently raised when
+  function has a parameter with a default argument followed by another
+  parameter without a default argument.
+- The runtime will now throw undefined variable exceptions instead of raising a
+  notice.
