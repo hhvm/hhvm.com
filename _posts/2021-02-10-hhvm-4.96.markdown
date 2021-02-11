@@ -1,0 +1,43 @@
+---
+title: "HHVM 4.96"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.96 is released! This release marks the end of support for 4.88;
+HHVM 4.91&ndash;4.95 remain supported, as do the 4.56 and 4.80 LTS releases.
+
+(Note: HHVM 4.89 and 4.90 were skipped.)
+
+# Highlights
+
+- Improved automatic inference of lambda parameter types when dealing with
+  `mixed` or `dynamic`
+  ([examples](https://github.com/facebook/hhvm/commit/bfd338ff5eb2cba717a0275f00d37165138f309f#diff-149062dfd8e020b8af9359a3a3cca1f8c8e82e7e9582cc3dc49c1f7bc41e486d)).
+
+# Breaking Changes
+
+- The built-in functions `assert` and `assert_options` were removed. Using them
+  had already been a typechecker error, but previously wouldn't fail at runtime.
+- Using an arithmetic operator (`+`, `*`, etc.) on an array now throws an
+  `InvalidOperationException` (which can be caught) instead of a fatal error.
+- Fixed a bug that would allow a
+  [context constant](https://docs.hhvm.com/hack/contexts-and-capabilities/context-constants)
+  with the same name to be declared twice. This may reveal new type errors.
+- The INI option `hhvm.forbid_dynamic_calls_to_meth_caller` was renamed to
+  `hhvm.dynamic_meth_caller_level`.
+  - Its behavior is unchanged, it will raise a warning (if set to `1`) or
+    throw (`2`) when `dynamic_meth_caller` is called on a static method or a
+    method not marked as `<<__DynamicallyCallable>>`.
+
+# Future Changes
+
+- Using `meth_caller` with arguments that are not string/`::class` literals will
+  become a fatal error at runtime (it is already a typechecker error).
+  - The future behavior can be enabled now using the INI option
+    `hhvm.hack.lang.disallow_dynamic_meth_caller_args`.
+  - `dynamic_meth_caller` can be used with non-literal arguments, but it can
+    only invoke methods annotated with `<<__DynamicallyCallable>>` (currently
+    might not be enforced based on the value of
+    `hhvm.dynamic_meth_caller_level`, as described above).
