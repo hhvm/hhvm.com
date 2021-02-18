@@ -1,0 +1,59 @@
+---
+title: "HHVM 4.97"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.97 is released! This release marks the end of support for 4.91;
+HHVM 4.92&ndash;4.96 remain supported, as do the 4.56 and 4.80 LTS releases.
+
+# Highlights
+
+- Traits can now have constants.
+- [Contexts](https://docs.hhvm.com/hack/contexts-and-capabilities/available-contexts-and-capabilities#contexts)
+  of a function/method can now be accessed via reflection
+  (`ReflectionFunction::getCoeffects` and `ReflectionMethod::getCoeffects`).
+- Improved `hackfmt` formatting of function calls that have `is`/`as`
+  expressions as arguments.
+
+# Breaking Changes
+
+- `<<__Rx>>` and related built-in attributes (`__RxShallow`, `__RxLocal`) were
+  removed. Use
+  [contexts and capabilities](https://docs.hhvm.com/hack/contexts-and-capabilities)
+  instead.
+- Enums are no longer considered final
+  ([`ReflectionClass::isFinal`](https://docs.hhvm.com/hack/reference/class/ReflectionClass/isFinal/)
+  will return `false` if the `ReflectionClass` represents an enum). This is due
+  to upcoming features,
+  [enum classes](https://docs.hhvm.com/hack/built-in-types/enum-class) and
+  [enum inclusion](https://docs.hhvm.com/hack/built-in-types/enumerated-types#enumerated-types-inclusion).
+  - The built-in attribute
+    [`<<__Sealed>>`](https://docs.hhvm.com/hack/attributes/predefined-attributes#__sealed)
+    can be used to add restrictions to specific enums.
+- It is now a typechecker error to use
+  [`meth_caller`](https://docs.hhvm.com/hack/reference/function/HH.meth_caller/)
+  with a method that has any
+  [`inout` parameters](https://docs.hhvm.com/hack/functions/inout-parameters).
+  It had already been a runtime error, but previously wouldn't be caught by the
+  typechecker.
+- The typechecker now checks XHP constructor calls (bad calls would previously
+  result in a runtime error, but wouldn't be caught by the typechecker). This
+  may reveal new errors, but it should be rare, since XHP class declarations
+  rarely override the built-in default constructor, and are usually instantiated
+  using the standard XHP syntax instead of explicit constructor calls.
+
+# Future Changes
+
+- We expect string concatenation (`'hello '.$name`) and interpolation
+  (`"hello $name"`) to become restricted to `string` and `int` values in the
+  future. These two types were chosen because they're the only types with an
+  unambiguous `string` representation (compared to e.g. a `bool` value which
+  could be represented as "0", "false", or currently ""; similarly for `null`;
+  and `float` values can have arbitrary precision as well as special cases like
+  `NaN`).
+  - The `.hhconfig` option `enable_strict_string_concat_interp=true` can be used
+    to enable the future behavior now.
+  - For more details, see related
+    [discussion](https://github.com/facebook/hhvm/discussions/8792).
