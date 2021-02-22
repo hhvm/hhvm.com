@@ -1,0 +1,44 @@
+---
+title: "HHVM 4.98"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.98 is released! This release marks the end of support for 4.92;
+HHVM 4.93&ndash;4.97 remain supported, as do the 4.56 and 4.80 LTS releases.
+
+# Highlights
+
+- Minor improvements to various typechecker error messages.
+
+# Breaking Changes
+
+- The typechecker now correctly reports errors when a class inherits multiple
+  conflicting definitions of the same non-abstract constant from its parent
+  class/interfaces/traits. These had already been runtime errors, but previously
+  wouldn't be caught by the typechecker.
+- Classes that implement
+  [`dynamic`](https://docs.hhvm.com/hack/built-in-types/dynamic)
+  now have stricter requirements for their properties
+  ([examples](https://github.com/facebook/hhvm/commit/4b14f6e8a817acc4a03a6917525afca10957f9de#diff-d2883cc8990002e89fc8a04f1db18691a507699dd1b849ef4f8d535b79322bd1)).
+
+# Future Changes
+
+- We expect the built-in function `inst_meth` to be removed in a future release
+  ([anonymous functions](https://docs.hhvm.com/hack/functions/anonymous-functions)
+  or [`meth_caller`](https://docs.hhvm.com/hack/reference/function/HH.meth_caller/)
+  can be used instead).
+  - The `.hhconfig` flag `disallow_inst_meth=true` and the INI option
+    `hhvm.hack.lang.disallow_inst_meth=true` can be used to enforce the future
+    behavior now.
+- As mentioned
+  [last week](https://hhvm.com/blog/2021/02/16/hhvm-4.97.html#future-changes),
+  we expect string concatenation (`'hello '.$name`) and interpolation
+  (`"hello $name"`) to become restricted to `string` and `int` values in the
+  future.
+  - This release adds the runtime (INI) option
+    `hhvm.notice_on_coerce_for_str_concat` which can be used to raise a notice
+    (if set to `1`) or throw an `InvalidOperationException` (if set to `2`) when
+    concatenating/interpolating other types, in addition to the typechecker flag
+    added in last week's release.
