@@ -18,10 +18,6 @@ HHVM 4.93&ndash;4.97 remain supported, as do the 4.56 and 4.80 LTS releases.
   conflicting definitions of the same non-abstract constant from its parent
   class/interfaces/traits. These had already been runtime errors, but previously
   wouldn't be caught by the typechecker.
-- Classes that implement
-  [`dynamic`](https://docs.hhvm.com/hack/built-in-types/dynamic)
-  now have stricter requirements for their properties
-  ([examples](https://github.com/facebook/hhvm/commit/4b14f6e8a817acc4a03a6917525afca10957f9de#diff-d2883cc8990002e89fc8a04f1db18691a507699dd1b849ef4f8d535b79322bd1)).
 
 # Future Changes
 
