@@ -1,0 +1,45 @@
+---
+title: "HHVM 4.99"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.99 is released! This release marks the end of support for 4.93;
+HHVM 4.94&ndash;4.98 remain supported, as do the 4.56 and 4.80 LTS releases.
+
+# Highlights
+
+- IDE support (LSP) now recognizes XHP attributes, enabling features like
+  go-to-definition and hover to peek definition.
+
+# Breaking Changes
+
+- The typechecker now raises an error in some previously undetected cases where
+  a class inherits multiple conflicting definitions of the same type constant.
+  These had already been runtime errors, but previously some cases wouldn't be
+  caught by the typechecker.
+  - See [updated documentation](https://docs.hhvm.com/hack/classes/using-a-trait#resolution-of-naming-conflicts)
+    for more details about how naming conflicts are resolved.
+- The built-in classes `Exception`, `Error`, `Throwable` no longer have their
+  methods marked as `<<__Pure>>`. This means that exceptions can no longer be
+  thrown from other `<<__Pure>>` functions.
+  - The affected methods are annotated with the "pure" (empty)
+    [context list](https://docs.hhvm.com/hack/contexts-and-capabilities/introduction), so exceptions can still be thrown from similarly annotated pure functions.
+
+# Future Changes
+
+- In the future, we expect the return type of `meth_caller` to change from
+  `__SystemLib\MethCallerHelper` to a native
+  [function reference](https://docs.hhvm.com/hack/functions/function-references)
+  type. This shouldn't affect normal usage, but may affect edge cases like
+  serialization. Notably, the new values *cannot* be stored in APC.
+  - The INI option `hhvm.emit_meth_caller_func_pointers=true` can be used to
+    switch to the new format now.
+  - Separately, the INI option `hhvm.forbid_meth_caller_apc_serialize=1` can be
+    used to raise a warning when values in the *old format* are stored in APC,
+    without switching to the new format. Setting it to `2` will throw an
+    exception instead of the warning.
+- The built-in attribute `<<__Pure>>` will be removed in a future release. It
+  has been replaced by
+  [contexts and capabilities](https://docs.hhvm.com/hack/contexts-and-capabilities/introduction).
