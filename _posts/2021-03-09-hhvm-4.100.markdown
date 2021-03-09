@@ -1,0 +1,45 @@
+---
+title: "HHVM 4.100"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.100 is released! This release marks the end of support for 4.94;
+HHVM 4.95&ndash;4.99 remain supported, as do the 4.56 and 4.80 LTS releases.
+
+# Highlights
+
+- The typechecker now takes advantage of the guarantee that `switch` statements
+  are exhaustive (this has been enforced at runtime since HHVM 4.80), i.e. that
+  at least one branch of the `switch` statement is guaranteed to be executed
+  (or an exception is thrown).
+  - This allows the typechecker to e.g. correctly infer the type of any variable
+    that is set in all branches of the `switch` statement, allowing some
+    previously rejected programs to pass.
+
+# Breaking Changes
+
+- The built-in attribute `<<__Pure>>` and all related attributes
+  (`__AtMostRxAsArgs`, `__AtMostRxAsFunc`, `__Cipp`, `__CippGlobal`,
+  `__CippLocal`, `__MaybeMutable`, `__Mutable`, `__MutableReturn`, `__NonRx`,
+  `__OnlyRxIfImpl`, `__OwnedMutable`, `__ReturnsVoidToRx`)
+  were removed. They have been replaced by
+  [contexts and capabilities](https://docs.hhvm.com/hack/contexts-and-capabilities).
+- The typechecker now raises an error if the
+  [`is` and `as` operators](https://docs.hhvm.com/hack/expressions-and-operators/type-assertions)
+  are used with the type
+  [`nothing`](https://docs.hhvm.com/hack/built-in-types/nothing)
+  (`$x is nothing`, `$x as nothing`).
+
+# Future Changes
+
+- In the future, using any of the
+  [bitwise operators](https://docs.hhvm.com/hack/expressions-and-operators/bitwise-operators)
+  (`&`, `|`, `^`, `~`, `<<`, `>>`) with a non-`int` value on either side will
+  cause an exception to be thrown at runtime. All of these already
+  raise typechecker errors.
+  - The INI option `hhvm.notice_on_coerce_for_bit_op=2` can be used to enable
+    the future behavior now (set to `1` to raise a notice instead of throwing
+    an exception).
+
