@@ -36,9 +36,13 @@ HHVM 4.95&ndash;4.99 remain supported, as do the 4.56 and 4.80 LTS releases.
 
 - In the future, using any of the
   [bitwise operators](https://docs.hhvm.com/hack/expressions-and-operators/bitwise-operators)
-  (`&`, `|`, `^`, `~`, `<<`, `>>`) with a non-`int` value on either side will
-  cause an exception to be thrown at runtime. All of these already
-  raise typechecker errors.
+  with values of incompatible types will cause an exception to be thrown at
+  runtime (all of these cases already raise typechecker errors). Affected
+  operators:
+  - `&`, `|`, `^`: both operands must be `int` or both `string`
+  - `~` (unary): operand must not be `double`
+  - `<<`, `>>`: both operands must be `int`
+  - Same rules apply to the respective assignment operators (`&=`, `<<=`, etc.).
   - The INI option `hhvm.notice_on_coerce_for_bit_op=2` can be used to enable
     the future behavior now (set to `1` to raise a notice instead of throwing
     an exception).
