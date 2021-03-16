@@ -1,0 +1,31 @@
+---
+title: "HHVM 4.101"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.101 is released! This release marks the end of support for 4.95;
+HHVM 4.96&ndash;4.100 remain supported, as do the 4.56 and 4.80 LTS releases.
+
+# Highlights
+
+- 'Variable $x is undefined, or not always defined' errors will no longer
+  suggest non-denotable internal variable names, such as `$0splice0`
+
+# Breaking Changes
+
+- The typechecker now checks that `switch($x)` is exhaustive for enum classes,
+  not just for normal enums; the runtime continues to require that either a
+  case matches, or there is a default case.
+- `array_slice()` no longer converts int-like string keys to ints
+- hhbbc now *always* runs in repo-authoritative mode
+
+# Future Changes
+
+- Hack arrays: in the next 2-8 weeks, we expect to make `varray` an alias for
+  `vec`, and `darray` an alias for `dict`; `varray` and `darray` will no longer
+  be distinct types to Hack arrays. This will also affect the runtime
+  implementation of shapes and tuples, which are currently implemented with
+  `darray`s and `varray`s respectively. You can test this behavior now with the
+  `hhvm.hack_arr_dv_arrs=1` ini setting.
