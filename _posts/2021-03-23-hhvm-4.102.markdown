@@ -1,0 +1,39 @@
+---
+title: "HHVM 4.102"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.102 is released! This release marks the end of support for 4.96;
+HHVM 4.97&ndash;4.101 remain supported, as do the 4.56 and 4.80 LTS releases.
+
+# Breaking Changes
+
+- Usage of `<<__Override>>` is now correctly enforced on *interfaces*
+  (previously it was only enforced on classes and traits). The typechecker will
+  raise an error if the attribute is used on a method that was not declared on
+  any of your interface's parent interfaces.
+- The typechecker now correctly raises an error if a `protected` method declared
+  in a *trait* is called from an invalid context. Previously, there was a bug
+  where the typechecker would allow calling the `protected` method from any
+  class that used the same trait, even if it wasn't a child or parent of the
+  target class. Such calls would cause a runtime error but previously wouldn't
+  be caught by the typechecker.
+
+# Future Changes
+
+- In the future, using any of the
+  [arithmetic operators](https://docs.hhvm.com/hack/expressions-and-operators/arithmetic)
+  (`+`, `-`, `*`, `/`, `%`, `**`) with values of non-numeric types (all types
+  except `int` and `float`) will cause an exception to be thrown at runtime. All
+  of these cases already raise typechecker errors.
+  - Same rules apply to the respective assignment operators (`+=`, `**=`, etc.).
+  - The INI option `hhvm.notice_on_coerce_for_math=2` can be used to enable
+    the future behavior now (set to `1` to raise a notice instead of throwing
+    an exception).
+  - Similar restrictions also apply to the
+    [increment and decrement](https://docs.hhvm.com/hack/expressions-and-operators/incrementing-and-decrementing)
+    operators (`$i++`, `--$i`). The INI option
+    `hhvm.notice_on_coerce_for_inc_dec` can be used to enable the future
+    behavior for these (set to `1` for notice, `2` for exception).
