@@ -10,9 +10,10 @@ HHVM 4.97&ndash;4.101 remain supported, as do the 4.56 and 4.80 LTS releases.
 
 # Breaking Changes
 
-- Usage of `<<__Override>>` is now correctly enforced on *interfaces*
-  (previously it was only enforced on classes and traits). The typechecker will
-  raise an error if the attribute is used on a method that was not declared on
+- Usage of `<<__Override>>` is now correctly enforced on methods declared
+  *on interfaces* (previously it was only enforced on methods declared in
+  classes and traits). The typechecker will raise an error if the attribute is
+  used on an interface method that was not declared on
   any of your interface's parent interfaces.
 - The typechecker now correctly raises an error if a `protected` method declared
   in a *trait* is called from an invalid context. Previously, there was a bug
