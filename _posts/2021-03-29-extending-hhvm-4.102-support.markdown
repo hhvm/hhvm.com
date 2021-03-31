@@ -11,9 +11,10 @@ alias for `vec`, and `darray` an alias for `dict` (in HHVM 4.101 and 4.102, the
 INI option `hhvm.hack_arr_dv_arrs=1` can be used to enable the new behavior).
 
 To give users more time to migrate, we are promoting HHVM 4.102 to a long-term
-support (LTS) release. Similarly to other LTS releases, it will be supported for
-approximately 48 weeks&mdash;until superseded by two regularly scheduled LTS
-releases, expected to be HHVM 4.128 and 4.152.
+support (LTS) release. Similarly to other LTS releases, it will be supported 
+until superseded by two regularly scheduled LTS releases. We expect these
+releases to be HHVM 4.128 and 4.152, in which case, 4.102 will be supported for
+~ 50 weeks.
 
 This replaces the regularly scheduled LTS release, HHVM 4.104, which will likely
 be a standard release (supported for 6 weeks). However, we might add one more
