@@ -1,0 +1,58 @@
+---
+title: "HHVM 4.103"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.103 is released! This release marks the end of support for 4.97;
+HHVM 4.98&ndash;4.101 remain supported, as do the 4.56, 4.80, and 4.102 LTS
+releases.
+
+# Highlights
+
+- Functions with implicit/no return are now considered a subtype of functions
+  that return `mixed` or `dynamic`; for example, it is now possible to pass
+  `() ==> { echo "hello"; }` as a `(function(): mixed)`
+- Improved autocomplete support for enum classes
+- Reduced typechecker memory usage for large classes (including small classes
+  with many inherited members).
+- [Enum classes](https://docs.hhvm.com/hack/built-in-types/enum-class) are now
+  enabled by default.
+- Added `HH\EnumClassAttribute` interface, allowing definition of user
+  attributes for enum classes.
+- Many builtins are now marked as pure.
+
+# Breaking Changes
+
+- Hack arrays and legacy arrays are unified; due to the potential scope of this
+  change, 4.102 [has been made](https://hhvm.com/blog/2021/03/29/extending-hhvm-4.102-support.html)
+  an additional out-of-schedule LTS release to allow more time to determine 
+  migration paths.
+  - `varray` is now an alias for `vec`
+  - `darray` is now an alias for `dict`
+  - Shapes are now backed by `dict`s at runtime; this generally remains
+    considered an implementation detail, but will be helpful when handling
+    untyped data such as decoded JSON.
+  - Tuples are now backed by `vec`s at runtime; this is also an considered
+    an implementation detail.
+- Removed runtime support for PHP-style static anonymous functions; these have been
+  disabled by default since May 2020, and were not correctly handled by the
+  typechecker.
+- Typechecker errors are now raised for some circular definitions of class
+  constants; this is ongoing work, and we expect more circular definitions to
+  be detected in future versions.
+- `apc_prime.so` support has been removed; this was an undocumented feature that
+  would allow providing a C++ library to pre-fill APC on HHVM startup.
+- A typechecker error is now raised if an XHP class declares two attributes with
+  the same name.
+- PowerPC64 support has been removed; it has been unusable for some time, and we
+  do not have the CI infrastructure necessary to support it.
+
+# Future Changes
+
+- HHVM still uses `hh_single_compile`, however the parser and emitter are also
+  embedded, and we expect to remove the dependency on `hh_single_compile` and
+  potentially remove the executable in the future. The embedded compiler can be
+  tested with the `hhvm.hack_compiler_use_compiler_pool=false` INI setting.
+- We expect to remove support for MacOS 10.14 (Mojave) in the near future.
