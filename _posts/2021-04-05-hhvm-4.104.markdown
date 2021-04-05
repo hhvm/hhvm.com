@@ -14,13 +14,6 @@ scheduled. Instead, HHVM 4.102 was
 
 # Highlights
 
-- Added support for
-  [Facts and native autoloader](https://github.com/facebook/hhvm/pull/8816).
-  This currently requires a separate installation of
-  [Watchman](https://facebook.github.io/watchman/), but we're working on a
-  stand-alone implementation that doesn't require Watchman (at the cost of
-  decreased performance for large repositories), as well as potentially
-  including Watchman in official HHVM packages.
 - Various IDE integration improvements (autocomplete, go-to-definition,
   tooltips).
 
