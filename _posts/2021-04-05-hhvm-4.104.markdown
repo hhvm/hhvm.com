@@ -1,0 +1,29 @@
+---
+title: "HHVM 4.104"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.104 is released! This release marks the end of support for 4.98;
+HHVM 4.99&ndash;4.103 remain supported, as do the 4.56, and 4.80 LTS releases.
+
+Note that HHVM 4.104 is not a long-term support (LTS) release as originally
+scheduled. Instead, HHVM 4.102 was
+[promoted to a LTS release](/blog/2021/03/29/extending-hhvm-4.102-support.html).
+
+# Highlights
+
+- Added support for
+  [Facts and native autoloader](https://github.com/facebook/hhvm/pull/8816).
+  This currently requires a separate installation of
+  [Watchman](https://facebook.github.io/watchman/), but we're working on a
+  stand-alone implementation that doesn't require Watchman (at the cost of
+  decreased performance for large repositories), as well as potentially
+  including Watchman in official HHVM packages.
+- Various IDE integration improvements (autocomplete, go-to-definition,
+  tooltips).
+
+# Breaking Changes
+
+- We no longer build packages for MacOS 10.14 (Mojave).
