@@ -5,8 +5,8 @@ author: jjergus
 category: blog
 ---
 
-HHVM 4.104 is released! This release marks the end of support for 4.98;
-HHVM 4.99&ndash;4.103 remain supported, as do the 4.56, and 4.80 LTS releases.
+HHVM 4.104 is released! This release marks the end of support for 4.56 (LTS)
+and 4.98; HHVM 4.99&ndash;4.103 remain supported, as does the 4.80 LTS release.
 
 Note that HHVM 4.104 is not a long-term support (LTS) release as originally
 scheduled. Instead, HHVM 4.102 was
