@@ -1,0 +1,40 @@
+---
+title: "HHVM 4.105"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.105 is released! This release marks the end of support for 4.99;
+HHVM 4.100&ndash;4.104 remain supported, as does the 4.80 LTS release.
+
+# Highlights
+
+- Rust components are now built using Rust 1.51.0
+- Fixed [several bugs](https://github.com/facebook/hhvm/commit/6762285701de9940deb5d1d5d8bead23027508ce) in the
+  new `enum class` feature
+- Improved runtime error message when too many arguments are passed to a
+  closure: the function is now reported as `Closure$func#num()` instead of
+  `__invoke()`
+- method overrides can now specify a more restricitve context than the original
+  method definition
+- Functions in Hack collection methods now have defined coeffects.
+- `hh_server`'s compression model can be changed to ZSTD by setting the
+  `sharedmem_compression` `.hhconfig` option to a ZSTD compression level; 3
+  is ZSTD's default. This is essentially CPU vs memory tradeoff - large
+  projects may wish to experiment with this option.
+- interface type constants can now be overriden by implementing classes.
+
+# Breaking Changes
+
+- Removed the undocumented `<<__ConstFun>>` attribute.
+
+# Future Changes
+
+- A future release will be deprecating and later removing `json_last_error()`,
+ `json_last_error_msg()`, and `preg_last_error()`
+- `_with_error` suffixed variants of all json/preg functions have been added and
+  should be used instead for error checking. e.g. `json_encode()` has
+  `json_encode_with_error()` and `preg_match()` has `preg_match_with_error()`
+
+
