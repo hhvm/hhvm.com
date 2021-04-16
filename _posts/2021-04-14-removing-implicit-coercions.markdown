@@ -188,7 +188,7 @@ true == Foo::class; // true
 ```
 
 **Future Behaviour:**
-There will be two steps to this, going through both Hard Runtime Enforcement and then New Behaviour. comparing values of two different types will throw an exception. Then, comparing values of two different types will simply be false. At the 
+There will be two steps to this, going through both Hard Runtime Enforcement and then New Behaviour. First, comparing values of two different types will throw an exception. Then, comparing values of two different types will simply be false.
 
 ```
 null == false; // InvalidOperationException then false
