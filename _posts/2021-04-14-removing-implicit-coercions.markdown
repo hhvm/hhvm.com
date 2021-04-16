@@ -82,7 +82,7 @@ keyset[1] << true; // 2
 ```
 null & vec[]; // InvalidOperationException
 keyset[1] & true; // InvalidOperationException
-'abcd' & 'efgh'; // 'abc`'
+'abcd' & 'efgh'; // 'abc`' - https://3v4l.org/CTH2o
 ```
 
 `~`: no operations will coerce. Attempting to operate on a non-int or string will trigger an exception.
