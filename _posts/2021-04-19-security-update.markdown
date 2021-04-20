@@ -21,7 +21,8 @@ update to one of the following versions to make sure you're secure:
 This security update addresses the following vulnerabilities:
 
 - possible crash (null pointer dereference) in `mailparse_rfc822_parse_addresses()`
-- "type confusion" bugs (possible memory corruption/out-of-bounds memory access) in:
+- [CVE-2021-24034](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-24034):
+  "type confusion" bugs (possible memory corruption/out-of-bounds memory access) in:
   - `AsyncMysqlClient` methods: `connect()`, `connectAndQuery()`, `connectWithOpts()`
   - `AsyncMysqlConnectionPool::connectWithOpts()`
   - `mysql_connect_with_ssl()`
