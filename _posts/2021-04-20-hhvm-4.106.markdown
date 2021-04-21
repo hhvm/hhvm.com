@@ -1,0 +1,33 @@
+---
+title: "HHVM 4.106"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.106 is released! This release marks the end of support for 4.100;
+HHVM 4.101&ndash;4.105 remain supported, as does the 4.80 LTS release.
+
+# Breaking Changes
+
+- The built-in functions `json_last_error()`, `json_last_error_msg()`, and
+  `preg_last_error()` are now deprecated and will be removed in a future
+  release. Instead, use these alternatives:
+  - [`json_decode_with_error()`](https://docs.hhvm.com/hack/reference/function/json_decode_with_error/)
+  - [`json_encode_with_error()`](https://docs.hhvm.com/hack/reference/function/json_encode_with_error/)
+  - [`preg_grep_with_error()`](https://docs.hhvm.com/hack/reference/function/preg_grep_with_error/)
+  - [`preg_match_all_with_error()`](https://docs.hhvm.com/hack/reference/function/preg_match_all_with_error/)
+  - [`preg_match_with_error()`](https://docs.hhvm.com/hack/reference/function/preg_match_with_error/)
+  - [`preg_replace_with_error()`](https://docs.hhvm.com/hack/reference/function/preg_replace_with_error/)
+  - [`preg_split_with_error()`](https://docs.hhvm.com/hack/reference/function/preg_split_with_error/)
+
+# Future Changes
+
+- The deprecated built-in functions `json_last_error()`,
+  `json_last_error_msg()`, and `preg_last_error()` will be removed in a future
+  release.
+- The typechecker error code for using a non-numeric value in a math operation
+  (e.g. `2 + '3'`) is changing from `4110` to `4429`. This doesn't introduce any
+  new errors, but may require `HH_FIXME`s to be updated.
+  - Use the `.hhconfig` option `math_new_code = true` to enable the future
+    behavior now.
