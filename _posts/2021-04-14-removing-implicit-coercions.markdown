@@ -7,7 +7,7 @@ category: blog
 
 tl/dr: we’re doubling down on removing surprising implicit (and some explicit) coercions from the language. So far we
 
-* removed object → num conversion (it now throws an exception)
+* very close to having object → num conversion trigger exceptions
 * have pieces in flight for the removal of coercions due to string interpolation/concatenation, mathematical operations (including bitwise), and pre/post increment/decrement
 * have concrete plans for comparison operators, the (in)equality operators, and switch statements.
 
@@ -173,7 +173,7 @@ true > Foo::class; // InvalidOperationException
 ```
 
 **Status of rollout:** 
-No Progress
+Enforced By Type Checker
 
 ### Equality operations (`==`, `!=`)
 
