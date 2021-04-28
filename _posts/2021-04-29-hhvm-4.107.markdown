@@ -1,0 +1,39 @@
+---
+title: "HHVM 4.107"
+layout: post
+author: fred 
+category: blog
+---
+
+HHVM 4.107 is released! This release marks the end of support for 4.101;
+HHVM 4.102&ndash;4.106 remain supported, as does the 4.80 LTS release.
+
+# Highlights
+
+- Added an hhconfig option to ban partially abstract type constants; we expect the
+  `disallow_partially_abstract_typeconst_definitions` flag to be on by default
+  in a future release. This is different to the previous
+  `disable_partially_abstact_typeconstants` option, which disables the ability
+  to override them.
+- Error messages for now report generic type constraints, e.g.
+  `expected T as string` instead of just `expected T`
+- Improved error message for variadic functions where type and name aren't
+  specified.
+- The typechecker now treats `is nonnull` the same as `!== null`; both already
+  had special cases in type refinement, but some were exclusive to `!== null`.
+- IDE autocompletion is now supported for XHP enum attributes.
+
+# Future Changes
+
+- `php_version()`, `PHP_VERSION`, `PHP_VERSION_ID`, `PHP_MAJOR_VERSION` and
+  related constants/functions will be removed, as they are misleading. If you
+  need to detect if specific PHP5-compatible behaviors are enabled, use
+  `ini_get('hhvm.php7.foo')`. The PHP5-compatible behaviors remain unsupported
+  and are disabled by default.
+- repo-authoritative mode repositories are now a custom format instead of
+  sqlite; this should only affect deployment workflows that are explicitly
+  examining the contents of the file.
+- `#` comments will be used; use `//` or `/*` comments instead. `#!` will still
+  be ignored if it is the first line of a file, i.e. a 'shebang' line, such as
+  `#!/usr/bin/env hhvm`. We expect to re-use the `#` token for new syntax in
+  a future release.
