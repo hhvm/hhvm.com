@@ -14,10 +14,11 @@ HHVM 4.103&ndash;4.107 remain supported, as do the 4.80 and 4.102 LTS releases.
   [Hack Standard Library](https://docs.hhvm.com/hack/getting-started/the-standard-library)
   is now a built-in part of HHVM. Hack projects can now call any HSL functions
   without downloading and installing any extra packages.
-  - This includes the experimental
-    [HSL IO](https://docs.hhvm.com/hack/getting-started/input-and-output), but
-    not yet other parts of
-    [hsl-experimental](https://github.com/hhvm/hsl-experimental/).
+  - This includes
+    [HSL IO](https://docs.hhvm.com/hack/getting-started/input-and-output),
+    which is no longer considered experimental. Other parts of
+    [hsl-experimental](https://github.com/hhvm/hsl-experimental/)
+    are not yet included.
 - Constraints (`as`/`super`) on abstract
   [context constants](https://docs.hhvm.com/hack/contexts-and-capabilities/context-constants)
   are now supported.
