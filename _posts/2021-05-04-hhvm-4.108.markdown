@@ -1,0 +1,47 @@
+---
+title: "HHVM 4.108"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.108 is released!
+HHVM 4.103&ndash;4.107 remain supported, as do the 4.80 and 4.102 LTS releases.
+
+# Highlights
+
+- The
+  [Hack Standard Library](https://docs.hhvm.com/hack/getting-started/the-standard-library)
+  is now a built-in part of HHVM. Hack projects can now call any HSL functions
+  without downloading and installing any extra packages.
+  - This includes
+    [HSL IO](https://docs.hhvm.com/hack/getting-started/input-and-output),
+    which is no longer considered experimental. Other parts of
+    [hsl-experimental](https://github.com/hhvm/hsl-experimental/)
+    are not yet included.
+- Constraints (`as`/`super`) on abstract
+  [context constants](https://docs.hhvm.com/hack/contexts-and-capabilities/context-constants)
+  are now supported.
+- The HHVM runtime currently doesn't allow using
+  [`meth_caller()`](https://docs.hhvm.com/hack/reference/function/HH.meth_caller/)
+  with a `private` or `protected` method (even within the same class hierarchy),
+  but these runtime errors are not detected by the Hack typechecker. A new
+  `.hhconfig` option, `meth_caller_only_public_visibility = true`, can be used
+  to raise Hack errors in these cases. However, the plan is to support private
+  and protected methods in `meth_caller()` in the future, at which point this
+  `.hhconfig` option will become unnecessary.
+
+# Future Changes
+
+- Functions in the `Str\` namespace in the (now built-in) Hack Standard Library
+  will no longer respect the system/request locale. Instead, they will default
+  to using the
+  [`POSIX` (also known as `C`) locale](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap07.html#tag_07_02).
+  - In the future, we expect most of them to accept additional parameter(s)
+    overriding the default locale and encoding, but these may not be available
+    immediately.
+  - Removing the dependency on a global locale setting will allow these
+    functions to be considered "pure" (they can be called from other functions
+    with any
+    [contexts](https://docs.hhvm.com/hack/contexts-and-capabilities),
+    including an empty context list).
