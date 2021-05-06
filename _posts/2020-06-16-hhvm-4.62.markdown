@@ -25,8 +25,6 @@ and 4.56 LTS releases.
   initialized with keys, or if Map or ImmMap are initialized without keys.
   Previously, this would lead to a bytecode emitting error.
 - FIXME codes now need whitelisting in the project root .hhconfig
-- FIXME whitelisting does not support `<?hh // partial`; as such, you are likely
-  to need to migrate any remaining partial code to `.hackpartial` files.
 
 ## FIXME whitelisting
 
@@ -34,10 +32,13 @@ FIXME codes must now be whitelisted in the top-level project's
 `.hhconfig` - adding a FIXME for a code that is not in the whitelist is in
 itself an error. The relevant configuration options are:
 
-- `allowed_fixme_codes_strict=1234,5678`: FIXME codes that are permitted in
-  `.hack` files.
 - `allowed_fixme_codes_partial=1234,5678`: FIXME codes that are permitted in
   `.hackpartial` files.
+- `allowed_fixme_codes_strict=1234,5678`: FIXME codes that are permitted in
+  all other files, including `.hack` files and `.php` files starting with
+  `<?hh` - including `<?hh // partial`. We still recommend moving to `.hack`
+  and `.hackpartial` files, and expect support for `// partial` to be removed
+  in a future release.
 - `allowed_decl_fixme_codes=1234,5678`: FIXME codes that are permitted in
   declaration contexts, such as function type signatures. Any codes here must
   *also* be listed in the `_strict` or `_partial` options to be permitted in
