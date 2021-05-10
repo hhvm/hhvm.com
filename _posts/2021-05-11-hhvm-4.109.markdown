@@ -1,0 +1,93 @@
+---
+title: "HHVM 4.109"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.109 is released! This release marks the end of support for 4.103;
+HHVM 4.104&ndash;4.108 remain supported, as do the 4.80 and 4.102 LTS releases.
+
+# Highlights
+
+- HHVM no longer crashes if a signal is received after calling `exit()`
+- `ext_facts`, `ext_watchman` and the watchman-based native autoloader are now
+  included in builds by default, building and statically linking
+  libwatchmanclient if a dynamic version is not available in the build system.
+- added `HH\enable_function_coverage()` and `HH\collect_function_coverage()`;
+  these are intended for calculating unit test coverage only, and only function
+  if repo-authoritative mode is not enabled, and the
+    `hhvm.enable_func_coverage` ini setting is 1.
+- added `hhvm --check-repo`; this can be used to verify that a
+  repo-authoritative repo was built with a compatible HHVM and with compatible
+  options. It may be useful as a debugging tool for CI/CD pipelines, but it is
+  not a necessary step.
+- added the `hhvm.notice_on_coerce_for_cmp` option, raising notices for cases
+  where invalid comparisons are made between different types. This option does
+  not control cases where there were already dedicated options, such as implicit
+  `__toString()` calls.
+
+# Future Changes
+
+- Several bugs are being fixed in `setlocale()`, leading to observerable
+  changes; this affects both Hack code, and C/C++ extension code in HHVM, as
+  HHVM replaces the libc `setlocale()` with a request-aware version.
+  - The initial locale for each request will now be reported as `"C"` by
+    `setlocale()`; previously, HHVM reported the empty string, leading to
+    differing behavior:
+    - C code using `uselocale()` would detect the `"C"` locale
+    - C or Hack  code using `setlocale()` would sometimes detect it as C,
+      sometimes manually infer it from the environment, or use it as some other
+      special locale, eg an invalid locale, or the 'root' locale in ICU.
+  - Setting the locale to the empty string will now infer the locale from the
+    environment. For example, if `LC_ALL=en_US.UTF-8` is set,
+    `setlocale(LC_ALL, '')` will set the locale to `en_US.UTF-8`, and this will
+    be indicated when retrieving the locale via `setlocale()`. Previously:
+    - C code using `uselocale()` would use the locale from the environment
+    - C or Hack code using `setlocale()` would not be able to distinguish this
+      state from the initial state
+  - Overall, these bugfixes make the behavior more predicatable and closer to
+    C/POSIX/Python behavior. Notably, the default locale of `"C"` differs to
+    PHP, which defaults to using the environment locale.
+
+# Watchman-based Built-In Autoloading
+
+Built-in autoloading is now avaiable, but depends on the
+[Watchman](https://github.com/facebook/watchman/) daemon being installed
+on your system.
+
+Both per-repository and per-process (or global) settings are required;
+first, a
+[Watchman query](https://facebook.github.io/watchman/docs/file-query.html)
+must be specified in `REPO_ROOT/.hhvmconfig.hdf`, e.g.:
+
+```hdf
+Autoload {
+  Query = {"expression": ["allof", ["type", "f"], ["suffix", ["anyof", "hack", "php"]], ["not",["anyof",["dirname",".hg"],["dirname",".git"],["dirname",".svn"]]]]}
+}
+```
+
+Additionally, the following options need to be specified on the command
+line or in a configuration file:
+- `hhvm.autoload.enabled=true`
+- `hhvm.autoload.db.path=foo/autoload-%{euid}-%{schema}.db`
+
+The `%{euid}` and `%{schema}` placeholders are optional, and if present,
+automatically replaced with the current effective user ID and
+HHVM schema version - when there are incompatible changes to HHVM,
+the schema should change and a new file should be used.
+
+Correct configuration can be verified by:
+- checking the return value of `HH\Facts\enabled()`
+- calling `class_exists()` or `function_exists()` in your entrypoint
+  on a definition that requires autoloading
+
+When using the built-in autoloader, it is not necessary to initialize
+separate autoloaders such as the `hhvm-autoload` tool; for example,
+it is not necessary to `require('vendor/autoload.hack')` or to call
+`Facebook\AutoloadMap\initialize()`.
+
+We expect future versions of HHVM to:
+- reduce the amount of configuration required
+- continue to support Watchman, but not require it; Watchman will
+  likely remain recommended, especially for larger projects
