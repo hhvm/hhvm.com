@@ -1,0 +1,30 @@
+---
+title: "HHVM 4.111"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.111 is released! This release marks the end of support for 4.105;
+HHVM 4.106&ndash;4.110 remain supported, as do the 4.80 and 4.102 LTS releases.
+
+# Highlights
+
+- *Abstract*
+  [context constants](https://docs.hhvm.com/hack/contexts-and-capabilities/context-constants)
+  are now allowed by default (in previous HHVM versions, they can be enabled
+  using the INI option `enable_abstract_context_constants = true`).
+- The typechecker no longer raises an error if the `?->` operator is used on an
+  object of a non-nullable type (these calls are safe, even if unnecessary).
+
+# Breaking Changes
+
+- The typechecker now raises an error when the same non-abstract method is
+  included in a class via multiple traits. These had already been runtime
+  errors, but not always caught by the typechecker.
+- The typechecker now detects more cases when a `Map` is used with a key of an
+  invalid type (e.g. `dynamic`, `null`) that would previously only cause runtime
+  errors.
+- Fixed a bug where the typechecker wouldn't detect a constructor calling a
+  method with an uninitialized instance variable:
+  `$this->someMethod($this->uninitializedVar)`
