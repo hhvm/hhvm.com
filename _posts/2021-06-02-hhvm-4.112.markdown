@@ -1,0 +1,26 @@
+---
+title: "HHVM 4.112"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.112 is released! This release marks the end of support for 4.106;
+HHVM 4.107&ndash;4.111 remain supported, as do the 4.80 and 4.102 LTS releases.
+
+# Highlights
+
+- A new built-in method `ReflectionTypeConstant::getTypeStructure()` was added
+  (it had already been available in HHVM, but previously not recognized by the
+  typechecker).
+- Type constants on `this` (e.g. `this::T`) can now be used as reified generic
+  type parameters. Note that the type `this` itself is still not allowed as a
+  reified generic type parameter.
+
+# Breaking Changes
+
+- The typechecker now raises an error if the built-ins `echo` and `print` are
+  used with arguments that are not `int` or `string`.
+- Fixed a bug where the typechecker would not correctly enforce generic type
+  constraints on opaque type aliases (e.g. `newtype X<T as arraykey> = T;`).
+  This may reveal some previously undetected errors.
