@@ -72,10 +72,10 @@ line or in a configuration file:
 - `hhvm.autoload.enabled=true`
 - `hhvm.autoload.db.path=foo/autoload-%{euid}-%{schema}.db`
 
-The `%{euid}` and `%{schema}` placeholders are optional, and if present,
-automatically replaced with the current effective user ID and
-HHVM schema version - when there are incompatible changes to HHVM,
-the schema should change and a new file should be used.
+`%{euid}` and `%{schema}` are template placeholders:
+
+* `%{schema}` is replaced with a hash which changes if your HHVM version, parser flags, or `.hhvmconfig.hdf` file changes. Changes to any of these factors might change the way autoloading works, and changing the hash ensures we'll store autoloading data in a different DB.
+* `%{euid}` is replaced with the effective UNIX user ID that HHVM's running as. Different users on a host might be running HHVM. Including the UNIX EUID ensures that each UNIX user has a personal DB they can write to, avoiding permissions errors.
 
 Correct configuration can be verified by:
 - checking the return value of `HH\Facts\enabled()`
