@@ -22,16 +22,12 @@
   href: https://www.facebook.com/hhvm/
   category: external
 
+- title: Slack
+  href: /slack/
+  category: external
+
 - title: Twitter
   href: https://twitter.com/HipHopVM
-  category: external
-
-- title: IRC
-  href: http://webchat.freenode.net/?channels=hhvm
-  category: external
-
-- title: Module Support
-  href: http://hhvm.h4cc.de/
   category: external
 
 # Use external for external links not associated with the paths of the current site.
