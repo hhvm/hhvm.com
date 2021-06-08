@@ -11,20 +11,6 @@ HHVM 4.108&ndash;4.112 remain supported, as do the 4.80 and 4.102 LTS releases.
 # Highlights
 
 - Packages for Ubuntu 21.04 (Hirsute Hippo) are now available.
-- A new
-  [context](https://docs.hhvm.com/hack/contexts-and-capabilities/available-contexts-and-capabilities)
-  was added: `write_this_props`. This is similar to `write_props`, but only
-  allows modifying properties of the current instance (`$this`). The associated
-  capability is automatically available to all constructors, i.e. any
-  constructor can call any method on `$this` that has the `write_this_props`
-  context. This makes it possible to move some initialization code from
-  constructors to helper methods, which was previously impossible for any class
-  that was instantiated from any pure function (or any other function that
-  didn't have the `write_props` context).
-  - Note that contexts and capabilities are still in active development and we
-    can't guarantee
-    [backwards compatibility](https://docs.hhvm.com/hack/contexts-and-capabilities/introduction#implications-for-backwards-compatibility)
-    for any future changes.
 
 # Breaking Changes
 
