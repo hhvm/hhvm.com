@@ -1,0 +1,27 @@
+---
+title: "HHVM 4.113"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.113 is released! This release marks the end of support for 4.107;
+HHVM 4.108&ndash;4.112 remain supported, as do the 4.80 and 4.102 LTS releases.
+
+# Highlights
+
+- Packages for Ubuntu 21.04 (Hirsute Hippo) are now available.
+
+# Breaking Changes
+
+- Fixed a bug where the typechecker would sometimes incorrectly infer the type
+  of a value when dealing with `arraykey` and `num`-typed values. This may
+  reveal some previously undetected errors.
+- The INI option `hhvm.server.allow_duplicate_cookies` was removed.
+
+# Slack Group
+
+If you are interested in HHVM, you're welcome to join our
+[Slack group](https://hhvm.com/slack).
+
+This replaces our IRC channel, which has been inactive for a long time.
