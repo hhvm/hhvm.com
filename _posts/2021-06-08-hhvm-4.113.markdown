@@ -21,6 +21,10 @@ HHVM 4.108&ndash;4.112 remain supported, as do the 4.80 and 4.102 LTS releases.
   constructors to helper methods, which was previously impossible for any class
   that was instantiated from any pure function (or any other function that
   didn't have the `write_props` context).
+  - Note that contexts and capabilities are still in active development and we
+    can't guarantee
+    [backwards compatibility](https://docs.hhvm.com/hack/contexts-and-capabilities/introduction#implications-for-backwards-compatibility)
+    for any future changes.
 
 # Breaking Changes
 
@@ -28,3 +32,10 @@ HHVM 4.108&ndash;4.112 remain supported, as do the 4.80 and 4.102 LTS releases.
   of a value when dealing with `arraykey` and `num`-typed values. This may
   reveal some previously undetected errors.
 - The INI option `hhvm.server.allow_duplicate_cookies` was removed.
+
+# Slack Group
+
+If you are interested in HHVM, you're welcome to join our
+[Slack group](https://hhvm.com/slack).
+
+This replaces our IRC channel, which has been inactive for a long time.
