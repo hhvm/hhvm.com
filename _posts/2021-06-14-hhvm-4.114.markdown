@@ -1,0 +1,28 @@
+---
+title: "HHVM 4.114"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.114 is released! This release marks the end of support for 4.108;
+HHVM 4.109&ndash;4.113 remain supported, as do the 4.80 and 4.102 LTS releases.
+
+# Highlights
+
+- Fixed a bug that prevented passing
+  [`dynamic`](https://docs.hhvm.com/hack/built-in-types/dynamic)-typed
+  arguments to some
+  [Hack Standard Library](https://docs.hhvm.com/hack/getting-started/the-standard-library)
+  functions.
+- Fixed a bug where HHVM would crash when the negation (`!`) operator is used
+  on some comparisons of array-typed values
+  (e.g. `!(vec[2,3,4] == vec[1,2,3])`).
+
+# Future Changes
+
+- In a future release, we expect the typechecker to start enforcing that
+  arguments provided to the
+  [`<<__Sealed(...)>>` attribute](https://docs.hhvm.com/hack/attributes/predefined-attributes#__sealed)
+  are actually existing subclasses/implementations of the annotated
+  class/interface.
