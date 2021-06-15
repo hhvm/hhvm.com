@@ -26,3 +26,5 @@ HHVM 4.109&ndash;4.113 remain supported, as do the 4.80 and 4.102 LTS releases.
   [`<<__Sealed(...)>>` attribute](https://docs.hhvm.com/hack/attributes/predefined-attributes#__sealed)
   are actually existing subclasses/implementations of the annotated
   class/interface.
+  - `.hhconfig` option to enable this behavior should become available in the
+    next release.
