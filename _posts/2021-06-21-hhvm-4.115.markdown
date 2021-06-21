@@ -1,0 +1,48 @@
+---
+title: "HHVM 4.115"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.115 is released! This release marks the end of support for 4.109;
+HHVM 4.110&ndash;4.114 remain supported, as do the 4.80 and 4.102 LTS releases.
+
+# Highlights
+
+- A new built-in interface, `StringishObject`, was added. It is a subtype of
+  [`Stringish`](https://docs.hhvm.com/hack/reference/interface/Stringish/)
+  that does not include `string`s, only objects with a `__toString()` method.
+  - Unlike `Stringish`, it is therefore always safe to call `__toString()` after
+    a `($value is StringishObject)` check.
+  - Similarly to `Stringish`, classes don't have to explicitly specify that they
+    implement `StringishObject`. It is automatically added to all classes that
+    have a `__toString()` method.
+
+# Breaking Changes
+
+- The INI options `hhvm.repo.central.path` and `hhvm.repo.local.path` were
+  replaced with a single option, `hhvm.repo.path`
+  (see [documentation](https://docs.hhvm.com/hhvm/advanced-usage/repo-authoritative#manually-deploying-the-repo)).
+  - For easier migration, HHVM currently accepts either of the 3 options, and
+    they are all equivalent. The two old options may be removed in a future
+    release.
+- Improved type inference for lambda functions that are
+  [generators](https://docs.hhvm.com/hack/asynchronous-operations/generators)
+  (they contain `yield` statements). This may reveal some previously hidden
+  errors.
+
+# Future Changes
+
+- We expect HHVM to become more strict in some cases when a class inherits a
+  conflicting constant declaration from a trait and a parent class/interface
+  ([examples](https://github.com/facebook/hhvm/commit/94a20dcbad040cf86d58faca1e501c5f2a0d5067)).
+  - The INI option `hhvm.trait_constant_interface_behavior=1` can be used to
+    enable the future behavior now.
+- As announced last week, we expect the typechecker to start enforcing that
+  arguments provided to the
+  [`<<__Sealed(...)>>` attribute](https://docs.hhvm.com/hack/attributes/predefined-attributes#__sealed)
+  are actually existing subclasses/implementations of the annotated
+  class/interface.
+  - This release adds the `.hhconfig` option `enable_sealed_subclasses=true`
+    which can be used to enable the future behavior now.
