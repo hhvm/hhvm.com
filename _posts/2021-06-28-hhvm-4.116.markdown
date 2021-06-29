@@ -1,0 +1,48 @@
+---
+title: "HHVM 4.116"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.116 is released! This release marks the end of support for 4.110;
+HHVM 4.111&ndash;4.115 remain supported, as do the 4.80 and 4.102 LTS releases.
+
+# Highlights
+
+- [Enum inclusion](https://docs.hhvm.com/hack/built-in-types/enumerated-types#enumerated-types-inclusion):
+  It is no longer an error to indirectly include the same enum multiple times
+  ([example](https://github.com/facebook/hhvm/blob/HHVM-4.116/hphp/hack/test/enum_supertyping/typing/diamond.good.php)).
+- It is no longer an error to use the `is` and `as` operators with `varray` and
+  `darray` types. These types are equivalent to `vec` and `dict` since
+  [HHVM 4.103](https://hhvm.com/blog/2021/03/31/hhvm-4.103.html).
+
+# Breaking Changes
+
+- Trying to convert an object to an `int` or `float` now throws an exception
+  (previously it would raise a notice).
+- After an `is_array($value)` check, the typechecker now more precisely refines
+  the type of `$value`. This may reveal some previously hidden errors.
+  - In previous HHVM versions, the `.hhconfig` option `is_array=true` can be
+    used to enable this behavior. This option was removed in HHVM 4.116.
+- Various legacy array compatibility INI options were removed (they had no
+  effect or didn't work as expected since
+  [HHVM 4.103](https://hhvm.com/blog/2021/03/31/hhvm-4.103.html)):
+  - `hhvm.hack_arr_compat_check_compare`
+  - `hhvm.hack_arr_compat_fb_serialize_hack_arrays_notices`
+  - `hhvm.hack_arr_compat_is_vec_dict_notices`
+  - `hhvm.hack_arr_compat_compact_serialize_notices`
+  - `hhvm.hack_arr_compat_cast_marked_array_notices`
+  - `hhvm.hack_arr_is_shape_tuple_notices`
+  - `hhvm.hack_arr_dv_arrs`
+
+# Future Changes
+
+- In the future, the "fuzzy" comparison operators `==` and `!=` will no longer
+  treat values of different types as equal (similarly to their strict variants
+  `===` and `!==`).
+  - This will also affect `switch` statements where the type of the `switch`
+    expression is different from any of the `case` expressions.
+  - For easier migration, the INI option `hhvm.notice_on_coerce_for_eq=1` can
+    be used to raise a notice whenever values of different types are compared
+    using these operators (set to `2` to throw an exception).
