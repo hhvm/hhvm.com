@@ -10,8 +10,6 @@ HHVM 4.111&ndash;4.115 remain supported, as do the 4.80 and 4.102 LTS releases.
 
 # Highlights
 
-- [`HH_FIXME\UNSAFE_CAST`](https://docs.hhvm.com/hack/silencing-errors) can now
-  be used as a slightly safer alternative to `HH_FIXME` comments.
 - [Enum inclusion](https://docs.hhvm.com/hack/built-in-types/enumerated-types#enumerated-types-inclusion):
   It is no longer an error to indirectly include the same enum multiple times
   ([example](https://github.com/facebook/hhvm/blob/HHVM-4.116/hphp/hack/test/enum_supertyping/typing/diamond.good.php)).
