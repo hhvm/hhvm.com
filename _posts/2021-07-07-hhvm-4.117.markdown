@@ -10,8 +10,8 @@ HHVM 4.112&ndash;4.116 remain supported, as do the 4.80 and 4.102 LTS releases.
 
 # Highlights
 
-- [`HH\FIXME\UNSAFE_CAST`](https://docs.hhvm.com/hack/silencing-errors) can now
-  be used as a slightly safer alternative to `HH_FIXME` comments.
+- [`HH\FIXME\UNSAFE_CAST`](https://docs.hhvm.com/hack/silencing-errors/introduction#silencing-errors-with-hhfixmeunsafe_cast)
+  can now be used as a slightly safer alternative to `HH_FIXME` comments.
 
 # Breaking Changes
 
