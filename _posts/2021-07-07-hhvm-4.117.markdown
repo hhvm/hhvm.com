@@ -1,0 +1,43 @@
+---
+title: "HHVM 4.117"
+layout: post
+author: jjergus
+category: blog
+---
+
+HHVM 4.117 is released! This release marks the end of support for 4.111;
+HHVM 4.112&ndash;4.116 remain supported, as do the 4.80 and 4.102 LTS releases.
+
+# Highlights
+
+- [`HH\FIXME\UNSAFE_CAST`](https://docs.hhvm.com/hack/silencing-errors/introduction#silencing-errors-with-hhfixmeunsafe_cast)
+  can now be used as a slightly safer alternative to `HH_FIXME` comments.
+
+# Breaking Changes
+
+- The `Stringish` interface no longer declares a `__toString()` method. This
+  method is now declared only on the `StringishObject` interface (added in
+  [HHVM 4.115](https://hhvm.com/blog/2021/06/21/hhvm-4.115.html)).
+  - The declaration of `__toString()` on `Stringish` was misleading, since
+    `string` is a subtype of `Stringish` but trying to call any method on a
+    `string` value results in a runtime error.
+- Various legacy array compatibility INI options were removed (they had no
+  effect or didn't work as expected since
+  [HHVM 4.103](https://hhvm.com/blog/2021/03/31/hhvm-4.103.html)):
+  - `hhvm.raise_array_serialization_notices`
+  - `hhvm.hack_arr_compat_intish_cast_notices`
+  - `hhvm.hack_arr_compat_notices`
+  - `hhvm.array_provenance`
+
+# Future Changes
+
+- As announced
+  [last week](https://hhvm.com/blog/2021/06/28/hhvm-4.116.html#future-changes),
+  in the future, the "fuzzy" comparison operators `==` and `!=`, as well as
+  `switch` statements, will no longer treat values of different types as equal.
+  - The INI option `hhvm.notice_on_coerce_for_eq` now supports a new value, `3`.
+    This enables the new behavior, i.e. comparing values of different types will
+    return `false`. We recommend setting this option to `1` (raise notices) or
+    `2` (throw exceptions) first to catch any comparisons that would be
+    affected.
+
