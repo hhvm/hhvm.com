@@ -1,0 +1,20 @@
+---
+title: "HHVM 4.118"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.118 is released! This release marks the end of support for 4.112;
+HHVM 4.113&ndash;4.117 remain supported, as do the 4.80 and 4.102 LTS releases.
+
+# Highlights
+
+- added HHI for `ext_facts`; when using the watchman-based autoloader, this
+  provides information about the declarations in the current repository.
+
+# Breaking Changes
+
+- `Stringish` is now sealed to `StringishObject` and can not be directly
+  extended. Any class implementing `__toString(): string` automatically
+  implements the `StringishObject` interface.
