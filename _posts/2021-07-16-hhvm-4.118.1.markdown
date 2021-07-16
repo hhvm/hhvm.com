@@ -1,0 +1,10 @@
+---
+title: "HHVM 4.118.1: Bugfix release"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.118.1 is released! This release fixes an issue introduced in 4.118.0,
+leading to a segmentation fault when building a bytecode repository for
+repo-authoritative mode in some environments. Earlier releases are not affected.
