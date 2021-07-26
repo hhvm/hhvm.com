@@ -1,0 +1,66 @@
+---
+title: "HHVM 4.120"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.120 is released! This release marks the end of support for 4.113 and
+4.114; HHVM 4.115&ndash;4.118 remain supported, as do the 4.80 and 4.102 LTS
+releases. HHVM 4.119 was skipped due to personal circumstances of the team.
+
+
+# Highlights
+
+- autocomplete can now provide documentation for suggestions
+- autocomplete now understands built-in primitive types like `string`
+- `stream_select()` and `pagelet_server_task_result()` will no longer be
+  inlined, so will appear correctly in profilers like Xenon.
+- added `HH\\Lib\\Legacy_FIXME` namespace, containing several functions emulating
+  PHP behavior that we intend to remove from the core language. New code should
+  never use these functions, and projects should aim to remove them over time.
+  Currently, these include:
+  - `Legacy_FIXME\\increment(mixed)` and `decrement(mixed)`: reimplements the
+    current behavior of `++` and `--` on `null` and `string` inputs.
+  - `Legacy_FIXME\\cast_for_arithmetic(mixed)`: match PHP's implicit coercion
+    for math operations on `null`, `bool`s, `string`s (int-like, float-like,
+    and neither), and `resource`s.
+  - `lt(mixed, mixed)`, `lte(mixed, mixed)`, `gt(mixed, mixed)`,
+    `gte(mixed, mixed)`, `cmp(mixed, mixed)`, `eq(mixed, mixed()`,
+    `neq(mixed, mixed)`
+  - `optional_arraykey_to_int_cast_for_switch(?arraykey $value)[]: int`
+  - `optional_num_to_int_cast_for_switch(?num $value)[]: int`
+  - `int_cast_for_switch(mixed $value, ?arraykey $first_truthy)`; the second
+    parameter is required when switching on an enum.
+  - `string_cast_for_basic_switch(mixed $value, ?arraykey $first_case)`
+
+These last few functions are intended to be used by replacing `switch($foo)`
+with `switch(Legacy_FIXME\\string_cast_for_basic_switch($foo))`, for example.
+
+
+# Breaking Changes
+
+- TODO: can not repro: 4ab60de666 'remove bitwise not for string in hackc"
+- The typechecker now detects several more forms of invalid generic types; for
+  example, `X<bool>` is invalid if `X` is defined as `X<T as arraykey>`
+- Class method references can no longer be coerced to other types, e.g.
+  `Foo::bar<>` could previously have been coerced to `vec['Foo', 'bar']`.
+  Exceptions are now raised for these conversions. On previous versions, this
+  can be configured with the `hhvm.is_compatible_cls_meth_type`,
+  `hhvm.raise_cls_meth_conversion_warning`,
+  `hhvm.raise_cls_meth_comparison_warning`,
+  and `hhvm.is_compatible_cls_meth_type` INI settings.
+- `++` and `--` now raise notices when the types are coerced. Ideally, avoid
+  the coercion, otherwise migrate to the new `Legacy_FIXME\\increment()` and
+  `Legacy_FIXME\\decrement()` functions.
+- `fb_intercept()` has been removed; use `fb_intercept2()`
+- removed support for a global handler in `fb_intercept2()` as it would not
+  reliably trigger, could recurse, and could crash HHVM.
+- `hphp_debugger_attached()` always returns false in repo-authoritative mode, as
+  it could have performance implications, and is not reliable when attached in
+  repo-authoritative mode.
+
+# Future Changes
+
+- Built-in operators will error on the behaviors implemented by the
+  `Legacy_FIXME` functions in a future release.
