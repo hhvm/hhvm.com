@@ -21,7 +21,8 @@ releases. HHVM 4.119 was skipped due to personal circumstances of the team.
   never use these functions, and projects should aim to remove them over time.
   Currently, these include:
   - `Legacy_FIXME\\increment(mixed)` and `decrement(mixed)`: reimplements the
-    current behavior of `++` and `--` on `null` and `string` inputs.
+    current coercion behavior of `++` and `--` on `null` and `string` inputs;
+    the coerced value is returned, not mutated in place.
   - `Legacy_FIXME\\cast_for_arithmetic(mixed)`: match PHP's implicit coercion
     for math operations on `null`, `bool`s, `string`s (int-like, float-like,
     and neither), and `resource`s.
