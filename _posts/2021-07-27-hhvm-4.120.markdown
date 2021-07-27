@@ -41,7 +41,6 @@ with `switch(Legacy_FIXME\\string_cast_for_basic_switch($foo))`, for example.
 
 # Breaking Changes
 
-- TODO: can not repro: 4ab60de666 'remove bitwise not for string in hackc"
 - The typechecker now detects several more forms of invalid generic types; for
   example, `X<bool>` is invalid if `X` is defined as `X<T as arraykey>`
 - Class method references can no longer be coerced to other types, e.g.
