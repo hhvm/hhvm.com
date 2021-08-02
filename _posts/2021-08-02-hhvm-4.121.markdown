@@ -1,0 +1,38 @@
+---
+title: "HHVM 4.121"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.121 is released! This release marks the end of support for 4.115; HHVM 4.116&ndash;4.120 remain supported, as do the 4.80 and 4.102 LTS releases.
+
+# Highlights
+
+- When converting bools/resources/objects to ints, only raise a conversion
+  notice *or* error, not both.
+- Added a new `hhvm.notice_on_coerce_for_str_concat2` option to catch a
+  coercion case that is not handled by `hhvm.notice_on_coerce_for_str_concat`.
+  For both of these, a value of 0 means silent coercion, 1 raises a notice,
+  and 2 is an error.
+
+# Breaking Changes
+
+- Errors are now raised by default when math operations have to implicitly
+  coerce the type of an operand. This includes increment and decrement operators.
+  In prior versions, this behavior can be controlled with the
+  `hhvm.notice_on_coerce_for_math` and `hhvm.notice_on_coerce_for_inc_dec` INI
+  settings.
+- A notice is now raised when comparison operators coerce types. This can be
+  controlled with the `hhvm.notice_on_coerce_for_cmp` and
+  `hhvm.notice_on_coerce_for_eq` INI settings.
+- Bitwise operations now raise an error when coercing types. On previous releases,
+  this can be controlled with the `hhvm.notice_on_coerce_for_bit_op` INI setting.
+
+See [4.120's announcement](https://hhvm.com/blog/2021/07/27/hhvm-4.120.html)
+for `Legacy_FIXME` functions to aid in type coercion migration.
+
+# Future Changes
+
+- The various coercion options will be removed over time, and implicit coercions
+  will always be errors.
