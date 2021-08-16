@@ -1,0 +1,19 @@
+---
+title: "HHVM 4.123"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.123 is released! This release marks the end of support for 4.117; HHVM 4.118&ndash;4.122 remain supported, as do the 4.80 and 4.102 LTS releases.
+
+# Highlights
+
+- Improved typechecker error messages when refining objects to a class that doesn't exist.
+- Indexing containers with covariant keys now results in a distinct, clearer, error (4449)
+  if the key type is incompatible. Some FIXMes may need changing.
+- LSP-based IDEs may now suggest quickfixes when calling typoed static/instance methods.
+
+# Breaking Changes
+
+- Arguments to `meth_caller()` must now be constants
