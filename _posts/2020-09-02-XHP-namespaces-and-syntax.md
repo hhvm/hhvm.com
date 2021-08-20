@@ -20,7 +20,7 @@ XHP v4 includes several changes to:
   broader use of XHP in new contexts.
 - be consistent with other modern Hack libraries, especially the HSL.
 
-We expect future development of XHP to be focussed on making XHP more consistent
+We expect future development of XHP to be focused on making XHP more consistent
 with the rest of Hack, especially from a type system perspective.
 
 # Overview

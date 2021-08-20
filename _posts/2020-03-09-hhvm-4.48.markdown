@@ -23,7 +23,7 @@ HHVM 4.43&ndash;4.47 remain supported, as do the 4.8 and 4.32 LTS releases.
   or protected", previously (incorrectly) "Access type [...] must be omitted".
 - `hh_client lsp --config` now accepts `.hhconfig` settings, in addition to
   `hh.conf` (system-wide) settings.
-- Error for unitialized members now suggest making the property "nullable"
+- Error for uninitialized members now suggest making the property "nullable"
   instead of "optional", to avoid confusion with shape terminology.
 - Suggest using `$x is SomeEnum` if an exhaustive switch statement contains a
   `default:` block.

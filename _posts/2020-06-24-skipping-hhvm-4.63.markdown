@@ -27,7 +27,7 @@ legacy (PHP-style) arrays.
 - The INI flag `hhvm.hack_arr_compat_specialization` will be removed and its
   behavior will be enabled by default. We highly recommend enabling this flag in
   your current HHVM release before upgrading to HHVM 4.64.
-  This change disables the implicit inter-operability between `varray`s and
+  This change disables the implicit interoperability between `varray`s and
   `darray`s. Instead, `varray` and `darray` will be treated
   as types in their own right. Specifically:
   * Using a `varray` where a `darray` is expected (at parameter and return value

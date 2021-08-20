@@ -13,7 +13,7 @@ and 4.56 LTS releases.
 
 - The INI flag `hhvm.hack_arr_compat_specialization` was removed and its
   behavior is now enabled by default.
-  This change disables the implicit inter-operability between `varray`s and
+  This change disables the implicit interoperability between `varray`s and
   `darray`s. Instead, `array` (soon to be removed), `varray` and `darray` are
   now treated as types in their own right. Specifically:
   * Using a `varray` where a `darray` is expected (at parameter and return value

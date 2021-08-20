@@ -37,7 +37,7 @@ HHVM 4.42&ndash;4.46 remain supported, as do the 4.8 and 4.32 LTS releases.
 # Breaking Changes
 
 - Trying to declare a function, constant, or enum type with the same name as a
-  preceeding `use function`, `use const`, or `use type` declaration is now a
+  preceding `use function`, `use const`, or `use type` declaration is now a
   parser error.
   - It had already been a runtime error.
   - This makes the behavior consistent with classes, where it was already a
