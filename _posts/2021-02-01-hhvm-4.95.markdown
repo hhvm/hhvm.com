@@ -15,7 +15,7 @@ HHVM 4.88&ndash;4.94 remain supported, as do the 4.56 and 4.80 LTS releases.
 - Fixed an issue where overriding a type constant from a parent class/interface
   could cause a runtime error even if the code passed the typechecker
   ([example](https://github.com/facebook/hhvm/commit/206760e532d7f58084d9f32904d35b6735f57e66#diff-980a17de858c05e56fd438cc18277928d6403d191640f53d25c0302af056b22d)).
-- Fixed various typechecker error messages incorrectly refering to a type
+- Fixed various typechecker error messages incorrectly referring to a type
   constant as "property".
 - The SOAP extension now supports proxy authentication (new options
   `proxy_ssl_cert_path`, `proxy_ssl_key_path`, `proxy_ssl_ca_bundle`).

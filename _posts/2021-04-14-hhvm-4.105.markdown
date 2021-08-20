@@ -23,7 +23,7 @@ HHVM 4.100&ndash;4.104 remain supported, as does the 4.80 LTS release.
   `sharedmem_compression` `.hhconfig` option to a ZSTD compression level; 3
   is ZSTD's default. This is essentially CPU vs memory tradeoff - large
   projects may wish to experiment with this option.
-- interface type constants can now be overriden by implementing classes.
+- interface type constants can now be overridden by implementing classes.
 
 # Breaking Changes
 

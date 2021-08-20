@@ -28,7 +28,7 @@ HHVM 4.84&ndash;4.91 remain supported, as do the 4.56 and 4.80 LTS releases.
   not been kept up to date or correct, and was not exposed to the typechecker.
 - `apc_cache_info()` now correctly returns an `uncounted_entries` key instead of
   `uncounted_entires`.
-- Calling methods on `dynamic` values requires that all values are coercable to
+- Calling methods on `dynamic` values requires that all values are coercible to
   `dynamic`, and the return type will be `dynamic`.
 - it is now a syntax error to declare a function as `async` without an
   `Awaitable` return type; previously this was separately checked by the type

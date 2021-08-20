@@ -52,7 +52,7 @@ HHVM 4.104&ndash;4.108 remain supported, as do the 4.80 and 4.102 LTS releases.
 
 # Watchman-based Built-In Autoloading
 
-Built-in autoloading is now avaiable, but depends on the
+Built-in autoloading is now available, but depends on the
 [Watchman](https://github.com/facebook/watchman/) daemon being installed
 on your system.
 

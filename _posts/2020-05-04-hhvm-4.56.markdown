@@ -73,4 +73,4 @@ include GCC6 or below:
 - Ubuntu 16.04 (Xenial)
 
 Other unsupported distributions may be removed from future releases without
-futher notice.
+further notice.
