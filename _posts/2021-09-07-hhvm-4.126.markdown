@@ -1,0 +1,54 @@
+---
+title: "HHVM 4.126"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.126 is released! This release marks the end of support for 4.120; HHVM 4.120&ndash;4.123 remain supported, as do the 4.80 and 4.102 LTS releases.
+
+HHVM 4.125 was cancelled due to issues with the release candidate builds.
+
+# Highlights
+
+- `hh_client --lint FILE` is now supported, including several type-aware linters. There is not currently any
+  configuration or suppression available; please join us [in Slack](https://hhvm.com/slack) to discuss
+  potential integration approaches.
+- Debian 11 (Bullseye) is now supported.
+- Updated to a newer version of Timelib, fixing support for newer timezone
+  databases; in some environments, some transitions would be missing.
+- `is`/`as` checks will now invoke the autoloader if required instead of failing.
+- Improved build system reliability and performance for Hack components used by
+  the runtime (e.g. the parser).
+- Added the `HH\Lib\Locale` namespace, providing:
+  - `Locale\create(string $locale)[]: Locale\Locale`
+  - `Locale\modified(Locale\Locale $base, Locale\Category $cat, string $new): Locale`
+  - `Locale\c()[]: Locale\Locale` (likely to be renamed to `Locale\bytes()`)
+  - `Locale\get_native(): Locale\Locale`
+  - `Locale\set_native(Locale\Locale $locale): void`
+  - `Locale\from_environment(): Locale\Locale`
+
+The new `Locale\` functions are intended to be a replacement for the
+`setlocale()` built-in, and to interoperate with future changes to the `Str\`
+namespace.
+
+We discourage changing the native locale in most cases (either with `setlocale()`
+or with the new `Locale\set_native()`) as it can have unexpected results, such as
+changing the output of `Str\format()`, or translating exception messages raised
+by some builtins which should usually end up in logs that are read by
+developers/administrators instead of users. We have included it to provide a
+migration path for existing users of `setlocale()`, and because it is desirable
+in some cases, especially CLI tools.
+
+# Breaking Changes
+
+- Ubuntu 20.10 (Groovy) is no longer supported, as it reached end of life in July.
+
+# Future Changes
+
+- `Str\` HSL functions will start throwing `InvalidArgumentException` instead of
+  `InvariantException` when invalid offsets or lengths are passed. We strongly
+  recommend against catching either of these exceptions.
+- In a future release, it will be an error to iterate over most forms of
+  objects; this can be tested now with the `hhvm.throw_on_iteration_over_objects`
+  INI setting. Set to `1` for a notice to be raised, or `2` for an error.
