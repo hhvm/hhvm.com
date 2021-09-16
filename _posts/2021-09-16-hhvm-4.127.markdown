@@ -1,0 +1,34 @@
+---
+title: "HHVM 4.127"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.127 is released! This release marks the end of support for 4.121; HHVM 4.122&ndash;4.126 remain supported, as do the 4.80 and 4.102 LTS releases.
+
+# Highlights
+
+- Clearer typechecker errors when an attribute is passed the wrong number of
+  arguments.
+- add `Str\foo_l()` functions taking a `Locale\Locale()` object, and supporting
+  UTF8 (via `Locale\create('en_US.UTF-8')`, for example). We recommend only
+  using these functions when locale or multibyte-character awareness is
+  explicitly required, as:
+  - the non-`_l` functions are more performant
+  - the implementation works on normalized UTF-16, which can mean that a
+    `Str\ends_with_l()` call returns true when a string ends with the same
+    characters, but in a different byte sequence, potentially of a different
+    length.
+- Corrected behavior of `__FILE__` in trait methods.
+- Added `crypto_core_ristretto255_from_hash()` and `sodium_crypto_scalarmult_ristretto255()` when
+  supported by system libsodium.
+- Added the `sodium_crypto_secretstream` family of functions.
+
+# Breaking Changes
+
+- The `.hhconfig` flag `disallow_partially_abstract_typeconst_definitions` is
+  now true by default, and will be removed in a future release. This bans
+  declarations of the form `const type T as Y = Z`.
+- `foo()::$static_prop = 1` is now a runtime error, instead of only a
+  typechecker error.

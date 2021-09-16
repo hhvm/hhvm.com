@@ -5,7 +5,7 @@ author: fred
 category: blog
 ---
 
-HHVM 4.126 is released! This release marks the end of support for 4.120; HHVM 4.120&ndash;4.123 remain supported, as do the 4.80 and 4.102 LTS releases.
+HHVM 4.126 is released! This release marks the end of support for 4.120; HHVM 4.121&ndash;4.123 remain supported, as do the 4.80 and 4.102 LTS releases.
 
 HHVM 4.125 was cancelled due to issues with the release candidate builds.
 
