@@ -1,0 +1,21 @@
+---
+title: "HHVM LTS 4.128"
+layout: post
+author: fred
+---
+
+HHVM 4.128 is released! This release has long term support, so:
+- this release will be supported for approximately 48 weeks
+- the next LTS will be released in approximately 24 weeks
+- HHVM 4.102 (LTS) and HHVM 4.123&ndash;127 remain supported
+- support has ended for 4.80 (LTS) and 4.122
+
+# Highlights
+
+- Compatible editors (e.g. Visual Studio Code) will now suggest fixes for some
+  type errors, such as undefined variable names that appear to be typoes.
+- `hackfmt -i` (or `--in-place`) now accepts multiple filenames in one invocation.
+
+# Breaking Changes
+
+- `newctx` now requires an `as` constraint.
