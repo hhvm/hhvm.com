@@ -1,0 +1,22 @@
+---
+title: "HHVM 4.129"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.129 is released! This release marks the end of support for 4.123; HHVM 4.124&ndash;4.128 remain supported, as do the 4.102 and 4.128 LTS release.
+
+# Highlights
+
+- `hackfmt --in-place` (or `-i`) no longer writes to files that do not have
+  formatting changes.
+- added `hackfmt --check-formatting` which, given a list of files, prints
+  which files would be modified by `hackfmt --in-place`.
+- `hackfmt` now correctly handles multi-line string literals.
+- fixes `DateTimeZone::listIdentifiers()` returning an empty set.
+- fixes the `UTC` timezone not being recognized.
+
+# Breaking Changes
+
+- `isset()` no longer permits `inout` arguments.
