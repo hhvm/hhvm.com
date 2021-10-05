@@ -5,7 +5,7 @@ author: fred
 category: blog
 ---
 
-HHVM 4.130 is released! This release marks the end of support for 4.123; HHVM 4.124&ndash;4.128 remain supported, as do the 4.102 and 4.128 LTS release.
+HHVM 4.130 is released! HHVM 4.124&ndash;4.129, as do the 4.102 and 4.128 LTS release. HHVM 4.124 is still supported as 4.125 was cancelled.
 
 # Security Advisory
 
