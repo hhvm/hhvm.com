@@ -84,6 +84,7 @@ We recommend:
 
 # Future Changes
 
-- We may remove implicit coercion of enum values in a future release; if the
-  `hhvm.warn_on_implicit_coercion_of_enum_values` flag is set to true, the
-  runtime will raise a warning.
+- We may remove implicit int/string coercion of enum values in a future release;
+  if the `hhvm.warn_on_implicit_coercion_of_enum_value` flag is set to true, the
+  runtime will raise a warning. This affects `is` and `as` operators, and
+  `EnumName::isValid()`.
