@@ -1,0 +1,90 @@
+---
+title: "HHVM 4.130"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.130 is released! HHVM 4.124&ndash;4.129, as do the 4.102 and 4.128 LTS release. HHVM 4.124 is still supported as 4.125 was cancelled.
+
+# Security Advisory
+
+Vulnerabilities have been found bypassing the intent of the
+`hhvm.server.whitelist_exec`, `hhvm.server.whitelist_exec_warning_only`, and
+`hhvm.server.allowed_exec_cmds` options when subprocesses are executed via
+`system()` (and potentially similar APIs such as `shell_exec()` and `proc_open()`)
+with user-controlled input. Given that these builtins all execute subprocesses via
+a shell, there is not a viable path to implement these in a trustable way, so
+these options will be removed without replacement in a future release.
+
+We recommend: 
+- refactoring application code to avoid user-controlled subprocess command lines. The `escapeshellarg()` function may be useful here, but assumes a sh-style shell.
+- if user-controlled subprocess command lines are absolutely unavoidable, use containers, jails, or operating-system-provided mechanisms to implement subprocess restrictions.
+
+# Highlights
+
+- Improved error message source locations for errors related to `inout` parameters.
+- Fixed various issues with breakpoints not triggering, for example, when set in lambdas. Breakpoints currently
+  require that the legacy debugger is enabled with `hhvm.debugger.enable_debugger=1`, even if using a different
+  debugger such as Visual Studio Code. We expect to remove this requirement in a future release.
+- added `Locale\bytes()` as a preferred alias for `Locale\c()`; we expect to remove `Locale\c()` in a future release.
+- `hh_client --lint` can now suggest variance; for example:
+
+```Hack
+    Lint[5639] This generic parameter could be marked covariant. Consider prefixing the generic parameter with + [1]
+
+    infer_variance.php:1:19
+    [1] 1 | interface IGetter<T> {
+        2 |   public function get(): T;
+        3 | }
+```
+
+
+
+# Breaking Changes
+
+- It is now an error to pass the first argument to `invariant()` as `inout`.
+- Using `self` and `parent` as types now results in a runtime error; this previously 
+  raised typechecker errors. They remain valid for use in other contexts, e.g.
+  `self::foo()` and `parent::__construct()`.
+- `array_map()` is no longer special-cased in the typechecker; it now expects
+  a single callback, a single `KeyedContainer`, and returns a `KeyedContainer`.
+  It no longer accepts a variable number of parameters, and no longer preserves
+  the concrete type of the input.
+- The `Str\` functions no longer respect the current thread locale; functions
+  that were locale-sensitive now have a `_l()` variant that takes an explicit
+  locale.
+  - For example, `Str\format('%0.2f', 1.23)` will now reliably return `1.23`,
+    instead of sometimes returning `1,23` - if the previous behavior is desired,
+    `Str\format_l(Locale\get_native(), '%0.2f', 1.23)` can be used instead.
+  - We made this change as implicit use of the locale meant that the majority
+    of `Str\` functions could not be marked as pure, and because most users
+    were surprised that functions like `Str\format()`, `sprintf()` etc were 
+    locale-aware.
+  - The `_l` functions support UTF-8, depending on the CTYPE in the locale; this
+    may lead to behavior differences. Please ensure that `LC_CTYPE` is set
+    correctly for the behavior you desire using `Locale\modified()`.
+- `Str\split()` now consistently throws if a negative limit was provided.
+  - previously, `Str\split()` would only throw for negative limits if the
+    delimiter was empty.
+  - the previous behavior was unintuitive, and inconsistent with other functions
+    that accept negative limits with offsets:
+    - `Str\split('a!b!c', '!')` returned `vec['a', 'b', 'c']`
+    - `Str\split('a!b!c', '!', 2)` returned `vec['a', 'b!c']`
+    - `Str\split('a!b!c', '!', -1)` instead returned `vec['a', 'b']`
+  - added `Legacy_FIXME\split_with_possibly_negative_limit()` as a migration aid
+    with the old behavior.
+- `Str\replace_every()` and related functions now consistently raises exceptions
+  for empty search strings, and for inputs that are not strings. Previous
+  behavior varied depending on the specific function and inputs.
+  - added `Legacy_FIXME\coerce_possibly_invalid_str_replace_pairs()` as a
+    migration aid.
+- `Str\` functions now raise `InvalidArgumentException` instead of invariant
+  violations for invalid arguments.
+
+# Future Changes
+
+- We may remove implicit int/string coercion of enum values in a future release;
+  if the `hhvm.warn_on_implicit_coercion_of_enum_value` flag is set to true, the
+  runtime will raise a warning. This affects `is` and `as` operators, and
+  `EnumName::isValid()`.
