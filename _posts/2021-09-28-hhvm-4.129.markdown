@@ -20,3 +20,6 @@ HHVM 4.129 is released! This release marks the end of support for 4.123; HHVM 4.
 # Breaking Changes
 
 - `isset()` no longer permits `inout` arguments.
+- Many built-in exceptions including `RuntimeException` and `LogicException`
+  now extend the new `ExceptionWithPureGetMessage` class; all descendents that
+  override `getMessage()` must mark it as pure, e.g. `getMessage()[]`.
