@@ -1,0 +1,17 @@
+---
+title: "HHVM 4.131"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.131 is released! HHVM 4.126&ndash;4.130 remain supported, as do the 4.102 and 4.128 LTS releases.
+
+# Highlights
+
+- Breakpoints in Visual Studio Code no longer require the legacy debugger to be enabled.
+- Added `AsyncMysqlConnectionPool::connectAndQuery()`.
+- Fixed `ReflectionTypeConstant::getTypeStructure()` incorrectly referring to
+  the declaring class for inherited type constants, instead of the current class.
+  This could lead to bugs if the type constant referred to `this`.
+- Fixed a memory leak in `Str\replace` functions introduced in 4.130
