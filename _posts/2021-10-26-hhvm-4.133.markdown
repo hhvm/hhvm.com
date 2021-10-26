@@ -1,0 +1,50 @@
+---
+title: "HHVM 4.133"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.133 is released! HHVM 4.128&ndash;4.131 remain supported, as do the 4.102 and 4.128 LTS releases. HHVM 4.132 was skipped due to issues with the nightly builds.
+
+# Highlights
+
+- `dynamic` values can now be used as container keys. The containers will then
+  be inferred to be keyed by `arraykey`s, so can not be used as
+  `T<int, _>` or `T<string, _>`.
+- if a debugger is attached, the JIT will never be used, and the JIT will never
+  be disabled in the middle of a request for the debugger. This improves
+  debugger reliability.
+- fixed order-dependent autoloader issues for enum classes including other enum
+  classes.
+- when a static property is used as an instance property, the error message
+  now correctly says 'static property' instead of 'static method'.
+- fixed `Str\format()` accidentally using the request locale.
+- fixed `hackfmt` adding unwanted blank lines to the top of files.
+- updated build environment to OCaml 4.12 and Rust/Cargo v2021.10.21.
+
+# Breaking Changes
+
+- hash comments are no longer supported, and are a parse error. Use `//`
+  comments instead.
+- Files without a `.php`, `.hack`, `.hackpartial`, or `.hhi` extension will now
+  be consistently parsed as if they were `.hack` files.
+  - previous behavior was context-dependent.
+  - this change includes both files with other extensions, and files with no
+    extension.
+  - this may break legacy extensions such as `.hck` and `.hh`, as `<?hh` tokens
+    are banned in `.hack` files.
+- it is now an error to call `parent::__construct()` from a trait, unless the
+  parent has `<<__ConsistentConstruct>>`.
+- it is now an error for a constructor to read properties defined by a parent
+  class before calling `parent::__construct()`.
+- updated Thrift and mcrouter versions to v2021.11.18; supporting libraries and
+  tools may need an update if you are using these extensions.
+
+# Future Changes
+
+- `.php` files remain deprecated, and support may be removed in a future
+  release; `.hack` is strongly recommended instead
+- `.hackpartial` and `.php` files with `<?hh // partial` remain deprecated, and
+  support will likely be removed in a future release. `.hack` is strongly
+  recommended instead.
