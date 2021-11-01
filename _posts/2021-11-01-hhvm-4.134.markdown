@@ -1,0 +1,20 @@
+---
+title: "HHVM 4.134"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.134 is released! HHVM 4.129&ndash;4.133 remain supported, as do the 4.102 and 4.128 LTS releases.
+
+# Highlights
+
+- `ext_curl` will now cache TLS certificates between requests if HHVM is built against Curl v7.46.0 or newer.
+- added `HH\Lib\Ref::get()` and `::set($value)` - direct property access is still supported.
+- Added `HH\Lib\Async\Poll::waitUntilEmptyAsync()` for convenience and clarity when only the side effects of the
+  Awaitables are needed, such as when running an event loop.
+
+# Breaking Changes
+
+- It is now an unfixmeable parse error to attempt to write to object properties
+  in a pure function.
