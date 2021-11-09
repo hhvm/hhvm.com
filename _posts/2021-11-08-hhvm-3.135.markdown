@@ -1,0 +1,22 @@
+---
+title: "HHVM 4.135"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.135 is released! HHVM 4.130&ndash;4.134 remain supported, as do the 4.102 and 4.128 LTS releases.
+
+This release primarily contains stability and performance improvements, and work towards future features that are not yet supported.
+
+# Highlights
+
+- If using Watchman, fixed a potential deadlock when connecting. 
+
+# Breaking Changes
+
+- If a function intercept handler throws an exception, the intercepted functions' exception handler is no longer used.
+
+# Future Changes
+
+- We are now actively working towards removing support for 'partial' mode.
