@@ -9,7 +9,7 @@ HHVM 4.136 is released! HHVM 4.131&ndash;4.135 remain supported, as do the 4.102
 
 # Highlights
 
-- Add quickfix for missing interface methods
+- Add quickfix for missing interface methods.
 
 # Breaking Changes
 
@@ -17,7 +17,6 @@ HHVM 4.136 is released! HHVM 4.131&ndash;4.135 remain supported, as do the 4.102
 - The `partial` typing mode is removed. This includes both support for <?hh // partial in .php files, and for .hackpartial files.
 - Raise an error when a trait is <<__ConsistentConstruct>> but does not declare an explicit constructor.
 
-
 # Future Changes
 
-- TODO
+- The `readonly` modifier is now available in the reflection API via the `isReadonly()` or `returnsReadonly()` functions.
