@@ -21,7 +21,7 @@ values.
 # Breaking Changes
 
 - Methods with a `private final` modifier are not supported any more. Use `private` instead.
-- The `partial` typing mode is removed. This includes both support for `<?hh // partial` in .php files, and for .hackpartial files.
+- The `partial` typing mode is removed. This includes both support for `<?hh // partial` in `.php` files, and for `.hackpartial` files.
 - Raise an error when a trait is `<<__ConsistentConstruct>>` but does not declare an explicit constructor.
 - 
 
