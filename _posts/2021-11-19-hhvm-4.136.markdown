@@ -14,7 +14,7 @@ HHVM 4.136 is released! HHVM 4.131&ndash;4.135 remain supported, as do the 4.102
 - The `readonly` modifier is now available in the reflection API via the `isReadonly()` or `returnsReadonly()` functions.
 - A experimental option `hhvm.jit_attempt_super_inlining` is added to `.hhconfig`, which enables a novel strategy in HHVM attempting to const fold nearly-const
 values.
-- The [WriteHandle::truncate] method is added to HSL for writable files.
+- The [WriteHandle::truncate] method is added to HSL to truncate files.
 - Various APIs in HSL are now considered pure or `controlled` and no longer require the [defaults capabilities](https://docs.hhvm.com/hack/contexts-and-capabilities/introduction).
 - The `noreturn` type now can be upcasted to `dynamic`.
 
