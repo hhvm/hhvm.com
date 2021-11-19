@@ -7,8 +7,6 @@ category: blog
 
 HHVM 4.136 is released! HHVM 4.131&ndash;4.135 remain supported, as do the 4.102 and 4.128 LTS releases.
 
-TODO: Summary
-
 # Highlights
 
 - TODO
