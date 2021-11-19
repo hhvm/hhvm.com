@@ -1,0 +1,23 @@
+---
+title: "HHVM 4.136"
+layout: post
+author: atry
+category: blog
+---
+
+HHVM 4.136 is released! HHVM 4.131&ndash;4.135 remain supported, as do the 4.102 and 4.128 LTS releases.
+
+TODO: Summary
+
+# Highlights
+
+- TODO
+
+# Breaking Changes
+
+- Ban `private final` methods on classes, use `private` instead;
+- The `partial` typing mode is removed.
+
+# Future Changes
+
+- TODO
