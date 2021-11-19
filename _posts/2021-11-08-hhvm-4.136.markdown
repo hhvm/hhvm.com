@@ -9,7 +9,6 @@ HHVM 4.136 is released! HHVM 4.131&ndash;4.135 remain supported, as do the 4.102
 
 # Highlights
 
-- Support union types in `Shapes.toArray`. For example, `Shapes::toDict(shape("foo" => 42, "bar" => 1.3))` is now typed as `dict<string, num>` instead of `dict<arraykey, mixed>`.
 - TODO
 
 # Breaking Changes
