@@ -21,3 +21,4 @@ HHVM 4.136 is released! HHVM 4.131&ndash;4.135 remain supported, as do the 4.102
 # Future Changes
 
 - The `readonly` modifier is now available in the reflection API via the `isReadonly()` or `returnsReadonly()` functions.
+- A new option `-vEval.JitAttemptSuperInlining=true` is added to `hhvm` to enable super inlining optimization.
