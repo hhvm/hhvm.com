@@ -9,7 +9,7 @@ HHVM 4.136 is released! HHVM 4.131&ndash;4.135 remain supported, as do the 4.102
 
 # Highlights
 
-- Add quickfix for missing interface methods.
+- Add IDE quickfix for missing interface methods.
 - [The `readonly` feature](https://docs.hhvm.com/hack/experimental-features/read-only) is no longer considered unstable.
 
 # Breaking Changes
