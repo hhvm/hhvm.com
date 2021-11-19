@@ -9,7 +9,7 @@ HHVM 4.136 is released! HHVM 4.131&ndash;4.135 remain supported, as do the 4.102
 
 # Highlights
 
-- TODO
+- Add quickfix for missing interface methods
 
 # Breaking Changes
 
