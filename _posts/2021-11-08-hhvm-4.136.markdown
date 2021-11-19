@@ -15,8 +15,8 @@ TODO: Summary
 
 # Breaking Changes
 
-- Ban `private final` methods on classes, use `private` instead;
-- The `partial` typing mode is removed.
+- Methods with a `private final` modifier are not supported any more. Use `private` instead;
+- The `partial` typing mode is removed. This includes both support for <?hh // partial in .php files, and for .hackpartial files.
 
 # Future Changes
 
