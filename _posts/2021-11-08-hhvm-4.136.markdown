@@ -16,7 +16,7 @@ HHVM 4.136 is released! HHVM 4.131&ndash;4.135 remain supported, as do the 4.102
 - The [WriteHandle::truncate] method is added to HSL for writable files.
 - Various APIs in HSL are now considered pure and no longer require the [defaults capabilities](https://docs.hhvm.com/hack/contexts-and-capabilities/introduction).
 - The `--custom-hhi-path` option is added to hh_client and hh_server.
-- The `noreturn` type is now considered as a subtype of `dynamic`.
+- The `noreturn` type now can be upcasted to `dynamic`.
 
 # Breaking Changes
 
