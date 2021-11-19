@@ -14,6 +14,7 @@ HHVM 4.136 is released! HHVM 4.131&ndash;4.135 remain supported, as do the 4.102
 - The `readonly` modifier is now available in the reflection API via the `isReadonly()` or `returnsReadonly()` functions.
 - A new option `-vEval.JitAttemptSuperInlining=true` is added to `hhvm` to enable super inlining optimization.
 - The [WriteHandle::truncate] method is added to HSL for writable files.
+- Various APIs in HSL are now considered pure and no longer require the [defaults capabilities](https://docs.hhvm.com/hack/contexts-and-capabilities/introduction).
 
 # Breaking Changes
 
