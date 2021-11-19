@@ -15,7 +15,7 @@ HHVM 4.136 is released! HHVM 4.131&ndash;4.135 remain supported, as do the 4.102
 # Breaking Changes
 
 - Methods with a `private final` modifier are not supported any more. Use `private` instead.
-- The `partial` typing mode is removed. This includes both support for `<?hh // partial` in .php files, and for .hackpartial files. The `--disable-modes` flag, which was used to treat partial files as strict ones, is no longer available because it is now the default behavior.
+- The `partial` typing mode is removed. This includes both support for `<?hh // partial` in .php files, and for .hackpartial files.
 - Raise an error when a trait is `<<__ConsistentConstruct>>` but does not declare an explicit constructor.
 
 # Future Changes
