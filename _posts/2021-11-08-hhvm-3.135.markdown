@@ -4,7 +4,7 @@ layout: post
 author: fred
 category: blog
 redirect_from:
-  - /blog/2021/11/08/hhvm-3.135
+  - /blog/2021/11/08/hhvm-4.135
 ---
 
 HHVM 4.135 is released! HHVM 4.130&ndash;4.134 remain supported, as do the 4.102 and 4.128 LTS releases.
