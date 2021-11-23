@@ -1,0 +1,15 @@
+---
+title: "HHVM 4.137"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.137 is released! HHVM 4.131&ndash;4.136 remain supported, as do the 4.102 and 4.128 LTS releases. HHVM 4.131 remains supported as the 4.132 release was cancelled.
+
+# Highlights
+
+- `hh_client --lint` no longer suggests that reified generic parameters should be marked as covariant or contravariant, as this is not supported for reified generic.
+- IDEs now suggest replacing `self` with `static` when calling an abstract static method.
+- Improved the accuracy and message clarity of the 'always false'/'always true' built in linter when a condition
+  is always true/false due to `is`/`as` checks.
