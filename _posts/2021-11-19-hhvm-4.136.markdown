@@ -15,9 +15,7 @@ HHVM 4.136 is released! HHVM 4.131&ndash;4.135 remain supported, as do the 4.102
 - The [WriteHandle::truncate] method is added to HSL to truncate files.
 - Various APIs in HSL are now considered pure or `controlled` and no longer require the [defaults capabilities](https://docs.hhvm.com/hack/contexts-and-capabilities/introduction).
 - The `noreturn` type now can be upcasted to `dynamic`.
-<!--
-- An experimental option `hhvm.jit_attempt_super_inlining` is added to `.hhconfig`, which enables a novel strategy in HHVM attempting to const fold nearly-const values.
--->
+
 # Breaking Changes
 
 - Methods with a `private final` modifier are not supported any more. Use `private` instead.
