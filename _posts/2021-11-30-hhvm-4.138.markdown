@@ -1,0 +1,15 @@
+---
+title: "HHVM 4.138"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.138 is released! This release marks the end of support for 4.131; HHVM 4.133&ndash;4.136 remain supported (4.132 was cancelled), as do the 4.102 and 4.128 LTS releases.
+
+This release primarily contains changes that are not easily observable, such as
+reliability improvements and preparation work for future changes.
+
+# Highlights
+
+- regex functions correctly handle the `/A` modifier with non-zero offsets (regression fix)
