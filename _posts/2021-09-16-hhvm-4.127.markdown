@@ -24,6 +24,7 @@ HHVM 4.127 is released! This release marks the end of support for 4.121; HHVM 4.
 - Added `crypto_core_ristretto255_from_hash()` and `sodium_crypto_scalarmult_ristretto255()` when
   supported by system libsodium.
 - Added the `sodium_crypto_secretstream` family of functions.
+- Updated hackfmt's formatting of assignments with long assignment values. Now hackfmt prefers to break the whole assignment value onto a new line. You can preserve the old newline handling with `hackfmt.version = 0` in your `.hhconfig`.
 
 # Breaking Changes
 
