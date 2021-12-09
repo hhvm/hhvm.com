@@ -1,0 +1,30 @@
+---
+title: "HHVM 4.139, and December release schedule"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.139 is released! This release marks the end of support for 4.133; HHVM 4.134&ndash;4.138 remain supported, as do the 4.102 and 4.128 LTS releases.
+
+# December release schedule
+
+We expect to release 4.140 next week, but there will be no 4.141 release (week of the 20th), or 4.142 (week of the 27th). We plan to resume our usual schedule with 4.143 in the week of the 3rd of January, however we consider this release 'at-risk', depending on changes during the preceeding weeks.
+
+# Highlights
+
+- Hack now supports [`readonly`](https://docs.hhvm.com/hack/readonly/introduction) data types.
+- Reliability of the VSCode debugger interface has been improved.
+- The IDE quickfix for missing methods now creates `async` stub methods if the return type is `Awaitable`.
+- Added IDE quickfix for int, float, or string constants that are declared without a type.
+- `json_decode()` is now faster, and consumes less memory.
+
+# Breaking Changes
+
+- It is now an error to read static properties in functions that do not have the `globals` or `read_globals` capabilties.
+- It is now an error to write static properties in functions that do not have the `globals` capabilty.
+- `json_decode()` is now stricter about the input it accepts (per JSON/ECMA-404):
+  - leading 0s are no permitted in fewer situations; for example, they are now banned as object field values when
+    returning a dict.
+  - `\f` is no longer considered a whitespace character.
+  - `\r` is now considered a whitespace character.
