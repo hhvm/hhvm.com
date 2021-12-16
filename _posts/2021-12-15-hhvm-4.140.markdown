@@ -17,7 +17,7 @@ HHVM 4.140 is released! This release marks the end of support for 4.134; HHVM
 # Breaking Changes
 
 - `JitAHotSize` and `JitAProfSize` runtime options are removed
-- Ban `UNSAFE_CAST` in lvalues and `await` operands. The following code does not compile any more:
+- Ban `UNSAFE_CAST` in lvalues and `await` operands. The following code does not type-check any more:
   - `HH\FIXME\UNSAFE_CAST<mixed, dict<int, string>>($m)[0] = "lvalue";`
   - `await HH\FIXME\UNSAFE_CAST<Awaitable<mixed>, Awaitable<int>>(foo());`
 - Now a `clone` of a `readonly` object is also `readonly`.
