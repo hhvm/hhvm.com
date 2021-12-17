@@ -8,7 +8,7 @@ category: blog
 HHVM 4.140 is released! This release marks the end of support for 4.134; HHVM
 4.135&ndash;4.139 remain supported, as do the 4.102 and 4.128 LTS releases.
 
-v4.140 is the last release in 2021. Happy holiday!
+v4.140 is the last release in 2021. Happy Holidays!
 
 # Highlights
 
