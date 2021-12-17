@@ -10,5 +10,5 @@ environment variable, `HHVM_DISABLE_PERSONALITY`, which disables use of the
 `personality()` syscall on Linux.
 
 Like `HHVM_DISABLE_NUMA`, this is required in some restricted environments, such
-as Docker containers, and is now set in our Docker containers for these
+as Docker containers, and is now set in our Docker images for these
 versions.
