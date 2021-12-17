@@ -1,0 +1,14 @@
+---
+title: "HHVM 4.139.1 and 4.140.1"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.139.1 and HHVM 4.140.1 are released! These releases add support for a new
+environment variable, `HHVM_DISABLE_PERSONALITY`, which disables use of the
+`personality()` syscall on Linux.
+
+Like `HHVM_DISABLE_NUMA`, this is required in some restricted environments, such
+as Docker containers, and is now set in our Docker containers for these
+versions.
