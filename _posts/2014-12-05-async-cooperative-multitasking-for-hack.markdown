@@ -267,7 +267,7 @@ var_dump($a->getWaitHandle()->join());
 
 Immediately of notice is that returning from a function (or method) marked as "`async`" doesn't actually return that value, it returns a instance of a WaitHandle object (in this case, an `HH\StaticWaitHandle`, but we'll see other types).  We don't see the actual value until, as the caller, we've told the underlying async layer "wait until this task has done all its work, then give me the value".  This is because, like a generator, the async function is designed to be pauseable and resume execution at a later time.
 
-Most places in an async code base, that will be done by invoking `$result = await $waitHandle;` because that leaves the CPU free to run through other async functions`, however at the top-most point, where there's nothing else to share processing time with, we use a hard-block in the form of `$handle->join();`  Which effectively says "Deal with all your pending handles, then give me the end result."  Let's try adding a line to this function:
+Most places in an async code base, that will be done by invoking `$result = await $waitHandle;` because that leaves the CPU free to run through other async functions, however at the top-most point, where there's nothing else to share processing time with, we use a hard-block in the form of `$handle->join();`  Which effectively says "Deal with all your pending handles, then give me the end result."  Let's try adding a line to this function:
 
 
 ```php
