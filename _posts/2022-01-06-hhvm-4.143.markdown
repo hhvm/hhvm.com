@@ -1,0 +1,31 @@
+---
+title: "HHVM 4.143"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.143 is released! This release marks the end of support of 4.135;
+4.136&ndash;4.140 remain supported, as do the 4.102 and 4.128 LTS releases.
+4.141 and 4.142 were cancelled due to the holiday season.
+
+Additional patch releases have been made for 4.102, 4.128, and 4.135-4.140,
+which change the typechecker to ignore any files in `vendor/bin/`; this is
+required for compatibility with Composer 2.2.
+
+# Highlights
+
+- Compatible with Composer 2.2.
+- Added documentation on hover for `readonly`, `extends`, `async`, `await`, and
+  `concurrent` keywords.
+- `fb_intercept2()` now supports functions that return `readonly`.
+
+# Breaking Changes
+
+- If an interface or class is `<<__ConsistentConstruct>>` but does not define
+  a constructor, all subclass constructors must now be pure (`[]`).
+  Alternatively, define a constructor on the interface or class to specify
+  different capabilities. In previous versions, this can be enabled with
+  the `pure_default_consistent_constructors` flag in `.hhconfig`.
+- `DateTimeInterface::getTimestamp()` is now pure; any custom implementations
+  will need to also be pure.
