@@ -1,0 +1,21 @@
+---
+title: "HHVM 4.144"
+layout: post
+author: atry
+category: blog
+---
+
+HHVM 4.144 is released! This release marks the end of support of 4.136;
+4.137, 4.138, 4.139, 4.140, 4.143 remain supported, as do the 4.102 and 4.128 LTS releases.
+4.141 and 4.142 were cancelled due to the holiday season.
+
+
+# Highlights
+
+- The type checker now truncates the error message when printing out a type, in case of hanging the type checker if the type is complicated. The threshold can be configured via the `hh_client --config type_printer_fuel=N` option.
+- `classname<E>` where `E` is an enum now supports dynamic.
+
+# Breaking Changes
+
+- Local coeffects are enforced at runtime (previously coeffect errors were only reported in the type checker, not runtime).
+- An error will be thrown when a global is accessed in a `read_globals` context without an enclosing `readonly` modifier. 
