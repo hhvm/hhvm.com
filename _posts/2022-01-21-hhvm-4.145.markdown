@@ -13,7 +13,7 @@ HHVM 4.145 is released! This release marks the end of support of 4.137;
 # Highlights
 
 - Support throw on dynamic, e.g. `function foo(dynamic $d): void { throw $d; }`
-- Add support for attributes on class constants
+- Attributes on class constants do not result errors any more (assessing the attributes via runtime reflection is still not yet supported)
 - Strictify several built-in functions
 
 # Breaking Changes
