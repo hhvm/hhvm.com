@@ -26,4 +26,4 @@ HHVM 4.146 is released! This release marks the end of support of 4.138;
   `hphp_get_io_status()`, `hphp_get_timers()`, `hphp_instruction_counter()`,
   and `hphp_get_hardware_counters()` are now marked as `[read_globals]`, so can
   no longer be called from 'pure' functions.
-- diamond imports of traits are banned if the traits define generic properties as it can be unsound.
+- diamond hierarchies of traits (traits with a shared parent trait) are banned if the traits define generic properties as it can be unsound.
