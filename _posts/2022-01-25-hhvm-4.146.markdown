@@ -1,0 +1,29 @@
+---
+title: "HHVM 4.146"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.146 is released! This release marks the end of support of 4.138;
+4.139, 4.140, and 4.143 - 4.145 remain supported, as do the 4.102 and 4.128 LTS releases.
+4.141 and 4.142 were cancelled due to the holiday season.
+
+# Highlights
+
+- If options to log or forbid dynamic calls to class (static) methods are enabled, logging/errors will no longer be raised by calls to static methods on reified generics, e.g. `T::foo();`.
+
+
+# Breaking Changes
+
+- Coeffect violations now throw a `CoeffectViolationException` instead of a
+ `BadMethodCallException`; both extend `LogicException`.
+- It is now a parse error to declare a lambda/method/fuction parameter called
+  `$this`; previously, any attempts to use it would be treated as references to
+  the current object instance, not the parameter.
+- `ob_get_contents()`, `ob_get_length()`, `ob_get_level()`, `ob_get_status`,
+  `ob_list_handlers()`, `hphp_get_stats()`, `hphp_get_status()`,
+  `hphp_get_io_status()`, `hphp_get_timers()`, `hphp_instruction_counter()`,
+  and `hphp_get_hardware_counters()` are now marked as `[read_globals]`, so can
+  no longer be called from 'pure' functions.
+- diamond hierarchies of traits (traits with a shared parent trait) are banned if the traits define generic properties as it can be unsound.
