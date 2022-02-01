@@ -14,7 +14,7 @@ v4.140 is the last release in 2021. Happy Holidays!
 
 - Various bug fixes for the `readonly` data types.
 - Various error message improvements.
-
+- The typechecker now understands the coeffects of `\preg_replace_callback()` and `\preg_replace_callback_with_error()`. See [this commit](https://github.com/facebook/hhvm/commit/c8f8f0c9eaf73612427476e46698aafbb3037c60) for the new signature.
 
 # Breaking Changes
 
@@ -23,3 +23,4 @@ v4.140 is the last release in 2021. Happy Holidays!
   - `HH\FIXME\UNSAFE_CAST<mixed, dict<int, string>>($m)[0] = "lvalue";`
   - `await HH\FIXME\UNSAFE_CAST<Awaitable<mixed>, Awaitable<int>>(foo());`
 - Now a `clone` of a `readonly` object is also `readonly`.
+- The functions `\preg_replace_callback()` and `\preg_replace_callback_with_error()` now take a `(function(darray<arraykey, string>)[_]: string)` as the second parameter in the typechecker, instead of an untyped value.
