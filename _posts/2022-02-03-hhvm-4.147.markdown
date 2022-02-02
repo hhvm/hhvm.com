@@ -1,0 +1,21 @@
+---
+title: "HHVM 4.147"
+layout: post
+author: atry
+category: blog
+---
+
+HHVM 4.147 is released! This release marks the end of support of 4.139;
+4.140, and 4.143 - 4.146 remain supported, as do the 4.102 and 4.128 LTS releases.
+4.141 and 4.142 were cancelled due to the holiday season.
+
+# Highlights
+
+- Add coeffects to `thrift_protocol_set_compact_version`, `DateTime` and `mbstring` functions.
+- Support hover and go-to-definition on type parameters in an IDE.
+- Support hover and go-to-definition on the `abstract` keyword in an IDE.
+
+# Breaking Changes
+
+- The result of `HH\FIXME\UNSAFE_CAST` is now considered `readonly` if the input is `readonly`.
+- Enable case sensitive member checks by default.
