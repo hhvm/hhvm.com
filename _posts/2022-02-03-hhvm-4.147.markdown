@@ -18,4 +18,4 @@ HHVM 4.147 is released! This release marks the end of support of 4.139;
 # Breaking Changes
 
 - The result of `HH\FIXME\UNSAFE_CAST` is now considered `readonly` if the input is `readonly`.
-- Enable case sensitive member checks by default.
+- Always raise an error when inheriting members that differ only by case (previously the error would be raised only if `case_sensitive_inheritance` option is enabled)
