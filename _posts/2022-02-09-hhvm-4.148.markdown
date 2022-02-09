@@ -1,0 +1,21 @@
+---
+title: "HHVM 4.148"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.148 is released! This release marks the end of support of 4.140;
+4.143 - 4.146 remain supported, as do the 4.102 and 4.128 LTS releases.
+
+# Highlights
+
+- Fixed error where libelf may not be found
+- Autocomplete now suggests enum values for function parameters
+- Added `HH\Readonly\Shapes` class, partially mirroring the `Shapes` class
+- `HH\Lib\Str\length()` now takes advantage of JIT optimizations that were
+  previously exclusive to `\strlen()`
+
+# Breaking Changes
+
+- function bodies are now required for non-builtin functions.
