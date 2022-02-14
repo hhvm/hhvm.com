@@ -1,0 +1,21 @@
+---
+title: "HHVM 4.149"
+layout: post
+author: atry
+category: blog
+---
+
+HHVM 4.149 is released! This release marks the end of support of 4.143;
+4.144 - 4.148 remain supported, as do the 4.102 and 4.128 LTS releases.
+
+# Highlights
+
+- `__clone` is now able to write to its own properties even when the capability set is specified as pure.
+- Add coeffects to the following builtin APIs:
+  - `class_*`
+  - `dyncall_*_force`
+  - `ReflectionProperty::{get,set}Value`
+  - `Reflection{Method,Property}::setAccessible`
+  - `thrift_protocol_set_compact_version`
+  - `mb_*`
+- Fix segment fault when the locale specified in `$LANG` is not found.
