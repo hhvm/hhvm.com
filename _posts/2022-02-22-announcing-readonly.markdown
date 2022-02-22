@@ -12,7 +12,7 @@ As of HHVM version 4.139, we've released a new keyword called `readonly` in Hack
 - **Readonlyness**: Object properties of any readonly value cannot be modified (i.e. mutated).
 - **Deepness**: All nested properties of a readonly value are readonly.
 
-```Hack
+```
 class Bar {
   public function __construct(
     public Foo $foo,
@@ -44,7 +44,7 @@ The readonly keyword can be used in many places in Hack.
 
 You can see some examples of the readonly keyword in this code snippet: 
 
-```Hack
+```
 class Bar {
   public int $prop = 0;
 }
@@ -83,7 +83,7 @@ Some function calls and property accesses require explicitly annotating the resu
 - If you call a function that returns a readonly value, you must annotate the call with the `readonly` keyword. 
 - If you access a class's readonly property, you must annotate the access with the `readonly` keyword. 
 
-```Hack
+```
 function testExplicitReadonly(readonly Foo $foo): void {
     //     vvvvvvvv This keyword is required here since getBar returns readonly
     $bar = readonly $foo->getBar(); 
