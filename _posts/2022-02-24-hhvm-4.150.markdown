@@ -1,0 +1,42 @@
+---
+title: "HHVM 4.150"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.150 is released! This release marks the end of support of 4.144;
+4.145 - 4.149 remain supported, as do the 4.102 and 4.128 LTS releases.
+
+# Highlights
+
+- The `ENT_HTML5` constant is now recognized by the typechecker
+- Added `getSslCertCn()`, `getSslCertSan()`, `getSslCertExtensions()`, and
+  `isSslCertValidationEnforced()` to `AsyncMysqlResult` and
+  `AsyncMysqlConnection`
+- Added `$server_cert_values` parameter to `AsyncMysqlClient::connect()`, which
+  contains comma separated values that are matched against the existing
+  `$cserver_cert_extensions` parameter when verifying the certificate.
+- `class_implements()`, `class_parents()`, and `class_uses()` are now marked
+  as pure
+- If a function is marked as returning `mixed` but returns without a value,
+  LSP-based IDEs such as VSCode will now suggest `void` or `Awaitable<void>`
+  return types
+- LSP-based IDEs will now show Vector/Map/Set documentation comments on hover
+  for literals, not just the types
+- LSP-based IDE hover information for shape elements will now show information
+  type information the specific element, not the shape as a whole
+- `HH\Readonly\Shapes` now includes typechecker definitions
+
+# Breaking Changes
+
+- `AsyncMysqlClient::adoptConnection()` has been removed.
+- It is now a type error to use `meth_caller()` on methods that return a
+  `readonly` object; previously, this would be a runtime error. This is due to
+  technical limitations of the current implementation.
+- If a memoized function is called from a context that does not have the
+  `write_globals` capability, a more specific error is raised based on the write
+  or passing of the return value (if mutable), instead of always when the
+  function is called. This may change necessary fixme codes from 4461 ("a
+  memoized function is called") to 4459 ("A global variable is written").
+- Removed `HH\class_get_class_name()
