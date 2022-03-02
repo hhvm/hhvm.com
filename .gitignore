@@ -6,4 +6,5 @@ _site
 .sass-cache
 *.psd
 *~
-
+.jekyll-metadata
+.jekyll-cache
