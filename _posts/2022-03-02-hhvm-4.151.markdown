@@ -1,0 +1,28 @@
+---
+title: "HHVM 4.151"
+layout: post
+author: atry
+category: blog
+---
+
+HHVM 4.151 is released! This release marks the end of support of 4.145; 4.146 -
+4.150 remain supported, as do the 4.102 and 4.128 LTS releases.
+
+# Highlights
+
+- Added IDE hover information for class constants when the type is inferred.
+- `hphpd_break` and `hphp_debug_break` are now marked as pure.
+- Add an IDE quickfix for non-existent type names.
+- Adds a new constant (`HHVM_COMPILER_TIMESTAMP`) and read-only ini setting
+  (`ini_get('hphp.compiler_timestamp')`) that contain the timestamp to build
+  hhvm (which is itself part of the `HHVM_COMPILER_ID` and `hphp.compiler_id`
+  constant and ini setting).
+- `abstract enum class` is not considered an experimental feature any more.
+
+# Breaking Changes
+
+- The key type of a `dict` or a `keyset` is now always inferred as a subtype of
+  `arraykey` even when used with `dynamic`. For example, previously the key type
+  could be inferred as types like `int|dynamic` and now it would be
+  `int|(dynamic&arraykey)` in that case.
+
