@@ -1,0 +1,84 @@
+---
+title: "HHVM 4.153"
+layout: post
+author: fredemmott
+category: blog
+---
+
+HHVM 4.153 is released! This release has long term support, so:
+- this release will be supported for approximately 48 weeks
+- the next LTS will be released in approximately 24 weeks
+- HHVM 4.128 (LTS) and HHVM 4.127&ndash;151 remain supported
+- support has ended for 4.102 (LTS) and 4.146
+
+A final release of 4.102 - 4.102.7 - has been made to fix compatibility issues
+on MacOS.
+
+# Changing Our Release Cycle
+
+We moved from monthly to to weekly releases
+[in 2019](https://hhvm.com/blog/2019/02/11/hhvm-4.0.0.html) due to the large
+rate of breaking changes, and the difficulty in keeping up with them; we
+believe that the severity of the breaking changes has decreased over time,
+and that the improved tooling and increased soundness of the language has
+changed this situation over the last few years.
+
+We aim for 4.156 to be the last weekly release, and will then be moving to a
+two-week release schedule; we hope that this is a stepping stone on the way
+to a monthly release cycle, with an eventual goal of it being practical for
+the community to primarily target our LTS releases. We actively welcome
+feedback, and are open to reverting back to weekly releases if it is best for
+the commuinty.
+
+We hope that this move will reduce work for community maintainers, and make
+standard approaches such as semantic versioning more practical.
+
+# Highlights
+
+- Added function/method name to typechecker error messages for access to
+  global variables in contexts without the necessary capabilities.
+- Added `\HH\Lib\OS\posix_spawnp` and `\HH\Lib\OS\posix_spawn`, which supports a
+  subset functionality of the corresponding POSIX C API.
+- Added `getopt_with_optind` native function to support simple subparsers.
+- When an untyped lambda is passed as `nonnull`, the body is now typechecked as
+  if the untyped parameters were `mixed` instead of `nonnull`, which is
+  consistent with passing an untyped lambda as `mixed` or `dynamic` (where
+  parameters are assumed to be `mixed` or `dynamic`, respectively). Previously,
+  passing an untyped lambda as `nonnull` would always raise error 4224: "Cannot
+  determine types of lambda parameters in strict mode".
+- crc32q instructions are now used for improved performance when HHVM is built
+  on for a compatible target.
+- refactored typechecker errors for missing interface methods to flow more
+  naturally and clarify the relationship between the various parts of the error
+  and source filenames and line numbers.
+- improved readability of typechecker errors when subclass members are
+  incompatible with a supertype.
+- LSP-compatible IDEs will now offer a quickfix to remove `async` from
+  interface methods. `async` interface methods and abstract methods are already
+  an error, as it is an implementation detail - the `Awaitable<T>` return type
+  specifies how it is called.
+- Added a quickfix for nonexistent type name in params
+- Added a quickfix for missing `new`
+- added IDE hover information for built-in types
+- `inout` parameters can now be `dynamic`.
+- `pcntl_waitpid()` and `pcntl_wait()` now work correctly in server modes -
+  proxygen, fastcgi, and CLI-server
+- added `File\leaky_temporary_file()` which requires manual closing
+  and deletion. `File\temporary_file()` remains strongly encouraged where
+  possible.
+- `resource`s can now be passed as `dynamic`. `resource` remains strongly
+  discouraged in cases where alternatives exist.
+
+# Breaking Changes
+
+- Fix unsoundness with closure properties in readonly check. For example
+  `($this->f)()` now requires readonly check if the return type of `f` is
+  readonly.
+- Fix missing bound on `Set` keys; `(Set {})->add($non_arraykey)` now properly
+  raises a type error.
+- `<<__ProvenanceSkipFrame>>` has been removed from the HSL; this was an
+  unsupported annotation that was previously intended for PHP array to
+  vec/dict/keyset migration.
+- `unset` statement parameters can no longer contain function calls.
+- The proxygen server no longer supports TLS v1.0 or v1.1. Plain HTTP and
+  TLS v1.2 or above are still supported.
