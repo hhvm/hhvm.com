@@ -1,0 +1,25 @@
+---
+title: "HHVM 4.153"
+layout: post
+author: atry
+category: blog
+---
+
+HHVM 4.153 is released! This release marks the end of support of 4.146; 4.147 -
+4.151 remain supported, as do the 4.102 and 4.128 LTS releases. HHVM 4.152 was
+skipped due to issues with the nightly builds.
+
+# Highlights
+
+- Added function/method name to error messages.
+- Added `\HH\Lib\OS\posix_spawnp` and `\HH\Lib\OS\posix_spawn`, which supports a
+  subset functionality of the corresponding POSIX C API.
+- Added `getopt_with_optind` native function to support simple subparsers.
+- Added a quickfix for nonexistent type name in params
+# Breaking Changes
+
+- Fix unsoundness with closure properties in readonly check. For example
+  `($this->f)()` now requires readonly check if the return type of `f` is
+  readonly.
+- Fix missing Set key type bound. `(Set {})->add($non_arraykey)` now properly
+  raises a type error.
