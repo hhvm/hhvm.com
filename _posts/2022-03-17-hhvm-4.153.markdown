@@ -8,7 +8,7 @@ category: blog
 HHVM 4.153 is released! This release has long term support, so:
 - this release will be supported for approximately 48 weeks
 - the next LTS will be released in approximately 24 weeks
-- HHVM 4.128 (LTS) and HHVM 4.127&ndash;151 remain supported
+- HHVM 4.128 (LTS) and HHVM 4.147&ndash;151 remain supported
 - support has ended for 4.102 (LTS) and 4.146
 
 A final release of 4.102 - 4.102.7 - has been made to fix compatibility issues
