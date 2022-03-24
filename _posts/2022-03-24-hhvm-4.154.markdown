@@ -1,0 +1,20 @@
+---
+title: "HHVM 4.154"
+layout: post
+author: fred
+category: blog
+---
+
+HHVM 4.154 is released! This release marks the end of support of 4.147; 4.148 -
+4.153 remain supported, as does the 4.128 LTS release.
+
+# Highlights
+
+* IDE hover now shows original error messages for FIXME'd errors
+* Fixed IDE hover for shapes (show the shape type) vs shape indexing (show the field type)
+* IDEs should now suggest a `void`/`Awaitable<void>` return type for functions that do not return a value
+* IDE error fix suggestions will now be provided regardless of if the error has a FIXME
+* The HHVM Python/GDB scripts are now able to print `SrcKey` structs
+* `hphpd_break()` and `hphp_debug_break()` can now be used in pure functions
+* `stream_get_meta_data()` no longer crashes debug builds of HHVM when called on a closed file
+* `HH\Asio\curl_exec` no longer has an unneeded exponential backoff
