@@ -16,7 +16,7 @@ on MacOS.
 
 # Changing Our Release Cycle
 
-We moved from monthly to to weekly releases
+We moved from monthly to weekly releases
 [in 2019](https://hhvm.com/blog/2019/02/11/hhvm-4.0.0.html) due to the large
 rate of breaking changes, and the difficulty in keeping up with them; we
 believe that the severity of the breaking changes has decreased over time,
