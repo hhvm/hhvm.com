@@ -2,7 +2,7 @@
 title: "Security Update"
 layout: post
 author: fred
-category: blgo
+category: blog
 ---
 
 A security update has been released for all supported HHVM versions. Please
