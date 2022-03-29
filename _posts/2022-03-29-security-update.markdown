@@ -19,4 +19,4 @@ update to one of the following versions to get the update:
 This security update addresses:
 
 - [CVE-2022-27809](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-27809),
-  HHVM incorrect integer conversion leads to uninitialized variable reference
+  HHVM incorrect integer conversion in `array_fill` leads to uninitialized variable reference
