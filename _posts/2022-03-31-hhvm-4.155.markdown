@@ -13,7 +13,7 @@ HHVM 4.155 is released! This release marks the end of support of 4.148; 4.149 -
 * Added `HHVM_COMPILER_TIMESTAMP` constant to `hhi` for type checker, which contains the timestamp to build hhvm.
 * Added narrower or pure capability declarations to the following builtin APIs:
   * `create_opaque_value` and `unwrap_opaque_value`
-  * `to_base`
+  * `HH\Lib\Math\to_base`
   * `hash_`*
 * Permitted generic methods to override their own instantiations. e.g. `function
   foo(int):int` in a super class can be overridden as `function foo<T>(T):T` in a subclass.
@@ -43,8 +43,8 @@ HHVM 4.155 is released! This release marks the end of support of 4.148; 4.149 -
   * `--config-dir`
 * HPHPc now requires a `--output-dir` argument:
 * Fixed an unsoundness due to type parameter name clash. e.g. given `interface
-  A<T> { function f<T1>(a: T): T1; }`, if `A` is implemented in a class
+  A<T> { function f<T1>(T $a): T1; }`, if `A` is implemented in a class
   introducing type parameter name clash as `class B<T1> extends A<T1> { function
-  f<T1>(a: T1): T1 { return a; } }`, when upcasting `B` to `A`, `A<int> $a = new
+  f<T1>(T1 $a): T1 { return $a; } }`, when upcasting `B` to `A`, `/*A<int>*/ $a = new
   B<int>();`, it would allow for arbitrary type convention like
   `Str\length($a->f(1));`.
