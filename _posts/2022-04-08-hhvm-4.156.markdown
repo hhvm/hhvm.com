@@ -5,7 +5,7 @@ author: fred
 category: blog
 ---
 
-HHVM 4.157 is released! This release marks the end of support of 4.149; 4.150 -
+HHVM 4.156 is released! This release marks the end of support of 4.149; 4.150 -
 4.155 remain supported, as does the 4.128 LTS release.
 
 # Highlights
