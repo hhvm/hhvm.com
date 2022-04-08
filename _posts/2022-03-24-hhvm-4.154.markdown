@@ -18,3 +18,7 @@ HHVM 4.154 is released! This release marks the end of support of 4.147; 4.148 -
 * `hphpd_break()` and `hphp_debug_break()` can now be used in pure functions
 * `stream_get_meta_data()` no longer crashes debug builds of HHVM when called on a closed file
 * `HH\Asio\curl_exec` no longer has an unneeded exponential backoff
+
+# Breaking Changes
+
+ * The `--hphp` command (used for creating hhvm.hhbc for repo auth mode) interprets paths differently. On previous versions of hhvm `--module .` would include the current working directory in the repo. You must now explicitly provide all directories and files with Hack code using multiple flags, for example `--module src --module vendor --ffile public/index.hack`.
