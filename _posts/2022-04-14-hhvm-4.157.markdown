@@ -1,0 +1,22 @@
+---
+title: "HHVM 4.157"
+layout: post
+author: alexeyt
+category: blog
+---
+
+HHVM 4.157 is released! This release marks the end of support of 4.150; 4.151 -
+4.156 remain supported, as does the 4.128 LTS release.
+
+# Highlights
+
+- New supported distribution: Ubuntu 21.10 (compiled with gcc 10)
+- Bug fixes for `__FILE__` and `__DIR__` magic constants in traits
+- Bug fixes related to postsend functions in the vsdebug debugger extension
+- Initial work on supporting module-internal visibility
+- Initial work on supporting multiple as/super constraints on a type constant
+
+# Breaking Changes
+
+- This release breaks compatibility with older versions of hhvm/hhast. If hhast
+  is used, it should be updated to version 4.157 together with this update.
