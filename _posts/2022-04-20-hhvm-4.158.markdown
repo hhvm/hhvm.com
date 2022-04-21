@@ -1,0 +1,26 @@
+---
+title: "HHVM 4.158"
+layout: post
+author: atry
+category: blog
+---
+
+HHVM 4.158 is released! This release marks the end of support of 4.151; 4.153 -
+4.157 remain supported, as does the 4.128 LTS release.
+
+# Highlights
+
+- Add an autocomplete for enum values in `switch` statements
+- Add a quickfix for missing async keywords
+
+# Breaking Changes
+
+- Distinguish the `FIXME` error code of direct writes to static variables. Now:
+  - Error code 11001 represents directly writing to static variables.
+  - Error code 11002 represents writing to global variables (that have references to static variables).
+  - Error code 11003 represents passing global variables to function calls.
+- Remove support for trait precedence and trait alias from HHVM.
+- Remove support for the `elseif` keyword
+- Turn on runtime enforcement for reading globals needs to be enclosed in readonly.
+- This release breaks compatibility with older versions of hhvm/hhast. If hhast
+  is used, it should be updated to version 4.158 together with this update.
