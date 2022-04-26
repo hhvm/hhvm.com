@@ -1,0 +1,21 @@
+---
+title: "HHVM 4.159"
+layout: post
+author: atry
+category: blog
+---
+
+HHVM 4.159 is released! This release marks the end of support of 4.153; 4.154 -
+4.158 remain supported, as does the 4.128 LTS release.
+
+# Highlights
+
+- Add an attribute `<<__SafeGlobalVariable>>` to mark global variables as safe,
+  ensuring no errors/warnings would be raised from writing to this global
+  variable, when `--enable-global-write-check` is passed to `hh_server`.
+- Add a quickfix for missing switch fallthrough comment (`// FALLTHROUGH`).
+
+# Breaking Changes
+
+- Make all array index read error codes the same. The error code 4435, 4298, and
+  4005 are replaced by 4324.
