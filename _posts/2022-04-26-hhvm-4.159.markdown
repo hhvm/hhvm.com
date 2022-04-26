@@ -6,7 +6,7 @@ category: blog
 ---
 
 HHVM 4.159 is released! 4.154 -
-4.158 remain supported, as does the 4.128 and 4.153 LTS releases.
+4.158 remain supported, as do the 4.128 and 4.153 LTS releases.
 
 # Highlights
 
