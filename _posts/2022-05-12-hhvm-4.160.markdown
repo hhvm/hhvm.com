@@ -1,0 +1,24 @@
+---
+title: "HHVM 4.160"
+layout: post
+author: alexeyt
+category: blog
+---
+
+HHVM 4.160 is released! 4.155 - 4.159 remain supported,
+as do the 4.128 and 4.153 LTS releases.
+
+# Highlights
+
+- Autocomplete improvements to:
+  - suggest function and class declarations at the top-level
+  - suggest new method/property declarations in the body of a class
+  - suggest method declarations in the body of an interface
+  - suggest builtin attributes when typing an attribute name starting with `_`
+- Add a quickfix that turns `$shape['optional_field']` into
+  `Shapes::idx($shape, 'optional_field')`
+
+# Breaking Changes
+
+- The recently introduced attribute `<<__SafeGlobalVariable>>`
+  has been renamed to `<<__SafeForGlobalWriteCheck>>`
