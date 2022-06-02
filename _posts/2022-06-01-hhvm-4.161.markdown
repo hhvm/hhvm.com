@@ -1,0 +1,25 @@
+---
+title: "HHVM 4.161"
+layout: post
+author: alexeyt
+category: blog
+---
+
+HHVM 4.161 is released! 4.157 - 4.159 remain supported,
+as do the 4.128 and 4.153 LTS releases.
+
+# Highlights
+
+- Autocomplete stops offeting type completions in top-level expressions, since
+  no valid ones start with a type.
+- Fixes a typechecker bug that didn't allow a trait with a `require class C`
+  constraint to access the protected members of the parents of `C`
+- The docblock parser stops considering lines commented with `//` as part of the
+  docblock if there are completely empty lines between that comment line and the
+  definition being documented. This fixes some cases where file-level comments
+  were being spuriously considered part of the docblock for the first thing
+  defined in the file.
+- The `apc_fetch_with_pure_wakeup`, `apc_store_with_pure_sleep`, and
+  `apc_add_with_pure_sleep` APIs were published. These allow interacting with APC
+  while enforcing that the `__sleep` and `__wakeup` magic methods won't observe
+  global state or produce side-effects.
