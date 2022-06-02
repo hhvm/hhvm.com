@@ -10,7 +10,7 @@ as do the 4.128 and 4.153 LTS releases.
 
 # Highlights
 
-- Autocomplete stops offeting type completions in top-level expressions, since
+- Autocomplete stops offering type completions in top-level expressions, since
   no valid ones start with a type.
 - Fixes a typechecker bug that didn't allow a trait with a `require class C`
   constraint to access the protected members of the parents of `C`
