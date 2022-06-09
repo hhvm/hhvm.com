@@ -5,7 +5,7 @@ author: atry
 category: blog
 ---
 
-HHVM 4.162 is released! 4.157 - 4.161 remain supported,
+HHVM 4.162 is released! 4.159 - 4.161 remain supported,
 as do the 4.128 and 4.153 LTS releases.
 
 # Highlights
