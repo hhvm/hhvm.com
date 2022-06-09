@@ -18,7 +18,8 @@ as do the 4.128 and 4.153 LTS releases.
 - Supports type refinements for readonly expressions
 - A Hack property is now considered as a Field instead of a Property in an IDE
 - Adds a lint rule for invalid XHP class enum values
+- Passing an `\Error` as the `$previous` argument to the `\Error` constructor does not violate an internal typed property anymore. The argument to the constructor has/had the `?\Throwable` type, but the `$throwable->previous` property had the `?\Exception` type. Depending on the value of `hhvm.check_prop_type_hints` key in your configuration, this violation used to trigger a warning (the default), throw an `\Error`, or do nothing.
 
 # Breaking Changes
 
-- Added stricter types for `BaseException` and `Throwable` methods and properties
+- Added stricter types for `Exception`, `Error`, and `Throwable` methods and properties
