@@ -1,0 +1,25 @@
+---
+title: "HHVM 4.162"
+layout: post
+author: atry
+category: blog
+---
+
+HHVM 4.162 is released! 4.157 - 4.161 remain supported,
+as do the 4.128 and 4.153 LTS releases.
+
+# Highlights
+
+- Autocomplete improvements to:
+  - `parent::__construct`
+  - the first keyword (e.g. the visibility keyword on a method) in the body of a
+    class, interface, or trait
+  - `implements` and `extends`
+- Supports type refinements for readonly expressions
+- Hack properties are now considered as the LSP kind "Field" for IDEs
+  (previously the LSP kind "Property")
+- Adds a lint rule for invalid XHP class enum values
+
+# Breaking Changes
+
+- Added stricter types for `BaseException` and `Throwable` methods and properties
