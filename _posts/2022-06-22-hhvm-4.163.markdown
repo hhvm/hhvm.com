@@ -1,0 +1,29 @@
+---
+title: "HHVM 4.163"
+layout: post
+author: atry
+category: blog
+---
+
+HHVM 4.163 is released! 4.160 - 4.162 remain supported,
+as do the 4.128 and 4.153 LTS releases.
+
+# Highlights
+
+- Added `HH\str_bitwise_xor` to perform bitwise xor operator on strings
+- Relax restriction that prevents defaults and concrete type definitions with
+  the same name in the same hierarchy. e.g. the following code now type checks:
+  ``` hack
+  interface I1 {
+    const type T = int;
+  }
+  interface I2 {
+    abstract const type T = float;
+  }
+  class C implements I1, I2 {}
+  ```
+
+
+# Breaking Changes
+
+- Removed the support to instance methods in Expression Trees
