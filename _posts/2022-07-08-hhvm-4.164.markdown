@@ -1,0 +1,20 @@
+---
+title: "HHVM 4.164"
+layout: post
+author: wilfred
+category: blog
+---
+
+HHVM 4.164 is released! 4.161 - 4.163 remain supported,
+as do the 4.128 and 4.153 LTS releases.
+
+# Highlights
+
+- `hh` now rejects type aliases in `catch` blocks. These were already
+  banned in the runtime
+  ([commit](https://github.com/facebook/hhvm/commit/7fff3fda12e627be7fa18750677ea0f0ada8f172)).
+- Fixed an issue with incremental typechecks where making an XHP
+  attribute required would not always show a type error
+  ([commit](https://github.com/facebook/hhvm/commit/59f6ba82d11ba1c6e0eb7867a04b96bc49581e5a))
+- Introduced the `__Docs` attribute on classes
+  ([commit](https://github.com/facebook/hhvm/commit/9e284df22eb12fbcb17e1dcf7e10ec632d17d607))
