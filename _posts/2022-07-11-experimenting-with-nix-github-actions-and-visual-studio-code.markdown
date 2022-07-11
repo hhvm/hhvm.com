@@ -119,7 +119,7 @@ Nix](https://nixos.org/download.html#nix-install-linux):
 
 ``` bash
 (
-sudo tee -a ~/.config/nix/nix.conf <<EOF
+cat >> ~/.config/nix/nix.conf <<EOF
 extra-experimental-features = nix-command flakes
 extra-substituters = s3://hhvm-nix-cache?region=us-west-2&endpoint=hhvm-nix-cache.s3-accelerate.amazonaws.com
 extra-trusted-substituters = s3://hhvm-nix-cache?region=us-west-2&endpoint=hhvm-nix-cache.s3-accelerate.amazonaws.com
