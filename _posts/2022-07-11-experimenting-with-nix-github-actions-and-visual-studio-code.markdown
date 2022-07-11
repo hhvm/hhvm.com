@@ -21,7 +21,7 @@ For NixOS users, add the following settings to `/etc/nixos/configuration.nix` to
 configure the binary cache for HHVM:
 
 
-```
+``` nix
   nix.settings.substituters = [ "s3://hhvm-nix-cache?region=us-west-2&endpoint=hhvm-nix-cache.s3-accelerate.amazonaws.com" ];
   nix.settings.trusted-substituters = [ "s3://hhvm-nix-cache?region=us-west-2&endpoint=hhvm-nix-cache.s3-accelerate.amazonaws.com" ];
   nix.settings.trusted-public-keys = [ "hhvm-nix-cache-1:MvKxscw16fAq6835oG8sbRgTGITb+1xGfYNhs+ee4yo=" ];
@@ -37,7 +37,7 @@ disable sandboxing because HHVM cannot be built in Nix's sandbox build
 environment.
 
 
-```
+``` nix
   nix.settings.sandbox = false;
 ```
 
@@ -54,7 +54,7 @@ nixos-rebuild switch
 Then add HHVM to system packages, 
 
 
-```
+``` nix
   environment.systemPackages = [
     (builtins.getFlake "git+https://github.com/facebook/hhvm.git?submodules=1&shallow=1&ref=refs/tags/nightly-2022.07.08").packages.x86_64-linux.default
     pkgs.git
@@ -97,7 +97,7 @@ following command if you have a [multi-user installation of
 Nix](https://nixos.org/download.html#nix-install-linux):
 
 
-```
+``` bash
 (
 sudo tee -a /etc/nix/nix.conf <<EOF
 extra-experimental-features = nix-command flakes
@@ -117,7 +117,7 @@ Or if you have a [single-user installation of
 Nix](https://nixos.org/download.html#nix-install-linux):
 
 
-```
+``` bash
 (
 sudo tee -a ~/.config/nix/nix.conf <<EOF
 extra-experimental-features = nix-command flakes
@@ -143,7 +143,7 @@ command if you have a [multi-user installation of
 Nix](https://nixos.org/download.html#nix-install-macos):
 
 
-```
+``` bash
 (
 sudo tee -a /etc/nix/nix.conf <<EOF
 extra-experimental-features = nix-command flakes
