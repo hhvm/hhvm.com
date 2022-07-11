@@ -252,7 +252,7 @@ To incrementally edit the source and build HHVM:
    enter a development shell. All the HHVM dependencies and development tools
    will be available in `$PATH` and other environment
    variables.
-4. In the development shell, run <code>configure -C "$CMAKE_INIT_CACHE"</code>
+4. In the development shell, run <code>cmake -C "$CMAKE_INIT_CACHE"</code>
    to configure HHVM.
 5. In the development shell, run <code>make</code> to build HHVM.
 6. Make some changes to the source code.
