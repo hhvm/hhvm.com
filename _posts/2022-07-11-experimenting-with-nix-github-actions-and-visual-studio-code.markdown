@@ -185,7 +185,7 @@ URL, which can be any git branch or tag. For example:
     * `nix profile install
       'git+https://github.com/facebook/hhvm.git?submodules=1&shallow=1&ref=refs/heads/HHVM-4.164'`
 
-Since the Nix build is for new HHVM versions only, the `ref` parameter must
+Since HHVM is built with Nix for new HHVM versions only, the `ref` parameter must
 point to a child commit of
 [21870f6097ac7dea56ea57cc9113bcfd0d1a03d0](https://github.com/facebook/hhvm/commit/21870f6097ac7dea56ea57cc9113bcfd0d1a03d0).
 
