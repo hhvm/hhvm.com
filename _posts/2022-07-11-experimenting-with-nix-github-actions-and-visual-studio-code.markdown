@@ -200,7 +200,7 @@ otherwise Nix will just download the prebuilt binary.
 
 ### For Visual Studio Code Users
 
-We provided a Visual Studio Code workspace to develop HHVM. To set up the VS
+We provide a Visual Studio Code workspace to develop HHVM. To set up the VS
 Code based HHVM development environment on any Linux or macOS machines:
 
 
