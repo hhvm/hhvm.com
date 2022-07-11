@@ -12,7 +12,7 @@ support](https://hhvm.com/blog/2022/06/17/deprecating-homebrew.html), it is
 likely that we will also stop building HHVM with Nix on macOS in the future,
 too.
 
-## How to Install Nix Built HHVM Packages
+## How to Install HHVM Built With Nix
 
 
 ### For NixOS Users
