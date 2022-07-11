@@ -33,7 +33,7 @@ configure the binary cache for HHVM:
 
 
 In addition, if you want to build HHVM from source, add the following setting to
-disable sandboxing because HHVM cannot be built in Nix's sandbox build
+disable sandboxing because HHVM cannot be built in Nix's sandboxing build
 environment.
 
 
