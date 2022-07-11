@@ -250,7 +250,7 @@ To incrementally edit the source and build HHVM:
    https://github.com/facebook/hhvm.git --depth 1 --recurse-submodules`
 3. Under the work tree, run `nix develop .?submodules=1 --ignore-environment` to
    enter a development shell. All the HHVM dependencies and development tools
-   will be available in **<code>$PATH</code></strong> and other environment
+   will be available in `$PATH` and other environment
    variables.
 4. In the development shell, run <code>configure -C "$CMAKE_INIT_CACHE"</code>
    to configure HHVM.
