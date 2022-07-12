@@ -248,13 +248,13 @@ To incrementally edit the source and build HHVM:
 1. Install Nix.
 2. Checkout HHVM with all submodules: `git clone
    https://github.com/facebook/hhvm.git --depth 1 --recurse-submodules`
-3. Under the work tree, run `nix develop .?submodules=1` to
+3. Under the work tree, run `nix-shell` to
    enter a development shell. All the HHVM dependencies and development tools
    will be available in `$PATH` and other environment
    variables.
-4. In the development shell, run <code>cmake -C "$CMAKE_INIT_CACHE"</code>
+4. In the development shell, run <code>cmake -C "$CMAKE_INIT_CACHE" -Bbuild</code>
    to configure HHVM.
-5. In the development shell, run <code>make</code> to build HHVM.
+5. In the development shell, run <code>cd build && make</code> to build HHVM.
 6. Make some changes to the source code.
 7. In the development shell, run <code>make</code> to compile the affected files
    only.
