@@ -1,4 +1,9 @@
-# Experimenting with Nix, GitHub Actions, and Visual Studio Code
+---
+title: "Experimenting with Nix, GitHub Actions, and Visual Studio Code"
+layout: post
+author: atry
+category: blog
+---
 
 We’re happy to announce that the [Nix](https://nixos.org/) packages of HHVM are
 now available, as is the public CI status on GitHub Actions for it, and the
