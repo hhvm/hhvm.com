@@ -1,0 +1,32 @@
+---
+title: "HHVM 4.165"
+layout: post
+author: wilfred
+category: blog
+---
+
+HHVM 4.165 is released! 4.162 - 4.164 remain supported,
+as do the 4.128 and 4.153 LTS releases.
+
+# Dropping support for Ubuntu 18.04
+
+This release does not compile on Ubuntu 18.04. Ubuntu 18.04 is
+[outside our support
+lifecycle](https://hhvm.com/blog/2019/11/19/distribution-support.html)
+and this is the first HHVM version that depends on newer C++ features.
+
+# Highlights
+
+- `hh` now computes smaller fanouts in some circumstances (such as
+  [enum
+  constraints](https://github.com/facebook/hhvm/commit/05cadcc342f078bdad309a33f3734763ec1d4412)),
+  making incremental typecheckers faster.
+- Added Curl constants for libcurl 7.66
+  ([commit](1c9949d716df58df15bbedd351e799b8d76ebc6e)).
+- Major parts of systemlib now have explicit type signatures
+  (e.g. [ext_datetime](https://github.com/facebook/hhvm/commit/19395f33f61da0c8916d17150f248a5631ac916e)),
+  allowing the typechecker to catch more issues.
+- Added lints for [unconditional
+  recursion](https://github.com/facebook/hhvm/commit/5c8e50640e6860524f43813889b38958de34f7e3)
+  and [all function branches returning the same
+  value](https://github.com/facebook/hhvm/commit/edfd45cc057bc1b78e46665692df0316841b30ca).
