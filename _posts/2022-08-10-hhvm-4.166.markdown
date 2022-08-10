@@ -1,0 +1,45 @@
+---
+title: "HHVM 4.166"
+layout: post
+author: atry
+category: blog
+---
+
+HHVM 4.166 is released! 4.163 - 4.165 remain supported, as do the 4.128 and
+4.153 LTS releases.
+
+# Dropping support for Ubuntu 21.04 and 21.10
+
+This release does not compile on Ubuntu 21.04 and 21.10. Both versions
+have reached End of Life earlier this year according to
+[this post](https://fridge.ubuntu.com/2022/01/21/ubuntu-21-04-hirsute-hippo-end-of-life-reached-on-january-20-2022/)
+and [this
+post](https://fridge.ubuntu.com/2022/06/01/ubuntu-21-10-impish-indri-reaches-end-of-life-on-july-14-2022/).
+We are aware that we have not provided deb packages for Ubuntu 22.04 LTS. For
+now, Ubuntu 22.04 users could try [our experimental HHVM binary built with Nix](https://hhvm.com/blog/2022/07/12/experimenting-with-nix-github-actions-and-visual-studio-code.html),
+which should be able to run on any Linux distribution.
+
+# Highlights
+
+- Added support for upcasts in initializer expressions, e.g. `class C { public dynamic $d
+  = 3 upcast dynamic; }`
+- Added support for typechecking quote flag `%'(char)` in `sprintf`.
+- Added support for `<<__Docs("http://example.com")>>` to `type`, `newtype`,
+  `enum`s and `enum class`es, which shows the docs URL in the IDE's hover information
+- Added a quickfix for Lint 5643 (Comparing booleans with values)
+
+# Breaking Changes
+
+
+- Memoized functions with any of the following attributes now require the defaults
+  capability:
+  - `<<__Memoize(#SoftMakeICInaccessible)>>`
+  - `<<__Memoize(#MakeICInaccessible)>>`
+  - `<<__PolicyShardedMemoize>>`
+  - `<<__PolicyShardedMemoizeLSB>>`
+- Mark `spl_object_hash` as taking readonly
+- Make `null` default parameter with non-nullable type hint result in error
+- Always error on nested Expression Trees
+- Lambdas and calls in Expression Trees are now virtualized:
+  - Lambdas are now wrapped in `lambdaType(...)`.
+  - Calls are now translated to `__unwrap()` method instead of direct invoking.
