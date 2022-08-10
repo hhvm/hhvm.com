@@ -21,9 +21,9 @@ which should be able to run on any Linux distribution.
 
 # Highlights
 
-- Supported upcasts in initializer expressions, e.g. `class C { public dynamic $d
+- Added support for upcasts in initializer expressions, e.g. `class C { public dynamic $d
   = 3 upcast dynamic; }`
-- Supported typechecking quote flag `%'(char)` in `sprintf`.
+- Added support for typechecking quote flag `%'(char)` in `sprintf`.
 - Added support for `<<__Docs("http://example.com")>>` to `type`, `newtype`,
   `enum`s and `enum class`es, which shows the docs URL in the IDE's hover information
 - Added a quickfix for Lint 5643 (Comparing booleans with values)
