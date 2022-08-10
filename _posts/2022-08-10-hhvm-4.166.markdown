@@ -28,11 +28,8 @@ which should be able to run on any Linux distribution.
   `enum`s and `enum class`es, which shows the docs URL in the IDE's hover information
 - Added a quickfix for Lint 5643 (Comparing booleans with values)
 
-  
-
 # Breaking Changes
 
-<!-- We are making progress in implicit contexts -->
 
 - Memoized functions with any of the following attributes now require the defaults
   capability:
