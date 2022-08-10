@@ -13,7 +13,7 @@ HHVM 4.166 is released! 4.163 - 4.165 remain supported, as do the 4.128 and
 This release does not compile on Ubuntu 21.04 and 21.10. Both versions
 have reached End of Life earlier this year according to
 [this post](https://fridge.ubuntu.com/2022/01/21/ubuntu-21-04-hirsute-hippo-end-of-life-reached-on-january-20-2022/)
-and [that
+and [this
 post](https://fridge.ubuntu.com/2022/06/01/ubuntu-21-10-impish-indri-reaches-end-of-life-on-july-14-2022/).
 We are aware that we have not provided deb packages for Ubuntu 22.04 LTS. For
 now, Ubuntu 22.04 users could try [our experimental HHVM binary built with Nix](https://hhvm.com/blog/2022/07/12/experimenting-with-nix-github-actions-and-visual-studio-code.html),
