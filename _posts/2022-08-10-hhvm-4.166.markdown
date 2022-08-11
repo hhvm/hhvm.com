@@ -37,7 +37,6 @@ which should be able to run on any Linux distribution.
   - `<<__Memoize(#MakeICInaccessible)>>`
   - `<<__PolicyShardedMemoize>>`
   - `<<__PolicyShardedMemoizeLSB>>`
-- Mark `spl_object_hash` as taking readonly
 - Make `null` default parameter with non-nullable type hint result in error
 - Always error on nested Expression Trees
 - Lambdas and calls in Expression Trees are now virtualized:
