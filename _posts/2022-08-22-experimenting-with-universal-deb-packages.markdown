@@ -1,3 +1,10 @@
+---
+title: "Experimenting with universal deb packages"
+layout: post
+author: atry
+category: blog
+---
+
 
 ``` bash
 apt-get update &&
