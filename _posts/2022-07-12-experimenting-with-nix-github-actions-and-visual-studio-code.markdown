@@ -226,10 +226,7 @@ See [this instructional video](/static/videos/posts/vscode.mp4) for more detail.
 #### Using Development Containers Or GitHub Codespaces
 
 Alternatively, we also provide a development container with Nix pre-installed,
-which can be either used in a local Docker engine or in GitHub Codespaces. It is
-easy to make trivial changes to the code base but it might not be suitable for
-heavy development because the development container runs slower than either a
-local VSCode or a remote VSCode server via SSH.
+which can be either used in a local Docker engine or in GitHub Codespaces.
 
 See [this instructional video](/static/videos/posts/github-codespaces.mp4) for
 more detail.
