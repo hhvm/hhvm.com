@@ -13,7 +13,7 @@ HHVM 4.167 is released! 4.164 - 4.166 remain supported, as do the 4.128 and
 - Hover information has improved for constants, type names and enum
   classes.
 - More of the built-in extensions (`ext_json`, `ext_folly_variant`,
-  ext_thrift`, `ext_zlib`, `ext_server`, `ext_enum`) have more
+  `ext_thrift`, `ext_zlib`, `ext_server`, `ext_enum`) have more
   extensive typing in their .hhi files, so the type checker can check
   code using them.
 - `.hackpartial` settings in `.hhconfig` have been removed,
