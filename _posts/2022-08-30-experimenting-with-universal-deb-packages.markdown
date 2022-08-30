@@ -5,9 +5,9 @@ author: atry
 category: blog
 ---
 
-We’re happy to announce that the availability of universal deb packages, which
-do not depend on system libraries and should be able to be run on Debian, Ubuntu
-or any other Linux distributions with apt package manager.
+We’re happy to announce that the availability of universal deb packages of HHVM,
+which do not depend on system libraries and are expected to run on Debian,
+Ubuntu or any other Linux distributions with apt package manager.
 
 The universal deb packages have not been considered officially supported yet. We
 encourage you to try it out and feel free to report any issues you encountered.
