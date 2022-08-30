@@ -45,7 +45,7 @@ hhvm --version
 
 Currently 4.167 is the only universal deb packaging release version. You will be
 able to specify the apt suite name as `release-x.yyy` suite, where x is the
-major version and yyy is the minor version, for the future releases.
+major version and yyy is the minor version, for future releases.
 
 ### Obtaining The Nightly Stable Version
 
