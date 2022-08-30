@@ -31,7 +31,7 @@ apt-get install --yes hhvm &&
 hhvm --version
 ```
 
-### Obtaining A Specific Release
+### Obtaining A Specific Release Branch
 
 ``` bash
 apt-get update &&
@@ -43,9 +43,9 @@ apt-get install --yes hhvm &&
 hhvm --version
 ```
 
-Currently 4.167 is the only release version including universal deb packages. You will be
-able to specify the apt suite name as `release-x.yyy` suite, where x is the
-major version and yyy is the minor version, for future releases.
+Currently 4.167 is the only release version including universal deb packages.
+For future releases, you will be able to specify the apt suite name as
+`release-x.yyy`, where x is the major version and yyy is the minor version.
 
 ### Obtaining The Nightly Stable Version
 
