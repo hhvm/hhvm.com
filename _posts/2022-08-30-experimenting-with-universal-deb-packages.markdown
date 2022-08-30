@@ -10,9 +10,9 @@ which do not depend on system libraries and are expected to run on Debian,
 Ubuntu or any other Linux distributions with apt package manager.
 
 The universal deb packages have not been considered officially supported yet. We
-encourage you to try it out and feel free to report any issues you encountered.
-We will appreciate your feedback because it will help us decide if we will
-entirely switch from distribution-specific packaging to universal packaging.
+encourage you to try it out and report any issues you encountered. We will
+appreciate your feedback because it will help us decide if we will entirely
+switch from distribution-specific packaging to universal packaging.
 
 ## Installation
 
