@@ -1,0 +1,32 @@
+---
+title: "HHVM 4.167"
+layout: post
+author: wilfred
+category: blog
+---
+
+HHVM 4.167 is released! 4.164 - 4.166 remain supported, as do the 4.128 and
+4.153 LTS releases.
+
+# Highlights
+
+- Hover information has improved for constants, type names and enum
+  classes.
+- More of the built-in extensions (`ext_json`, `ext_folly_variant`,
+  `ext_thrift`, `ext_zlib`, `ext_server`, `ext_enum`) have more
+  extensive typing in their .hhi files, so the type checker can check
+  code using them.
+- `.hackpartial` settings in `.hhconfig` have been removed,
+  specifically `allowed_fixme_codes_partial`, `codes_not_raised_partial`
+  and `strict_codes`.
+- `hh_client` now supports a `--is-subtype` to see if types are
+  compatible, using JSON from `--type-at-pos`
+  ([commit](https://github.com/facebook/hhvm/commit/a5c0413f434f7b736e5a876f0af769e1e3ed694c)).
+- HHVM now supports overriding type constants on interfaces, even if
+  they're not abstract
+  ([commit](https://github.com/facebook/hhvm/commit/90d7b5c55ea2c5d9ca756a96a706a362aca0fadf)).
+
+# Breaking Changes
+
+- Having both `<<__Memoize>>` and `<<__MemoizeLSB>>` on a method
+  is now a type error.

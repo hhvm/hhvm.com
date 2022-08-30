@@ -15,7 +15,7 @@ HHVM 4.158 is released! This release marks the end of support of 4.151; 4.153 -
 
 # Breaking Changes
 
-- Distinguish the `FIXME` error code of direct writes to static variables. Now:
+- Distinguish the `HH_FIXME` error code of direct writes to static variables. Now:
   - Error code 11001 represents directly writing to static variables.
   - Error code 11002 represents writing to global variables (that have references to static variables).
   - Error code 11003 represents passing global variables to function calls.
