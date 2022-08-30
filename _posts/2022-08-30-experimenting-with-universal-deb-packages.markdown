@@ -9,8 +9,8 @@ We’re happy to announce that the availability of universal deb packages of HHV
 which do not depend on system libraries and are expected to run on Debian,
 Ubuntu or any other Linux distributions with apt package manager.
 
-The universal deb packages have not been considered officially supported yet. We
-encourage you to try it out and report any issues you encountered. We will
+The universal deb packages is still considered experimental like nix packages.
+We encourage you to try it out and report any issues you encountered. We will
 appreciate your feedback because it will help us decide if we will entirely
 switch from distribution-specific packaging to universal packaging.
 
@@ -61,10 +61,10 @@ hhvm --version
 
 ## Known Issue
 
-Note that the universal deb packages are built with Nix package manager and then
+Note that the universal deb packages are built with nix package manager and then
 get repacked into deb format. As a result, the universal deb packages will
-conflict with packages directly installed from the Nix package manager. If you
-are a Nix package manager user, you should directly use the Nix packages
+conflict with packages directly installed from the nix package manager. If you
+are a nix package manager user, you should directly use the nix packages
 announced in [this
 post](https://hhvm.com/blog/2022/07/12/experimenting-with-nix-github-actions-and-visual-studio-code.html),
 instead of the universal deb packages in case of path conflicts.
