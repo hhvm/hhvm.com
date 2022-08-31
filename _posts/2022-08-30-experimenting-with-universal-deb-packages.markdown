@@ -47,7 +47,7 @@ Currently 4.167 is the only release version including universal deb packages.
 For future releases, you will be able to specify the apt suite name as
 `release-x.yyy`, where x is the major version and yyy is the minor version.
 
-### Obtaining The Nightly Stable Version
+### Obtaining The Nightly Version
 
 ``` bash
 apt-get update &&
