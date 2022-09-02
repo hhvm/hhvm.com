@@ -5,7 +5,7 @@ author: atry
 category: blog
 ---
 
-We’re happy to announce that the availability of universal deb packages of HHVM,
+We’re happy to announce the availability of universal deb packages of HHVM,
 which do not depend on system libraries and are expected to run on any version of
 Debian, Ubuntu or any other Linux distributions with apt package manager.
 
