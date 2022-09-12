@@ -1,0 +1,51 @@
+---
+title: "HHVM 4.168"
+layout: post
+author: alexeyt
+category: blog
+---
+
+HHVM 4.168 (LTS) is released! This release has long term support, so:
+- this release will be supported for approximately 48 weeks
+- the next LTS will be released in approximately 24 weeks
+- HHVM 4.153 (LTS) and HHVM 4.165&ndash;167 remain supported
+- support has ended for 4.128 (LTS) and 4.164
+
+# Status of Ubuntu 22.04 support
+
+We had intended for this release to have Ubuntu 22.04 support, but we are
+releasing without that support for now. Due to library version compatibility
+issues, we need more time to get this support working, and we did not want 
+to delay the release for other platforms. We intend to make a 4.168.1 
+release with 22.04 support as soon as we get builds working on 22.04.
+
+Note that our experimental universal packages (also available for version
+4.168) are not affected by this issue and should be usable on any version of
+Ubuntu.
+
+# Highlights
+
+- Fix a typechecker bug where enums that recursively include themselves were 
+  not being correctly rejected.
+  ([commit](https://github.com/facebook/hhvm/commit/6c95bdbe3b))
+- Fix a bug where a lint could spuriously report a variable was shadowed when
+  that variable was not actually shadowed due to the potentially shadowing write
+  happening in the body of a lambda.
+  ([commit](https://github.com/facebook/hhvm/commit/21afafcb3f))
+- Ignore case and don't consider the class name when looking for 'did you
+  mean' suggestions for invalid enum class labels.
+  ([commit1](https://github.com/facebook/hhvm/commit/3a3a5a5bb5))
+  ([commit2](https://github.com/facebook/hhvm/commit/bebe707323))
+- Improve printing of unresolved types in typechecker errors; e.g.
+  `Expected Awaitable<[unresolved]> But got int` becomes `Expected
+  Awaitable<_> But got int`
+  ([commit](https://github.com/facebook/hhvm/commit/afac86e51e))
+- Improve error message when accessing a shape with a value that's not a
+  literal or class constant.
+  ([commit](https://github.com/facebook/hhvm/commit/c2b2433f90))
+- Improve error message from linter that points out when all return 
+  statements in a function return the same value.
+  ([commit](https://github.com/facebook/hhvm/commit/d606fb0198)) Also make 
+  this linter stop firing on functions that could plausibly be returning 
+  unix exit codes. 
+  ([commit](https://github.com/facebook/hhvm/commit/b10078ba6c))
