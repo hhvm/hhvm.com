@@ -30,4 +30,7 @@ HHVM 4.167 is released! 4.164 - 4.166 remain supported, as do the 4.128 and
 
 - Having both `<<__Memoize>>` and `<<__MemoizeLSB>>` on a method
   is now a type error.
-- The `--target` or `-t` flag has been removed from `hhvm` command.
+- The following flags has been removed from `hhvm` command.
+  - `--ffile`
+  - `--target`
+  - `-t`
