@@ -1,0 +1,14 @@
+---
+title: "HHVM 4.167"
+layout: post
+author: atry
+category: blog
+---
+
+HHVM 4.169 is released! 4.166 - 4.168 remain supported, as does the 4.153 LTS
+releases.
+
+# Highlights
+
+- `hackfmt` now only allows up to 1 consecutive blank lines (previously 2).
+  
