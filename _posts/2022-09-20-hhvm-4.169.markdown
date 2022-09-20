@@ -1,5 +1,5 @@
 ---
-title: "HHVM 4.167"
+title: "HHVM 4.169"
 layout: post
 author: atry
 category: blog
@@ -11,4 +11,9 @@ releases.
 # Highlights
 
 - `hackfmt` now only allows up to 1 consecutive blank lines (previously 2).
-  
+
+# Breaking Changes
+
+- The `$callback` passed to `fb_setprofile` now receives all parameters,
+  including non-default and default parameters. Previously only non-default
+  parameters are passed to `$callback`.
