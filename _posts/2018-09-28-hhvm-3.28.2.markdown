@@ -97,8 +97,8 @@ If a capture group isn't matched in the input string, the value for its key will
 Regular expressions matches are supported by existing IDE features, such as
 type-on-hover and shape key autocomplete:
 
-![type-on-hover example, showing a nullable shape keyed by captures](/static/images/posts/2018-09-28-regex-types.png)
-![shape key autocomplete example, showing autocomplete for named and positional captures](/static/images/posts/2018-09-28-regex-autocomplete.png)
+![type-on-hover example, showing a nullable shape keyed by captures](/static/images/posts/2018-09-28-regex-types.png){:loading="lazy"}
+![shape key autocomplete example, showing autocomplete for named and positional captures](/static/images/posts/2018-09-28-regex-autocomplete.png){:loading="lazy"}
 
 For the full API, see [the source](https://github.com/hhvm/hsl-experimental/blob/03daf701049172f7061d23e76a04197ca1a1be10/src/regex/regex.php); it will join the main HSL documentation once the feature is no longer experimental.
 

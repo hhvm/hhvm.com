@@ -40,7 +40,7 @@ comments:
     that might be a good read. [&#8230;]"
 ---
 
-![Book cover](/static/images/posts/rc_cat.gif)
+![Book cover](/static/images/posts/rc_cat.gif){:loading="lazy"}
 
 We’d like to get more developers in the community using Hack. But we know there’s been something lacking: a good, consolidated resource for learning Hack and getting the most use out of it. We have documentation online, but it’s more of a reference than a tutorial.
 

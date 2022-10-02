@@ -65,7 +65,7 @@ comments:
     for the language [&#8230;]"
 ---
 
-![Hack Logo](/static/images/posts/Screenshot-2015-02-18-10.07.47.png)
+![Hack Logo](/static/images/posts/Screenshot-2015-02-18-10.07.47.png){:loading="lazy"}
 
 Today we are excited to announce the availability of the [initial specification for the Hack programming language](https://github.com/hhvm/hack-langspec/blob/master/spec/00-specification-for-hack.md).
 

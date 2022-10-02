@@ -322,7 +322,7 @@ comments:
   content: "[&#8230;] know I&#8217;m late to the game but this is good [&#8230;]"
 ---
 
-![PHP-logo](/static/images/posts/PHP-logo2.png)
+![PHP-logo](/static/images/posts/PHP-logo2.png){:loading="lazy"}
 
 The PHP language has been around for over 20 years and is clearly one of the most popular programming languages in the world. PHP is definitely the [lingua-franca <del>of the internet</del> for server-side web programming](http://php.net/usage.php).
 
