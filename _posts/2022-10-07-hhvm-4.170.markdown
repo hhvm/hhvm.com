@@ -1,0 +1,43 @@
+---
+title: "HHVM 4.170"
+layout: post
+author: alexeyt
+category: blog
+---
+
+HHVM 4.170 is released! 4.167 - 4.169 remain supported, as does the 4.168
+and 4.153 LTS releases.
+
+# Highlights
+
+- The typechecker now rejects calls to type_structure with an invalid type
+  as the first argument (e.g. `type_structure(MyCoolType::class, 'TUhOh')`
+  when `type MyCoolType = shape(...)` Previously this was not flagged by
+  the typechecker but would fatal at runtime.
+  ([commit](https://github.com/facebook/hhvm/commit/7481994678))
+- The lint for using UNSAFE_CAST with too broad an input type now suggests
+  an autofix.
+  ([commit](https://github.com/facebook/hhvm/commit/87903e572b))
+
+# Breaking Changes
+
+- The Eval.EmitClassPointers runtime option has been removed. The previous
+  default behavior (option value 2; `Foo::class` expressions emit 'lazy'
+  class pointers) is now the only supported behavior.
+  ([commit](https://github.com/facebook/hhvm/commit/c8b8dac260))
+- Removed support for referring to config values using a wildcard (e.g.
+  `foo*bar = value` or `*foobar* = value` in HDF configs. Adding values to
+  a vector-typed config node such as `MyVectorConfig.* = value` remains
+  supported.
+  ([commit](https://github.com/facebook/hhvm/commit/e50e42ef06))
+- Remove support for hdf.loadpaths to specify paths to search when
+  including other HDF configs.
+  ([commit](https://github.com/facebook/hhvm/commit/b9e5ce4c3e))
+
+# A Note Regarding This Release
+
+We are still working on a fix for https://github.com/facebook/hhvm/issues/9236
+(inability to compile a repo in gcc builds of hhvm since release 4.168). If
+you rely on this functionality consider skipping this release or using nix
+packages built with clang. We will release updated versions of all supported
+releases once the fix is available.
