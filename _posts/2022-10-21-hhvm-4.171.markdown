@@ -36,9 +36,10 @@ not affected.
   [commit](https://github.com/facebook/hhvm/commit/dcfea5ce9ad2658605668cbccbb8e2865a497627))
   - Modules
     ([commit](https://github.com/facebook/hhvm/commit/cb398e7bb06eeb36e5d54f7fca867cbe30530104))
-- Added `ReflectionClass::getModule()` and `ReflectionModule::getDocComment()`.
-- Added `HH\classname_from_string_unsafe` to convert a string into a lazy class.
-- `HH\embed_type_decl` now supports repo mode.
+- Added `ReflectionClass::getModule()` ([commit](https://github.com/facebook/hhvm/commit/90534fe0eac73122f8867796bbaff45312a4cac8)).
+- Added `ReflectionModule::getDocComment()` ([commit](https://github.com/facebook/hhvm/commit/ef6a56308366ec41e768b35e712c5fc646215123)).
+- Added `HH\classname_from_string_unsafe` to convert a string into a lazy class ([commit](https://github.com/facebook/hhvm/commit/bc7260465933d884cb126dbd2bb5e31609465c37)).
+- `HH\embed_type_decl` now supports repo mode ([commit](https://github.com/facebook/hhvm/commit/1368add9e126642cbb4bf55fb46cab7bf0005e3d)).
 
 # Breaking Changes
 
@@ -50,6 +51,6 @@ not affected.
   would provide the required `clearTerseFields` functions.
 - The following `hh_server` flags are renamed:
   - `--enable-global-write-check-functions` is renamed to
-  `--enable-global-access-check-functions`;
+  `--enable-global-access-check-functions` ([commit](https://github.com/facebook/hhvm/commit/6730973faed03c5b4e3c48c494704ccaaf722425));
   - `--enable-global-write-check` is
-  renamed to `--enable-global-access-check-files`.
+  renamed to `--enable-global-access-check-files` ([commit](https://github.com/facebook/hhvm/commit/a55be3b322c9b78d3a87e5e9a28ef21905ca1ad4)).
