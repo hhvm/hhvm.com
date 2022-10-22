@@ -107,7 +107,7 @@ comments:
     things are looking overall. Thanks for your interest!"
 ---
 
-![Neon Lockdown Sign](/static/images/posts/10537187_10152729686506660_886816697495269948_o-1.jpg)
+![Neon Lockdown Sign](/static/images/posts/10537187_10152729686506660_886816697495269948_o-1.jpg){:loading="lazy"}
 
 It's that time of year again! Next week the HHVM Open Source team is beginning a lockdown. The next two weeks will feature beards, long hours, and performance wins. We're excited to announce that this will be our first ever open source performance lockdown.
 

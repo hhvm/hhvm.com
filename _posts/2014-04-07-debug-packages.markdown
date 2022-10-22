@@ -38,7 +38,7 @@ comments:
   content: "Log trace can be found in &#47;tmp with the following format\r\n&#47;tmp&#47;stacktrace..log"
 ---
 
-![](/static/images/posts/1218.png)
+![](/static/images/posts/1218.png){:loading="lazy"}
 
 We try our best to be a stable dependable runtime, but if you are reaching into the deep dark abyss of the PHP language, you might stumble upon a dark corner where we segfault or assert. First of all, we are sorry. Secondly, we would love you to [report the issue](https://github.com/facebook/hhvm/issues), and if you can put together a small test case that is best. If it only reproduces under the full moon when you hold your head to the side and hop on one leg, then a stacktrace would be next best.
 
