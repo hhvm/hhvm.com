@@ -1,0 +1,55 @@
+---
+title: "HHVM 4.153.3, 4.167.1, 4.168.1, 4.169.1, 4.170.1 and 4.171.0"
+layout: post
+author: atry
+category: blog
+---
+
+HHVM 4.153.3, 4.167.1, 4.168.1, 4.169.1, 4.170.1 and 4.171.0 are released!
+4.167.1 is the last release in 4.167 branch, while 4.168 - 4.170 remain
+supported, as does the 4.153 LTS release.
+
+Note that HHVM 4.153.2 is also released accidentally, but it does not include
+any meaningful change since 4.153.1.
+
+These releases fixes an issue introduced in 4.153.0
+([commit](https://github.com/facebook/hhvm/commit/291397f88cbe9154e2b228248a2534fbc31ea3f1)).
+When combining with [another
+commit](https://github.com/facebook/hhvm/commit/280e6899b442796a197b5b236d3ddd50d0b62b5f)
+introduced in 4.168.0, it leads to a segmentation fault when building a bytecode
+repository for repo-authoritative mode in gcc built HHVM. Earlier releases are
+not affected.
+
+# Highlights
+
+- HHVM 4.171.0 includes the fix for repo mode, which is also back-ported to all
+  supported HHVM versions
+  ([issue](https://github.com/facebook/hhvm/issues/9236),
+  [commit](https://github.com/facebook/hhvm/commit/1174b9f2e5935ff468b236aba9df0f3d3ff12d5a)).
+  The fix makes it possible to migrate the command line flag for building a
+  bytecode repository to `--inputs` from `--ffile`, which was dropped in [HHVM
+  4.167](https://hhvm.com/blog/2022/08/24/hhvm-4.167.html).
+- The following features are now considered preview features with an ongoing
+  release, i.e. allowed by the runtime, but not the typechecker:
+  - Diamond traits
+  ([docs](https://github.com/hhvm/user-documentation/pull/1297),
+  [commit](https://github.com/facebook/hhvm/commit/dcfea5ce9ad2658605668cbccbb8e2865a497627))
+  - Modules
+    ([commit](https://github.com/facebook/hhvm/commit/cb398e7bb06eeb36e5d54f7fca867cbe30530104))
+- Added `ReflectionClass::getModule()` and `ReflectionModule::getDocComment()`.
+- Added `HH\classname_from_string_unsafe` to convert a string into a lazy class.
+- `HH\embed_type_decl` now supports repo mode.
+
+# Breaking Changes
+
+- The thrift extension now requires `clearTerseFields` functions in generated
+  code
+  ([commit](https://github.com/facebook/hhvm/commit/81b528e7371e8e8da3b61cda2a39844a8129c1c3)).
+  Regenerating Hack files from the thrift definition with the [latest thrift
+  compiler](https://github.com/facebook/fbthrift/releases/tag/v2022.10.17.00)
+  would provide the required `clearTerseFields` functions.
+- The following `hh_server` flags are renamed:
+  - `--enable-global-write-check-functions` is renamed to
+  `--enable-global-access-check-functions`;
+  - `--enable-global-write-check` is
+  renamed to `--enable-global-access-check-files`.
