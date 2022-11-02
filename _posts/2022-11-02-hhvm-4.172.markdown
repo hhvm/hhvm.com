@@ -1,0 +1,50 @@
+---
+title: "HHVM 4.172"
+layout: post
+author: alexeyt
+category: blog
+---
+
+HHVM 4.172 is released! 4.169 - 4.171 remain supported, as do the 4.168 
+and 4.153 LTS releases.
+
+# Highlights
+
+- Fixed a bug preventing classes using a trait with `require class <that class>`
+  from being mocked.
+  ([commit](https://github.com/facebook/hhvm/commit/fa23fd50c869719a1ce4aa2b75c248dc0686d814))
+- Regular expression functions now have a new error type, for when regular
+  expressions jitted by PCRE run out of scratch space: PREG_JIT_STACKLIMIT_ERROR
+  These would previously be reported as generic internal errors, which made
+  debugging tricky.
+  ([commit](https://github.com/facebook/hhvm/commit/cef180f6b21c945e9113e5316ca06589c827bc10))
+
+# Breaking Changes
+
+- Two compiler options have been renamed - when compiling a repo the compiler
+  will no longer accept `--module` or `--cmodule` options as of this release.
+  Please use their new names `--dir` and `--cdir` instead (new names added in
+  release 4.169). This change is intended to avoid confusion wht the 'modules'
+  experimental feature.
+  ([commit](https://github.com/facebook/hhvm/commit/7859f697fb9bb539967bc5dfa9d22bce093c1a0a))
+- The typechecker now disallows overriding an async method with a non-async one.
+  This was previously allowed as long as the types in the signature were
+  compatible, but this made it easy to accidentally write subtle bugs by leaving
+  off the async keyword on the overriding method.
+  ([commit](https://github.com/facebook/hhvm/commit/415b6f84cf03aff4f31c2e963bd6576d70317ae5))
+- When using the 'modules' experimental feature, note that the default value of
+  the Eval.EnforceModules runtime option is changing from 1 (warn) to 2 (throw
+  exceptions).
+  ([commit](https://github.com/facebook/hhvm/commit/886a89f73db31d7904c1692f659bdf4f5aa4900e))
+- When using the like_type_hints experimental feature, note that this release
+  changes how these types (the union of `dynamic` and another type; e.g. `~int`
+  for the union of `dynamic` and `int`) are enforced in argument and return type
+  positions. Previously they were enfoced the same as the `dynamic` type (i.e.
+  any value would be accepted) but after this release they are enforced as the
+  other type in the union would be (e.g. for `~int` only integer values will
+  now be accepted).
+  ([commit](https://github.com/facebook/hhvm/commit/ad1dbd1230d6f9168e464083575366a8915e00ce))
+  See also
+  ([commit](https://github.com/facebook/hhvm/commit/bb5e5d61558dfd11e979572eb513c80adb2fa515))
+  for related changes adding new ways to write aspirational, un-enforced types
+  via helpers in the `HH\FIXME` namespace.

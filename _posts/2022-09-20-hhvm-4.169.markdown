@@ -11,6 +11,9 @@ releases.
 # Highlights
 
 - `hackfmt` now only allows up to 1 consecutive blank lines (previously 2).
+- The compiler options `--module` and `--cmodule` are being renamed to `--dir`
+  and `--cdir` to avoid confusion with the experimental 'modules' feature.
+  (This item was retroactively added to this announcement on 2022.11.02).
 
 # Breaking Changes
 
