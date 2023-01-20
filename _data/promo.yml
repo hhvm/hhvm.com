@@ -9,14 +9,8 @@
 
 #- type: github_watch
 
-#- type: like_button
-
-#- type: google_share
-
 #- type: twitter_follow
 #  href: FbOpenSource
-
-#- type: twitter_share
 
 - type: plugin_row
   children:
