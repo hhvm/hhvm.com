@@ -3,4 +3,4 @@ gem 'github-pages', group: :jekyll_plugins
 # Uncomment this if you need link redirects from, for example, an old site
 gem 'jekyll-redirect-from'
 
-gem "webrick", "~> 1.7"
+gem "webrick", "~> 1.8.2"
