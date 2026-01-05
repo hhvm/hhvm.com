@@ -1,12 +1,12 @@
-## User Documentation for hhvm.com
+# User Documentation for hhvm.com
 
 This directory will contain the landing page and other documentation for [hhvm.com](http://hhvm.com). It will contain links to the [HHVM user documentation over at docs.hhvm.com](https://docs.hhvm.com/hhvm) and other relevant places. [hhvm.com](http://hhvm.com) will be hosted on GitHub pages.
 
-### Contributing
+## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for details on how to add or modify content.
 
-### Run the Site Locally
+## Run the Site Locally
 
 The requirements for running a GitHub pages site locally is described in [GitHub help](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/#requirements). The steps below summarize these steps.
 
@@ -75,7 +75,7 @@ The requirements for running a GitHub pages site locally is described in [GitHub
 
 6. Either of commands in the previous step will serve up the site on your local device at http://127.0.0.1:4000/ or http://localhost:4000.
 
-### Updating the Bundle
+## Updating the Bundle
 
 The site depends on Github Pages and the installed bundle is based on the `github-pages` gem.
 Occasionally that gem might get updated with new or changed functionality. If that is the case,
@@ -86,3 +86,6 @@ bundle update
 ```
 
 to get the latest packages for the installation.
+
+## License
+[hhvm.com](http://hhvm.com) is Creative Commons Attribution 4.0 International licensed, as found in the LICENSE file.
