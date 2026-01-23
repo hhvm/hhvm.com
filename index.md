@@ -20,7 +20,7 @@ HHVM supports the [Hack](http://hacklang.org/) programming language. We are movi
         <li><a href="https://github.com/facebook/hhvm/wiki/Extension-API">HNI</a></li>
         <li><a href="http://docs.hhvm.com/hhvm/basic-usage/proxygen">Proxygen</a> and <a href="http://docs.hhvm.com/hhvm/advanced-usage/fastCGI">FastCGI support</a></li>
         <li><code>hphpd</code> debugger</li>
-        <li>... and <a href="http://docs.hhvm.com/hhvm/">more</a></li>
+        <li>... and <a href="http://docs.hhvm.com/hhvm-overview/">more</a></li>
       </ul>
     </div>
   </div>
