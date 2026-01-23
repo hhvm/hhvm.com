@@ -15,5 +15,5 @@
 - type: plugin_row
   children:
   - type: button
-    href: https://docs.hhvm.com/hhvm/getting-started/getting-started
+    href: https://docs.hhvm.com/hhvm/installation/introduction/
     text: Get Started With HHVM
